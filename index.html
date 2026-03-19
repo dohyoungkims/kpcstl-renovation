@@ -274,8 +274,9 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .est-r7-sub{font-size:13px;color:var(--g2);margin-bottom:6px}
 .est-r7-hint{font-size:12px;color:var(--g1);margin-bottom:14px}
 .est-r7-grid{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:12px}
-.est-r7-card{border:1px solid var(--g4);border-radius:12px;background:var(--bg);padding:14px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.22s,box-shadow 0.22s}
+.est-r7-card{border:1px solid var(--g4);border-radius:12px;background:var(--bg);padding:14px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.22s,box-shadow 0.22s;cursor:pointer}
 .est-r7-card.on{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}
+.est-r7-card.focus{box-shadow:0 0 0 2px rgba(0,0,0,0.14)}
 .est-r7-card h4{font-size:22px;line-height:1.1}
 .est-r7-card p{font-size:12px;color:var(--g2);line-height:1.55}
 .est-r7-list{font-size:12px;color:var(--g2);line-height:1.6;margin-top:2px}
@@ -295,7 +296,39 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .est-source-head{margin-bottom:12px}
 .est-source-head h3{font-size:18px;letter-spacing:-0.2px;margin-bottom:4px}
 .est-source-head p{font-size:12px;color:var(--g2);line-height:1.5}
+.est-scope{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:18px;margin-bottom:14px}
+.est-scope-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.est-scope h3{font-size:19px;letter-spacing:-0.2px;margin-bottom:4px}
+.est-scope-sub{font-size:12px;color:var(--g2);margin-bottom:12px}
+.est-scope-sub strong{color:var(--black)}
+.est-scope-cats{display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:8px;margin-bottom:12px}
+.est-scope-cat{position:relative;border:1px solid var(--g4);border-radius:10px;overflow:hidden;background:var(--bg);transition:border-color 0.2s,box-shadow 0.2s}
+.est-scope-cat img{display:block;width:100%;height:74px;object-fit:cover;transition:filter 0.22s,opacity 0.22s;filter:grayscale(1);opacity:0.42}
+.est-scope-cat.in img{filter:none;opacity:1}
+.est-scope-cat.adj img{filter:grayscale(0.22);opacity:0.9}
+.est-scope-cat.phase img{filter:grayscale(0.6);opacity:0.72}
+.est-scope-cat.out img{filter:grayscale(1);opacity:0.28}
+.est-scope-cat.focus{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}
+.est-scope-cap{padding:8px;font-size:10px;line-height:1.35;color:var(--g2);min-height:52px}
+.est-scope-cap strong{display:block;font-size:11px;color:var(--black);margin-bottom:2px}
+.est-scope-state{position:absolute;top:6px;left:6px;z-index:2}
+.est-scope-matrix{border:1px solid var(--g4);border-radius:10px;overflow:hidden}
+.est-scope-matrix table{width:100%;border-collapse:collapse;font-size:11px}
+.est-scope-matrix th,.est-scope-matrix td{border-bottom:1px solid var(--sep);padding:8px 8px;text-align:center}
+.est-scope-matrix tr:last-child td{border-bottom:0}
+.est-scope-matrix th:first-child,.est-scope-matrix td:first-child{text-align:left}
+.est-scope-matrix th{font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:var(--g1);background:var(--bg)}
+.est-scope-matrix .focus-col{background:rgba(0,0,0,0.04)}
+.est-scope-dot{display:inline-flex;align-items:center;justify-content:center;min-width:56px;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:0.3px;border:1px solid var(--g4);background:var(--white);color:var(--g2)}
+.est-scope-dot.in{background:#e8f6ec;border-color:#b7dec2;color:#225f37}
+.est-scope-dot.adj{background:#fff6df;border-color:#f0d59b;color:#8b6511}
+.est-scope-dot.phase{background:#eef2ff;border-color:#c8d2f7;color:#2f4a92}
+.est-scope-dot.out{background:#f4f4f4;border-color:#e1e1df;color:#8a8a86}
+.est-r7-scope-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.est-r7-scope-badges .est-scope-dot{font-size:9px;padding:3px 7px;min-width:unset}
 @media(max-width:900px){.est-r7-grid{grid-template-columns:1fr}}
+@media(max-width:1180px){.est-scope-cats{grid-template-columns:repeat(3,minmax(120px,1fr))}}
+@media(max-width:640px){.est-scope-cats{grid-template-columns:repeat(2,minmax(120px,1fr))}.est-scope-matrix th,.est-scope-matrix td{padding:7px 5px;font-size:10px}}
 
 /* ===== POLYCAM ===== */
 .scan-wrap{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:24px;margin-bottom:24px}
@@ -1000,6 +1033,14 @@ en:{
   openChaos:'Open in Chaos Cloud',
   r7EstTitle:'R7 Budget Proposal (Options 1-3)',
   r7EstSub:'Select one package first, then review original source bids below.',
+  r7ScopeTitle:'6 Work Categories & Inclusion by Package',
+  r7ScopeSub:'Category map first, then inclusion matrix for Option 1 / 2 / 3.',
+  r7ScopeHint:'Click an Option 1/2/3 card below to update this rendering map.',
+  r7ScopeActive:'Active',
+  r7ScopeLegendIn:'Included',
+  r7ScopeLegendAdj:'Adjustable',
+  r7ScopeLegendPhase:'Phased',
+  r7ScopeLegendOut:'Excluded',
   r7PresetHint:'Package buttons align Option B to R7 selection timing. In Option 2, kitchen floor tile ($9,100) is ON by default.',
   r7OpenDetail:'View Source Bids (A-D)',
   r7ApplyPreset:'Apply to Option B',
@@ -1101,6 +1142,14 @@ ko:{
   openChaos:'Chaos Cloud에서 열기',
   r7EstTitle:'R7 예산별 시공 제안 (제1안~제3안)',
   r7EstSub:'먼저 패키지를 선택하고, 하단에서 원본 업체 견적을 상세 확인하세요.',
+  r7ScopeTitle:'6개 공사 카테고리 및 제안안별 포함 범위',
+  r7ScopeSub:'상단 카테고리 맵을 먼저 확인하고, 제1안/제2안/제3안 포함 범위를 비교하세요.',
+  r7ScopeHint:'아래 제1안/제2안/제3안 카드를 클릭하면 이 렌더링 맵이 해당 안 기준으로 바뀝니다.',
+  r7ScopeActive:'현재 선택',
+  r7ScopeLegendIn:'포함',
+  r7ScopeLegendAdj:'선택 조정',
+  r7ScopeLegendPhase:'단계적',
+  r7ScopeLegendOut:'미포함',
   r7PresetHint:'패키지 버튼은 R7 선택 시점 기준으로 옵션 B를 정렬합니다. 제2안에서는 주방 바닥 타일($9,100)이 기본 ON 입니다.',
   r7OpenDetail:'원본 업체 견적 보기 (A~D)',
   r7ApplyPreset:'옵션 B에 적용',
@@ -1410,6 +1459,7 @@ const R7_ESTIMATE_CARDS=[
     desc:{ko:'주방 전체 기능을 완벽히 정상화하며, 중복 공사 없이 한 번에 모든 문제를 해결할 수 있습니다.',en:'Restores full kitchen function and solves all key issues in one coordinated project.'},
     items:{ko:'포함: 1·2·3·4·5·6 전체 항목',en:'Includes: all items 1·2·3·4·5·6'},
     map:{ko:'옵션 B 기준: 1·2·3·4·5·6 전체 반영 (바닥 타일 포함)',en:'Option B mapping: include 1·2·3·4·5·6 (floor tile included).'},
+    scope:{'1':'in','2':'in','3':'in','4':'in','5':'in','6':'in'},
   },
   {
     key:'2',
@@ -1419,6 +1469,7 @@ const R7_ESTIMATE_CARDS=[
     desc:{ko:'추후 공사가 어려운 기초 설비(바닥 타일 포함)를 완결하고, 선택 항목은 예산 확보 시 추가할 수 있습니다.',en:'Completes foundational infrastructure now (including flooring), while optional scope can be added later when budget allows.'},
     items:{ko:'기준: 1·2·4·6 + 선택 조정(3·5)',en:'Base: 1·2·4·6 + adjustable items (3·5)'},
     map:{ko:'옵션 B 기준: 1·2·4·6 반영, 3·5는 보류',en:'Option B mapping: include 1·2·4·6, keep 3·5 deferred.'},
+    scope:{'1':'in','2':'in','3':'adj','4':'in','5':'adj','6':'in'},
   },
   {
     key:'3',
@@ -1428,7 +1479,16 @@ const R7_ESTIMATE_CARDS=[
     desc:{ko:'기초 설비 중 시급한 항목에 집중하고, 타일은 정기 세척 유지 방식으로 공사비 부담을 최소화합니다.',en:'Focuses on urgent foundational work first and minimizes immediate budget burden with maintenance-based flooring strategy.'},
     items:{ko:'기준: 1·2·4 중심 (3·5·6 단계적)',en:'Focus: 1·2·4 first (3·5·6 phased)'},
     map:{ko:'옵션 B 기준: 1·2·4 반영, 3·5·6 단계적',en:'Option B mapping: include 1·2·4, phase 3·5·6 later.'},
+    scope:{'1':'in','2':'in','3':'phase','4':'in','5':'phase','6':'phase'},
   },
+];
+const R7_SCOPE_CATS=[
+  {key:'1',label:{ko:'1. 싱크대 재배치 및 급수 설비',en:'1. Sink Relocation & Water Supply'},img:'Final Renderings/sinkwall area/Final A.jpg'},
+  {key:'2',label:{ko:'2. 수납 설비 확충 및 카운터탑교체',en:'2. Counter + Cabinet / Countertop'},img:'Final Renderings/counter top options/final.jpg'},
+  {key:'3',label:{ko:'3. 가스레인지/오븐 교체',en:'3. Stove/Oven Replacement'},img:'Final Renderings/Stove area/stove area.jpg'},
+  {key:'4',label:{ko:'4. 벽면 패널(SS/FRP) 설치',en:'4. SS/FRP Wall Panels'},img:'Final Renderings/Stove area/SS and FRP Panels.jpg'},
+  {key:'5',label:{ko:'5. 외부 커피 스테이션 구축',en:'5. External Coffee Station'},img:'Final Renderings/Entry way area/Coffee Table 1.jpg'},
+  {key:'6',label:{ko:'6. 바닥 타일 교체',en:'6. Floor Tile Replacement'},img:'Final Renderings/floor option/floor 1.jpg'},
 ];
 const DESIGN_SECTIONS=[
   {
@@ -1642,7 +1702,7 @@ const REQUIRED_SELECTION_KEYS=['sink','counter','flooring'];
 const VOTE_STORE_KEY='kpc_kitchen_vote_v1';
 let VOTE_DB={votes:{}};
 
-const S={tab:'introduction',slide:0,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},r7Preset:null,voteCode:'',voteDraft:{},voteMsg:'',voteImport:''};
+const S={tab:'introduction',slide:0,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},r7Preset:null,r7ScopeFocus:'2',voteCode:'',voteDraft:{},voteMsg:'',voteImport:''};
 function voteHash(v){
   let h=2166136261;
   const s=String(v||'').trim().toLowerCase();
@@ -1828,6 +1888,12 @@ function goTab(t){S.tab=t;render();}
 function goSlide(i){S.slide=i;render();}
 function toggleCat(k){expanded[k]=!isCatOpen(k);render();}
 function setOn(id,on){const it=find(id);if(it)it.on=on;}
+function setR7ScopeFocus(key,doRender=true){
+  const k=String(key||'');
+  if(!R7_ESTIMATE_CARDS.some(c=>c.key===k))return;
+  S.r7ScopeFocus=k;
+  if(doRender)render();
+}
 function resetOptionBToRaw(){
   [...D.b_gc,...D.b_eq].forEach(it=>{
     if(RAW_ON[it.id]!==undefined)it.on=RAW_ON[it.id];
@@ -1835,6 +1901,8 @@ function resetOptionBToRaw(){
 }
 function applyR7Preset(key,doRender=true){
   resetOptionBToRaw();
+  // R7 package presets are mapped to Session scope toggles.
+  // Flooring is only toggled through Session Alt #1 ($9,100).
   if(key==='1'){
     setOn('b_range_c',true);setOn('b_range_s',false);
     setOn('b_stock_c',true);setOn('b_stock_s',false);
@@ -1851,6 +1919,7 @@ function applyR7Preset(key,doRender=true){
     B_SCOPE.floor.forEach(id=>setOn(id,false));
   }
   S.r7Preset=key;
+  S.r7ScopeFocus=key;
   S.slide=1;
   if(doRender)render();
 }
@@ -2661,6 +2730,56 @@ function trObj(v){
   if(v&&typeof v==='object')return v[S.lang]||v.ko||v.en||'';
   return v||'';
 }
+function scopeStateClass(st){return st==='in'||st==='adj'||st==='phase'?st:'out';}
+function scopeStateLabel(st){
+  if(st==='in')return t('r7ScopeLegendIn');
+  if(st==='adj')return t('r7ScopeLegendAdj');
+  if(st==='phase')return t('r7ScopeLegendPhase');
+  return t('r7ScopeLegendOut');
+}
+function rR7ScopeBadges(card){
+  return R7_SCOPE_CATS.map(cat=>{
+    const st=(card.scope&&card.scope[cat.key])||'out';
+    return `<span class="est-scope-dot ${scopeStateClass(st)}">${cat.key} · ${scopeStateLabel(st)}</span>`;
+  }).join('');
+}
+function rR7ScopeOverview(){
+  const focusKey=S.r7ScopeFocus||'2';
+  const focusCard=R7_ESTIMATE_CARDS.find(c=>c.key===focusKey)||R7_ESTIMATE_CARDS[1];
+  const catCards=R7_SCOPE_CATS.map(cat=>{
+    const lbl=trObj(cat.label);
+    const st=(focusCard.scope&&focusCard.scope[cat.key])||'out';
+    return `<article class="est-scope-cat ${scopeStateClass(st)}">
+      <span class="est-scope-state est-scope-dot ${scopeStateClass(st)}">${scopeStateLabel(st)}</span>
+      <img src="${encodeURI(cat.img)}" alt="${lbl}" loading="lazy">
+      <div class="est-scope-cap"><strong>${cat.key}</strong>${lbl.replace(/^\d+\.\s*/,'')}</div>
+    </article>`;
+  }).join('');
+  const matrixRows=R7_SCOPE_CATS.map(cat=>{
+    const c1=R7_ESTIMATE_CARDS[0],c2=R7_ESTIMATE_CARDS[1],c3=R7_ESTIMATE_CARDS[2];
+    const s1=(c1.scope&&c1.scope[cat.key])||'out';
+    const s2=(c2.scope&&c2.scope[cat.key])||'out';
+    const s3=(c3.scope&&c3.scope[cat.key])||'out';
+    return `<tr>
+      <td>${trObj(cat.label)}</td>
+      <td class="${focusKey==='1'?'focus-col':''}"><span class="est-scope-dot ${scopeStateClass(s1)}">${scopeStateLabel(s1)}</span></td>
+      <td class="${focusKey==='2'?'focus-col':''}"><span class="est-scope-dot ${scopeStateClass(s2)}">${scopeStateLabel(s2)}</span></td>
+      <td class="${focusKey==='3'?'focus-col':''}"><span class="est-scope-dot ${scopeStateClass(s3)}">${scopeStateLabel(s3)}</span></td>
+    </tr>`;
+  }).join('');
+  return `<section class="est-scope">
+    <div class="est-scope-head">
+      <div><h3>${t('r7ScopeTitle')}</h3><p class="est-scope-sub">${t('r7ScopeSub')}<br>${t('r7ScopeHint')} <strong>${t('r7ScopeActive')}: ${trObj(focusCard.title)}</strong></p></div>
+    </div>
+    <div class="est-scope-cats">${catCards}</div>
+    <div class="est-scope-matrix">
+      <table>
+        <thead><tr><th>${S.lang==='ko'?'카테고리':'Category'}</th><th class="${focusKey==='1'?'focus-col':''}">${S.lang==='ko'?'제1안':'Option 1'}</th><th class="${focusKey==='2'?'focus-col':''}">${S.lang==='ko'?'제2안':'Option 2'}</th><th class="${focusKey==='3'?'focus-col':''}">${S.lang==='ko'?'제3안':'Option 3'}</th></tr></thead>
+        <tbody>${matrixRows}</tbody>
+      </table>
+    </div>
+  </section>`;
+}
 function scrollEstimateDetails(){
   const el=document.getElementById('detailed-estimates');
   if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
@@ -2669,18 +2788,20 @@ function rR7EstimateSummary(){
   let cards='';
   R7_ESTIMATE_CARDS.forEach(c=>{
     const on=S.r7Preset===c.key;
-    cards+=`<article class="est-r7-card ${on?'on':''}">
+    const focus=S.r7ScopeFocus===c.key;
+    cards+=`<article class="est-r7-card ${on?'on':''} ${focus?'focus':''}" onclick="applyR7Preset('${c.key}')">
       <h4>${trObj(c.title)}</h4>
       <p>${trObj(c.desc)}</p>
       <p class="est-r7-list">${trObj(c.items)}</p>
       <p class="est-r7-map"><span>${t('r7MapLabel')}</span>${trObj(c.map)}</p>
+      <div class="est-r7-scope-badges">${rR7ScopeBadges(c)}</div>
       <div class="est-r7-range">${c.range}<small>${c.rangeEn}</small></div>
       <div class="est-r7-card-actions">
-        <button class="est-r7-preset-btn ${on?'on':''}" onclick="applyR7Preset('${c.key}')">${on?t('r7Applied'):t('r7ApplyPreset')}</button>
+        <button class="est-r7-preset-btn ${on?'on':''}" onclick="event.stopPropagation();applyR7Preset('${c.key}')">${on?t('r7Applied'):t('r7ApplyPreset')}</button>
       </div>
     </article>`;
   });
-  return`<section class="est-r7">
+  return`${rR7ScopeOverview()}<section class="est-r7">
     <h3>${t('r7EstTitle')}</h3>
     <p class="est-r7-sub">${t('r7EstSub')}</p>
     <p class="est-r7-hint">${t('r7PresetHint')}</p>
