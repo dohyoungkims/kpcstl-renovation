@@ -342,9 +342,9 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .scan-btn:hover{opacity:0.8}
 .ex-gallery{margin-top:18px;padding-top:14px;border-top:1px solid var(--sep)}
 .ex-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
-.ex-photo{grid-column:span 3;border:1px solid var(--g4);border-radius:6px;overflow:hidden;background:var(--white);padding:0;cursor:pointer;transition:border-color 0.28s var(--ease),box-shadow 0.28s var(--ease),transform 0.28s var(--ease);position:relative}
+.ex-photo{grid-column:span 3;border:1px solid var(--g4);border-radius:6px;overflow:hidden;background:var(--white);padding:0;cursor:pointer;transition:border-color 0.28s var(--ease),box-shadow 0.28s var(--ease),transform 0.28s var(--ease);position:relative;content-visibility:auto;contain-intrinsic-size:280px}
 .ex-photo:hover{border-color:var(--g5);box-shadow:var(--shadow2);transform:translateY(-2px)}
-.ex-photo img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3}
+.ex-photo img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;background:#efefed}
 .ex-photo.ex-reveal{opacity:0;transform:translateY(26px) scale(0.985);transition:opacity 0.7s var(--ease),transform 0.9s var(--ease);transition-delay:var(--d,0ms)}
 .ex-photo.ex-reveal.in{opacity:1;transform:none}
 @media(max-width:1180px){.ex-grid{grid-template-columns:repeat(8,minmax(0,1fr))}.ex-photo{grid-column:span 2}}
@@ -1402,6 +1402,7 @@ const EXISTING_SPACE_FILES=[
   'IMG_4115.JPG'
 ];
 const EXISTING_SPACE_SRCS=EXISTING_SPACE_FILES.map(name=>`Existing Space/${name}`);
+const EXISTING_SPACE_PREVIEWS=EXISTING_SPACE_FILES.map(name=>`Existing Space/previews/${name}`);
 const INTRO_CONTENT={
   ko:{
     heroTitle:'교회 주방 리노베이션 프로젝트\n임시집사회 보고',
@@ -2139,7 +2140,7 @@ function rPolycamPanel(){
   const photos=getExistingSpacePhotos();
   const gallery=photos.map((im,i)=>{
     return`<button class="ex-photo ex-reveal" onclick="openExistingPhoto(${i})" aria-label="${im.title}">
-    <img src="${encodeURI(im.src)}" alt="${im.title}" loading="lazy" decoding="async" fetchpriority="low">
+    <img src="${encodeURI(im.preview)}?v=1" alt="${im.title}" loading="lazy" decoding="async" fetchpriority="low" onerror="this.onerror=null;this.src='${encodeURI(im.src)}'">
   </button>`;
   }).join('');
   return`<div class="scan-wrap">
@@ -2159,6 +2160,7 @@ function rPolycamPanel(){
 function getExistingSpacePhotos(){
   return EXISTING_SPACE_SRCS.map((src,i)=>({
     src,
+    preview:EXISTING_SPACE_PREVIEWS[i]||src,
     title:`${t('existingPhotoLabel')} ${i+1}`,
     cap:t('existingPhotoCap')
   }));
