@@ -271,17 +271,30 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 /* ===== R7 ESTIMATE SUMMARY ===== */
 .est-r7{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:22px;margin-bottom:20px}
 .est-r7 h3{font-size:22px;letter-spacing:-0.3px;margin-bottom:4px}
-.est-r7-sub{font-size:13px;color:var(--g2);margin-bottom:14px}
+.est-r7-sub{font-size:13px;color:var(--g2);margin-bottom:6px}
+.est-r7-hint{font-size:12px;color:var(--g1);margin-bottom:14px}
 .est-r7-grid{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:12px}
-.est-r7-card{border:1px solid var(--g4);border-radius:12px;background:var(--bg);padding:14px;display:flex;flex-direction:column;gap:8px}
+.est-r7-card{border:1px solid var(--g4);border-radius:12px;background:var(--bg);padding:14px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.22s,box-shadow 0.22s}
+.est-r7-card.on{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}
 .est-r7-card h4{font-size:22px;line-height:1.1}
 .est-r7-card p{font-size:12px;color:var(--g2);line-height:1.55}
+.est-r7-list{font-size:12px;color:var(--g2);line-height:1.6;margin-top:2px}
+.est-r7-map{font-size:11px;color:var(--g1);line-height:1.5;padding:8px 10px;border-radius:8px;background:rgba(0,0,0,0.03);border:1px solid var(--g4)}
+.est-r7-map span{display:block;font-size:9px;letter-spacing:0.8px;text-transform:uppercase;font-weight:700;color:var(--g2);margin-bottom:2px}
 .est-r7-range{margin-top:auto;padding-top:8px;border-top:1px dashed var(--g4);font-size:30px;line-height:1;font-weight:700;letter-spacing:-0.8px}
 .est-r7-range small{display:block;font-size:11px;font-weight:600;letter-spacing:0.8px;color:var(--g2);margin-top:6px}
-.est-r7-list{font-size:12px;color:var(--g2);line-height:1.6;margin-top:2px}
-.est-r7-actions{margin-top:14px;display:flex;justify-content:flex-end}
+.est-r7-card-actions{margin-top:6px}
+.est-r7-preset-btn{width:100%;border:1px solid var(--g5);background:var(--white);color:var(--black);font-family:var(--font);font-size:11px;letter-spacing:0.5px;text-transform:uppercase;border-radius:6px;padding:9px 10px;cursor:pointer;transition:all 0.2s}
+.est-r7-preset-btn:hover{border-color:var(--black)}
+.est-r7-preset-btn.on{background:var(--black);color:var(--white);border-color:var(--black)}
+.est-r7-actions{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
 .est-r7-btn{border:1px solid var(--black);background:var(--black);color:var(--white);font-family:var(--font);font-size:11px;letter-spacing:0.5px;text-transform:uppercase;border-radius:6px;padding:9px 14px;cursor:pointer}
+.est-r7-btn.ghost{background:var(--white);color:var(--black)}
 .est-r7-btn:hover{opacity:0.86}
+.est-source{border-top:1px solid var(--g4);padding-top:16px}
+.est-source-head{margin-bottom:12px}
+.est-source-head h3{font-size:18px;letter-spacing:-0.2px;margin-bottom:4px}
+.est-source-head p{font-size:12px;color:var(--g2);line-height:1.5}
 @media(max-width:900px){.est-r7-grid{grid-template-columns:1fr}}
 
 /* ===== POLYCAM ===== */
@@ -314,6 +327,7 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .ds-jump-card img{display:block;width:100%;height:132px;object-fit:cover;filter:grayscale(1) brightness(0.82);transition:filter 0.28s var(--ease),transform 0.35s var(--ease)}
 .ds-jump-card:hover img,.ds-jump-card.on img{filter:grayscale(0) brightness(1)}
 .ds-jump-card:hover img{transform:scale(1.03)}
+.ds-req{position:absolute;top:10px;right:10px;z-index:3;background:#ffd87a;color:#111;border:1px solid rgba(0,0,0,0.12);border-radius:999px;padding:5px 10px;font-size:9px;font-weight:800;letter-spacing:0.7px;text-transform:uppercase}
 .ds-jump-text{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:10px}
 .ds-jump-text h5{font-size:12px;color:#fff;line-height:1.35}
 .ds-jump-text span{display:block;margin-top:2px;font-size:10px;color:rgba(255,255,255,0.76)}
@@ -328,6 +342,13 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .ds-sec-head{margin-bottom:18px}
 .ds-sec-title{font-size:19px;font-weight:700;letter-spacing:-0.2px;margin-bottom:6px}
 .ds-sec-desc{font-size:13.5px;color:var(--g2);line-height:1.6;max-width:800px}
+.ds-color-picks{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:-4px 0 16px}
+.ds-color-label{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--g2);padding-right:2px}
+.ds-color-btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--g4);background:var(--white);color:var(--g2);border-radius:999px;padding:6px 11px;font-family:var(--font);font-size:11px;font-weight:600;cursor:pointer;transition:all 0.22s var(--ease)}
+.ds-color-btn:hover{border-color:var(--g5);color:var(--black)}
+.ds-color-btn.on{border-color:var(--black);background:var(--black);color:var(--white)}
+.ds-color-dot{width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,0.26);box-shadow:inset 0 0 0 1px rgba(0,0,0,0.08)}
+.ds-ref-tag{display:inline-flex;align-items:center;margin-top:auto;padding:8px 12px;border:1px dashed var(--g4);border-radius:6px;color:var(--g1);font-size:11px;font-weight:600}
 /* Gallery — responsive grid for side-by-side comparison */
 .ds-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
 .ds-gallery[data-count="1"]{grid-template-columns:1fr;max-width:800px}
@@ -367,6 +388,27 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
   0%{transform:translateY(8px);opacity:0}
   100%{transform:none;opacity:1}
 }
+.counter-layout{display:flex;flex-direction:column;gap:16px}
+.counter-top-grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:16px}
+.counter-top-card{background:var(--bg);border:1px solid var(--g4);border-radius:var(--r);overflow:hidden}
+.counter-top-img{aspect-ratio:16/10;overflow:hidden;cursor:pointer}
+.counter-top-img img{width:100%;height:100%;object-fit:cover;display:block}
+.counter-top-body{padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.counter-top-title{font-size:15px;font-weight:700;letter-spacing:-0.1px}
+.counter-top-desc{font-size:12.5px;color:var(--g2);line-height:1.55}
+.counter-color-wrap{border:1px solid var(--g4);border-radius:var(--r);background:var(--bg);padding:14px}
+.counter-color-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.counter-color-head h4{font-size:14px;font-weight:700;letter-spacing:-0.1px}
+.counter-color-head p{font-size:11px;color:var(--g2)}
+.counter-color-grid{display:grid;grid-template-columns:repeat(4,minmax(130px,1fr));gap:10px}
+.counter-color-card{border:1px solid var(--g4);border-radius:10px;overflow:hidden;background:var(--white);display:flex;flex-direction:column;transition:border-color 0.22s,box-shadow 0.22s}
+.counter-color-card.on{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}
+.counter-color-img{position:relative;aspect-ratio:3/5;overflow:hidden;cursor:pointer}
+.counter-color-img img{width:100%;height:100%;object-fit:cover;object-position:var(--crop,52% 58%);display:block}
+.counter-color-name{position:absolute;left:0;right:0;bottom:0;padding:8px 6px;text-align:center;font-size:11px;font-weight:700;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.66));letter-spacing:0.2px}
+.counter-color-actions{padding:8px}
+.counter-color-actions .ds-select-btn{width:100%;justify-content:center;padding:7px 10px;font-size:11px}
+@media(max-width:1020px){.counter-color-grid{grid-template-columns:repeat(2,1fr)}}
 /* Selections panel */
 .sel-wrap{max-width:900px;margin:0 auto}
 .sel-head{margin-bottom:24px}
@@ -386,6 +428,47 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .sel-empty{text-align:center;padding:48px 20px;color:var(--g2);font-size:13px}
 .sel-empty-icon{font-size:32px;margin-bottom:10px;opacity:0.4}
 @media(max-width:620px){.sel-row{flex-direction:column}.sel-row img{width:100%;height:180px}.sel-row-clear{align-self:flex-start;margin:0 14px 14px}}
+
+/* ===== VOTING ===== */
+.vote-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.vote-card{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:18px}
+.vote-card h3{font-size:20px;letter-spacing:-0.2px;margin-bottom:4px}
+.vote-sub{font-size:12.5px;color:var(--g2);line-height:1.6;margin-bottom:12px}
+.vote-code{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.vote-code label{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--g2)}
+.vote-code input{border:1px solid var(--g4);border-radius:8px;padding:10px 12px;font-family:var(--font);font-size:13px;background:var(--white)}
+.vote-code input:focus{outline:none;border-color:var(--black);box-shadow:0 0 0 2px rgba(0,0,0,0.08)}
+.vote-code small{font-size:11px;color:var(--g1)}
+.vote-sections{display:flex;flex-direction:column;gap:10px}
+.vote-sec{border:1px solid var(--g4);border-radius:10px;background:var(--bg);padding:10px}
+.vote-sec h4{font-size:13px;letter-spacing:-0.1px;margin-bottom:8px}
+.vote-opt-grid{display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));gap:8px}
+.vote-opt{border:1px solid var(--g4);border-radius:8px;overflow:hidden;background:var(--white);transition:border-color 0.2s,box-shadow 0.2s}
+.vote-opt.on{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}
+.vote-opt-img{aspect-ratio:16/10;overflow:hidden;cursor:pointer}
+.vote-opt-img img{width:100%;height:100%;object-fit:cover;display:block}
+.vote-opt-btm{padding:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.vote-opt-name{font-size:11px;color:var(--g2);line-height:1.35}
+.vote-opt-btn{border:1px solid var(--g4);background:var(--white);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700;font-family:var(--font);cursor:pointer}
+.vote-opt.on .vote-opt-btn{background:var(--black);color:var(--white);border-color:var(--black)}
+.vote-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:12px}
+.vote-submit{border:1px solid var(--black);background:var(--black);color:var(--white);border-radius:8px;padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;font-family:var(--font);cursor:pointer}
+.vote-msg{font-size:12px;color:var(--g2)}
+.vote-summary-box{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:18px}
+.vote-summary-box h3{font-size:18px;letter-spacing:-0.2px;margin-bottom:10px}
+.vote-stat{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--g4)}
+.vote-stat:last-of-type{border-bottom:0}
+.vote-break{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.vote-break h4{font-size:12px;color:var(--g2);letter-spacing:0.4px;text-transform:uppercase}
+.vote-line{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:12px}
+.vote-bar{height:7px;border-radius:999px;background:var(--g6);overflow:hidden;margin-top:4px}
+.vote-bar>span{display:block;height:100%;background:var(--black)}
+.vote-io{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.vote-io textarea{width:100%;min-height:90px;border:1px solid var(--g4);border-radius:8px;padding:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;background:#fafaf9}
+.vote-io-actions{display:flex;gap:8px;flex-wrap:wrap}
+.vote-io button{border:1px solid var(--g4);background:var(--white);border-radius:8px;padding:8px 10px;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;font-family:var(--font);cursor:pointer}
+.vote-io button.primary{background:var(--black);color:var(--white);border-color:var(--black)}
+@media(max-width:980px){.vote-wrap{grid-template-columns:1fr}.vote-opt-grid{grid-template-columns:1fr}}
 
 /* ===== FLOOR PLAN ===== */
 .floor-wrap{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:24px}
@@ -481,6 +564,12 @@ html{font-size:16px}
 .scan-btn{font-size:10px;padding:8px 14px;width:100%;justify-content:center}
 /* Design Options */
 .design-wrap{padding:14px}
+.ds-color-picks{margin:0 0 14px}
+.ds-color-btn{font-size:10px;padding:6px 10px}
+.counter-top-grid{grid-template-columns:1fr}
+.counter-color-grid{grid-template-columns:repeat(2,1fr)}
+.counter-top-body{padding:12px 14px}
+.counter-color-wrap{padding:12px}
 .design-head{flex-direction:column;gap:6px;margin-bottom:12px}
 .design-head h3{font-size:18px}
 .design-sub{font-size:12px}
@@ -539,6 +628,7 @@ html{font-size:16px}
 .ohdr h2{font-size:14px}
 .pbadge{font-size:16px}
 .gt{font-size:14px;padding:12px 10px}
+.counter-color-grid{grid-template-columns:1fr}
 }
 
 /* ===== PRINT BUTTON ===== */
@@ -846,7 +936,7 @@ en:{
   splSub:'R7 Session Briefing',
   splEnter:'Click anywhere to enter',
   // Tabs
-  introduction:'Introduction',design:'Design Considerations',floorplan:'Floor Plan',polycam:'Polycam',enscape:'Enscape',selections:'Selection',presentation:'Presentation',estimates:'Estimates',
+  introduction:'Introduction',design:'Design Considerations',floorplan:'Floor Plan',polycam:'Polycam',enscape:'Enscape',selections:'Selection',voting:'Voting',presentation:'Presentation',estimates:'Estimates',
   // Dashboard
   optA:'Option A',optB:'Option B',optC:'Option C',optD:'Option D',
   lowest:'Lowest',openShelving:'Open Shelving',cabinets:'Cabinets',
@@ -887,6 +977,9 @@ en:{
   designTitle:'Design Considerations',designSub:'Choose one option per section. Use the six cards above to jump between design consideration areas from R7.',
   designIntroTitle:'Project Scope Overview',
   designIntroSub:'Click each card to jump directly into that design consideration section.',
+  selectionReq:'Selection Required',
+  counterColorPick:'Countertop Color Selection',
+  counterOptCount:'4 options',
   selected:'selected',viewSelections:'Selections',refOnly:'(Reference Only)',selectThis:'Select this option',selectedLabel:'Selected',clickEnlarge:'Click to enlarge',
   renderings:'Rendering',renderingsPlural:'Renderings',
   // Selections tab
@@ -906,8 +999,34 @@ en:{
   enscapeHelp:'Use mouse to look around. Click and drag to move through the space. Scroll to zoom.',
   openChaos:'Open in Chaos Cloud',
   r7EstTitle:'R7 Budget Proposal (Options 1-3)',
-  r7EstSub:'Top-level proposal ranges from R7. Detailed contractor/equipment breakdown remains available below.',
-  r7OpenDetail:'Open Detailed Estimates',
+  r7EstSub:'Select one package first, then review original source bids below.',
+  r7PresetHint:'Package buttons align Option B to R7 selection timing. In Option 2, kitchen floor tile ($9,100) is ON by default.',
+  r7OpenDetail:'View Source Bids (A-D)',
+  r7ApplyPreset:'Apply to Option B',
+  r7Applied:'Applied to Option B',
+  r7ResetRaw:'Reset Option B Raw',
+  r7MapLabel:'Selection Mapping',
+  r7SourceTitle:'Original Vendor Estimates (A-D)',
+  r7SourceSub:'Raw contractor/equipment line items for detailed review and adjustment.',
+  voteTitle:'Anonymous Pre-Meeting Vote',
+  voteSub:'Vote on required sections (1, 2, 6). One name = one unique vote. Re-submission with same name updates, not duplicates.',
+  voteCode:'Anonymous (Please enter your name)',
+  voteCodeHint:'Your name is only used to prevent duplicate voting and is never shown in summary.',
+  voteCodePlaceholder:'e.g. Jane Kim',
+  voteSubmit:'Submit / Update Vote',
+  voteSaved:'Vote saved.',
+  voteNeedCode:'Please enter your name.',
+  voteNeedAll:'Please complete all required selections (1, 2, 6).',
+  voteSummary:'Summary To Date',
+  voteTotal:'Total Unique Votes',
+  voteLast:'Last Updated',
+  voteExport:'Export Votes',
+  voteImport:'Import Votes',
+  voteImportHint:'Paste exported JSON here to merge and update summary.',
+  voteMergeOk:'Votes merged.',
+  voteMergeErr:'Invalid vote data format.',
+  voteSelect:'Select',
+  voteSelected:'Selected',
   presNotes:'Presentation Notes',
   closePresentation:'Close Presentation',
   presNotesHint:'Capture live Q&A by slide (stored in this browser).',
@@ -933,7 +1052,7 @@ ko:{
   splTitle:'주방 리노베이션',
   splSub:'R7 임시집사회 보고',
   splEnter:'화면을 클릭하세요',
-  introduction:'소개',design:'디자인 고려사항',floorplan:'평면도',polycam:'폴리캠',enscape:'엔스케이프',selections:'선택',presentation:'프레젠테이션',estimates:'견적',
+  introduction:'소개',design:'디자인 고려사항',floorplan:'평면도',polycam:'폴리캠',enscape:'엔스케이프',selections:'선택',voting:'투표',presentation:'프레젠테이션',estimates:'견적',
   optA:'옵션 A',optB:'옵션 B',optC:'옵션 C',optD:'옵션 D',
   lowest:'최저가',openShelving:'오픈 선반',cabinets:'캐비닛',
   gc:'시공비',equip:'장비비',
@@ -962,6 +1081,9 @@ ko:{
   designTitle:'디자인 고려사항',designSub:'각 섹션에서 하나의 옵션을 선택하세요. 상단 6개 카드로 원하는 고려사항으로 바로 이동할 수 있습니다.',
   designIntroTitle:'프로젝트 내용 소개',
   designIntroSub:'각 카드를 클릭하면 해당 디자인 고려사항 섹션으로 바로 이동합니다.',
+  selectionReq:'선택 필요',
+  counterColorPick:'카운터탑 색상 선택',
+  counterOptCount:'4개 옵션',
   selected:'선택됨',viewSelections:'선택 항목',refOnly:'(참고용)',selectThis:'이 옵션 선택',selectedLabel:'선택됨',clickEnlarge:'클릭하여 확대',
   renderings:'렌더링',renderingsPlural:'렌더링',
   yourSelections:'선택 항목',selSub:'R7 디자인 고려사항 6개 섹션에서 선택한 옵션 요약입니다.',goToDesign:'디자인 고려사항',
@@ -978,8 +1100,34 @@ ko:{
   enscapeHelp:'마우스로 주변을 둘러보세요. 클릭 & 드래그로 이동. 스크롤로 확대/축소.',
   openChaos:'Chaos Cloud에서 열기',
   r7EstTitle:'R7 예산별 시공 제안 (제1안~제3안)',
-  r7EstSub:'R7 요약안 금액 범위입니다. 하단에서 기존 세부 견적을 그대로 확인할 수 있습니다.',
-  r7OpenDetail:'세부 견적 보기',
+  r7EstSub:'먼저 패키지를 선택하고, 하단에서 원본 업체 견적을 상세 확인하세요.',
+  r7PresetHint:'패키지 버튼은 R7 선택 시점 기준으로 옵션 B를 정렬합니다. 제2안에서는 주방 바닥 타일($9,100)이 기본 ON 입니다.',
+  r7OpenDetail:'원본 업체 견적 보기 (A~D)',
+  r7ApplyPreset:'옵션 B에 적용',
+  r7Applied:'옵션 B 적용됨',
+  r7ResetRaw:'옵션 B 원본 복원',
+  r7MapLabel:'선택 매핑',
+  r7SourceTitle:'원본 업체 견적 상세 (A~D)',
+  r7SourceSub:'시공/장비 원본 라인아이템을 상세 검토하고 필요 시 조정할 수 있습니다.',
+  voteTitle:'사전 익명 투표',
+  voteSub:'필수 선택 섹션(1,2,6)에 대해 투표합니다. 동일 이름 재투표 시 기존값을 업데이트하여 중복 집계를 방지합니다.',
+  voteCode:'익명 (자기 이름 적어주세요)',
+  voteCodeHint:'중복 투표 방지를 위해 이름을 사용하며, 요약에는 이름이 표시되지 않습니다.',
+  voteCodePlaceholder:'예: 홍길동',
+  voteSubmit:'투표 저장 / 업데이트',
+  voteSaved:'투표가 저장되었습니다.',
+  voteNeedCode:'이름을 입력해주세요.',
+  voteNeedAll:'필수 항목(1,2,6) 선택을 완료해주세요.',
+  voteSummary:'현재까지 요약',
+  voteTotal:'고유 투표 수',
+  voteLast:'최근 업데이트',
+  voteExport:'투표 데이터 내보내기',
+  voteImport:'투표 데이터 불러오기',
+  voteImportHint:'내보낸 JSON을 붙여넣어 요약에 병합합니다.',
+  voteMergeOk:'투표 데이터가 병합되었습니다.',
+  voteMergeErr:'유효하지 않은 투표 데이터 형식입니다.',
+  voteSelect:'선택',
+  voteSelected:'선택됨',
   presNotes:'발표 메모',
   closePresentation:'프레젠테이션 닫기',
   presNotesHint:'슬라이드별 질의응답 메모를 기록합니다. (이 브라우저에 저장)',
@@ -1131,6 +1279,15 @@ function dsLabel(sec){return dsText(sec.label);}
 function dsDesc(sec){return dsText(sec.desc);}
 function dsTitle(sec,i){return dsText(sec.images[i].title);}
 function dsCap(sec,i){return dsText(sec.images[i].cap);}
+function selectableImageCount(sec){return sec.images.filter(im=>!im.refOnly).length;}
+function isSelectableImage(sec,idx){return !!(sec.images[idx]&&!sec.images[idx].refOnly);}
+function normalizePicks(){
+  Object.keys(S.picks).forEach(k=>{
+    const sec=DESIGN_SECTIONS.find(s=>s.key===k);
+    const idx=S.picks[k];
+    if(!sec||!sec.images[idx]||sec.images[idx].refOnly)delete S.picks[k];
+  });
+}
 
 // ===== CATEGORY DEFINITIONS =====
 const CATS = {
@@ -1252,6 +1409,7 @@ const R7_ESTIMATE_CARDS=[
     title:{ko:'제1안 (전체 공사, 최선의 안)',en:'Option 1 (Full Scope, Best Outcome)'},
     desc:{ko:'주방 전체 기능을 완벽히 정상화하며, 중복 공사 없이 한 번에 모든 문제를 해결할 수 있습니다.',en:'Restores full kitchen function and solves all key issues in one coordinated project.'},
     items:{ko:'포함: 1·2·3·4·5·6 전체 항목',en:'Includes: all items 1·2·3·4·5·6'},
+    map:{ko:'옵션 B 기준: 1·2·3·4·5·6 전체 반영 (바닥 타일 포함)',en:'Option B mapping: include 1·2·3·4·5·6 (floor tile included).'},
   },
   {
     key:'2',
@@ -1260,6 +1418,7 @@ const R7_ESTIMATE_CARDS=[
     title:{ko:'제2안 (실용 공사, 장기적 경제 안)',en:'Option 2 (Practical Scope, Long-Term Value)'},
     desc:{ko:'추후 공사가 어려운 기초 설비(바닥 타일 포함)를 완결하고, 선택 항목은 예산 확보 시 추가할 수 있습니다.',en:'Completes foundational infrastructure now (including flooring), while optional scope can be added later when budget allows.'},
     items:{ko:'기준: 1·2·4·6 + 선택 조정(3·5)',en:'Base: 1·2·4·6 + adjustable items (3·5)'},
+    map:{ko:'옵션 B 기준: 1·2·4·6 반영, 3·5는 보류',en:'Option B mapping: include 1·2·4·6, keep 3·5 deferred.'},
   },
   {
     key:'3',
@@ -1268,6 +1427,7 @@ const R7_ESTIMATE_CARDS=[
     title:{ko:'제3안 (핵심 공사, 최소 예산 안)',en:'Option 3 (Core Scope, Minimum Budget)'},
     desc:{ko:'기초 설비 중 시급한 항목에 집중하고, 타일은 정기 세척 유지 방식으로 공사비 부담을 최소화합니다.',en:'Focuses on urgent foundational work first and minimizes immediate budget burden with maintenance-based flooring strategy.'},
     items:{ko:'기준: 1·2·4 중심 (3·5·6 단계적)',en:'Focus: 1·2·4 first (3·5·6 phased)'},
+    map:{ko:'옵션 B 기준: 1·2·4 반영, 3·5·6 단계적',en:'Option B mapping: include 1·2·4, phase 3·5·6 later.'},
   },
 ];
 const DESIGN_SECTIONS=[
@@ -1283,10 +1443,13 @@ const DESIGN_SECTIONS=[
   {
     key:'counter',
     label:{ko:'2. 주방 카운터 + 케비넷 교체',en:'2. Counter + Cabinet Replacement'},
-    desc:{ko:'캐비넷 중심의 단일 권장안으로 수납 효율과 작업면 연속성을 확보합니다.',en:'Single recommended cabinet-focused option for cleaner storage and continuous prep surface.'},
+    desc:{ko:'카운터탑 상판 재질/톤을 비교할 수 있도록 1개 기준 렌더링 + 4개 색상 렌더링(100/93/86/79% Black)으로 구성했습니다.',en:'Organized as 1 reference rendering + 4 selectable color renderings (100/93/86/79% Black) for countertop comparison.'},
     images:[
-      {src:'Final Renderings/counter top options/final.jpg',title:{ko:'캐비넷 중심 권장안',en:'Cabinet-Focused Recommended Plan'},cap:{ko:'카운터 전체를 캐비넷 중심으로 정리해 위생, 수납, 동선의 균형을 맞춘 안입니다.',en:'Cabinet-centered composition to balance hygiene, storage efficiency, and workflow.'}},
-      {src:'Final Renderings/Counter Top Material Option/93%.jpg',title:{ko:'카운터탑 상판 교체 렌더링',en:'Countertop Surface Replacement Rendering'},cap:{ko:'상판 재시공 시 위생성과 내구성을 강화하고 유지관리 난이도를 낮추는 안입니다.',en:'Countertop resurfacing option to improve hygiene durability and reduce long-term maintenance burden.'}},
+      {src:'Final Renderings/counter top options/final.jpg',title:{ko:'기준 렌더링 (카운터 전체)',en:'Reference Rendering (Overall Counter)'},cap:{ko:'카운터 레이아웃과 상판 비교 기준을 보여주는 기준 렌더링입니다.',en:'Reference view used as the baseline for comparing countertop color options.'},refOnly:true},
+      {src:'Final Renderings/Counter Top Material Option/100.jpg',title:{ko:'100% Black',en:'100% Black'},cap:{ko:'Caesarstone 511 Smokestone 톤 기준의 가장 진한 상판 옵션입니다.',en:'Darkest countertop option in the Caesarstone 511 Smokestone tone range.'},swatch:'#151515',cropPos:'53% 58%'},
+      {src:'Final Renderings/Counter Top Material Option/93%.jpg',title:{ko:'93% Black',en:'93% Black'},cap:{ko:'100% 대비 약간 밝은 톤으로 깊이감을 유지하면서 채도를 완화한 옵션입니다.',en:'Slightly lighter than 100%, keeping depth while softening overall tone.'},swatch:'#2a2a2a',cropPos:'53% 58%'},
+      {src:'Final Renderings/Counter Top Material Option/86.jpg',title:{ko:'86% Black',en:'86% Black'},cap:{ko:'중간 톤의 블랙 옵션으로 주변 마감재와의 밸런스를 맞추기 용이합니다.',en:'Mid-dark black option that balances easily with adjacent finishes.'},swatch:'#404040',cropPos:'53% 58%'},
+      {src:'Final Renderings/Counter Top Material Option/79.jpg',title:{ko:'79% Black',en:'79% Black'},cap:{ko:'네 가지 중 가장 밝은 톤으로 공간을 보다 가볍게 보이게 하는 옵션입니다.',en:'Lightest of the four options, creating a brighter visual impression.'},swatch:'#6a6a6a',cropPos:'53% 58%'},
     ],
   },
   {
@@ -1294,7 +1457,7 @@ const DESIGN_SECTIONS=[
     label:{ko:'3. 가스레인지/오븐 교체',en:'3. Stove/Oven Replacement'},
     desc:{ko:'오븐 고장 문제를 해결하고, 고화력 스톡 버너 도입으로 대용량 조리 성능을 강화합니다.',en:'Restores oven capability and adds high-output stock burners for heavy-volume cooking.'},
     images:[
-      {src:'Final Renderings/Stove area/stove area.jpg',title:{ko:'가스레인지/오븐 교체안',en:'Stove/Oven Upgrade'},cap:{ko:'스토브 교체로 조리 범위를 확장하고, 대형 조리 대응력을 높입니다.',en:'Upgraded cooking line expands menu range and improves throughput.'}},
+      {src:'Final Renderings/Stove area/stove area.jpg',title:{ko:'가스레인지/오븐 교체안',en:'Stove/Oven Upgrade'},cap:{ko:'스토브 교체로 조리 범위를 확장하고, 대형 조리 대응력을 높입니다.',en:'Upgraded cooking line expands menu range and improves throughput.'},refOnly:true},
     ],
   },
   {
@@ -1302,7 +1465,7 @@ const DESIGN_SECTIONS=[
     label:{ko:'4. 벽면 패널(SS/FRP) 설치',en:'4. SS/FRP Wall Panels'},
     desc:{ko:'조리 벽면은 SS, 그 외 흰색 벽면은 FRP 마감으로 계획하여 청소 용이성과 위생 수준을 높입니다.',en:'Applies SS behind cooking zones and FRP on white walls to improve hygiene and cleaning efficiency.'},
     images:[
-      {src:'Final Renderings/Stove area/SS and FRP Panels.jpg',title:{ko:'SS + FRP 벽면 마감',en:'SS + FRP Wall Finish'},cap:{ko:'위 렌더링 범위 외 흰색 벽면도 FRP로 교체하여 전체 유지관리 품질을 통일합니다.',en:'Beyond the shown zone, white wall areas are replaced with FRP for consistent maintenance quality.'}},
+      {src:'Final Renderings/Stove area/SS and FRP Panels.jpg',title:{ko:'SS + FRP 벽면 마감',en:'SS + FRP Wall Finish'},cap:{ko:'위 렌더링 범위 외 흰색 벽면도 FRP로 교체하여 전체 유지관리 품질을 통일합니다.',en:'Beyond the shown zone, white wall areas are replaced with FRP for consistent maintenance quality.'},refOnly:true},
     ],
   },
   {
@@ -1310,8 +1473,8 @@ const DESIGN_SECTIONS=[
     label:{ko:'5. 외부 커피 스테이션 구축',en:'5. External Coffee Station'},
     desc:{ko:'정수기 동선을 주방 외부로 분리하여 조리 공간 간섭을 줄이고, 운영 효율과 안전성을 높입니다.',en:'Moves beverage traffic out of the kitchen to reduce workflow conflict and improve safety.'},
     images:[
-      {src:'Final Renderings/Entry way area/Coffee Table 1.jpg',title:{ko:'커피 테이블 + 정수기',en:'Coffee Table + Water Dispenser'},cap:{ko:'복도 측 상시 이용 가능한 음용 스테이션으로 운영 부담을 줄입니다.',en:'Hallway beverage station supports self-service and reduces kitchen workload.'}},
-      {src:'Final Renderings/Entry way area/Entry Shelving.jpg',title:{ko:'오픈 쉘빙 (키친 입구 왼쪽 벽)',en:'Open Shelving by Entry'},cap:{ko:'입구측 보관 공간을 확장해 주방 내부 혼잡을 줄입니다.',en:'Adds entry-side storage capacity and helps reduce congestion in kitchen work zones.'}},
+      {src:'Final Renderings/Entry way area/Coffee Table 1.jpg',title:{ko:'커피 테이블 + 정수기',en:'Coffee Table + Water Dispenser'},cap:{ko:'복도 측 상시 이용 가능한 음용 스테이션으로 운영 부담을 줄입니다.',en:'Hallway beverage station supports self-service and reduces kitchen workload.'},refOnly:true},
+      {src:'Final Renderings/Entry way area/Entry Shelving.jpg',title:{ko:'오픈 쉘빙 (키친 입구 왼쪽 벽)',en:'Open Shelving by Entry'},cap:{ko:'입구측 보관 공간을 확장해 주방 내부 혼잡을 줄입니다.',en:'Adds entry-side storage capacity and helps reduce congestion in kitchen work zones.'},refOnly:true},
     ],
   },
   {
@@ -1468,10 +1631,127 @@ const D = {
     {id:'ds_coffee',name:'Coffee Table',det:'Custom coffee table for hallway station',cost:1500,on:true,cust:true,cv:''},
   ],
 };
+const RAW_ON={};
+Object.keys(D).forEach(k=>{D[k].forEach(i=>{RAW_ON[i.id]=i.on;});});
+const B_SCOPE={
+  cook:['b_range_c','b_range_s','b_stock_c','b_stock_s','b_gas'],
+  coffee:['b_coffee_gc','b_coffee'],
+  floor:['b_floor1','b_floor2'],
+};
+const REQUIRED_SELECTION_KEYS=['sink','counter','flooring'];
+const VOTE_STORE_KEY='kpc_kitchen_vote_v1';
+let VOTE_DB={votes:{}};
 
-const S={tab:'introduction',slide:0,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{}};
+const S={tab:'introduction',slide:0,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},r7Preset:null,voteCode:'',voteDraft:{},voteMsg:'',voteImport:''};
+function voteHash(v){
+  let h=2166136261;
+  const s=String(v||'').trim().toLowerCase();
+  for(let i=0;i<s.length;i++){
+    h^=s.charCodeAt(i);
+    h=Math.imul(h,16777619);
+  }
+  return (h>>>0).toString(16).padStart(8,'0');
+}
+function loadVoteDb(){
+  try{
+    const raw=localStorage.getItem(VOTE_STORE_KEY);
+    if(!raw)return;
+    const parsed=JSON.parse(raw);
+    if(parsed&&typeof parsed==='object'&&parsed.votes&&typeof parsed.votes==='object')VOTE_DB=parsed;
+  }catch(_){}
+}
+function saveVoteDb(){
+  try{localStorage.setItem(VOTE_STORE_KEY,JSON.stringify(VOTE_DB));}catch(_){}
+}
+function voteSections(){return DESIGN_SECTIONS.filter(sec=>REQUIRED_SELECTION_KEYS.includes(sec.key));}
+function voteOptionEntries(sec){
+  return sec.images.map((im,idx)=>({idx,im})).filter(o=>!o.im.refOnly);
+}
+function resolvedVoteChoice(sec){
+  const d=S.voteDraft[sec.key];
+  if(isSelectableImage(sec,d))return d;
+  const p=S.picks[sec.key];
+  if(isSelectableImage(sec,p))return p;
+  return undefined;
+}
+function setVoteCode(v){S.voteCode=v;}
+function setVoteDraftChoice(secKey,idx){
+  S.voteDraft[secKey]=idx;
+  S.voteMsg='';
+  render();
+}
+function submitVote(){
+  if(!String(S.voteCode||'').trim()){
+    S.voteMsg=t('voteNeedCode');
+    render();
+    return;
+  }
+  const choices={};
+  const sections=voteSections();
+  for(const sec of sections){
+    const choice=resolvedVoteChoice(sec);
+    if(choice===undefined||!isSelectableImage(sec,choice)){
+      S.voteMsg=t('voteNeedAll');
+      render();
+      return;
+    }
+    choices[sec.key]=choice;
+    S.voteDraft[sec.key]=choice;
+  }
+  const key=voteHash(S.voteCode);
+  if(!VOTE_DB.votes)VOTE_DB.votes={};
+  VOTE_DB.votes[key]={ts:Date.now(),choices};
+  saveVoteDb();
+  S.voteMsg=t('voteSaved');
+  render();
+}
+function voteSummaryData(){
+  const rows=Object.values(VOTE_DB.votes||{});
+  const total=rows.length;
+  const sections=voteSections().map(sec=>{
+    const opts=voteOptionEntries(sec).map(o=>{
+      const count=rows.filter(r=>r&&r.choices&&Number(r.choices[sec.key])===o.idx).length;
+      return{idx:o.idx,name:dsTitle(sec,o.idx),count};
+    });
+    return{key:sec.key,label:dsLabel(sec),opts};
+  });
+  const last=rows.reduce((m,r)=>Math.max(m,Number(r.ts)||0),0);
+  return{total,sections,last};
+}
+function exportVotesJson(){
+  const out=JSON.stringify(VOTE_DB,null,2);
+  S.voteImport=out;
+  S.voteMsg='';
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(out).catch(()=>{});
+  }
+  render();
+}
+function setVoteImport(v){S.voteImport=v;}
+function importVotesJson(){
+  try{
+    const parsed=JSON.parse(S.voteImport||'{}');
+    if(!parsed||typeof parsed!=='object'||!parsed.votes||typeof parsed.votes!=='object')throw new Error('bad');
+    if(!VOTE_DB.votes)VOTE_DB.votes={};
+    Object.keys(parsed.votes).forEach(k=>{
+      const nv=parsed.votes[k];
+      if(!nv||typeof nv!=='object'||!nv.choices)return;
+      const curr=VOTE_DB.votes[k];
+      if(!curr||(Number(nv.ts)||0)>Number(curr.ts||0))VOTE_DB.votes[k]=nv;
+    });
+    saveVoteDb();
+    S.voteMsg=t('voteMergeOk');
+  }catch(_){
+    S.voteMsg=t('voteMergeErr');
+  }
+  render();
+}
 function pickDesign(secKey,imgIdx){
   if(S.picks[secKey]===imgIdx)delete S.picks[secKey]; else S.picks[secKey]=imgIdx;
+  render();
+}
+function setDesignPick(secKey,imgIdx){
+  S.picks[secKey]=imgIdx;
   render();
 }
 const expanded={};
@@ -1547,6 +1827,39 @@ function fmt(n){return(n<0?'-$':'$')+Math.abs(Math.round(n)).toLocaleString('en-
 function goTab(t){S.tab=t;render();}
 function goSlide(i){S.slide=i;render();}
 function toggleCat(k){expanded[k]=!isCatOpen(k);render();}
+function setOn(id,on){const it=find(id);if(it)it.on=on;}
+function resetOptionBToRaw(){
+  [...D.b_gc,...D.b_eq].forEach(it=>{
+    if(RAW_ON[it.id]!==undefined)it.on=RAW_ON[it.id];
+  });
+}
+function applyR7Preset(key,doRender=true){
+  resetOptionBToRaw();
+  if(key==='1'){
+    setOn('b_range_c',true);setOn('b_range_s',false);
+    setOn('b_stock_c',true);setOn('b_stock_s',false);
+    setOn('b_gas',true);
+    setOn('b_coffee_gc',true);setOn('b_coffee',true);
+    setOn('b_floor1',true);setOn('b_floor2',false);
+  }else if(key==='2'){
+    B_SCOPE.cook.forEach(id=>setOn(id,false));
+    B_SCOPE.coffee.forEach(id=>setOn(id,false));
+    setOn('b_floor1',true);setOn('b_floor2',false);
+  }else if(key==='3'){
+    B_SCOPE.cook.forEach(id=>setOn(id,false));
+    B_SCOPE.coffee.forEach(id=>setOn(id,false));
+    B_SCOPE.floor.forEach(id=>setOn(id,false));
+  }
+  S.r7Preset=key;
+  S.slide=1;
+  if(doRender)render();
+}
+function resetR7Preset(){
+  resetOptionBToRaw();
+  S.r7Preset=null;
+  S.slide=1;
+  render();
+}
 
 function contRate(){return S.contOn?S.contPct/100:0;}
 function setContPct(v){
@@ -1740,32 +2053,75 @@ function goDesignSec(i,fromIntro){
     });
   }
 }
-function selectableSections(){return DESIGN_SECTIONS;}
+function selectableSections(){return DESIGN_SECTIONS.filter(sec=>selectableImageCount(sec)>0);}
 function rDesignPanel(){
   const sec=DESIGN_SECTIONS[S.designSec];
   const selectable=selectableSections();
   const jumpCards=DESIGN_SECTIONS.map((s,i)=>{
     const img=s.key==='counter'?'Final Renderings/Counter Top Material Option/93%.jpg':s.images[0].src;
     const isOn=i===S.designSec;
+    const required=REQUIRED_SELECTION_KEYS.includes(s.key);
     return`<button class="ds-jump-card${isOn?' on':''}" onclick="goDesignSec(${i},true)" aria-pressed="${isOn?'true':'false'}">
       <img src="${encodeURI(img)}" alt="${dsLabel(s)}" loading="lazy">
+      ${required?`<span class="ds-req">${t('selectionReq')}</span>`:''}
       <div class="ds-jump-text"><h5>${dsLabel(s)}</h5><span>${dsDesc(s)}</span></div>
     </button>`;
   }).join('');
   // Section content — select buttons only for selectable sections
   const secIdx=S.designSec;
   const canSelect=true;
-  const imgs=sec.images.map((im,i)=>{
-    const isSel=S.picks[sec.key]===i;
-    const selBtn=canSelect?`<button class="ds-select-btn" onclick="pickDesign('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isSel?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isSel?t('selectedLabel'):t('selectThis')}</button>`:'';
-    return`<div class="ds-card${isSel?' selected':''}">
-    <div class="ds-img-wrap" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,${i})" style="cursor:pointer"><img src="${encodeURI(im.src)}" alt="${dsTitle(sec,i)}" loading="lazy"><div class="ds-img-hint">${t('clickEnlarge')}</div></div>
-    <div class="ds-caption">
-      <h4 class="ds-img-title">${dsTitle(sec,i)}</h4>
-      <p class="ds-img-desc">${dsCap(sec,i)}</p>
-      ${selBtn}
-    </div>
-  </div>`}).join('');
+  let sectionBody='';
+  if(sec.key==='counter'){
+    const colorIdxs=sec.images.map((im,i)=>!im.refOnly?i:null).filter(i=>i!==null);
+    const defaultIdx=colorIdxs.includes(2)?2:(colorIdxs[0]||0);
+    const activeIdx=isSelectableImage(sec,S.picks[sec.key])?S.picks[sec.key]:defaultIdx;
+    const activeIm=sec.images[activeIdx];
+    const colorCards=colorIdxs.map(i=>{
+      const im=sec.images[i];
+      const isOn=activeIdx===i;
+      const btn=`<button class="ds-select-btn" onclick="setDesignPick('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isOn?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isOn?t('selectedLabel'):t('selectThis')}</button>`;
+      return`<article class="counter-color-card ${isOn?'on':''}">
+        <div class="counter-color-img" onclick="setDesignPick('${sec.key}',${i})"><img src="${encodeURI(im.src)}" alt="${dsTitle(sec,i)}" loading="lazy" style="--crop:${im.cropPos||'53% 58%'}"><span class="counter-color-name">${dsTitle(sec,i)}</span></div>
+        <div class="counter-color-actions">${btn}</div>
+      </article>`;
+    }).join('');
+    sectionBody=`<div class="counter-layout">
+      <div class="counter-top-grid">
+        <article class="counter-top-card">
+          <div class="counter-top-img" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,0)"><img src="${encodeURI(sec.images[0].src)}" alt="${dsTitle(sec,0)}" loading="lazy"></div>
+          <div class="counter-top-body"><h4 class="counter-top-title">${dsTitle(sec,0)}</h4><p class="counter-top-desc">${dsCap(sec,0)}</p><span class="ds-ref-tag">${t('refOnly')}</span></div>
+        </article>
+        <article class="counter-top-card">
+          <div class="counter-top-img" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,${activeIdx})"><img src="${encodeURI(activeIm.src)}" alt="${dsTitle(sec,activeIdx)}" loading="lazy"></div>
+          <div class="counter-top-body"><h4 class="counter-top-title">${dsTitle(sec,activeIdx)}</h4><p class="counter-top-desc">${dsCap(sec,activeIdx)}</p></div>
+        </article>
+      </div>
+      <section class="counter-color-wrap">
+        <div class="counter-color-head"><h4>${t('counterColorPick')}</h4><p>${t('counterOptCount')}</p></div>
+        <div class="counter-color-grid">${colorCards}</div>
+      </section>
+    </div>`;
+  }else{
+    const imgs=sec.images.map((im,i)=>{
+      const selectableImg=isSelectableImage(sec,i);
+      const isSel=selectableImg&&S.picks[sec.key]===i;
+      let selBtn='';
+      if(!selectableImg){
+        selBtn=`<span class="ds-ref-tag">${t('refOnly')}</span>`;
+      }else if(canSelect){
+        selBtn=`<button class="ds-select-btn" onclick="pickDesign('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isSel?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isSel?t('selectedLabel'):t('selectThis')}</button>`;
+      }
+      return`<div class="ds-card${isSel?' selected':''}">
+      <div class="ds-img-wrap" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,${i})" style="cursor:pointer"><img src="${encodeURI(im.src)}" alt="${dsTitle(sec,i)}" loading="lazy"><div class="ds-img-hint">${t('clickEnlarge')}</div></div>
+      <div class="ds-caption">
+        <h4 class="ds-img-title">${dsTitle(sec,i)}</h4>
+        <p class="ds-img-desc">${dsCap(sec,i)}</p>
+        ${selBtn}
+      </div>
+    </div>`;
+    }).join('');
+    sectionBody=`<div class="ds-gallery" data-count="${sec.images.length}">${imgs}</div>`;
+  }
   const pickCount=Object.keys(S.picks).length;
   const selectableCount=selectable.length;
   return`<div class="design-wrap">
@@ -1779,7 +2135,7 @@ function rDesignPanel(){
       <h3 class="ds-sec-title">${dsLabel(sec)}</h3>
       <p class="ds-sec-desc">${dsDesc(sec)}</p>
     </div>
-    <div class="ds-gallery" data-count="${sec.images.length}">${imgs}</div>
+    ${sectionBody}
   </div>`;
 }
 
@@ -1791,7 +2147,7 @@ function rSelectionsPanel(){
   let rows='';
   selectable.forEach(sec=>{
     const si=DESIGN_SECTIONS.indexOf(sec);
-    if(picks[sec.key]!==undefined){
+    if(picks[sec.key]!==undefined&&isSelectableImage(sec,picks[sec.key])){
       const pickIdx=picks[sec.key];
       rows+=`<div class="sel-row">
         <img src="${encodeURI(sec.images[pickIdx].src)}" alt="${dsTitle(sec,pickIdx)}" onclick="lbOpen(DESIGN_SECTIONS[${si}].images,${pickIdx})" title="${t('clickEnlarge')}">
@@ -1814,7 +2170,7 @@ function rSelectionsPanel(){
         <div class="sel-row-info">
           <div class="sel-row-cat">${dsLabel(sec)}</div>
           <div class="sel-row-title" style="color:var(--g2)">${t('noSelYet')}</div>
-          <div class="sel-row-desc">${sec.images.length} ${t(sec.images.length>1?'optAvailable':'optAvailableSingle')}</div>
+          <div class="sel-row-desc">${selectableImageCount(sec)} ${t(selectableImageCount(sec)>1?'optAvailable':'optAvailableSingle')}</div>
         </div>
         <button class="sel-row-clear" onclick="S.designSec=${si};goTab('design')" style="border-color:var(--black);color:var(--black)">${t('choose')}</button>
       </div>`;
@@ -1825,6 +2181,69 @@ function rSelectionsPanel(){
     <div class="sel-count">${chosen} ${t('of')} ${total} ${t('categoriesSelected')}</div>
     <div class="sel-grid">${chosen>0?rows:''}${missing}</div>
     ${chosen===0?'<div class="sel-empty"><div class="sel-empty-icon">\u2610</div>'+t('noSelMade')+'<br>'+t('visitDesign')+' <a href="#" onclick="goTab(\'design\');return false" style="color:var(--black)">'+t('goToDesign')+'</a> '+t('tabToStart')+'</div>':''}
+  </div>`;
+}
+
+function rVotingPanel(){
+  const sections=voteSections();
+  const summary=voteSummaryData();
+  const lastText=summary.last?new Date(summary.last).toLocaleString(): '-';
+  let secHtml='';
+  sections.forEach(sec=>{
+    const choice=resolvedVoteChoice(sec);
+    let opts='';
+    voteOptionEntries(sec).forEach(o=>{
+      const on=choice===o.idx;
+      opts+=`<article class="vote-opt ${on?'on':''}">
+        <div class="vote-opt-img" onclick="setVoteDraftChoice('${sec.key}',${o.idx})"><img src="${encodeURI(o.im.src)}" alt="${dsTitle(sec,o.idx)}" loading="lazy" style="${sec.key==='counter'?'object-position:'+(o.im.cropPos||'53% 58%')+';':''}"></div>
+        <div class="vote-opt-btm">
+          <div class="vote-opt-name">${dsTitle(sec,o.idx)}</div>
+          <button class="vote-opt-btn" onclick="setVoteDraftChoice('${sec.key}',${o.idx})">${on?t('voteSelected'):t('voteSelect')}</button>
+        </div>
+      </article>`;
+    });
+    secHtml+=`<section class="vote-sec"><h4>${dsLabel(sec)}</h4><div class="vote-opt-grid">${opts}</div></section>`;
+  });
+
+  let breakHtml='';
+  summary.sections.forEach(sec=>{
+    let lines='';
+    sec.opts.forEach(o=>{
+      const pct=summary.total?Math.round((o.count/summary.total)*100):0;
+      lines+=`<div><div class="vote-line"><span>${o.name}</span><strong>${o.count} (${pct}%)</strong></div><div class="vote-bar"><span style="width:${pct}%"></span></div></div>`;
+    });
+    breakHtml+=`<div class="vote-break"><h4>${sec.label}</h4>${lines}</div>`;
+  });
+
+  return`<div class="vote-wrap">
+    <section class="vote-card">
+      <h3>${t('voteTitle')}</h3>
+      <p class="vote-sub">${t('voteSub')}</p>
+      <div class="vote-code">
+        <label>${t('voteCode')}</label>
+        <input type="text" value="${S.voteCode||''}" oninput="setVoteCode(this.value)" placeholder="${t('voteCodePlaceholder')}">
+        <small>${t('voteCodeHint')}</small>
+      </div>
+      <div class="vote-sections">${secHtml}</div>
+      <div class="vote-actions">
+        <button class="vote-submit" onclick="submitVote()">${t('voteSubmit')}</button>
+        <span class="vote-msg">${S.voteMsg||''}</span>
+      </div>
+    </section>
+    <aside class="vote-summary-box">
+      <h3>${t('voteSummary')}</h3>
+      <div class="vote-stat"><span>${t('voteTotal')}</span><strong>${summary.total}</strong></div>
+      <div class="vote-stat"><span>${t('voteLast')}</span><strong>${lastText}</strong></div>
+      ${breakHtml}
+      <div class="vote-io">
+        <div class="vote-io-actions">
+          <button class="primary" onclick="exportVotesJson()">${t('voteExport')}</button>
+          <button onclick="importVotesJson()">${t('voteImport')}</button>
+        </div>
+        <small style="font-size:11px;color:var(--g1)">${t('voteImportHint')}</small>
+        <textarea oninput="setVoteImport(this.value)" placeholder="{\"votes\":{...}}">${S.voteImport||''}</textarea>
+      </div>
+    </aside>
   </div>`;
 }
 
@@ -2249,23 +2668,33 @@ function scrollEstimateDetails(){
 function rR7EstimateSummary(){
   let cards='';
   R7_ESTIMATE_CARDS.forEach(c=>{
-    cards+=`<article class="est-r7-card">
+    const on=S.r7Preset===c.key;
+    cards+=`<article class="est-r7-card ${on?'on':''}">
       <h4>${trObj(c.title)}</h4>
       <p>${trObj(c.desc)}</p>
       <p class="est-r7-list">${trObj(c.items)}</p>
+      <p class="est-r7-map"><span>${t('r7MapLabel')}</span>${trObj(c.map)}</p>
       <div class="est-r7-range">${c.range}<small>${c.rangeEn}</small></div>
+      <div class="est-r7-card-actions">
+        <button class="est-r7-preset-btn ${on?'on':''}" onclick="applyR7Preset('${c.key}')">${on?t('r7Applied'):t('r7ApplyPreset')}</button>
+      </div>
     </article>`;
   });
   return`<section class="est-r7">
     <h3>${t('r7EstTitle')}</h3>
     <p class="est-r7-sub">${t('r7EstSub')}</p>
+    <p class="est-r7-hint">${t('r7PresetHint')}</p>
     <div class="est-r7-grid">${cards}</div>
-    <div class="est-r7-actions"><button class="est-r7-btn" onclick="scrollEstimateDetails()">${t('r7OpenDetail')}</button></div>
+    <div class="est-r7-actions">
+      <button class="est-r7-btn ghost" onclick="resetR7Preset()">${t('r7ResetRaw')}</button>
+      <button class="est-r7-btn" onclick="scrollEstimateDetails()">${t('r7OpenDetail')}</button>
+    </div>
   </section>`;
 }
 
 // ===== MAIN RENDER =====
 function render(){
+  normalizePicks();
   const T=getT();
   const mn=Math.min(...T.map(x=>x.t));
   const mx=Math.max(...T.map(x=>x.t));
@@ -2281,6 +2710,7 @@ function render(){
       {k:'polycam',l:t('polycam')},
       {k:'enscape',l:t('enscape')},
       {k:'selections',l:t('selections')+(Object.keys(S.picks).length>0?' ('+Object.keys(S.picks).length+'/'+selectableSections().length+')':'')},
+      {k:'voting',l:t('voting')},
       {k:'presentation',l:t('presentation')},
       {k:'estimates',l:t('estimates')},
     ];
@@ -2291,7 +2721,7 @@ function render(){
     h+=rIntroPanel();
   }else if(S.tab==='estimates'){
     h+=rR7EstimateSummary();
-    h+=`<div id="detailed-estimates">`;
+    h+=`<section id="detailed-estimates" class="est-source"><div class="est-source-head"><h3>${t('r7SourceTitle')}</h3><p>${t('r7SourceSub')}</p></div>`;
     h+=`<div class="dash">`;
     T.forEach((o,i)=>{
       const low=o.t===mn&&o.t>0;
@@ -2373,7 +2803,7 @@ function render(){
     h+=`</div></div>`;
     h+=`<button class="print-btn" onclick="printReport()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>${t('printBtn')}</button>`;
     h+=`<div class="disc">${t('disc')}<br>${t('discDate')}</div>`;
-    h+=`</div>`;
+    h+=`</section>`;
   }else if(S.tab==='polycam'){
     h+=rPolycamPanel();
   }else if(S.tab==='design'){
@@ -2384,6 +2814,8 @@ function render(){
     h+=rEnscapePanel();
   }else if(S.tab==='selections'){
     h+=rSelectionsPanel();
+  }else if(S.tab==='voting'){
+    h+=rVotingPanel();
   }
 
   const appEl=document.getElementById('app');
@@ -2542,6 +2974,8 @@ function printReport(){
   document.getElementById('print-overlay').innerHTML=p;
   setTimeout(()=>window.print(),200);
 }
+applyR7Preset('2',false);
+loadVoteDb();
 render();
 </script>
 </body>
