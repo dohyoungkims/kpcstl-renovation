@@ -46,24 +46,24 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .header.scrolled{box-shadow:0 1px 8px rgba(0,0,0,0.06)}
 .header-in{max-width:1400px;margin:0 auto;display:flex;align-items:center;gap:16px}
 .header-left{flex-shrink:0}
-.header h1{font-family:var(--font);font-size:15px;font-weight:600;letter-spacing:-0.2px;color:var(--black)}
-.header p{font-size:9px;color:var(--g1);margin-top:1px;letter-spacing:0.5px;font-weight:400}
+.header h1{font-family:var(--font);font-size:18px;font-weight:600;letter-spacing:-0.2px;color:var(--black)}
+.header p{font-size:11px;color:var(--g1);margin-top:1px;letter-spacing:0.4px;font-weight:400}
 .header-tabs{flex:1;display:flex;gap:2px;background:rgba(0,0,0,0.04);border-radius:8px;padding:3px;min-width:0}
-.header-tabs .gtab{flex:1;border:0;background:transparent;border-radius:6px;padding:8px 4px;cursor:pointer;font-family:var(--font);font-size:10px;font-weight:600;letter-spacing:0.6px;text-transform:uppercase;color:var(--g1);transition:all 0.25s var(--ease);white-space:nowrap;text-align:center}
+.header-tabs .gtab{flex:1;border:0;background:transparent;border-radius:6px;padding:11px 8px;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:600;letter-spacing:0.2px;text-transform:uppercase;color:var(--g1);transition:all 0.25s var(--ease);white-space:nowrap;text-align:center}
 .header-tabs .gtab:hover{color:var(--g3);background:rgba(0,0,0,0.03)}
 .header-tabs .gtab.on{color:var(--white);background:var(--black);box-shadow:0 1px 4px rgba(0,0,0,0.12)}
-.lang-btn{border:1px solid var(--g4);background:var(--white);color:var(--black);font-family:var(--font);font-size:11px;font-weight:600;padding:7px 14px;border-radius:6px;cursor:pointer;transition:all 0.2s var(--ease);letter-spacing:0.3px;white-space:nowrap;flex-shrink:0}
+.lang-btn{border:1px solid var(--g4);background:var(--white);color:var(--black);font-family:var(--font);font-size:14px;font-weight:600;padding:9px 16px;border-radius:6px;cursor:pointer;transition:all 0.2s var(--ease);letter-spacing:0.2px;white-space:nowrap;flex-shrink:0}
 .lang-btn:hover{border-color:var(--black);box-shadow:var(--shadow)}
 @media(max-width:900px){
 .header{padding:6px 12px}
 .header-in{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;gap:4px 8px;align-items:center}
 .header-left{grid-column:1;grid-row:1}
-.header-left h1{font-size:14px}
+.header-left h1{font-size:16px}
 .header-left p{display:none}
-.lang-btn{grid-column:2;grid-row:1;font-size:10px;padding:5px 10px}
+.lang-btn{grid-column:2;grid-row:1;font-size:12px;padding:7px 12px}
 .header-tabs{grid-column:1/-1;grid-row:2;gap:1px;padding:2px;border-radius:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap}
 .header-tabs::-webkit-scrollbar{display:none}
-.header-tabs .gtab{font-size:9px;padding:8px 10px;letter-spacing:0.35px;border-radius:4px;flex:0 0 auto}
+.header-tabs .gtab{font-size:11px;padding:9px 12px;letter-spacing:0.2px;border-radius:4px;flex:0 0 auto}
 }
 .container{max-width:1400px;margin:0 auto;padding:24px 20px 32px;opacity:0;transform:translateY(12px);transition:opacity 0.6s var(--ease) 0.1s,transform 0.6s var(--ease) 0.1s}
 .container.show{opacity:1;transform:translateY(0)}
@@ -280,8 +280,6 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .est-r7-card h4{font-size:22px;line-height:1.1}
 .est-r7-card p{font-size:12px;color:var(--g2);line-height:1.55}
 .est-r7-list{font-size:12px;color:var(--g2);line-height:1.6;margin-top:2px}
-.est-r7-map{font-size:11px;color:var(--g1);line-height:1.5;padding:8px 10px;border-radius:8px;background:rgba(0,0,0,0.03);border:1px solid var(--g4)}
-.est-r7-map span{display:block;font-size:9px;letter-spacing:0.8px;text-transform:uppercase;font-weight:700;color:var(--g2);margin-bottom:2px}
 .est-r7-range{margin-top:auto;padding-top:8px;border-top:1px dashed var(--g4);font-size:30px;line-height:1;font-weight:700;letter-spacing:-0.8px}
 .est-r7-range small{display:block;font-size:11px;font-weight:600;letter-spacing:0.8px;color:var(--g2);margin-top:6px}
 .est-r7-card-actions{margin-top:6px}
@@ -342,6 +340,18 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .scan-help{font-size:12px;color:var(--g1)}
 .scan-btn{display:inline-flex;align-items:center;padding:10px 18px;border-radius:6px;background:var(--black);color:var(--white);text-decoration:none;font-family:var(--font);font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;transition:opacity 0.2s}
 .scan-btn:hover{opacity:0.8}
+.ex-gallery{margin-top:18px;padding-top:16px;border-top:1px solid var(--sep)}
+.ex-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;flex-wrap:wrap}
+.ex-head h4{font-size:16px;font-weight:700;letter-spacing:-0.2px}
+.ex-sub{font-size:12px;color:var(--g2);line-height:1.55;margin-bottom:10px}
+.ex-grid{display:grid;grid-template-columns:repeat(4,minmax(160px,1fr));gap:10px}
+.ex-photo{border:1px solid var(--g4);border-radius:10px;overflow:hidden;background:var(--white);padding:0;cursor:pointer;transition:border-color 0.22s,box-shadow 0.22s,transform 0.22s;position:relative}
+.ex-photo:hover{border-color:var(--g5);box-shadow:var(--shadow2);transform:translateY(-1px)}
+.ex-photo img{display:block;width:100%;height:150px;object-fit:cover}
+.ex-photo-label{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,0.62);color:#fff;font-size:10px;font-weight:600;padding:4px 7px;border-radius:999px;letter-spacing:0.2px}
+@media(max-width:1180px){.ex-grid{grid-template-columns:repeat(3,minmax(160px,1fr))}}
+@media(max-width:760px){.ex-grid{grid-template-columns:repeat(2,minmax(140px,1fr))}.ex-photo img{height:136px}}
+@media(max-width:520px){.ex-grid{grid-template-columns:1fr}.ex-photo img{height:200px}}
 
 /* ===== DESIGN OPTIONS ===== */
 .design-wrap{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:24px}
@@ -353,18 +363,20 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .ds-intro::before{content:"";position:absolute;inset:-40% -10% auto auto;width:50%;aspect-ratio:1;border-radius:999px;background:radial-gradient(circle,rgba(148,196,255,0.38) 0%,rgba(148,196,255,0) 68%);pointer-events:none}
 .ds-intro h4{font-size:18px;letter-spacing:-0.25px;margin-bottom:5px}
 .ds-intro p{font-size:12px;color:rgba(255,255,255,0.72);line-height:1.65}
-.ds-jump-grid{margin-top:12px;display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:10px}
-.ds-jump-card{position:relative;border:1px solid rgba(255,255,255,0.16);border-radius:10px;overflow:hidden;cursor:pointer;background:#0f1012;transition:transform 0.28s var(--ease),border-color 0.28s var(--ease),box-shadow 0.28s var(--ease),outline-color 0.28s var(--ease);padding:0;font-family:var(--font);text-align:left;color:inherit;appearance:none;-webkit-appearance:none}
+.ds-jump-grid{margin-top:12px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.ds-jump-card{position:relative;border:1px solid rgba(255,255,255,0.16);border-radius:10px;overflow:hidden;cursor:pointer;background:#0f1012;transition:transform 0.28s var(--ease),border-color 0.28s var(--ease),box-shadow 0.28s var(--ease),outline-color 0.28s var(--ease);padding:0;font-family:var(--font);text-align:left;color:inherit;appearance:none;-webkit-appearance:none;min-height:260px}
 .ds-jump-card:hover,.ds-jump-card.on{transform:translateY(-3px);border-color:rgba(255,255,255,0.36);box-shadow:0 10px 26px rgba(0,0,0,0.25)}
 .ds-jump-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 25%,rgba(0,0,0,0.55) 100%)}
-.ds-jump-card img{display:block;width:100%;height:132px;object-fit:cover;filter:grayscale(1) brightness(0.82);transition:filter 0.28s var(--ease),transform 0.35s var(--ease)}
+.ds-jump-card img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(0.82);transition:filter 0.28s var(--ease),transform 0.35s var(--ease)}
 .ds-jump-card:hover img,.ds-jump-card.on img{filter:grayscale(0) brightness(1)}
 .ds-jump-card:hover img{transform:scale(1.03)}
-.ds-req{position:absolute;top:10px;right:10px;z-index:3;background:#ffd87a;color:#111;border:1px solid rgba(0,0,0,0.12);border-radius:999px;padding:5px 10px;font-size:9px;font-weight:800;letter-spacing:0.7px;text-transform:uppercase}
+.ds-req{position:absolute;top:10px;right:10px;z-index:3;background:#ffd87a;color:#111;border:1px solid rgba(0,0,0,0.12);border-radius:999px;padding:6px 11px;font-size:10px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase}
 .ds-jump-text{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:10px}
-.ds-jump-text h5{font-size:12px;color:#fff;line-height:1.35}
-.ds-jump-text span{display:block;margin-top:2px;font-size:10px;color:rgba(255,255,255,0.76)}
+.ds-jump-text h5{font-size:15px;color:#fff;line-height:1.35}
+.ds-jump-text span{display:block;margin-top:3px;font-size:12px;line-height:1.45;color:rgba(255,255,255,0.8)}
 .ds-jump-card.on{outline:2px solid rgba(255,255,255,0.5);outline-offset:-2px}
+@media(max-width:1540px){.ds-jump-grid{grid-template-columns:repeat(3,minmax(220px,1fr))}}
+@media(max-width:1120px){.ds-jump-grid{grid-template-columns:repeat(2,minmax(220px,1fr))}}
 /* Section nav */
 .ds-nav{display:flex;gap:2px;background:rgba(0,0,0,0.04);border-radius:8px;padding:3px;margin-bottom:20px;flex-wrap:wrap}
 .ds-pill{border:0;background:transparent;border-radius:6px;padding:10px 14px;cursor:pointer;font-family:var(--font);font-size:12px;font-weight:600;letter-spacing:0.5px;color:var(--g1);transition:all 0.25s var(--ease)}
@@ -653,9 +665,9 @@ html{font-size:16px}
 
 /* Extra small phones */
 @media(max-width:420px){
-.header-tabs .gtab{font-size:8px;padding:7px 8px;letter-spacing:0.2px}
+.header-tabs .gtab{font-size:10px;padding:8px 10px;letter-spacing:0.15px}
 .header-left h1{font-size:12px}
-.lang-btn{font-size:9px;padding:4px 8px}
+.lang-btn{font-size:10px;padding:5px 9px}
 .dc .dp{font-size:15px}
 .dc .dp-label{font-size:7px}
 .ohdr h2{font-size:14px}
@@ -1028,6 +1040,11 @@ en:{
   lidarTitle:'Kitchen LiDAR Scan',lidarSub:'Use this 3D scan to inspect current layout and verify site conditions while comparing options.',
   lidarHelp:'If the viewer does not load in-page, open it directly in Polycam.',
   openPolycam:'Open in Polycam',
+  existingPhotosTitle:'Existing Space Photo Gallery',
+  existingPhotosSub:'Reference photos of the current kitchen before renovation. Click any photo to enlarge.',
+  existingPhotosCount:'photos',
+  existingPhotoLabel:'Existing Photo',
+  existingPhotoCap:'Current kitchen condition before renovation',
   enscapeTitle:'Enscape',enscapeSub:'Interactive Enscape walkthrough of the proposed kitchen design. Navigate and review layout, finishes, and equipment placement.',
   enscapeHelp:'Use mouse to look around. Click and drag to move through the space. Scroll to zoom.',
   openChaos:'Open in Chaos Cloud',
@@ -1137,6 +1154,11 @@ ko:{
   lidarTitle:'주방 LiDAR 스캔',lidarSub:'3D 스캔으로 현재 레이아웃을 확인하고 옵션 비교 시 현장 조건을 검증하세요.',
   lidarHelp:'뷰어가 로드되지 않으면 Polycam에서 직접 확인하세요.',
   openPolycam:'Polycam에서 열기',
+  existingPhotosTitle:'기존 공간 사진 갤러리',
+  existingPhotosSub:'리노베이션 전 주방 현황 사진입니다. 사진을 클릭하면 확대됩니다.',
+  existingPhotosCount:'장',
+  existingPhotoLabel:'기존 공간 사진',
+  existingPhotoCap:'리노베이션 전 현재 주방 상태',
   enscapeTitle:'엔스케이프',enscapeSub:'제안된 주방 디자인의 Enscape 3D 투어입니다. 동선, 마감재, 장비 배치를 확인하세요.',
   enscapeHelp:'마우스로 주변을 둘러보세요. 클릭 & 드래그로 이동. 스크롤로 확대/축소.',
   openChaos:'Chaos Cloud에서 열기',
@@ -1348,10 +1370,11 @@ const CATS = {
   countertop: {icon:'\u{1F532}', name:'catCountertop', ids_a:['a_mw_front','a_mw_front_wallcab','a_mw_front_quartz','a_coffee'], ids_b:['b_cb2','b_cb1','b_q2','b_coffee'], ids_cf:['cf_bo','cf_sv','cf_mw','cf_coffee'], ids_cs:['cs_cf','cs_cb','cs_qz','cs_coffee'], ids_df:['df_coffee'], ids_ds:['ds_coffee']},
   walls: {icon:'\u{1F9F1}', name:'catWalls', ids_a:[], ids_b:['b_ss'], ids_cf:[], ids_cs:[], ids_df:[], ids_ds:[]},
 };
-const POLYCAM_URL='https://poly.cam/capture/1aa32b32-fda5-42ad-b82e-8e6e0f798fad';
+const POLYCAM_URL='https://poly.cam/capture/5D464C80-8013-46BE-8BD9-74DEEBA6EA82';
 const ENSCAPE_URL='https://cloud.chaos.com/collaboration/folder/QtewMDF6NdwauoAEXc9Ai6/present?n=Hmy9A8iFANzkVhrjD7aBjC';
 const FLOOR_PLAN_RENDER_SRC='presentation-r7/slide-07.jpg';
 const FLOOR_PLAN_VECTOR_SRC='Final Renderings/AXON/FLOOR PLAN.jpg';
+const EXISTING_SPACE_SRCS=Array.from({length:16},(_,i)=>`Existing Space/IMG_${4100+i}.JPG`);
 const INTRO_CONTENT={
   ko:{
     heroTitle:'교회 주방 리노베이션 프로젝트\n임시집사회 보고',
@@ -2086,6 +2109,11 @@ function rIntroPanel(){
 }
 
 function rPolycamPanel(){
+  const photos=getExistingSpacePhotos();
+  const gallery=photos.map((im,i)=>`<button class="ex-photo" onclick="openExistingPhoto(${i})" aria-label="${im.title}">
+    <img src="${encodeURI(im.src)}" alt="${im.title}" loading="lazy">
+    <span class="ex-photo-label">${i+1}</span>
+  </button>`).join('');
   return`<div class="scan-wrap">
     <div class="scan-head"><h3>${t('lidarTitle')}</h3><span class="scan-tag">Polycam</span></div>
     <div class="scan-sub">${t('lidarSub')}</div>
@@ -2094,7 +2122,25 @@ function rPolycamPanel(){
       <span class="scan-help">${t('lidarHelp')}</span>
       <a class="scan-btn" href="${POLYCAM_URL}" target="_blank" rel="noopener noreferrer">${t('openPolycam')}</a>
     </div>
+    <section class="ex-gallery">
+      <div class="ex-head"><h4>${t('existingPhotosTitle')}</h4><span class="scan-tag">${photos.length} ${t('existingPhotosCount')}</span></div>
+      <p class="ex-sub">${t('existingPhotosSub')}</p>
+      <div class="ex-grid">${gallery}</div>
+    </section>
   </div>`;
+}
+
+function getExistingSpacePhotos(){
+  return EXISTING_SPACE_SRCS.map((src,i)=>({
+    src,
+    title:`${t('existingPhotoLabel')} ${i+1}`,
+    cap:t('existingPhotoCap')
+  }));
+}
+
+function openExistingPhoto(idx){
+  const i=Math.max(0,Math.min(EXISTING_SPACE_SRCS.length-1,Number(idx)||0));
+  lbOpen(getExistingSpacePhotos(),i);
 }
 
 function rEnscapePanel(){
@@ -2793,7 +2839,6 @@ function rR7EstimateSummary(){
       <h4>${trObj(c.title)}</h4>
       <p>${trObj(c.desc)}</p>
       <p class="est-r7-list">${trObj(c.items)}</p>
-      <p class="est-r7-map"><span>${t('r7MapLabel')}</span>${trObj(c.map)}</p>
       <div class="est-r7-scope-badges">${rR7ScopeBadges(c)}</div>
       <div class="est-r7-range">${c.range}<small>${c.rangeEn}</small></div>
       <div class="est-r7-card-actions">
