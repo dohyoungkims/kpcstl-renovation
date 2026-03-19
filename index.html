@@ -1043,6 +1043,7 @@ en:{
   existingPhotosTitle:'Existing Space Photo Gallery',
   existingPhotosSub:'Reference photos of the current kitchen before renovation. Click any photo to enlarge.',
   existingPhotosCount:'photos',
+  existingShowMore:'Show more photos',
   existingPhotoLabel:'Existing Photo',
   existingPhotoCap:'Current kitchen condition before renovation',
   enscapeTitle:'Enscape',enscapeSub:'Interactive Enscape walkthrough of the proposed kitchen design. Navigate and review layout, finishes, and equipment placement.',
@@ -1157,6 +1158,7 @@ ko:{
   existingPhotosTitle:'기존 공간 사진 갤러리',
   existingPhotosSub:'리노베이션 전 주방 현황 사진입니다. 사진을 클릭하면 확대됩니다.',
   existingPhotosCount:'장',
+  existingShowMore:'사진 더 보기',
   existingPhotoLabel:'기존 공간 사진',
   existingPhotoCap:'리노베이션 전 현재 주방 상태',
   enscapeTitle:'엔스케이프',enscapeSub:'제안된 주방 디자인의 Enscape 3D 투어입니다. 동선, 마감재, 장비 배치를 확인하세요.',
@@ -1374,33 +1376,35 @@ const POLYCAM_URL='https://poly.cam/capture/5D464C80-8013-46BE-8BD9-74DEEBA6EA82
 const ENSCAPE_URL='https://cloud.chaos.com/collaboration/folder/QtewMDF6NdwauoAEXc9Ai6/present?n=Hmy9A8iFANzkVhrjD7aBjC';
 const FLOOR_PLAN_RENDER_SRC='presentation-r7/slide-07.jpg';
 const FLOOR_PLAN_VECTOR_SRC='Final Renderings/AXON/FLOOR PLAN.jpg';
-const EXISTING_SPACE_SRCS=[
-  'Existing Space/IMG_0593.JPG',
-  'Existing Space/IMG_0597.JPG',
-  'Existing Space/IMG_0599.JPG',
-  'Existing Space/IMG_0602.JPG',
-  'Existing Space/IMG_0603.JPG',
-  'Existing Space/IMG_0605.JPG',
-  'Existing Space/IMG_0606.JPG',
-  'Existing Space/IMG_0607.JPG',
-  'Existing Space/IMG_0608.JPG',
-  'Existing Space/IMG_4100.JPG',
-  'Existing Space/IMG_4101.JPG',
-  'Existing Space/IMG_4102.JPG',
-  'Existing Space/IMG_4103.JPG',
-  'Existing Space/IMG_4104.JPG',
-  'Existing Space/IMG_4105.JPG',
-  'Existing Space/IMG_4106.JPG',
-  'Existing Space/IMG_4107.JPG',
-  'Existing Space/IMG_4108.JPG',
-  'Existing Space/IMG_4109.JPG',
-  'Existing Space/IMG_4110.JPG',
-  'Existing Space/IMG_4111.JPG',
-  'Existing Space/IMG_4112.JPG',
-  'Existing Space/IMG_4113.JPG',
-  'Existing Space/IMG_4114.JPG',
-  'Existing Space/IMG_4115.JPG'
+const EXISTING_SPACE_FILES=[
+  'IMG_0593.JPG',
+  'IMG_0597.JPG',
+  'IMG_0599.JPG',
+  'IMG_0602.JPG',
+  'IMG_0603.JPG',
+  'IMG_0605.JPG',
+  'IMG_0606.JPG',
+  'IMG_0607.JPG',
+  'IMG_0608.JPG',
+  'IMG_4100.JPG',
+  'IMG_4101.JPG',
+  'IMG_4102.JPG',
+  'IMG_4103.JPG',
+  'IMG_4104.JPG',
+  'IMG_4105.JPG',
+  'IMG_4106.JPG',
+  'IMG_4107.JPG',
+  'IMG_4108.JPG',
+  'IMG_4109.JPG',
+  'IMG_4110.JPG',
+  'IMG_4111.JPG',
+  'IMG_4112.JPG',
+  'IMG_4113.JPG',
+  'IMG_4114.JPG',
+  'IMG_4115.JPG'
 ];
+const EXISTING_SPACE_SRCS=EXISTING_SPACE_FILES.map(name=>`Existing Space/${name}`);
+const EXISTING_SPACE_THUMBS=EXISTING_SPACE_FILES.map(name=>`Existing Space/thumbs/${name}`);
 const INTRO_CONTENT={
   ko:{
     heroTitle:'교회 주방 리노베이션 프로젝트\n임시집사회 보고',
@@ -1751,7 +1755,7 @@ const REQUIRED_SELECTION_KEYS=['sink','counter','flooring'];
 const VOTE_STORE_KEY='kpc_kitchen_vote_v1';
 let VOTE_DB={votes:{}};
 
-const S={tab:'introduction',slide:0,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},r7Preset:null,r7ScopeFocus:'2',voteCode:'',voteDraft:{},voteMsg:'',voteImport:''};
+const S={tab:'introduction',slide:0,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},r7Preset:null,r7ScopeFocus:'2',voteCode:'',voteDraft:{},voteMsg:'',voteImport:'',existingLimit:12};
 function voteHash(v){
   let h=2166136261;
   const s=String(v||'').trim().toLowerCase();
@@ -2136,8 +2140,9 @@ function rIntroPanel(){
 
 function rPolycamPanel(){
   const photos=getExistingSpacePhotos();
-  const gallery=photos.map((im,i)=>`<button class="ex-photo" onclick="openExistingPhoto(${i})" aria-label="${im.title}">
-    <img src="${encodeURI(im.src)}" alt="${im.title}" loading="lazy">
+  const shown=Math.min(S.existingLimit||12,photos.length);
+  const gallery=photos.slice(0,shown).map((im,i)=>`<button class="ex-photo" onclick="openExistingPhoto(${i})" aria-label="${im.title}">
+    <img src="${encodeURI(im.thumb||im.src)}" alt="${im.title}" loading="lazy" decoding="async" fetchpriority="low" onerror="this.onerror=null;this.src='${encodeURI(im.src)}'">
     <span class="ex-photo-label">${i+1}</span>
   </button>`).join('');
   return`<div class="scan-wrap">
@@ -2149,9 +2154,10 @@ function rPolycamPanel(){
       <a class="scan-btn" href="${POLYCAM_URL}" target="_blank" rel="noopener noreferrer">${t('openPolycam')}</a>
     </div>
     <section class="ex-gallery">
-      <div class="ex-head"><h4>${t('existingPhotosTitle')}</h4><span class="scan-tag">${photos.length} ${t('existingPhotosCount')}</span></div>
+      <div class="ex-head"><h4>${t('existingPhotosTitle')}</h4><span class="scan-tag">${shown}/${photos.length} ${t('existingPhotosCount')}</span></div>
       <p class="ex-sub">${t('existingPhotosSub')}</p>
       <div class="ex-grid">${gallery}</div>
+      ${shown<photos.length?`<div style="margin-top:10px;display:flex;justify-content:center"><button class="scan-btn" onclick="showMoreExistingPhotos()">${t('existingShowMore')}</button></div>`:''}
     </section>
   </div>`;
 }
@@ -2159,6 +2165,7 @@ function rPolycamPanel(){
 function getExistingSpacePhotos(){
   return EXISTING_SPACE_SRCS.map((src,i)=>({
     src,
+    thumb:EXISTING_SPACE_THUMBS[i]||src,
     title:`${t('existingPhotoLabel')} ${i+1}`,
     cap:t('existingPhotoCap')
   }));
@@ -2167,6 +2174,11 @@ function getExistingSpacePhotos(){
 function openExistingPhoto(idx){
   const i=Math.max(0,Math.min(EXISTING_SPACE_SRCS.length-1,Number(idx)||0));
   lbOpen(getExistingSpacePhotos(),i);
+}
+
+function showMoreExistingPhotos(){
+  S.existingLimit=Math.min(EXISTING_SPACE_SRCS.length,(S.existingLimit||12)+8);
+  render();
 }
 
 function rEnscapePanel(){
