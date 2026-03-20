@@ -341,6 +341,7 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .scan-btn{display:inline-flex;align-items:center;padding:10px 18px;border-radius:6px;background:var(--black);color:var(--white);text-decoration:none;font-family:var(--font);font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;transition:opacity 0.2s}
 .scan-btn:hover{opacity:0.8}
 .ex-gallery{margin-top:18px;padding-top:14px;border-top:1px solid var(--sep)}
+.ex-title{font-size:12px;font-weight:600;color:var(--g2);letter-spacing:0.3px;margin:0 0 10px}
 .ex-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
 .ex-photo{grid-column:span 3;border:1px solid var(--g4);border-radius:6px;overflow:hidden;background:var(--white);padding:0;cursor:pointer;transition:border-color 0.28s var(--ease),box-shadow 0.28s var(--ease),transform 0.28s var(--ease);position:relative;content-visibility:auto;contain-intrinsic-size:280px}
 .ex-photo:hover{border-color:var(--g5);box-shadow:var(--shadow2);transform:translateY(-2px)}
@@ -979,7 +980,7 @@ en:{
   splSub:'R7 Session Briefing',
   splEnter:'Click anywhere to enter',
   // Tabs
-  introduction:'Introduction',design:'Design Considerations',floorplan:'Floor Plan',polycam:'Polycam',enscape:'Enscape',selections:'Selection',voting:'Voting',presentation:'Presentation',estimates:'Estimates',
+  introduction:'Introduction',design:'Design Considerations',floorplan:'Floor Plan',polycam:'Existing Space',enscape:'Enscape',selections:'Selection',voting:'Voting',presentation:'Presentation',estimates:'Estimates',
   // Dashboard
   optA:'Option A',optB:'Option B',optC:'Option C',optD:'Option D',
   lowest:'Lowest',openShelving:'Open Shelving',cabinets:'Cabinets',
@@ -1035,10 +1036,10 @@ en:{
   floorOpenImage:'Open Rendering',
   rendered:'Rendered',vector:'Vector',reset:'Reset',fullScreen:'Full Screen',floorTip:'',
   // Scans
-  lidarTitle:'Existing Space',lidarSub:'Use this 3D scan to inspect current layout and verify site conditions while comparing options.',
+  lidarTitle:'Existing Space',lidarSub:'Polycam (LiDAR Scan)',
   lidarHelp:'If the viewer does not load in-page, open it directly in Polycam.',
   openPolycam:'Open in Polycam',
-  existingPhotosTitle:'Existing Space Photo Gallery',
+  existingPhotosTitle:'Existing Space Pictures',
   existingPhotosSub:'Reference photos of the current kitchen before renovation. Click any photo to enlarge.',
   existingPhotosCount:'photos',
   existingShowMore:'Show more photos',
@@ -1109,7 +1110,7 @@ ko:{
   splTitle:'주방 리노베이션',
   splSub:'R7 임시집사회 보고',
   splEnter:'화면을 클릭하세요',
-  introduction:'소개',design:'디자인 고려사항',floorplan:'평면도',polycam:'폴리캠',enscape:'엔스케이프',selections:'선택',voting:'투표',presentation:'프레젠테이션',estimates:'견적',
+  introduction:'소개',design:'디자인 고려사항',floorplan:'평면도',polycam:'현재 공간',enscape:'엔스케이프',selections:'선택',voting:'투표',presentation:'프레젠테이션',estimates:'견적',
   optA:'옵션 A',optB:'옵션 B',optC:'옵션 C',optD:'옵션 D',
   lowest:'최저가',openShelving:'오픈 선반',cabinets:'캐비닛',
   gc:'시공비',equip:'장비비',
@@ -1150,10 +1151,10 @@ ko:{
   floorFocus:'핵심 변경 포인트',
   floorOpenImage:'렌더링 열기',
   rendered:'렌더링',vector:'벡터',reset:'초기화',fullScreen:'전체 화면',floorTip:'',
-  lidarTitle:'현재 공간',lidarSub:'3D 스캔으로 현재 레이아웃을 확인하고 옵션 비교 시 현장 조건을 검증하세요.',
+  lidarTitle:'현재 공간',lidarSub:'Polycam (LiDAR Scan)',
   lidarHelp:'뷰어가 로드되지 않으면 Polycam에서 직접 확인하세요.',
   openPolycam:'Polycam에서 열기',
-  existingPhotosTitle:'기존 공간 사진 갤러리',
+  existingPhotosTitle:'기존 공간 사진',
   existingPhotosSub:'리노베이션 전 주방 현황 사진입니다. 사진을 클릭하면 확대됩니다.',
   existingPhotosCount:'장',
   existingShowMore:'사진 더 보기',
@@ -2152,6 +2153,7 @@ function rPolycamPanel(){
       <a class="scan-btn" href="${POLYCAM_URL}" target="_blank" rel="noopener noreferrer">${t('openPolycam')}</a>
     </div>
     <section class="ex-gallery">
+      <div class="ex-title">${t('existingPhotosTitle')}</div>
       <div class="ex-grid">${gallery}</div>
     </section>
   </div>`;
