@@ -78,23 +78,23 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .intro-title{font-size:clamp(30px,4.2vw,58px);line-height:1.06;letter-spacing:-0.8px;margin-top:12px;font-weight:700}
 .intro-title-nowrap{white-space:nowrap;display:inline-block}
 .intro-meta{margin-top:auto;color:rgba(255,255,255,0.9);font-size:21px;line-height:1.5;padding-top:18px}
-.intro-card{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:26px}
-.intro-card h3{font-size:25px;letter-spacing:-0.4px;margin-bottom:10px}
-.intro-body{font-size:15px;color:var(--g2);line-height:1.9;white-space:pre-line}
-.intro-team-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.intro-team-col{border:1px solid var(--g4);border-radius:10px;padding:18px;background:var(--bg)}
-.intro-team-col h4{font-size:16px;font-weight:700;margin-bottom:8px}
-.intro-team-row{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px dashed var(--g4);font-size:14px}
+.intro-card{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:42px}
+.intro-card h3{font-size:58px;letter-spacing:-0.8px;margin-bottom:20px;line-height:1.05}
+.intro-body{font-size:34px;color:var(--g2);line-height:1.6;white-space:pre-line}
+.intro-team-grid{display:grid;grid-template-columns:1fr;gap:20px}
+.intro-team-col{border:1px solid var(--g4);border-radius:14px;padding:24px;background:var(--bg)}
+.intro-team-col h4{font-size:34px;font-weight:700;margin-bottom:12px;line-height:1.2}
+.intro-team-row{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px dashed var(--g4);font-size:30px;line-height:1.3}
 .intro-team-row:last-child{border-bottom:none}
 .intro-team-row span:last-child{color:var(--g2)}
-.intro-process{display:grid;grid-template-columns:repeat(2,minmax(240px,1fr));gap:10px 16px}
-.intro-process li{list-style:none;background:var(--bg);border:1px solid var(--g4);border-radius:10px;padding:11px 12px}
-.intro-process-title{display:block;font-size:13px;font-weight:700;margin-bottom:4px;color:var(--black)}
-.intro-process-desc{font-size:12px;color:var(--g2);line-height:1.55}
-.intro-purpose-list{display:grid;grid-template-columns:repeat(3,minmax(180px,1fr));gap:10px}
-.intro-purpose-item{background:var(--bg);border:1px solid var(--g4);border-radius:10px;padding:14px}
-.intro-purpose-item h4{font-size:15px;margin-bottom:6px}
-.intro-purpose-item p{font-size:12px;color:var(--g2);line-height:1.6}
+.intro-process{display:grid;grid-template-columns:1fr;gap:16px}
+.intro-process li{list-style:none;background:var(--bg);border:1px solid var(--g4);border-radius:12px;padding:20px 22px}
+.intro-process-title{display:block;font-size:30px;font-weight:700;margin-bottom:8px;color:var(--black);line-height:1.2}
+.intro-process-desc{font-size:25px;color:var(--g2);line-height:1.5}
+.intro-purpose-list{display:grid;grid-template-columns:1fr;gap:14px}
+.intro-purpose-item{background:var(--bg);border:1px solid var(--g4);border-radius:12px;padding:24px}
+.intro-purpose-item h4{font-size:32px;margin-bottom:10px;line-height:1.2}
+.intro-purpose-item p{font-size:24px;color:var(--g2);line-height:1.5}
 .intro-scope-grid{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:12px}
 .intro-scope-item{background:var(--bg);border:1px solid var(--g4);border-radius:10px;overflow:hidden}
 .intro-scope-item img{width:100%;height:175px;object-fit:cover;display:block}
@@ -106,15 +106,30 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .intro-process{grid-template-columns:1fr}
 .intro-purpose-list{grid-template-columns:1fr}
 .intro-scope-grid{grid-template-columns:repeat(2,minmax(160px,1fr))}
+.intro-card{padding:26px}
+.intro-card h3{font-size:40px;line-height:1.1}
+.intro-body{font-size:24px}
+.intro-team-col h4{font-size:24px}
+.intro-team-row{font-size:20px;padding:10px 0}
+.intro-process-title{font-size:22px}
+.intro-process-desc{font-size:18px}
+.intro-purpose-item h4{font-size:24px}
+.intro-purpose-item p{font-size:18px}
 }
 @media(max-width:640px){
 .intro-card{padding:16px}
-.intro-card h3{font-size:20px}
-.intro-body{font-size:14px}
+.intro-card h3{font-size:28px}
+.intro-body{font-size:18px}
 .intro-scope-grid{grid-template-columns:1fr}
 .intro-scope-item img{height:160px}
 .intro-kicker{font-size:13px}
 .intro-meta{font-size:16px;line-height:1.45}
+.intro-team-col h4{font-size:20px}
+.intro-team-row{font-size:16px;padding:8px 0}
+.intro-process-title{font-size:18px}
+.intro-process-desc{font-size:15px}
+.intro-purpose-item h4{font-size:20px}
+.intro-purpose-item p{font-size:15px}
 }
 
 /* ===== DASHBOARD ===== */
