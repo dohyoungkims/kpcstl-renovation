@@ -73,10 +73,11 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 /* ===== INTRODUCTION ===== */
 .intro-wrap{display:flex;flex-direction:column;gap:18px}
 .intro-hero{position:relative;min-height:62vh;border:1px solid var(--g4);border-radius:var(--r);overflow:hidden;background:linear-gradient(120deg,rgba(0,0,0,0.68) 0%,rgba(0,0,0,0.44) 48%,rgba(0,0,0,0.22) 100%),url("Final Renderings/rendering views/view 2.jpg") center/cover no-repeat}
-.intro-hero-body{position:relative;z-index:2;max-width:760px;padding:clamp(26px,4vw,58px);color:var(--white)}
-.intro-kicker{font-size:11px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.72);font-weight:600}
+.intro-hero-body{position:relative;z-index:2;max-width:900px;min-height:62vh;display:flex;flex-direction:column;padding:clamp(26px,4vw,58px);color:var(--white)}
+.intro-kicker{font-size:17px;letter-spacing:0.9px;text-transform:uppercase;color:rgba(255,255,255,0.78);font-weight:700}
 .intro-title{font-size:clamp(30px,4.2vw,58px);line-height:1.06;letter-spacing:-0.8px;margin-top:12px;font-weight:700}
-.intro-meta{margin-top:18px;color:rgba(255,255,255,0.86);font-size:14px;line-height:1.55}
+.intro-title-nowrap{white-space:nowrap;display:inline-block}
+.intro-meta{margin-top:auto;color:rgba(255,255,255,0.9);font-size:21px;line-height:1.5;padding-top:18px}
 .intro-card{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:26px}
 .intro-card h3{font-size:25px;letter-spacing:-0.4px;margin-bottom:10px}
 .intro-body{font-size:15px;color:var(--g2);line-height:1.9;white-space:pre-line}
@@ -112,6 +113,8 @@ body{font-family:var(--font);color:var(--black);background:var(--bg);line-height
 .intro-body{font-size:14px}
 .intro-scope-grid{grid-template-columns:1fr}
 .intro-scope-item img{height:160px}
+.intro-kicker{font-size:13px}
+.intro-meta{font-size:16px;line-height:1.45}
 }
 
 /* ===== DASHBOARD ===== */
@@ -2096,6 +2099,11 @@ function rSecEq(title,arr,slideIdx,secKey){
 
 function rIntroPanel(){
   const ic=INTRO_CONTENT[S.lang]||INTRO_CONTENT.ko;
+  const heroTitleHtml=(S.lang==='ko'
+    ?ic.heroTitle
+      .replace('교회 주방 리노베이션 프로젝트','<span class="intro-title-nowrap">교회 주방 리노베이션 프로젝트</span>')
+      .replace(/\n/g,'<br>')
+    :ic.heroTitle.replace(/\n/g,'<br>'));
   let process='';
   ic.process.forEach(p=>{
     process+=`<li><span class="intro-process-title">${p[0]}</span><span class="intro-process-desc">${p[1]}</span></li>`;
@@ -2111,7 +2119,7 @@ function rIntroPanel(){
     <section class="intro-hero">
       <div class="intro-hero-body">
         <div class="intro-kicker">${S.lang==='ko'?'세인트루이스 한인장로교회':'Korean Presbyterian Church · St. Louis'}</div>
-        <h2 class="intro-title">${ic.heroTitle.replace(/\n/g,'<br>')}</h2>
+        <h2 class="intro-title">${heroTitleHtml}</h2>
         <p class="intro-meta">${ic.heroMeta.replace(/\n/g,'<br>')}</p>
       </div>
     </section>
