@@ -1,0 +1,3230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KPC Kitchen Renovation — R7 Session Briefing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font:'Space Grotesk','Noto Sans KR',system-ui,-apple-system,sans-serif;
+  --black:#111;--white:#fff;--bg:#f7f7f5;
+  --g1:#999;--g2:#666;--g3:#333;--g4:#e8e8e6;--g5:#d4d4d2;
+  --sep:rgba(0,0,0,0.07);
+  --r:12px;--rs:8px;
+  --ease:cubic-bezier(0.25,0.1,0.25,1);--spring:cubic-bezier(0.175,0.885,0.32,1.275);
+  --son:#111;--soff:rgba(0,0,0,0.14);
+  --blue:#111;--green:#333;--orange:#555;--purple:#777;
+  --a:#111;--b:#444;--c:#777;--d:#999;
+  --shadow:0 1px 3px rgba(0,0,0,0.04);
+  --shadow2:0 4px 12px rgba(0,0,0,0.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:clamp(16px,1.3vw,21px)}
+body{font-family:var(--font);color:var(--black);background:var(--bg);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* ===== SPLASH ===== */
+#splash{position:fixed;inset:0;z-index:9999;background:linear-gradient(125deg,rgba(0,0,0,0.72) 0%,rgba(0,0,0,0.5) 38%,rgba(0,0,0,0.3) 100%),url("Final Renderings/rendering views/view 2.jpg") center/cover no-repeat var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:opacity 0.8s var(--ease),transform 0.8s var(--ease)}
+#splash.out{opacity:0;transform:scale(1.02);pointer-events:none}
+.sp-line{overflow:hidden}
+.sp-line span{display:block;transform:translateY(110%);animation:spUp 0.9s var(--ease) forwards}
+.sp-t1 span{font-size:clamp(11px,1.2vw,13px);font-weight:400;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,0.45);animation-delay:0.3s}
+.sp-t2 span{font-size:clamp(32px,5vw,64px);font-weight:700;letter-spacing:-1.5px;color:var(--white);animation-delay:0.6s}
+.sp-t3 span{font-size:clamp(14px,1.8vw,18px);font-weight:300;letter-spacing:0.5px;color:rgba(255,255,255,0.55);animation-delay:0.9s;margin-top:8px}
+.sp-enter{margin-top:48px;overflow:hidden}
+.sp-enter span{display:block;transform:translateY(110%);animation:spUp 0.7s var(--ease) 1.4s forwards;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.3);transition:color 0.3s}
+#splash:hover .sp-enter span{color:rgba(255,255,255,0.7)}
+@keyframes spUp{to{transform:translateY(0)}}
+.sp-bar{position:absolute;bottom:0;left:0;height:2px;background:var(--white);animation:spBar 2.4s var(--ease) 0.5s forwards;width:0}
+@keyframes spBar{to{width:100%}}
+
+/* ===== HEADER ===== */
+.header{position:sticky;top:0;z-index:100;background:rgba(247,247,245,0.92);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--sep);padding:8px 24px;transition:box-shadow 0.3s}
+.header.scrolled{box-shadow:0 1px 8px rgba(0,0,0,0.06)}
+.header-in{max-width:none;width:100%;margin:0;display:flex;align-items:center;gap:16px}
+.header-left{flex-shrink:0}
+.header h1{font-family:var(--font);font-size:18px;font-weight:600;letter-spacing:-0.2px;color:var(--black)}
+.header p{font-size:11px;color:var(--g1);margin-top:1px;letter-spacing:0.4px;font-weight:400}
+.header-tabs{flex:1;display:flex;gap:2px;background:rgba(0,0,0,0.04);border-radius:8px;padding:3px;min-width:0}
+.header-tabs .gtab{flex:1;border:0;background:transparent;border-radius:6px;padding:11px 8px;cursor:pointer;font-family:var(--font);font-size:13px;font-weight:600;letter-spacing:0.2px;text-transform:uppercase;color:var(--g1);transition:all 0.25s var(--ease);white-space:nowrap;text-align:center}
+.header-tabs .gtab:hover{color:var(--g3);background:rgba(0,0,0,0.03)}
+.header-tabs .gtab.on{color:var(--white);background:var(--black);box-shadow:0 1px 4px rgba(0,0,0,0.12)}
+.lang-btn{border:1px solid var(--g4);background:var(--white);color:var(--black);font-family:var(--font);font-size:14px;font-weight:600;padding:9px 16px;border-radius:6px;cursor:pointer;transition:all 0.2s var(--ease);letter-spacing:0.2px;white-space:nowrap;flex-shrink:0}
+.lang-btn:hover{border-color:var(--black);box-shadow:var(--shadow)}
+@media(max-width:900px){
+.header{padding:6px 12px}
+.header-in{display:grid;grid-template-columns:1fr auto;grid-template-rows:auto auto;gap:4px 8px;align-items:center}
+.header-left{grid-column:1;grid-row:1}
+.header-left h1{font-size:16px}
+.header-left p{display:none}
+.lang-btn{grid-column:2;grid-row:1;font-size:12px;padding:7px 12px}
+.header-tabs{grid-column:1/-1;grid-row:2;gap:1px;padding:2px;border-radius:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap}
+.header-tabs::-webkit-scrollbar{display:none}
+.header-tabs .gtab{font-size:11px;padding:9px 12px;letter-spacing:0.2px;border-radius:4px;flex:0 0 auto}
+}
+.container{max-width:none;width:100%;margin:0;padding:24px clamp(12px,2vw,30px) 32px;opacity:0;transform:translateY(12px);transition:opacity 0.6s var(--ease) 0.1s,transform 0.6s var(--ease) 0.1s}
+.container.show{opacity:1;transform:translateY(0)}
+
+/* ===== TABS (now in header) ===== */
+
+/* ===== INTRODUCTION ===== */
+.intro-wrap{display:flex;flex-direction:column;gap:18px}
+.intro-hero{position:relative;min-height:62vh;border:1px solid var(--g4);border-radius:var(--r);overflow:hidden;background:linear-gradient(120deg,rgba(0,0,0,0.68) 0%,rgba(0,0,0,0.44) 48%,rgba(0,0,0,0.22) 100%),url("Final Renderings/rendering views/view 2.jpg") center/cover no-repeat}
+.intro-hero-body{position:relative;z-index:2;max-width:900px;min-height:62vh;display:flex;flex-direction:column;padding:clamp(26px,4vw,58px);color:var(--white)}
+.intro-kicker{font-size:17px;letter-spacing:0.9px;text-transform:uppercase;color:rgba(255,255,255,0.78);font-weight:700}
+.intro-title{font-size:clamp(30px,4.2vw,58px);line-height:1.06;letter-spacing:-0.8px;margin-top:12px;font-weight:700}
+.intro-title-nowrap{white-space:nowrap;display:inline-block}
+.intro-meta{margin-top:auto;color:rgba(255,255,255,0.9);font-size:21px;line-height:1.5;padding-top:18px}
+.intro-card{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:42px}
+.intro-card h3{font-size:58px;letter-spacing:-0.8px;margin-bottom:20px;line-height:1.05}
+.intro-body{font-size:34px;color:var(--g2);line-height:1.6;white-space:pre-line}
+.intro-body-intro{font-size:clamp(34px,2.7vw,54px);line-height:1.45;white-space:normal;color:var(--g3)}
+.intro-team-grid{display:grid;grid-template-columns:1fr;gap:20px}
+.intro-team-col{border:1px solid var(--g4);border-radius:14px;padding:24px;background:var(--bg)}
+.intro-team-col h4{font-size:34px;font-weight:700;margin-bottom:12px;line-height:1.2}
+.intro-team-row{display:flex;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px dashed var(--g4);font-size:30px;line-height:1.3}
+.intro-team-row:last-child{border-bottom:none}
+.intro-team-row span:last-child{color:var(--g2)}
+.intro-process{display:grid;grid-template-columns:1fr;gap:16px}
+.intro-process li{list-style:none;background:var(--bg);border:1px solid var(--g4);border-radius:12px;padding:20px 22px}
+.intro-process-title{display:block;font-size:30px;font-weight:700;margin-bottom:8px;color:var(--black);line-height:1.2}
+.intro-process-desc{font-size:25px;color:var(--g2);line-height:1.5}
+.intro-purpose-list{display:grid;grid-template-columns:1fr;gap:14px}
+.intro-purpose-item{background:var(--bg);border:1px solid var(--g4);border-radius:12px;padding:24px}
+.intro-purpose-item h4{font-size:32px;margin-bottom:10px;line-height:1.2}
+.intro-purpose-item p{font-size:24px;color:var(--g2);line-height:1.5}
+.intro-scope-grid{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:12px}
+.intro-scope-item{background:var(--bg);border:1px solid var(--g4);border-radius:10px;overflow:hidden}
+.intro-scope-item img{width:100%;height:175px;object-fit:cover;display:block}
+.intro-scope-txt{padding:12px}
+.intro-scope-txt h4{font-size:16px;line-height:1.3;letter-spacing:-0.2px}
+.intro-scope-txt p{font-size:12px;color:var(--g2);margin-top:6px;line-height:1.55}
+@media(max-width:900px){
+.intro-team-grid{grid-template-columns:1fr}
+.intro-process{grid-template-columns:1fr}
+.intro-purpose-list{grid-template-columns:1fr}
+.intro-scope-grid{grid-template-columns:repeat(2,minmax(160px,1fr))}
+.intro-card{padding:26px}
+.intro-card h3{font-size:40px;line-height:1.1}
+.intro-body{font-size:24px}
+.intro-body-intro{font-size:clamp(24px,4.2vw,40px)}
+.intro-team-col h4{font-size:24px}
+.intro-team-row{font-size:20px;padding:10px 0}
+.intro-process-title{font-size:22px}
+.intro-process-desc{font-size:18px}
+.intro-purpose-item h4{font-size:24px}
+.intro-purpose-item p{font-size:18px}
+}
+@media(max-width:640px){
+.intro-card{padding:16px}
+.intro-card h3{font-size:28px}
+.intro-body{font-size:18px}
+.intro-body-intro{font-size:20px;line-height:1.4}
+.intro-scope-grid{grid-template-columns:1fr}
+.intro-scope-item img{height:160px}
+.intro-kicker{font-size:13px}
+.intro-meta{font-size:16px;line-height:1.45}
+.intro-team-col h4{font-size:20px}
+.intro-team-row{font-size:16px;padding:8px 0}
+.intro-process-title{font-size:18px}
+.intro-process-desc{font-size:15px}
+.intro-purpose-item h4{font-size:20px}
+.intro-purpose-item p{font-size:15px}
+}
+
+/* ===== DASHBOARD ===== */
+.dash{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px;position:sticky;top:56px;z-index:85;background:rgba(247,247,245,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:10px 0 10px;border-radius:0 0 14px 14px}
+@media(max-width:900px){
+.dash{grid-template-columns:repeat(2,1fr);gap:8px;padding:6px 0;top:62px}
+.dc{padding:10px 10px}
+.dc .dp{font-size:20px}
+.dc .dd{gap:4px}
+.dc .chip{font-size:8px;padding:2px 6px}
+}
+@media(max-width:700px){
+.dash{grid-template-columns:1fr;gap:4px;padding:4px 0;top:62px;margin-bottom:10px}
+.dc{padding:7px 12px;border-radius:8px;display:grid;grid-template-columns:auto 1fr auto auto;grid-template-rows:auto;gap:0 10px;align-items:center}
+.dc .dk{grid-column:1;font-size:8px;letter-spacing:0.8px;writing-mode:horizontal-tb}
+.dc .dn{display:none}
+.dc .dp-wrap-low{grid-column:3;text-align:right;display:flex;align-items:baseline;gap:4px}
+.dc .dp-wrap-high{grid-column:4;text-align:right;display:flex;align-items:baseline;gap:4px}
+.dc .dp-label{display:inline;font-size:7px;margin:0;letter-spacing:0.3px}
+.dc .dp{display:inline;font-size:16px;margin:0;letter-spacing:-0.3px}
+.dc .dd{display:none}
+.dc:hover{transform:none}
+.ltag{top:4px;right:4px;font-size:6px;padding:2px 5px;position:static;display:inline;margin-left:6px}
+.dc.on{box-shadow:0 0 0 1.5px var(--black)}
+}
+.dc{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:14px 14px;cursor:pointer;transition:all 0.3s var(--ease);position:relative;overflow:hidden}
+.dc:hover{border-color:var(--g5);box-shadow:var(--shadow2);transform:translateY(-2px)}
+.dc.on{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}
+.dc .dk{font-size:10px;font-weight:600;color:var(--g1);text-transform:uppercase;letter-spacing:1.5px}
+.dc .dn{font-size:14px;font-weight:500;margin:5px 0 2px;color:var(--g2)}
+.dc .dp-label{font-size:10px;font-weight:600;color:var(--g1);text-transform:uppercase;letter-spacing:1px;margin-top:6px}
+.dc .dp{font-family:var(--font);font-size:26px;font-weight:700;letter-spacing:-0.5px;margin:0 0 4px;color:var(--black)}
+.dc .dp-wrap-low,.dc .dp-wrap-high{/* wrapper for mobile grid */}
+.dc .dd{display:flex;gap:6px;flex-wrap:wrap}
+.dc .chip{font-size:10px;padding:4px 9px;border-radius:4px;background:var(--bg);color:var(--g2);font-weight:500;letter-spacing:0.2px}
+.ltag{position:absolute;top:12px;right:12px;font-size:8px;font-weight:700;padding:3px 8px;border-radius:4px;background:var(--black);color:var(--white);text-transform:uppercase;letter-spacing:1px}
+.dot{width:5px;height:5px;border-radius:1px;display:inline-block;margin-right:6px;background:var(--black)}
+
+/* ===== BARS ===== */
+.bars{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:20px 24px;margin-bottom:24px}
+.bars h3{font-family:var(--font);font-size:12px;font-weight:600;color:var(--g1);margin-bottom:14px;text-transform:uppercase;letter-spacing:1.5px}
+.br{display:flex;align-items:center;margin-bottom:8px;gap:10px}
+.bl{width:90px;font-size:11px;font-weight:500;color:var(--g2);text-align:right;flex-shrink:0}
+.bt{flex:1;height:28px;background:rgba(0,0,0,0.03);border-radius:4px;overflow:hidden;display:flex}
+.bg{height:100%;border-radius:4px 0 0 4px;transition:width 0.5s var(--ease);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:600;color:var(--white);min-width:36px;background:var(--black)}
+.be{height:100%;border-radius:0 4px 4px 0;transition:width 0.5s var(--ease);display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:500;color:var(--white);min-width:36px;opacity:0.4;background:var(--black)}
+.bv{font-family:var(--font);font-size:14px;font-weight:700;width:85px;flex-shrink:0;letter-spacing:-0.3px}
+.bb,.gb,.ob,.pb{background:var(--black)}
+
+/* ===== CAROUSEL ===== */
+.cnav{display:flex;justify-content:center;gap:4px;margin-bottom:20px}
+.pill{padding:9px 20px;border-radius:6px;font-family:var(--font);font-size:11px;font-weight:600;border:1px solid var(--g4);cursor:pointer;transition:all 0.25s var(--ease);background:var(--white);color:var(--g2);letter-spacing:0.5px;text-transform:uppercase}
+.pill:hover{border-color:var(--g5);color:var(--black)}
+.pill.on{color:var(--white);background:var(--black);border-color:var(--black)}
+.pill.on.blue,.pill.on.green,.pill.on.orange,.pill.on.purple{background:var(--black)}
+.cvp{overflow:hidden;border-radius:var(--r);transition:height 0.4s var(--ease)}
+.ctr{display:flex;transition:transform 0.5s var(--ease)}
+.csl{min-width:100%}
+
+/* ===== CARD ===== */
+.ocard{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);overflow:hidden;transition:border-color 0.3s}
+.ohdr{padding:24px 28px 20px;border-bottom:1px solid var(--sep)}
+.ohdr .tr{display:flex;justify-content:space-between;align-items:center}
+.ohdr h2{font-family:var(--font);font-size:20px;font-weight:700;letter-spacing:-0.3px}
+.pbadge{font-family:var(--font);font-size:22px;font-weight:700;color:var(--black);letter-spacing:-0.3px}
+.pbadge.blue,.pbadge.green,.pbadge.orange,.pbadge.purple{color:var(--black)}
+.obody{padding:0 28px 28px}
+.ohdr.blue,.ohdr.green,.ohdr.orange,.ohdr.purple{border-bottom-color:var(--sep)}
+.ohdr::before{display:none}
+
+/* ===== SECTIONS ===== */
+.sec{margin-bottom:16px}
+.shdr{display:flex;justify-content:space-between;align-items:center;padding:12px 0 10px;border-bottom:1px solid var(--sep);margin-bottom:8px}
+.shdr h3{font-size:11px;font-weight:600;color:var(--g1);text-transform:uppercase;letter-spacing:1.5px}
+.shdr .ss{font-size:13px;font-weight:600;font-family:var(--font);color:var(--g2)}
+
+/* ===== CATEGORY ACCORDION ===== */
+.cat{margin-bottom:2px}
+.cat-hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;background:rgba(0,0,0,0.02);border-radius:var(--rs);cursor:pointer;transition:background 0.2s;user-select:none;border:1px solid transparent}
+.cat-hdr:hover{background:rgba(0,0,0,0.04);border-color:var(--g4)}
+.cat-hdr .cat-left{display:flex;align-items:center;gap:10px}
+.cat-hdr .cat-icon{font-size:16px;width:24px;text-align:center}
+.cat-hdr .cat-name{font-size:13px;font-weight:600;letter-spacing:0.1px}
+.cat-hdr .cat-count{font-size:10px;color:var(--g1);background:rgba(0,0,0,0.05);padding:2px 7px;border-radius:4px;font-weight:600;letter-spacing:0.3px}
+.cat-hdr .cat-right{display:flex;align-items:center;gap:10px}
+.cat-hdr .cat-sum{font-size:14px;font-weight:700;font-family:var(--font);letter-spacing:-0.2px}
+.cat-hdr .chevron{font-size:12px;color:var(--g1);transition:transform 0.3s var(--ease);display:inline-block}
+.cat-hdr .chevron.open{transform:rotate(90deg)}
+.cat-body{overflow:hidden;transition:max-height 0.4s var(--ease),opacity 0.3s;padding:0 4px}
+.cat-body.closed{max-height:0!important;opacity:0;pointer-events:none}
+.cat-body.open{opacity:1}
+/* Split layout for wall storage / countertop */
+.cat-split{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.cat-split-col{border-right:1px solid var(--sep);padding-right:8px}
+.cat-split-col:last-child{border-right:none;padding-right:0;padding-left:8px}
+.cat-split-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--g1);padding:8px 8px 4px;border-bottom:1px solid var(--sep)}
+.cat-split-full{grid-column:1/-1;border-top:1px solid var(--sep)}
+@media(max-width:700px){.cat-split{grid-template-columns:1fr}.cat-split-col{border-right:none;padding-right:0;padding-left:0}}
+
+/* ===== ITEMS ===== */
+.item{display:flex;align-items:center;padding:11px 8px;border-bottom:1px solid var(--sep);gap:12px;transition:opacity 0.25s,background 0.15s;border-radius:4px}
+.item:last-child{border-bottom:none}
+.item:hover{background:rgba(0,0,0,0.015)}
+.item.off{opacity:0.22}
+.item.off .iname{text-decoration:line-through;text-decoration-color:var(--g1)}
+.tog{position:relative;width:44px;height:26px;flex-shrink:0;cursor:pointer}
+.tog input{position:absolute;opacity:0;width:100%;height:100%;cursor:pointer;z-index:2;margin:0}
+.tog .tk{position:absolute;inset:0;background:var(--soff);border-radius:26px;transition:background 0.3s var(--ease)}
+.tog .tm{position:absolute;top:2px;left:2px;width:22px;height:22px;background:white;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.15);transition:transform 0.35s var(--spring),width 0.15s}
+.tog input:checked~.tk{background:var(--son)}
+.tog input:checked~.tm{transform:translateX(18px)}
+.tog:active .tm{width:26px}
+.tog:active input:checked~.tm{transform:translateX(14px);width:26px}
+.iinfo{flex:1;min-width:0}
+.iname{font-size:14px;font-weight:500;line-height:1.35}
+.idet{font-size:11.5px;color:var(--g1);margin-top:2px;line-height:1.4}
+.icost{font-family:var(--font);font-size:15px;font-weight:700;white-space:nowrap;min-width:65px;text-align:right;letter-spacing:-0.2px}
+.icost.neg{color:#2a7d3f}
+.cinp{display:flex;align-items:center;gap:6px;margin-top:5px;flex-wrap:wrap}
+.cinp input[type="text"]{width:110px;padding:7px 10px;border:1px solid var(--g4);border-radius:6px;font-size:14px;font-family:var(--font);text-align:right;transition:border 0.2s,box-shadow 0.2s;background:var(--white)}
+.cinp input[type="text"]:focus{outline:none;border-color:var(--black);box-shadow:0 0 0 2px rgba(0,0,0,0.08)}
+.cinp input[type="text"]::placeholder{color:var(--g1);font-size:11px}
+.cinp>span{font-size:10.5px;color:var(--g2);font-weight:500}
+.cinp .clab{color:var(--black);font-weight:700;font-size:9px;letter-spacing:1px;text-transform:uppercase}
+
+/* ===== PILLS ===== */
+.psel{display:flex;gap:2px;background:rgba(0,0,0,0.04);padding:3px;border-radius:8px;margin:8px 0}
+.po{flex:1;padding:8px 0;text-align:center;font-family:var(--font);font-size:11px;font-weight:600;border:none;border-radius:6px;cursor:pointer;transition:all 0.25s var(--ease);background:transparent;color:var(--g1);letter-spacing:0.3px}
+.po.on{background:var(--white);color:var(--black);box-shadow:0 1px 4px rgba(0,0,0,0.08)}
+
+.sub{display:flex;justify-content:space-between;padding:14px 0 4px;border-top:1px solid rgba(0,0,0,0.1);margin-top:10px;font-weight:700;font-size:15px;font-family:var(--font);letter-spacing:-0.2px}
+.cont-line{border-top:1px dashed rgba(0,0,0,0.15);margin-top:14px;padding:14px 0 4px;color:var(--g2);font-size:13px}
+.cont-ctrl{display:flex;align-items:center;gap:12px;background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:14px 20px;margin-bottom:20px}
+.cont-label{font-size:13px;font-weight:600;letter-spacing:-0.1px}
+.cont-input-wrap{display:flex;align-items:center;gap:2px}
+.cont-inp{width:52px;padding:6px 8px;border:1px solid var(--g4);border-radius:6px;font-size:14px;font-family:var(--font);text-align:right;transition:border 0.2s;background:var(--white)}
+.cont-inp:focus{outline:none;border-color:var(--black);box-shadow:0 0 0 2px rgba(0,0,0,0.08)}
+.cont-pct{font-size:13px;font-weight:600;color:var(--g2)}
+.cont-amt{font-size:12px;color:var(--g1);margin-left:auto}
+.gt{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-radius:var(--rs);margin-top:14px;font-weight:700;font-size:18px;color:var(--white);font-family:var(--font);letter-spacing:-0.3px;background:var(--black)}
+.gt.blue,.gt.green,.gt.orange,.gt.purple{background:var(--black)}
+.note{font-size:11.5px;color:var(--g2);padding:10px 14px;background:rgba(0,0,0,0.02);border-radius:var(--rs);margin:8px 0;line-height:1.55;border:1px solid var(--sep)}
+
+/* ===== MATRIX ===== */
+.mwrap{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);overflow:hidden;margin-bottom:24px}
+.mwrap h3{padding:18px 24px 14px;font-family:var(--font);font-size:14px;font-weight:700;letter-spacing:-0.2px}
+.mscr{overflow-x:auto;padding:0 24px 24px}
+.mx{width:100%;border-collapse:collapse;font-size:12px}
+.mx th{padding:8px;text-align:center;font-weight:600;border-bottom:1px solid var(--sep);white-space:nowrap;font-size:11px;letter-spacing:0.5px;text-transform:uppercase;color:var(--g1)}
+.mx th:first-child{text-align:left;min-width:120px}
+.mx td{padding:7px 8px;border-bottom:1px solid var(--sep);text-align:center;vertical-align:top;font-size:12px}
+.mx td:first-child{text-align:left;font-weight:600}
+.mx tr:hover td{background:rgba(0,0,0,0.015)}
+.ck{color:#2a7d3f;font-weight:700}.no{color:var(--g1)}
+.disc{font-size:10px;color:var(--g1);text-align:center;padding:24px 0;letter-spacing:0.3px}
+
+/* ===== R7 ESTIMATE SUMMARY ===== */
+.est-r7{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:22px;margin-bottom:20px}
+.est-r7 h3{font-size:22px;letter-spacing:-0.3px;margin-bottom:4px}
+.est-r7-sub{font-size:13px;color:var(--g2);margin-bottom:6px}
+.est-r7-hint{font-size:12px;color:var(--g1);margin-bottom:14px}
+.est-r7-grid{display:grid;grid-template-columns:repeat(3,minmax(220px,1fr));gap:12px}
+.est-r7-card{border:1px solid var(--g4);border-radius:12px;background:var(--bg);padding:14px;display:flex;flex-direction:column;gap:8px;transition:border-color 0.22s,box-shadow 0.22s;cursor:pointer}
+.est-r7-card.on{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}
+.est-r7-card.focus{box-shadow:0 0 0 2px rgba(0,0,0,0.14)}
+.est-r7-card h4{font-size:22px;line-height:1.1}
+.est-r7-card p{font-size:12px;color:var(--g2);line-height:1.55}
+.est-r7-list{font-size:12px;color:var(--g2);line-height:1.6;margin-top:2px}
+.est-r7-range{margin-top:auto;padding-top:8px;border-top:1px dashed var(--g4);font-size:30px;line-height:1;font-weight:700;letter-spacing:-0.8px}
+.est-r7-range small{display:block;font-size:11px;font-weight:600;letter-spacing:0.8px;color:var(--g2);margin-top:6px}
+.est-r7-card-actions{margin-top:6px}
+.est-r7-preset-btn{width:100%;border:1px solid var(--g5);background:var(--white);color:var(--black);font-family:var(--font);font-size:11px;letter-spacing:0.5px;text-transform:uppercase;border-radius:6px;padding:9px 10px;cursor:pointer;transition:all 0.2s}
+.est-r7-preset-btn:hover{border-color:var(--black)}
+.est-r7-preset-btn.on{background:var(--black);color:var(--white);border-color:var(--black)}
+.est-r7-actions{margin-top:14px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.est-r7-btn{border:1px solid var(--black);background:var(--black);color:var(--white);font-family:var(--font);font-size:11px;letter-spacing:0.5px;text-transform:uppercase;border-radius:6px;padding:9px 14px;cursor:pointer}
+.est-r7-btn.ghost{background:var(--white);color:var(--black)}
+.est-r7-btn:hover{opacity:0.86}
+.est-source{border-top:1px solid var(--g4);padding-top:16px}
+.est-source-head{margin-bottom:12px}
+.est-source-head h3{font-size:18px;letter-spacing:-0.2px;margin-bottom:4px}
+.est-source-head p{font-size:12px;color:var(--g2);line-height:1.5}
+.est-scope{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:18px;margin-bottom:14px}
+.est-scope-head{display:flex;align-items:flex-end;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.est-scope h3{font-size:19px;letter-spacing:-0.2px;margin-bottom:4px}
+.est-scope-sub{font-size:12px;color:var(--g2);margin-bottom:12px}
+.est-scope-sub strong{color:var(--black)}
+.est-scope-cats{display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:8px;margin-bottom:12px}
+.est-scope-cat{position:relative;border:1px solid var(--g4);border-radius:10px;overflow:hidden;background:var(--bg);transition:border-color 0.2s,box-shadow 0.2s}
+.est-scope-cat img{display:block;width:100%;height:74px;object-fit:cover;transition:filter 0.22s,opacity 0.22s;filter:grayscale(1);opacity:0.42}
+.est-scope-cat.in img{filter:none;opacity:1}
+.est-scope-cat.adj img{filter:grayscale(0.22);opacity:0.9}
+.est-scope-cat.phase img{filter:grayscale(0.6);opacity:0.72}
+.est-scope-cat.out img{filter:grayscale(1);opacity:0.28}
+.est-scope-cat.focus{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}
+.est-scope-cap{padding:8px;font-size:10px;line-height:1.35;color:var(--g2);min-height:52px}
+.est-scope-cap strong{display:block;font-size:11px;color:var(--black);margin-bottom:2px}
+.est-scope-state{position:absolute;top:6px;left:6px;z-index:2}
+.est-scope-matrix{border:1px solid var(--g4);border-radius:10px;overflow:hidden}
+.est-scope-matrix table{width:100%;border-collapse:collapse;font-size:11px}
+.est-scope-matrix th,.est-scope-matrix td{border-bottom:1px solid var(--sep);padding:8px 8px;text-align:center}
+.est-scope-matrix tr:last-child td{border-bottom:0}
+.est-scope-matrix th:first-child,.est-scope-matrix td:first-child{text-align:left}
+.est-scope-matrix th{font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:var(--g1);background:var(--bg)}
+.est-scope-matrix .focus-col{background:rgba(0,0,0,0.04)}
+.est-scope-dot{display:inline-flex;align-items:center;justify-content:center;min-width:56px;padding:4px 8px;border-radius:999px;font-size:10px;font-weight:700;letter-spacing:0.3px;border:1px solid var(--g4);background:var(--white);color:var(--g2)}
+.est-scope-dot.in{background:#e8f6ec;border-color:#b7dec2;color:#225f37}
+.est-scope-dot.adj{background:#fff6df;border-color:#f0d59b;color:#8b6511}
+.est-scope-dot.phase{background:#eef2ff;border-color:#c8d2f7;color:#2f4a92}
+.est-scope-dot.out{background:#f4f4f4;border-color:#e1e1df;color:#8a8a86}
+.est-r7-scope-badges{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.est-r7-scope-badges .est-scope-dot{font-size:9px;padding:3px 7px;min-width:unset}
+@media(max-width:900px){.est-r7-grid{grid-template-columns:1fr}}
+@media(max-width:1180px){.est-scope-cats{grid-template-columns:repeat(3,minmax(120px,1fr))}}
+@media(max-width:640px){.est-scope-cats{grid-template-columns:repeat(2,minmax(120px,1fr))}.est-scope-matrix th,.est-scope-matrix td{padding:7px 5px;font-size:10px}}
+
+/* ===== POLYCAM ===== */
+.scan-wrap{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:24px;margin-bottom:24px}
+.scan-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.scan-head h3{font-size:18px;font-weight:700;letter-spacing:-0.3px}
+.scan-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--g2);background:rgba(0,0,0,0.05);padding:4px 10px;border-radius:4px}
+.scan-sub{font-size:13.5px;color:var(--g2);margin-bottom:14px}
+.scan-shell{position:relative;padding-top:62%;border-radius:var(--rs);overflow:hidden;border:1px solid var(--g4);background:var(--black)}
+.scan-shell iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.scan-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:14px;flex-wrap:wrap}
+.scan-help{font-size:12px;color:var(--g1)}
+.scan-btn{display:inline-flex;align-items:center;padding:10px 18px;border-radius:6px;background:var(--black);color:var(--white);text-decoration:none;font-family:var(--font);font-size:11px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;transition:opacity 0.2s}
+.scan-btn:hover{opacity:0.8}
+.ex-gallery{margin-top:18px;padding-top:14px;border-top:1px solid var(--sep)}
+.ex-title{font-size:12px;font-weight:600;color:var(--g2);letter-spacing:0.3px;margin:0 0 10px}
+.ex-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:10px}
+.ex-photo{grid-column:span 3;border:1px solid var(--g4);border-radius:6px;overflow:hidden;background:var(--white);padding:0;cursor:pointer;transition:border-color 0.28s var(--ease),box-shadow 0.28s var(--ease),transform 0.28s var(--ease);position:relative;content-visibility:auto;contain-intrinsic-size:280px}
+.ex-photo:hover{border-color:var(--g5);box-shadow:var(--shadow2);transform:translateY(-2px)}
+.ex-photo img{display:block;width:100%;height:100%;object-fit:cover;aspect-ratio:4/3;background:#efefed}
+.ex-photo.ex-reveal{opacity:0;transform:translateY(26px) scale(0.985);transition:opacity 0.7s var(--ease),transform 0.9s var(--ease);transition-delay:var(--d,0ms)}
+.ex-photo.ex-reveal.in{opacity:1;transform:none}
+@media(max-width:1180px){.ex-grid{grid-template-columns:repeat(8,minmax(0,1fr))}.ex-photo{grid-column:span 2}}
+@media(max-width:760px){.ex-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.ex-photo{grid-column:span 1}}
+@media(prefers-reduced-motion:reduce){.ex-photo.ex-reveal{opacity:1;transform:none;transition:none}}
+
+/* ===== DESIGN OPTIONS ===== */
+.design-wrap{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:24px}
+.design-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:16px}
+.design-head h3{font-size:22px;font-weight:700;letter-spacing:-0.3px}
+.design-sub{font-size:13.5px;color:var(--g2);max-width:800px}
+.r3-pill{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--g2);background:rgba(0,0,0,0.05);padding:5px 10px;border-radius:4px;white-space:nowrap}
+.ds-intro{background:linear-gradient(160deg,#0d0f12 0%,#181c21 58%,#252c34 100%);border-radius:14px;padding:18px;border:1px solid rgba(255,255,255,0.08);margin-bottom:16px;color:rgba(255,255,255,0.92);position:relative;overflow:hidden}
+.ds-intro::before{content:"";position:absolute;inset:-40% -10% auto auto;width:50%;aspect-ratio:1;border-radius:999px;background:radial-gradient(circle,rgba(148,196,255,0.38) 0%,rgba(148,196,255,0) 68%);pointer-events:none}
+.ds-intro h4{font-size:18px;letter-spacing:-0.25px;margin-bottom:5px}
+.ds-intro p{font-size:12px;color:rgba(255,255,255,0.72);line-height:1.65}
+.ds-jump-grid{margin-top:12px;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.ds-jump-card{position:relative;border:1px solid rgba(255,255,255,0.16);border-radius:10px;overflow:hidden;cursor:pointer;background:#0f1012;transition:transform 0.28s var(--ease),border-color 0.28s var(--ease),box-shadow 0.28s var(--ease),outline-color 0.28s var(--ease);padding:0;font-family:var(--font);text-align:left;color:inherit;appearance:none;-webkit-appearance:none;min-height:260px}
+.ds-jump-card:hover,.ds-jump-card.on{transform:translateY(-3px);border-color:rgba(255,255,255,0.36);box-shadow:0 10px 26px rgba(0,0,0,0.25)}
+.ds-jump-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 25%,rgba(0,0,0,0.55) 100%)}
+.ds-jump-card img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(0.82);transition:filter 0.28s var(--ease),transform 0.35s var(--ease)}
+.ds-jump-card:hover img,.ds-jump-card.on img{filter:grayscale(0) brightness(1)}
+.ds-jump-card:hover img{transform:scale(1.03)}
+.ds-req{position:absolute;top:10px;right:10px;z-index:3;background:#ffd87a;color:#111;border:1px solid rgba(0,0,0,0.12);border-radius:999px;padding:6px 11px;font-size:10px;font-weight:800;letter-spacing:0.5px;text-transform:uppercase}
+.ds-jump-text{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:10px}
+.ds-jump-text h5{font-size:15px;color:#fff;line-height:1.35}
+.ds-jump-text span{display:block;margin-top:3px;font-size:12px;line-height:1.45;color:rgba(255,255,255,0.8)}
+.ds-jump-card.on{outline:2px solid rgba(255,255,255,0.5);outline-offset:-2px}
+@media(max-width:1540px){.ds-jump-grid{grid-template-columns:repeat(3,minmax(220px,1fr))}}
+@media(max-width:1120px){.ds-jump-grid{grid-template-columns:repeat(2,minmax(220px,1fr))}}
+/* Section nav */
+.ds-nav{display:flex;gap:2px;background:rgba(0,0,0,0.04);border-radius:8px;padding:3px;margin-bottom:20px;flex-wrap:wrap}
+.ds-pill{border:0;background:transparent;border-radius:6px;padding:10px 14px;cursor:pointer;font-family:var(--font);font-size:12px;font-weight:600;letter-spacing:0.5px;color:var(--g1);transition:all 0.25s var(--ease)}
+.ds-pill:hover{color:var(--g2)}
+.ds-pill.on{color:var(--white);background:var(--black);box-shadow:0 1px 4px rgba(0,0,0,0.12)}
+@media(max-width:768px){.ds-pill{font-size:10px;padding:8px 10px}.ds-nav{overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;flex-wrap:nowrap}.ds-nav::-webkit-scrollbar{display:none}.ds-pill{flex:0 0 auto}}
+/* Section header */
+.ds-sec-head{margin-bottom:18px}
+.ds-sec-title{font-size:19px;font-weight:700;letter-spacing:-0.2px;margin-bottom:6px}
+.ds-sec-desc{font-size:13.5px;color:var(--g2);line-height:1.6;max-width:800px}
+.ds-color-picks{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:-4px 0 16px}
+.ds-color-label{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--g2);padding-right:2px}
+.ds-color-btn{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--g4);background:var(--white);color:var(--g2);border-radius:999px;padding:6px 11px;font-family:var(--font);font-size:11px;font-weight:600;cursor:pointer;transition:all 0.22s var(--ease)}
+.ds-color-btn:hover{border-color:var(--g5);color:var(--black)}
+.ds-color-btn.on{border-color:var(--black);background:var(--black);color:var(--white)}
+.ds-color-dot{width:12px;height:12px;border-radius:50%;border:1px solid rgba(255,255,255,0.26);box-shadow:inset 0 0 0 1px rgba(0,0,0,0.08)}
+.ds-ref-tag{display:inline-flex;align-items:center;margin-top:auto;padding:8px 12px;border:1px dashed var(--g4);border-radius:6px;color:var(--g1);font-size:11px;font-weight:600}
+/* Gallery — responsive grid for side-by-side comparison */
+.ds-gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+.ds-gallery[data-count="1"]{grid-template-columns:1fr;max-width:800px}
+.ds-gallery[data-count="2"]{grid-template-columns:repeat(2,1fr)}
+.ds-gallery[data-count="3"]{grid-template-columns:repeat(3,1fr)}
+.ds-gallery[data-count="4"]{grid-template-columns:repeat(2,1fr)}
+.ds-gallery[data-count="5"]{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.ds-gallery[data-count="3"],.ds-gallery[data-count="5"]{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.ds-gallery{grid-template-columns:1fr!important}.ds-gallery[data-count="2"]{grid-template-columns:1fr!important}}
+.ds-card{background:var(--bg);border:1px solid var(--g4);border-radius:var(--r);overflow:hidden;transition:border-color 0.3s,box-shadow 0.3s;display:flex;flex-direction:column}
+.ds-card:hover{border-color:var(--g5);box-shadow:var(--shadow2)}
+.ds-img-wrap{position:relative;overflow:hidden;aspect-ratio:16/10}
+.ds-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.4s var(--ease)}
+.ds-card:hover .ds-img-wrap img{transform:scale(1.015)}
+.ds-img-hint{position:absolute;bottom:10px;right:10px;font-size:10px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase;color:var(--white);background:rgba(0,0,0,0.55);padding:5px 12px;border-radius:4px;opacity:0;transition:opacity 0.25s}
+.ds-card:hover .ds-img-hint{opacity:1}
+.ds-caption{padding:18px 20px;flex:1;display:flex;flex-direction:column}
+.ds-img-title{font-size:16px;font-weight:700;letter-spacing:-0.15px;margin-bottom:6px}
+.ds-img-desc{font-size:13px;color:var(--g2);line-height:1.6;margin-bottom:12px}
+@media(max-width:620px){.ds-caption{padding:14px 16px}.ds-img-title{font-size:14px}}
+/* Selected design card */
+.ds-card.selected{border-color:var(--black);box-shadow:0 0 0 2px var(--black)}
+.ds-card .ds-select-btn{display:flex;align-items:center;gap:6px;margin-top:auto;padding:8px 16px;border:1px solid var(--g4);border-radius:6px;background:var(--white);font-family:var(--font);font-size:12.5px;font-weight:600;cursor:pointer;transition:all 0.25s var(--ease);color:var(--g2)}
+.ds-card .ds-select-btn:hover{border-color:var(--g5);color:var(--black)}
+.ds-card.selected .ds-select-btn{background:var(--black);color:var(--white);border-color:var(--black)}
+.ds-check{width:16px;height:16px;border-radius:50%;border:2px solid var(--g4);display:flex;align-items:center;justify-content:center;transition:all 0.25s var(--ease);flex-shrink:0}
+.ds-card.selected .ds-check{border-color:var(--white);background:var(--white)}
+.ds-check svg{width:10px;height:10px;opacity:0;transition:opacity 0.2s}
+.ds-card.selected .ds-check svg{opacity:1}
+.ds-nav-badge{display:inline-flex;align-items:center;justify-content:center;width:6px;height:6px;border-radius:50%;background:var(--black);margin-left:4px;vertical-align:middle}
+.ds-pill{display:flex;flex-direction:column;align-items:center;gap:1px}
+.ds-pill-sub{font-size:8px;font-weight:500;letter-spacing:0.2px;opacity:0.7;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100px}
+.ds-pill.on .ds-pill-sub{opacity:0.85}
+.ds-pill-divider{width:1px;height:20px;background:var(--g4);margin:0 4px;flex-shrink:0;align-self:center}
+.ds-focus{animation:dsFocusPulse 0.65s var(--ease)}
+@keyframes dsFocusPulse{
+  0%{transform:translateY(8px);opacity:0}
+  100%{transform:none;opacity:1}
+}
+.counter-layout{display:flex;flex-direction:column;gap:16px}
+.counter-top-grid{display:grid;grid-template-columns:repeat(2,minmax(260px,1fr));gap:16px}
+.counter-top-card{background:var(--bg);border:1px solid var(--g4);border-radius:var(--r);overflow:hidden}
+.counter-top-img{aspect-ratio:16/10;overflow:hidden;cursor:pointer}
+.counter-top-img img{width:100%;height:100%;object-fit:cover;display:block}
+.counter-top-body{padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.counter-top-title{font-size:15px;font-weight:700;letter-spacing:-0.1px}
+.counter-top-desc{font-size:12.5px;color:var(--g2);line-height:1.55}
+.counter-color-wrap{border:1px solid var(--g4);border-radius:var(--r);background:var(--bg);padding:14px}
+.counter-color-head{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px}
+.counter-color-head h4{font-size:14px;font-weight:700;letter-spacing:-0.1px}
+.counter-color-head p{font-size:11px;color:var(--g2)}
+.counter-color-grid{display:grid;grid-template-columns:repeat(4,minmax(130px,1fr));gap:10px}
+.counter-color-card{border:1px solid var(--g4);border-radius:10px;overflow:hidden;background:var(--white);display:flex;flex-direction:column;transition:border-color 0.22s,box-shadow 0.22s}
+.counter-color-card.on{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}
+.counter-color-img{position:relative;aspect-ratio:3/5;overflow:hidden;cursor:pointer}
+.counter-color-img img{width:100%;height:100%;object-fit:cover;object-position:var(--crop,52% 58%);display:block}
+.counter-color-name{position:absolute;left:0;right:0;bottom:0;padding:8px 6px;text-align:center;font-size:11px;font-weight:700;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,0.02),rgba(0,0,0,0.66));letter-spacing:0.2px}
+.counter-color-actions{padding:8px}
+.counter-color-actions .ds-select-btn{width:100%;justify-content:center;padding:7px 10px;font-size:11px}
+@media(max-width:1020px){.counter-color-grid{grid-template-columns:repeat(2,1fr)}}
+/* Selections panel */
+.sel-wrap{max-width:none;margin:0}
+.sel-head{margin-bottom:24px}
+.sel-head h3{font-size:22px;font-weight:700;letter-spacing:-0.3px;margin-bottom:4px}
+.sel-head p{font-size:13.5px;color:var(--g2);line-height:1.55}
+.sel-count{font-size:13px;color:var(--g2);margin-bottom:20px}
+.sel-grid{display:flex;flex-direction:column;gap:14px}
+.sel-row{display:flex;gap:16px;background:var(--white);border:1px solid var(--g4);border-radius:var(--r);overflow:hidden;transition:box-shadow 0.3s}
+.sel-row:hover{box-shadow:var(--shadow2)}
+.sel-row img{width:180px;height:120px;object-fit:cover;flex-shrink:0;cursor:pointer}
+.sel-row-info{padding:14px 16px;display:flex;flex-direction:column;justify-content:center;flex:1;min-width:0}
+.sel-row-cat{font-size:11px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--g2);margin-bottom:4px}
+.sel-row-title{font-size:15px;font-weight:700;letter-spacing:-0.15px;margin-bottom:3px}
+.sel-row-desc{font-size:12.5px;color:var(--g2);line-height:1.5}
+.sel-row-clear{align-self:center;padding:6px 12px;margin-right:14px;border:1px solid var(--g4);border-radius:6px;background:var(--white);font-family:var(--font);font-size:10px;font-weight:600;cursor:pointer;color:var(--g2);transition:all 0.2s;flex-shrink:0}
+.sel-row-clear:hover{border-color:var(--black);color:var(--black)}
+.sel-empty{text-align:center;padding:48px 20px;color:var(--g2);font-size:13px}
+.sel-empty-icon{font-size:32px;margin-bottom:10px;opacity:0.4}
+@media(max-width:620px){.sel-row{flex-direction:column}.sel-row img{width:100%;height:180px}.sel-row-clear{align-self:flex-start;margin:0 14px 14px}}
+
+/* ===== VOTING ===== */
+.vote-wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:16px}
+.vote-card{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:18px}
+.vote-card h3{font-size:20px;letter-spacing:-0.2px;margin-bottom:4px}
+.vote-sub{font-size:12.5px;color:var(--g2);line-height:1.6;margin-bottom:12px}
+.vote-code{display:flex;flex-direction:column;gap:6px;margin-bottom:12px}
+.vote-code label{font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;color:var(--g2)}
+.vote-code input{border:1px solid var(--g4);border-radius:8px;padding:10px 12px;font-family:var(--font);font-size:13px;background:var(--white)}
+.vote-code input:focus{outline:none;border-color:var(--black);box-shadow:0 0 0 2px rgba(0,0,0,0.08)}
+.vote-code small{font-size:11px;color:var(--g1)}
+.vote-sections{display:flex;flex-direction:column;gap:10px}
+.vote-sec{border:1px solid var(--g4);border-radius:10px;background:var(--bg);padding:10px}
+.vote-sec h4{font-size:13px;letter-spacing:-0.1px;margin-bottom:8px}
+.vote-opt-grid{display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));gap:8px}
+.vote-opt{border:1px solid var(--g4);border-radius:8px;overflow:hidden;background:var(--white);transition:border-color 0.2s,box-shadow 0.2s}
+.vote-opt.on{border-color:var(--black);box-shadow:0 0 0 1px var(--black)}
+.vote-opt-img{aspect-ratio:16/10;overflow:hidden;cursor:pointer}
+.vote-opt-img img{width:100%;height:100%;object-fit:cover;display:block}
+.vote-opt-btm{padding:8px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.vote-opt-name{font-size:11px;color:var(--g2);line-height:1.35}
+.vote-opt-btn{border:1px solid var(--g4);background:var(--white);border-radius:999px;padding:4px 10px;font-size:10px;font-weight:700;font-family:var(--font);cursor:pointer}
+.vote-opt.on .vote-opt-btn{background:var(--black);color:var(--white);border-color:var(--black)}
+.vote-actions{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:12px}
+.vote-submit{border:1px solid var(--black);background:var(--black);color:var(--white);border-radius:8px;padding:10px 14px;font-size:11px;font-weight:700;letter-spacing:0.6px;text-transform:uppercase;font-family:var(--font);cursor:pointer}
+.vote-msg{font-size:12px;color:var(--g2)}
+.vote-summary-box{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:18px}
+.vote-summary-box h3{font-size:18px;letter-spacing:-0.2px;margin-bottom:10px}
+.vote-stat{display:flex;justify-content:space-between;gap:10px;font-size:13px;padding:6px 0;border-bottom:1px dashed var(--g4)}
+.vote-stat:last-of-type{border-bottom:0}
+.vote-break{margin-top:10px;display:flex;flex-direction:column;gap:8px}
+.vote-break h4{font-size:12px;color:var(--g2);letter-spacing:0.4px;text-transform:uppercase}
+.vote-line{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:12px}
+.vote-bar{height:7px;border-radius:999px;background:var(--g6);overflow:hidden;margin-top:4px}
+.vote-bar>span{display:block;height:100%;background:var(--black)}
+.vote-io{margin-top:12px;display:flex;flex-direction:column;gap:8px}
+.vote-io textarea{width:100%;min-height:90px;border:1px solid var(--g4);border-radius:8px;padding:10px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;background:#fafaf9}
+.vote-io-actions{display:flex;gap:8px;flex-wrap:wrap}
+.vote-io button{border:1px solid var(--g4);background:var(--white);border-radius:8px;padding:8px 10px;font-size:10px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;font-family:var(--font);cursor:pointer}
+.vote-io button.primary{background:var(--black);color:var(--white);border-color:var(--black)}
+@media(max-width:980px){.vote-wrap{grid-template-columns:1fr}.vote-opt-grid{grid-template-columns:1fr}}
+
+/* ===== FLOOR PLAN ===== */
+.floor-wrap{background:var(--white);border:1px solid var(--g4);border-radius:var(--r);padding:24px}
+.floor-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}
+.floor-head h3{font-size:20px;font-weight:700;letter-spacing:-0.3px}
+.floor-sub{font-size:12px;color:var(--g2);max-width:760px}
+.floor-static{border:1px solid var(--g4);border-radius:var(--rs);overflow:hidden;background:#111}
+.floor-static img{display:block;width:100%;height:auto}
+.floor-help{font-size:11px;color:var(--g1);margin-top:10px}
+
+/* ===== LIGHTBOX ===== */
+.lb-overlay{position:fixed;inset:0;z-index:10000;background:rgba(0,0,0,0.92);display:flex;flex-direction:column;opacity:0;pointer-events:none;transition:opacity 0.3s var(--ease)}
+.lb-overlay.open{opacity:1;pointer-events:auto}
+.lb-top{display:flex;align-items:center;justify-content:space-between;padding:14px 20px;flex-shrink:0}
+.lb-title{font-family:var(--font);font-size:14px;font-weight:600;color:rgba(255,255,255,0.85);letter-spacing:-0.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1;margin-right:12px}
+.lb-controls{display:flex;gap:6px;align-items:center;flex-shrink:0}
+.lb-btn{border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);font-family:var(--font);font-size:11px;font-weight:600;padding:7px 14px;border-radius:6px;cursor:pointer;transition:background 0.2s,color 0.2s}
+.lb-btn:hover{background:rgba(255,255,255,0.16);color:#fff}
+.lb-close{font-size:24px;line-height:1;padding:4px 10px;font-weight:300}
+.lb-zoom-label{font-size:11px;color:rgba(255,255,255,0.5);font-weight:600;min-width:40px;text-align:center}
+.lb-stage{flex:1;overflow:hidden;cursor:grab;touch-action:none;display:flex;align-items:center;justify-content:center}
+.lb-stage.dragging{cursor:grabbing}
+.lb-stage img{max-width:100%;max-height:100%;display:block;transform-origin:50% 50%;will-change:transform;transition:transform 0.15s ease-out;user-select:none;-webkit-user-drag:none}
+.lb-caption{padding:12px 20px;text-align:center;font-size:11px;color:rgba(255,255,255,0.45);flex-shrink:0}
+.lb-nav{position:absolute;top:50%;transform:translateY(-50%);border:none;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.7);font-size:28px;line-height:1;padding:12px 10px;cursor:pointer;border-radius:6px;transition:background 0.2s;z-index:2}
+.lb-nav:hover{background:rgba(255,255,255,0.18);color:#fff}
+.lb-prev{left:14px}.lb-next{right:14px}
+@media(max-width:600px){.lb-controls{gap:3px}.lb-btn{padding:6px 10px;font-size:10px}}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media(max-width:768px){
+html{font-size:16px}
+/* Container */
+.container{padding:12px 10px 20px}
+/* Bars */
+.bars{padding:14px 12px;margin-bottom:16px}
+.bars h3{font-size:10px;margin-bottom:10px}
+.br{flex-wrap:wrap;gap:4px 8px;margin-bottom:10px}
+.bl{width:70px;font-size:10px}
+.bv{width:auto;font-size:13px}
+.bt{height:22px}
+.bg,.be{font-size:8px;min-width:28px}
+/* Contingency */
+.cont-ctrl{flex-wrap:wrap;padding:10px 12px;gap:8px}
+.cont-label{font-size:12px}
+.cont-amt{font-size:11px;width:100%;text-align:center;margin-top:2px}
+/* Cards */
+.ocard{border-radius:10px}
+.ohdr{padding:14px 14px 12px}
+.ohdr h2{font-size:16px}
+.pbadge{font-size:18px}
+.obody{padding:0 12px 14px}
+/* Sections */
+.shdr{flex-wrap:wrap;gap:4px;padding:10px 0 8px}
+.shdr h3{font-size:10px}
+.shdr .ss{font-size:12px}
+/* Categories */
+.cat-hdr{padding:10px 8px}
+.cat-hdr .cat-icon{font-size:14px;width:20px}
+.cat-hdr .cat-name{font-size:12px}
+.cat-hdr .cat-sum{font-size:13px}
+/* Items */
+.item{padding:9px 4px;gap:8px}
+.iname{font-size:13px}
+.idet{font-size:10px}
+.icost{font-size:13px;min-width:55px}
+.tog{width:38px;height:22px}
+.tog .tm{width:18px;height:18px}
+.tog input:checked~.tm{transform:translateX(16px)}
+.cinp{gap:4px}
+.cinp input[type="text"]{width:85px;padding:5px 7px;font-size:13px}
+/* Subtotals */
+.sub{font-size:14px;padding:10px 0 4px}
+.cont-line{padding:10px 0 4px;font-size:12px}
+.gt{padding:14px 14px;font-size:16px;border-radius:6px}
+.note{font-size:10px;padding:8px 10px}
+/* Pills */
+.psel{margin:6px 0}
+.po{font-size:10px;padding:7px 0}
+/* Matrix */
+.mwrap h3{padding:14px 14px 10px;font-size:13px}
+.mscr{padding:0 14px 14px}
+.mx{font-size:10px}
+.mx th{font-size:9px;padding:6px 4px}
+.mx td{font-size:10px;padding:5px 4px}
+/* Polycam / Enscape */
+.scan-wrap{padding:14px;margin-bottom:16px}
+.scan-head h3{font-size:16px}
+.scan-sub{font-size:12px}
+.scan-shell{padding-top:75%}
+.scan-actions{flex-direction:column;align-items:flex-start;gap:8px}
+.scan-help{font-size:11px}
+.scan-btn{font-size:10px;padding:8px 14px;width:100%;justify-content:center}
+/* Design Options */
+.design-wrap{padding:14px}
+.ds-color-picks{margin:0 0 14px}
+.ds-color-btn{font-size:10px;padding:6px 10px}
+.counter-top-grid{grid-template-columns:1fr}
+.counter-color-grid{grid-template-columns:repeat(2,1fr)}
+.counter-top-body{padding:12px 14px}
+.counter-color-wrap{padding:12px}
+.design-head{flex-direction:column;gap:6px;margin-bottom:12px}
+.design-head h3{font-size:18px}
+.design-sub{font-size:12px}
+.ds-intro{padding:14px}
+.ds-intro h4{font-size:16px}
+.ds-intro p{font-size:11px}
+.ds-jump-grid{grid-template-columns:1fr;gap:10px}
+.ds-jump-card img{height:146px}
+.ds-jump-text h5{font-size:12px}
+.ds-jump-text span{font-size:10px}
+.ds-sec-head{margin-bottom:12px}
+.ds-sec-title{font-size:16px}
+.ds-sec-desc{font-size:12px}
+.ds-caption{padding:12px 14px}
+.ds-img-title{font-size:14px}
+.ds-img-desc{font-size:12px}
+.ds-card .ds-select-btn{font-size:11px;padding:7px 12px}
+.r3-pill{font-size:8px;padding:4px 8px}
+/* Floor Plan */
+.floor-wrap{padding:14px}
+.floor-head{flex-direction:column;gap:6px;margin-bottom:8px}
+.floor-head h3{font-size:16px}
+.floor-sub{font-size:11px}
+.floor-static img{width:100%;height:auto}
+.floor-help{font-size:10px}
+/* Selections */
+.sel-wrap{padding:0}
+.sel-head h3{font-size:18px}
+.sel-head p{font-size:12px}
+.sel-count{font-size:12px}
+.sel-row img{width:120px;height:80px}
+.sel-row-cat{font-size:9px}
+.sel-row-title{font-size:13px}
+.sel-row-desc{font-size:11px}
+.sel-row-clear{font-size:9px;padding:5px 10px;margin-right:8px}
+.sel-row-info{padding:10px 10px}
+.sel-empty{padding:30px 14px;font-size:12px}
+/* Lightbox */
+.lb-top{padding:10px 12px}
+.lb-title{font-size:12px}
+.lb-nav{font-size:22px;padding:8px 6px}
+.lb-prev{left:6px}.lb-next{right:6px}
+.lb-caption{font-size:10px;padding:8px 12px}
+/* Disclaimer / Print */
+.disc{font-size:9px;padding:16px 0}
+.print-btn{font-size:11px;padding:12px 20px}
+}
+
+/* Extra small phones */
+@media(max-width:420px){
+.header-tabs .gtab{font-size:10px;padding:8px 10px;letter-spacing:0.15px}
+.header-left h1{font-size:12px}
+.lang-btn{font-size:10px;padding:5px 9px}
+.dc .dp{font-size:15px}
+.dc .dp-label{font-size:7px}
+.ohdr h2{font-size:14px}
+.pbadge{font-size:16px}
+.gt{font-size:14px;padding:12px 10px}
+.counter-color-grid{grid-template-columns:1fr}
+}
+
+/* ===== PRINT BUTTON ===== */
+.print-btn{display:flex;align-items:center;gap:8px;padding:14px 32px;border-radius:6px;border:1px solid var(--black);cursor:pointer;font-family:var(--font);font-size:12px;font-weight:600;background:var(--black);color:var(--white);transition:all 0.25s var(--ease);margin:0 auto 28px;letter-spacing:0.5px;text-transform:uppercase}
+.print-btn:hover{opacity:0.85;transform:translateY(-1px)}
+.print-btn:active{transform:translateY(0)}
+.print-btn svg{width:16px;height:16px}
+
+/* ===== PRINT ===== */
+#print-overlay{display:none}
+@media print {
+  body{background:white!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #splash,.header,.gtabs,.dash,.bars,.scan-wrap,.design-wrap,.floor-wrap,.cnav,.cvp,.mwrap,.disc,.print-btn,.tog,.cinp,.psel,.note,.pill-select{display:none!important}
+  #app{display:none!important}
+  #print-overlay{display:block!important;padding:0;margin:0}
+  @page{size:letter;margin:0.6in 0.5in}
+  .p-page{page-break-after:always;font-family:'Space Grotesk',system-ui,sans-serif;color:#111}
+  .p-page:last-child{page-break-after:auto}
+  .p-header{text-align:center;padding-bottom:12px;border-bottom:2px solid #111;margin-bottom:16px}
+  .p-header h1{font-size:18px;font-weight:700;margin:0}
+  .p-header p{font-size:11px;color:#666;margin:2px 0 0}
+  .p-date{font-size:10px;color:#999;margin-top:4px}
+  .p-summary{margin-bottom:24px}
+  .p-summary h2{font-size:14px;font-weight:700;margin-bottom:10px;border-bottom:1px solid #ddd;padding-bottom:4px}
+  .p-sum-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+  .p-sum-card{border:1.5px solid #ddd;border-radius:8px;padding:12px;text-align:center}
+  .p-sum-card.lowest{border-color:#111;border-width:2.5px}
+  .p-sum-card .p-opt{font-size:9px;font-weight:700;text-transform:uppercase;color:#999;letter-spacing:0.5px}
+  .p-sum-card .p-name{font-size:11px;font-weight:600;margin:2px 0}
+  .p-sum-card .p-price{font-size:20px;font-weight:800;margin:4px 0}
+  .p-sum-card .p-price.low{color:#111}
+  .p-sum-card .p-bk{font-size:9px;color:#666}
+  .p-opt-title{font-size:16px;font-weight:700;margin-bottom:4px}
+  .p-opt-total{font-size:13px;font-weight:700;margin-bottom:14px;color:#666}
+  .p-sec{margin-bottom:14px}
+  .p-sec h3{font-size:12px;font-weight:700;text-transform:uppercase;color:#999;letter-spacing:0.4px;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid #eee}
+  .p-cat-hdr{font-size:11px;font-weight:700;color:#666;margin:8px 0 4px;display:flex;justify-content:space-between}
+  .p-item{display:flex;justify-content:space-between;align-items:flex-start;padding:3px 0;font-size:11px;border-bottom:0.5px solid #f0f0f0}
+  .p-item:last-child{border-bottom:none}
+  .p-item .p-iname{flex:1;padding-right:8px}
+  .p-item .p-idet{font-size:9px;color:#999}
+  .p-item .p-icost{font-weight:700;white-space:nowrap;min-width:60px;text-align:right}
+  .p-item.custom .p-icost{color:#111}
+  .p-subtotal{display:flex;justify-content:space-between;font-weight:800;font-size:12px;padding:6px 0 2px;border-top:1.5px solid #111;margin-top:4px}
+  .p-grand{display:flex;justify-content:space-between;font-weight:800;font-size:16px;padding:10px 14px;border-radius:6px;margin-top:10px;color:white;background:#111}
+  .p-grand.blue,.p-grand.green,.p-grand.orange,.p-grand.purple{background:#111}
+  .p-note{font-size:9px;color:#999;margin-top:8px;line-height:1.4}
+  .p-footer{font-size:8px;color:#999;text-align:center;margin-top:20px;padding-top:8px;border-top:0.5px solid #ddd}
+  .p-matrix{width:100%;border-collapse:collapse;font-size:10px;margin-top:8px}
+  .p-matrix th{padding:5px;text-align:center;font-weight:700;border-bottom:1.5px solid #ddd;font-size:9px}
+  .p-matrix th:first-child{text-align:left}
+  .p-matrix td{padding:4px 5px;border-bottom:0.5px solid #eee;text-align:center;font-size:9px}
+  .p-matrix td:first-child{text-align:left;font-weight:600}
+}
+
+/* ===== PRESENTATION VIEWER ===== */
+.container.pres-mode{max-width:none;padding:0;margin:0;width:100%}
+.pres-wrap{position:fixed;top:0;left:0;right:0;bottom:0;z-index:200;display:flex;background:#050506}
+.pres-wrap .pres-header{position:absolute;top:12px;left:14px;right:14px;height:50px;z-index:33;display:flex;align-items:center;justify-content:space-between;padding:0 10px;border-radius:12px;background:rgba(8,8,8,0.68);border:1px solid rgba(255,255,255,0.08);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:0;transition:opacity 0.28s var(--ease)}
+.pres-wrap:hover .pres-header,.pres-wrap.controls-visible .pres-header{opacity:1}
+.pres-hdr-left{display:flex;align-items:center;gap:10px}
+.pres-hdr-right{display:flex;align-items:center;gap:6px}
+.pres-icon-btn{border:0;background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.82);width:36px;height:36px;border-radius:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all 0.2s;font-family:var(--font)}
+.pres-icon-btn svg{width:18px;height:18px}
+.pres-icon-btn:hover{background:rgba(255,255,255,0.16);color:#fff}
+.pres-icon-btn.active{background:rgba(255,255,255,0.15);color:#fff}
+.pres-icon-btn.danger:hover{background:rgba(255,96,96,0.24);color:#ffd7d7}
+.pres-title{color:rgba(255,255,255,0.6);font-size:12px;font-weight:500;letter-spacing:0.3px}
+/* Sidebar */
+.pres-sidebar{position:absolute;top:0;bottom:0;left:0;width:260px;background:rgba(15,15,15,0.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-right:1px solid rgba(255,255,255,0.06);z-index:25;overflow-y:auto;overflow-x:hidden;transform:translateX(0);transition:transform 0.32s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,0.1) transparent}
+.pres-sidebar.hidden{transform:translateX(-100%);pointer-events:none}
+.pres-sidebar::-webkit-scrollbar{width:4px}
+.pres-sidebar::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.1);border-radius:2px}
+.pres-sidebar-header{padding:20px 16px 10px;border-bottom:1px solid rgba(255,255,255,0.06);flex-shrink:0}
+.pres-sidebar-title{color:rgba(255,255,255,0.4);font-size:9px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin:0}
+.pres-toc{list-style:none;padding:8px 8px 80px;margin:0}
+.pres-toc-section{color:rgba(255,255,255,0.3);font-size:8px;letter-spacing:1.5px;text-transform:uppercase;padding:14px 8px 5px;font-weight:700;border-top:1px solid rgba(255,255,255,0.04);margin-top:4px}
+.pres-toc-section:first-child{border-top:none;margin-top:0}
+.pres-toc li{margin:1px 0}
+.pres-toc li button{width:100%;border:0;background:transparent;color:rgba(255,255,255,0.5);font-family:var(--font);font-size:11px;padding:7px 8px;border-radius:6px;cursor:pointer;text-align:left;transition:all 0.15s;display:flex;align-items:center;gap:8px;line-height:1.3}
+.pres-toc li button:hover{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.85)}
+.pres-toc li button.on{background:rgba(255,255,255,0.1);color:#fff;font-weight:600}
+.pres-toc li button .pg-num{font-size:9px;color:rgba(255,255,255,0.2);min-width:16px;text-align:right;flex-shrink:0;font-weight:400;font-variant-numeric:tabular-nums}
+.pres-toc li button.on .pg-num{color:rgba(255,255,255,0.45)}
+.pres-thumb{width:48px;height:27px;border-radius:3px;object-fit:cover;flex-shrink:0;opacity:0.5;border:1px solid rgba(255,255,255,0.08);transition:all 0.15s}
+.pres-toc li button:hover .pres-thumb{opacity:0.8}
+.pres-toc li button.on .pres-thumb{opacity:1;border-color:rgba(255,255,255,0.25)}
+.pres-toc-label{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+/* Main stage */
+.pres-main{position:absolute;top:0;bottom:0;left:260px;right:0;display:flex;flex-direction:column;transition:left 0.32s cubic-bezier(0.4,0,0.2,1)}
+.pres-main.expanded{left:0}
+.pres-stage{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;padding:8px}
+.pres-stage.dragging{cursor:grabbing}
+.pres-stage-inner{display:flex;align-items:center;justify-content:center;width:100%;height:100%;transition:transform 0.08s ease-out;transform-origin:center center;will-change:transform}
+.pres-stage img{max-width:100%;max-height:100%;width:auto;height:auto;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none;border-radius:6px;box-shadow:0 12px 44px rgba(0,0,0,0.5)}
+/* No transition effect between slides — instant swap for clean comparison */
+/* Bottom controls */
+.pres-controls{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:4px;background:rgba(20,20,20,0.85);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:12px;padding:6px 10px;z-index:31;border:1px solid rgba(255,255,255,0.06);opacity:0;transition:opacity 0.3s}
+.pres-wrap:hover .pres-controls,.pres-wrap.controls-visible .pres-controls{opacity:1}
+.pres-btn{border:0;background:transparent;color:rgba(255,255,255,0.6);font-family:var(--font);padding:6px 10px;cursor:pointer;border-radius:6px;transition:all 0.15s;line-height:1;font-size:13px;display:flex;align-items:center;justify-content:center}
+.pres-btn:hover{color:#fff;background:rgba(255,255,255,0.1)}
+.pres-btn:active{transform:scale(0.92)}
+.pres-btn.disabled{opacity:0.25;pointer-events:none}
+.pres-btn svg{width:16px;height:16px;fill:currentColor}
+.pres-divider{width:1px;height:20px;background:rgba(255,255,255,0.1);margin:0 4px;flex-shrink:0}
+.pres-page-info{color:rgba(255,255,255,0.5);font-size:11px;min-width:52px;text-align:center;font-weight:500;font-variant-numeric:tabular-nums;padding:0 4px}
+.pres-zoom-info{color:rgba(255,255,255,0.35);font-size:10px;min-width:36px;text-align:center;font-variant-numeric:tabular-nums}
+/* Nav arrows on sides */
+.pres-nav-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:15;border:0;background:rgba(0,0,0,0.3);color:rgba(255,255,255,0.5);width:44px;height:80px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;transition:all 0.25s;opacity:0}
+.pres-nav-arrow:hover{background:rgba(0,0,0,0.6);color:#fff}
+.pres-wrap:hover .pres-nav-arrow{opacity:1}
+.pres-nav-arrow.disabled{opacity:0!important;pointer-events:none}
+.pres-nav-prev{left:0;border-radius:0 10px 10px 0}
+.pres-nav-next{right:0;border-radius:10px 0 0 10px}
+.pres-note-count{position:absolute;top:7px;right:8px;min-width:16px;height:16px;border-radius:999px;background:#fff;color:#111;font-size:9px;display:flex;align-items:center;justify-content:center;padding:0 4px;font-weight:700}
+.pres-notes-backdrop{position:absolute;inset:0;background:rgba(0,0,0,0.38);z-index:31;opacity:0;pointer-events:none;transition:opacity 0.25s var(--ease)}
+.pres-notes-backdrop.open{opacity:1;pointer-events:auto}
+.pres-notes{position:absolute;top:66px;right:14px;bottom:16px;width:min(380px,calc(100% - 28px));background:rgba(17,17,17,0.96);border:1px solid rgba(255,255,255,0.09);border-radius:14px;backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);transform:translateX(18px) scale(0.98);opacity:0;pointer-events:none;transition:transform 0.28s var(--ease),opacity 0.25s var(--ease);z-index:32;display:flex;flex-direction:column;overflow:hidden}
+.pres-notes.open{transform:none;opacity:1;pointer-events:auto}
+.pres-notes-head{display:flex;align-items:center;justify-content:space-between;padding:14px;border-bottom:1px solid rgba(255,255,255,0.08)}
+.pres-notes-head h4{font-size:12px;color:rgba(255,255,255,0.88);font-weight:600}
+.pres-notes-sub{font-size:10px;color:rgba(255,255,255,0.5)}
+.pres-notes-actions{display:flex;gap:6px}
+.pres-notes-btn{border:1px solid rgba(255,255,255,0.18);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.8);font-family:var(--font);font-size:10px;padding:5px 10px;border-radius:6px;cursor:pointer}
+.pres-notes-btn:hover{background:rgba(255,255,255,0.14);color:#fff}
+.pres-notes-body{flex:1;overflow:auto;padding:12px;display:flex;flex-direction:column;gap:10px}
+.pres-note-empty{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:12px}
+.pres-note-item{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:9px 10px}
+.pres-note-item p{font-size:12px;color:rgba(255,255,255,0.9);line-height:1.55;white-space:pre-wrap}
+.pres-note-meta{margin-top:5px;display:flex;justify-content:space-between;align-items:center;font-size:9px;color:rgba(255,255,255,0.45)}
+.pres-note-del{border:0;background:none;color:rgba(255,255,255,0.5);cursor:pointer;font-size:9px;padding:0}
+.pres-note-del:hover{color:#fff}
+.pres-notes-form{padding:10px 12px;border-top:1px solid rgba(255,255,255,0.08)}
+.pres-notes-form textarea{width:100%;min-height:76px;resize:vertical;border:1px solid rgba(255,255,255,0.15);background:rgba(0,0,0,0.25);color:#fff;border-radius:8px;padding:9px 10px;font-family:var(--font);font-size:12px}
+.pres-notes-form textarea:focus{outline:none;border-color:rgba(255,255,255,0.45)}
+.pres-notes-form-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.pres-notes-hint{font-size:10px;color:rgba(255,255,255,0.5)}
+.pres-notes-add{border:1px solid #fff;background:#fff;color:#111;font-family:var(--font);font-size:11px;font-weight:600;padding:6px 12px;border-radius:6px;cursor:pointer}
+.pres-notes-add:hover{opacity:0.85}
+/* Mobile */
+@media(max-width:768px){
+.pres-sidebar{width:280px;transform:translateX(-100%)}
+.pres-sidebar.show-mobile{transform:translateX(0)}
+.pres-main{left:0!important}
+.pres-wrap .pres-header{top:8px;left:8px;right:8px}
+.pres-title{max-width:130px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pres-notes{top:58px;right:8px;bottom:10px;width:calc(100% - 16px)}
+.pres-nav-arrow{width:36px;height:60px;font-size:18px;opacity:0.6}
+.pres-controls{padding:5px 8px;border-radius:10px;bottom:12px;left:8px;right:8px;transform:none;justify-content:center;gap:2px}
+.pres-btn{padding:5px 8px;font-size:12px}
+.pres-wrap .pres-header,.pres-controls{opacity:1}
+}
+/* Overlay for mobile sidebar */
+/* Overlay disabled — sidebar slides over without darkening the presentation */
+.pres-overlay{display:none!important}
+</style>
+</head>
+<body>
+
+<!-- SPLASH SCREEN -->
+<div id="splash" onclick="enterApp()">
+  <div class="sp-line sp-t1"><span>한인장로교회 &middot; 세인트루이스</span></div>
+  <div class="sp-line sp-t2"><span>주방 리노베이션</span></div>
+  <div class="sp-line sp-t3"><span>R7 임시집사회 보고</span></div>
+  <div class="sp-enter"><span>화면을 클릭하세요</span></div>
+  <div class="sp-bar"></div>
+</div>
+
+<div class="header"><div class="header-in">
+<div class="header-left"><h1 id="hdr-title">한인장로교회</h1>
+<p id="hdr-sub">주방 리노베이션 &middot; R7 임시집사회 보고</p></div>
+<div class="header-tabs" id="header-tabs"></div>
+<button class="lang-btn" id="lang-btn" onclick="toggleLang()">English</button>
+</div></div>
+<div class="container" id="app"></div>
+<div id="pres-root"></div>
+<div id="print-overlay"></div>
+<div class="lb-overlay" id="lb">
+  <div class="lb-top">
+    <span class="lb-title" id="lb-title"></span>
+    <div class="lb-controls">
+      <button class="lb-btn" onclick="lbZoom(0.8)">&minus;</button>
+      <span class="lb-zoom-label" id="lb-zoom">100%</span>
+      <button class="lb-btn" onclick="lbZoom(1.25)">+</button>
+      <button class="lb-btn" onclick="lbReset()">Reset</button>
+      <button class="lb-btn lb-close" onclick="lbClose()">&times;</button>
+    </div>
+  </div>
+  <div class="lb-stage" id="lb-stage" onwheel="lbWheel(event)">
+    <button class="lb-nav lb-prev" onclick="lbNav(-1)">&#8249;</button>
+    <img id="lb-img" src="" alt="" draggable="false">
+    <button class="lb-nav lb-next" onclick="lbNav(1)">&#8250;</button>
+  </div>
+  <div class="lb-caption" id="lb-cap"></div>
+</div>
+<script>
+// ===== SPLASH =====
+function enterApp(){
+  const sp=document.getElementById('splash');
+  if(!sp||sp.classList.contains('out'))return;
+  sp.classList.add('out');
+  setTimeout(()=>{sp.style.display='none';},900);
+  document.querySelector('.container').classList.add('show');
+}
+// Auto-enter after bar animation completes
+setTimeout(()=>{if(!document.getElementById('splash').classList.contains('out'))enterApp();},4000);
+// Header scroll shadow
+window.addEventListener('scroll',()=>{
+  document.querySelector('.header').classList.toggle('scrolled',window.scrollY>8);
+});
+
+// ===== LIGHTBOX =====
+const LB={open:false,imgs:[],idx:0,zoom:1,panX:0,panY:0};
+const lbPan={active:false,sx:0,sy:0,ox:0,oy:0,pid:null};
+function lbOpen(imgs,idx){
+  LB.imgs=imgs;LB.idx=idx||0;LB.zoom=1;LB.panX=0;LB.panY=0;LB.open=true;
+  lbUpdate();
+  document.getElementById('lb').classList.add('open');
+  document.body.style.overflow='hidden';
+  initLbPan();
+}
+function lbClose(){
+  LB.open=false;
+  document.getElementById('lb').classList.remove('open');
+  document.body.style.overflow='';
+}
+function lbUpdate(){
+  const im=LB.imgs[LB.idx];if(!im)return;
+  const img=document.getElementById('lb-img');
+  img.src=encodeURI(im.src);img.alt=im.title||'';
+  document.getElementById('lb-title').textContent=(LB.idx+1)+'/'+LB.imgs.length+' \u2014 '+(im.title||'');
+  document.getElementById('lb-cap').textContent=im.cap||'';
+  lbApply();
+}
+function lbApply(){
+  const img=document.getElementById('lb-img');
+  const zl=document.getElementById('lb-zoom');
+  if(zl)zl.textContent=Math.round(LB.zoom*100)+'%';
+  if(img)img.style.transform=`translate(${LB.panX}px,${LB.panY}px) scale(${LB.zoom})`;
+}
+function lbZoom(mult){
+  LB.zoom=Math.max(0.25,Math.min(6,Math.round(LB.zoom*mult*100)/100));
+  lbApply();
+}
+function lbReset(){LB.zoom=1;LB.panX=0;LB.panY=0;lbApply();}
+function lbWheel(e){
+  e.preventDefault();
+  const d=Math.abs(e.deltaY)>=Math.abs(e.deltaX)?e.deltaY:e.deltaX;
+  if(d===0)return;
+  const mag=Math.min(0.25,Math.max(0.04,Math.abs(d)/500));
+  lbZoom(d<0?1+mag:1-mag);
+}
+function lbNav(dir){
+  LB.idx=(LB.idx+dir+LB.imgs.length)%LB.imgs.length;
+  LB.zoom=1;LB.panX=0;LB.panY=0;
+  lbUpdate();
+}
+function initLbPan(){
+  const stage=document.getElementById('lb-stage');
+  if(!stage||stage.dataset.lbInit==='1')return;
+  stage.dataset.lbInit='1';
+  stage.onpointerdown=e=>{
+    if(e.target.classList.contains('lb-nav')||e.target.classList.contains('lb-btn'))return;
+    if(e.button!==0)return;
+    lbPan.active=true;lbPan.pid=e.pointerId;
+    lbPan.sx=e.clientX;lbPan.sy=e.clientY;
+    lbPan.ox=LB.panX;lbPan.oy=LB.panY;
+    stage.classList.add('dragging');
+    if(stage.setPointerCapture)stage.setPointerCapture(e.pointerId);
+    e.preventDefault();
+  };
+  stage.onpointermove=e=>{
+    if(!lbPan.active)return;
+    LB.panX=lbPan.ox+(e.clientX-lbPan.sx);
+    LB.panY=lbPan.oy+(e.clientY-lbPan.sy);
+    lbApply();
+  };
+  const end=()=>{
+    if(!lbPan.active)return;
+    lbPan.active=false;stage.classList.remove('dragging');
+    if(lbPan.pid!==null&&stage.releasePointerCapture){try{stage.releasePointerCapture(lbPan.pid);}catch(_){}}
+    lbPan.pid=null;
+  };
+  stage.onpointerup=end;stage.onpointercancel=end;
+}
+document.addEventListener('keydown',e=>{
+  if(!LB.open)return;
+  if(e.key==='Escape')lbClose();
+  if(e.key==='ArrowRight')lbNav(1);
+  if(e.key==='ArrowLeft')lbNav(-1);
+  if(e.key==='+'||e.key==='=')lbZoom(1.25);
+  if(e.key==='-')lbZoom(0.8);
+});
+
+// ===== TRANSLATIONS =====
+const TR={
+en:{
+  // Header
+  hdrTitle:'Korean Presbyterian Church',
+  hdrSub:'Kitchen Renovation · R7 Session Briefing',
+  langBtn:'한국어',
+  // Splash
+  splOrg:'Korean Presbyterian Church · St. Louis',
+  splTitle:'Kitchen Renovation',
+  splSub:'R7 Session Briefing',
+  splEnter:'Click anywhere to enter',
+  // Tabs
+  introduction:'Introduction',design:'Design Considerations',floorplan:'Floor Plan',polycam:'Existing Space',enscape:'Enscape',selections:'Selection',voting:'Voting',presentation:'Presentation',estimates:'Estimates',
+  // Dashboard
+  optA:'Option A',optB:'Option B',optC:'Option C',optD:'Option D',
+  lowest:'Lowest',openShelving:'Open Shelving',cabinets:'Cabinets',
+  gc:'GC',equip:'Equip',
+  // Bars
+  visualComp:'Visual Comparison',
+  // Contingency
+  contingency:'Contingency',off:'OFF',adds:'Adds',toOption:'to Option',
+  // Carousel pills
+  pillA:'A: KFS',pillB:'B: Pernikoff',pillC:'C: Agape',pillD:'D: Morganco',
+  // Slide headers
+  slideA:'Option A: KFS + Ford',slideB:'Option B: Pernikoff + Session',
+  slideCf:'Option C: Agape + Ford',slideCs:'Option C: Agape + Session',
+  slideDf:'Option D: Morganco + Ford',slideDs:'Option D: Morganco + Session',
+  // Section headers
+  gcKFS:'GC: KFS — Layout 1',gcPern:'GC: Pernikoff (Revised 3/9)',gcAgape:'GC: Agape Architecture',gcMorg:'GC: Morganco Design Build',
+  eqFord:'Equipment: Ford Hotel Supply',eqSession:'Equipment: Session + Kitchen Mechanical',
+  eqFordShort:'Equipment: Ford',eqSessionShort:'Equipment: Session',
+  // Notes
+  noteA:'KFS (est. 1924): MEP specialist. Demo, FRP, SS panels (20 LF), hood trim, pot filler waterline, 6 LED, set/connect all equip. <strong>Excludes:</strong> flooring, ceiling, permits, plans.',
+  noteAeq:'Ford quote 03/13/2026. <strong>Cabinetry:</strong> Fixture Mill Work — toggle individual items for front counter, wall cab upgrade, quartz upgrade, and coffee counter. <strong>Custom $</strong> = enter your own online price.',
+  noteB:'Pernikoff (est. 1914). Base: LED, 7 outlets, water heater, plumbing, demo, tile, SS panel install, door infill, paint ($1,500). Flooring alts excluded. <strong>Excludes:</strong> appliances, faucets, SS panels, plans, permits.',
+  noteBeq:'SS panels by Kitchen Mechanical ($4,860). Comstock = base; Southbend = upgrade. Full cabinets include SS tops; bases need separate counter.',
+  noteD:'Morganco = Design-Build. Includes design (4 mtg + 3D), QualityBrand cabinetry, Hallmark quartz, FRP + SS, electrical, plumbing, backsplash. <strong>Expires 3/27/2026.</strong> Payment 4×25%.',
+  noteDeq:'Morganco includes cabinetry & quartz in GC — equipment is appliances only.',
+  noteC:'<strong>Ballpark</strong> — final TBD after trades bid. Flooring excluded. Fire suppression TBD.',
+  // Subtotals
+  subtotal:'Subtotal',eqSubtotal:'Equipment Subtotal',
+  optionTotal:'OPTION',total:'TOTAL',
+  // Categories
+  catCooking:'Cooking Equipment',catFridge:'Refrigeration & Ice',catSinks:'Sinks & Faucets',
+  catShelving:'Wire Shelving',catWallStorage:'Wall Storage',catCountertop:'Countertop',catWalls:'SS Wall Panels',catOther:'Other Items',
+  // Wall storage subsections
+  wsOpen:'Open Shelving',wsCab:'Wall Cabinets',
+  // Agape / Morganco
+  eqSupplier:'Equipment Supplier',ford:'Ford',session:'Session',hiLo:'Cost Range',low:'Low',high:'High',ballpark:'Ballpark',
+  // Design options
+  designTitle:'Design Considerations',designSub:'Choose one option per section. Use the six cards above to jump between design consideration areas from R7.',
+  designIntroTitle:'Project Scope Overview',
+  designIntroSub:'Click each card to jump directly into that design consideration section.',
+  selectionReq:'Selection Required',
+  counterColorPick:'Countertop Color Selection',
+  counterOptCount:'4 options',
+  selected:'selected',viewSelections:'Selections',refOnly:'(Reference Only)',selectThis:'Select this option',selectedLabel:'Selected',clickEnlarge:'Click to enlarge',
+  renderings:'Rendering',renderingsPlural:'Renderings',
+  // Selections tab
+  yourSelections:'Selected Options',selSub:'Summary of your chosen design options across all R7 design consideration sections.',goToDesign:'Design Considerations',
+  categoriesSelected:'categories selected',noSelYet:'No selection yet',optionsAvail:'options available',
+  noSelMade:'No selections made yet.',visitDesign:'Visit the',tabToStart:'tab to start choosing.',choose:'Choose',remove:'Remove',
+  // Floor plan
+  floorTitle:'Floor Plan',floorSub:'',
+  floorFocus:'Key Change Point',
+  floorOpenImage:'Open Rendering',
+  rendered:'Rendered',vector:'Vector',reset:'Reset',fullScreen:'Full Screen',floorTip:'',
+  // Scans
+  lidarTitle:'Existing Space',lidarSub:'Polycam (LiDAR Scan)',
+  lidarHelp:'If the viewer does not load in-page, open it directly in Polycam.',
+  openPolycam:'Open in Polycam',
+  existingPhotosTitle:'Existing Space Pictures',
+  existingPhotosSub:'Reference photos of the current kitchen before renovation. Click any photo to enlarge.',
+  existingPhotosCount:'photos',
+  existingShowMore:'Show more photos',
+  existingPhotoLabel:'Existing Photo',
+  existingPhotoCap:'Current kitchen condition before renovation',
+  enscapeTitle:'Enscape',enscapeSub:'Interactive Enscape walkthrough of the proposed kitchen design. Navigate and review layout, finishes, and equipment placement.',
+  enscapeHelp:'Use mouse to look around. Click and drag to move through the space. Scroll to zoom.',
+  openChaos:'Open in Chaos Cloud',
+  r7EstTitle:'R7 Budget Proposal (Options 1-3)',
+  r7EstSub:'Select one package first, then review original source bids below.',
+  r7ScopeTitle:'6 Work Categories & Inclusion by Package',
+  r7ScopeSub:'Category map first, then inclusion matrix for Option 1 / 2 / 3.',
+  r7ScopeHint:'Click an Option 1/2/3 card below to update this rendering map.',
+  r7ScopeActive:'Active',
+  r7ScopeLegendIn:'Included',
+  r7ScopeLegendAdj:'Adjustable',
+  r7ScopeLegendPhase:'Phased',
+  r7ScopeLegendOut:'Excluded',
+  r7PresetHint:'Package buttons align Option B to R7 selection timing. In Option 2, kitchen floor tile ($9,100) is ON by default.',
+  r7OpenDetail:'View Source Bids (A-D)',
+  r7ApplyPreset:'Apply to Option B',
+  r7Applied:'Applied to Option B',
+  r7ResetRaw:'Reset Option B Raw',
+  r7MapLabel:'Selection Mapping',
+  r7SourceTitle:'Original Vendor Estimates (A-D)',
+  r7SourceSub:'Raw contractor/equipment line items for detailed review and adjustment.',
+  voteTitle:'Anonymous Pre-Meeting Vote',
+  voteSub:'Vote on required sections (1, 2, 6). One name = one unique vote. Re-submission with same name updates, not duplicates.',
+  voteCode:'Anonymous (Please enter your name)',
+  voteCodeHint:'Your name is only used to prevent duplicate voting and is never shown in summary.',
+  voteCodePlaceholder:'e.g. Jane Kim',
+  voteSubmit:'Submit / Update Vote',
+  voteSaved:'Vote saved.',
+  voteNeedCode:'Please enter your name.',
+  voteNeedAll:'Please complete all required selections (1, 2, 6).',
+  voteSummary:'Summary To Date',
+  voteTotal:'Total Unique Votes',
+  voteLast:'Last Updated',
+  voteExport:'Export Votes',
+  voteImport:'Import Votes',
+  voteImportHint:'Paste exported JSON here to merge and update summary.',
+  voteMergeOk:'Votes merged.',
+  voteMergeErr:'Invalid vote data format.',
+  voteSelect:'Select',
+  voteSelected:'Selected',
+  presNotes:'Presentation Notes',
+  closePresentation:'Close Presentation',
+  presNotesHint:'Capture live Q&A by slide (stored in this browser).',
+  presNotesExport:'Export',
+  presNotesEmpty:'No notes on this slide yet.',
+  presNotesAdd:'Add Note',
+  presNotesHotkey:'Shift+N to focus note input',
+  presDelete:'Delete',
+  presSaved:'Saved',
+  // Print
+  printBtn:'Print Summary to PDF',
+  disc:'Korean Presbyterian Church Kitchen Renovation — R7 Interactive Briefing',
+  discDate:'Pre-tax estimates · For planning only',
+  // Misc
+  of:'of',customTag:'CUSTOM',eqOnly:'Equip Only',optAvailable:'options available',optAvailableSingle:'option available',
+  selGoTo:'Go to',selToMake:'to make or change selections.',customLabel:'Custom $',clear:'Clear',zoom:'Zoom',ccw:'CCW',cw:'CW',
+},
+ko:{
+  hdrTitle:'한인장로교회',
+  hdrSub:'주방 리노베이션 · R7 임시집사회 보고',
+  langBtn:'English',
+  splOrg:'한인장로교회 · 세인트루이스',
+  splTitle:'주방 리노베이션',
+  splSub:'R7 임시집사회 보고',
+  splEnter:'화면을 클릭하세요',
+  introduction:'소개',design:'디자인 고려사항',floorplan:'평면도',polycam:'현재 공간',enscape:'엔스케이프',selections:'선택',voting:'투표',presentation:'프레젠테이션',estimates:'견적',
+  optA:'옵션 A',optB:'옵션 B',optC:'옵션 C',optD:'옵션 D',
+  lowest:'최저가',openShelving:'오픈 선반',cabinets:'캐비닛',
+  gc:'시공비',equip:'장비비',
+  visualComp:'비교 차트',
+  contingency:'예비비',off:'OFF',adds:'추가',toOption:'옵션',
+  pillA:'A: KFS',pillB:'B: Pernikoff',pillC:'C: Agape',pillD:'D: Morganco',
+  slideA:'옵션 A: KFS + Ford',slideB:'옵션 B: Pernikoff + Session',
+  slideCf:'옵션 C: Agape + Ford',slideCs:'옵션 C: Agape + Session',
+  slideDf:'옵션 D: Morganco + Ford',slideDs:'옵션 D: Morganco + Session',
+  gcKFS:'시공: KFS — 레이아웃 1',gcPern:'시공: Pernikoff (3/9 수정)',gcAgape:'시공: Agape Architecture',gcMorg:'시공: Morganco Design Build',
+  eqFord:'장비: Ford Hotel Supply',eqSession:'장비: Session + Kitchen Mechanical',
+  eqFordShort:'장비: Ford',eqSessionShort:'장비: Session',
+  noteA:'KFS (1924년 설립): MEP 전문업체. 철거, FRP, SS 패널 (20 LF), 후드 트림, 팟 필러 배수관, LED 6개, 장비 설치/연결 포함. <strong>미포함:</strong> 바닥, 천장, 허가, 도면.',
+  noteAeq:'Ford 견적 2026/03/13. <strong>캐비닛:</strong> Fixture Mill Work — 프론트 카운터, 벽면 캐비닛 업그레이드, 석영 업그레이드, 커피 카운터 개별 선택 가능. <strong>Custom $</strong> = 직접 가격 입력.',
+  noteB:'Pernikoff (1914년 설립). 기본: LED, 콘센트 7개, 온수기, 배관, 철거, 타일, SS 패널 설치, 문 막기, 페인트 ($1,500). 바닥 제외. <strong>미포함:</strong> 가전, 수전, SS 패널, 도면, 허가.',
+  noteBeq:'SS 패널: Kitchen Mechanical ($4,860). Comstock = 기본; Southbend = 업그레이드. 풀 캐비닛은 SS 상판 포함; 베이스는 별도 카운터 필요.',
+  noteD:'Morganco = 디자인-시공 일괄. 디자인(4회 미팅 + 3D), QualityBrand 캐비닛, Hallmark 석영, FRP + SS, 전기, 배관, 백스플래시 포함. <strong>만료: 2026/03/27.</strong> 지불 4×25%.',
+  noteDeq:'Morganco는 캐비닛 & 석영을 시공비에 포함 — 장비는 가전만 해당.',
+  noteC:'<strong>개략 견적</strong> — 하도급 입찰 후 최종 확정. 바닥 제외. 소방 시스템 미정.',
+  subtotal:'소계',eqSubtotal:'장비 소계',
+  optionTotal:'옵션',total:'합계',
+  catCooking:'조리 장비',catFridge:'냉장 및 제빙',catSinks:'싱크 및 수전',
+  catShelving:'와이어 선반',catWallStorage:'벽면 수납',catCountertop:'카운터탑',catWalls:'SS 벽 패널',catOther:'기타 항목',
+  wsOpen:'오픈 선반',wsCab:'벽면 캐비닛',
+  eqSupplier:'장비 공급업체',ford:'Ford',session:'Session',hiLo:'비용 범위',low:'하한',high:'상한',ballpark:'개략 견적',
+  designTitle:'디자인 고려사항',designSub:'각 섹션에서 하나의 옵션을 선택하세요. 상단 6개 카드로 원하는 고려사항으로 바로 이동할 수 있습니다.',
+  designIntroTitle:'프로젝트 내용 소개',
+  designIntroSub:'각 카드를 클릭하면 해당 디자인 고려사항 섹션으로 바로 이동합니다.',
+  selectionReq:'선택 필요',
+  counterColorPick:'카운터탑 색상 선택',
+  counterOptCount:'4개 옵션',
+  selected:'선택됨',viewSelections:'선택 항목',refOnly:'(참고용)',selectThis:'이 옵션 선택',selectedLabel:'선택됨',clickEnlarge:'클릭하여 확대',
+  renderings:'렌더링',renderingsPlural:'렌더링',
+  yourSelections:'선택 항목',selSub:'R7 디자인 고려사항 6개 섹션에서 선택한 옵션 요약입니다.',goToDesign:'디자인 고려사항',
+  categoriesSelected:'카테고리 선택됨',noSelYet:'아직 선택 없음',optionsAvail:'옵션 가능',
+  noSelMade:'아직 선택된 항목이 없습니다.',visitDesign:'다음으로 이동:',tabToStart:'탭에서 선택을 시작하세요.',choose:'선택',remove:'삭제',
+  floorTitle:'평면도',floorSub:'',
+  floorFocus:'핵심 변경 포인트',
+  floorOpenImage:'렌더링 열기',
+  rendered:'렌더링',vector:'벡터',reset:'초기화',fullScreen:'전체 화면',floorTip:'',
+  lidarTitle:'현재 공간',lidarSub:'Polycam (LiDAR Scan)',
+  lidarHelp:'뷰어가 로드되지 않으면 Polycam에서 직접 확인하세요.',
+  openPolycam:'Polycam에서 열기',
+  existingPhotosTitle:'기존 공간 사진',
+  existingPhotosSub:'리노베이션 전 주방 현황 사진입니다. 사진을 클릭하면 확대됩니다.',
+  existingPhotosCount:'장',
+  existingShowMore:'사진 더 보기',
+  existingPhotoLabel:'기존 공간 사진',
+  existingPhotoCap:'리노베이션 전 현재 주방 상태',
+  enscapeTitle:'엔스케이프',enscapeSub:'제안된 주방 디자인의 Enscape 3D 투어입니다. 동선, 마감재, 장비 배치를 확인하세요.',
+  enscapeHelp:'마우스로 주변을 둘러보세요. 클릭 & 드래그로 이동. 스크롤로 확대/축소.',
+  openChaos:'Chaos Cloud에서 열기',
+  r7EstTitle:'R7 예산별 시공 제안 (제1안~제3안)',
+  r7EstSub:'먼저 패키지를 선택하고, 하단에서 원본 업체 견적을 상세 확인하세요.',
+  r7ScopeTitle:'6개 공사 카테고리 및 제안안별 포함 범위',
+  r7ScopeSub:'상단 카테고리 맵을 먼저 확인하고, 제1안/제2안/제3안 포함 범위를 비교하세요.',
+  r7ScopeHint:'아래 제1안/제2안/제3안 카드를 클릭하면 이 렌더링 맵이 해당 안 기준으로 바뀝니다.',
+  r7ScopeActive:'현재 선택',
+  r7ScopeLegendIn:'포함',
+  r7ScopeLegendAdj:'선택 조정',
+  r7ScopeLegendPhase:'단계적',
+  r7ScopeLegendOut:'미포함',
+  r7PresetHint:'패키지 버튼은 R7 선택 시점 기준으로 옵션 B를 정렬합니다. 제2안에서는 주방 바닥 타일($9,100)이 기본 ON 입니다.',
+  r7OpenDetail:'원본 업체 견적 보기 (A~D)',
+  r7ApplyPreset:'옵션 B에 적용',
+  r7Applied:'옵션 B 적용됨',
+  r7ResetRaw:'옵션 B 원본 복원',
+  r7MapLabel:'선택 매핑',
+  r7SourceTitle:'원본 업체 견적 상세 (A~D)',
+  r7SourceSub:'시공/장비 원본 라인아이템을 상세 검토하고 필요 시 조정할 수 있습니다.',
+  voteTitle:'사전 익명 투표',
+  voteSub:'필수 선택 섹션(1,2,6)에 대해 투표합니다. 동일 이름 재투표 시 기존값을 업데이트하여 중복 집계를 방지합니다.',
+  voteCode:'익명 (자기 이름 적어주세요)',
+  voteCodeHint:'중복 투표 방지를 위해 이름을 사용하며, 요약에는 이름이 표시되지 않습니다.',
+  voteCodePlaceholder:'예: 홍길동',
+  voteSubmit:'투표 저장 / 업데이트',
+  voteSaved:'투표가 저장되었습니다.',
+  voteNeedCode:'이름을 입력해주세요.',
+  voteNeedAll:'필수 항목(1,2,6) 선택을 완료해주세요.',
+  voteSummary:'현재까지 요약',
+  voteTotal:'고유 투표 수',
+  voteLast:'최근 업데이트',
+  voteExport:'투표 데이터 내보내기',
+  voteImport:'투표 데이터 불러오기',
+  voteImportHint:'내보낸 JSON을 붙여넣어 요약에 병합합니다.',
+  voteMergeOk:'투표 데이터가 병합되었습니다.',
+  voteMergeErr:'유효하지 않은 투표 데이터 형식입니다.',
+  voteSelect:'선택',
+  voteSelected:'선택됨',
+  presNotes:'발표 메모',
+  closePresentation:'프레젠테이션 닫기',
+  presNotesHint:'슬라이드별 질의응답 메모를 기록합니다. (이 브라우저에 저장)',
+  presNotesExport:'내보내기',
+  presNotesEmpty:'이 슬라이드에 아직 메모가 없습니다.',
+  presNotesAdd:'메모 추가',
+  presNotesHotkey:'Shift+N 으로 입력창 포커스',
+  presDelete:'삭제',
+  presSaved:'저장됨',
+  printBtn:'PDF 요약 인쇄',
+  disc:'한인장로교회 주방 리노베이션 — R7 인터랙티브 브리핑',
+  discDate:'세전 견적 · 참고용',
+  of:'/',customTag:'직접 입력',eqOnly:'장비만',optAvailable:'옵션 가능',optAvailableSingle:'옵션 가능',
+  selGoTo:'이동:',selToMake:'에서 선택하거나 변경하세요.',customLabel:'직접 입력 $',clear:'삭제',zoom:'확대',ccw:'반시계',cw:'시계',
+}
+};
+function t(k){return TR[S.lang][k]||TR.en[k]||k;}
+function toggleLang(){
+  S.lang=S.lang==='en'?'ko':'en';
+  document.getElementById('hdr-title').textContent=t('hdrTitle');
+  document.getElementById('hdr-sub').textContent=t('hdrSub');
+  document.getElementById('lang-btn').textContent=t('langBtn');
+  // Update splash if still visible
+  const sp=document.getElementById('splash');
+  if(sp&&!sp.classList.contains('out')){
+    sp.querySelector('.sp-t1 span').textContent=t('splOrg');
+    sp.querySelector('.sp-t2 span').textContent=t('splTitle');
+    sp.querySelector('.sp-t3 span').textContent=t('splSub');
+    sp.querySelector('.sp-enter span').textContent=t('splEnter');
+  }
+  render();
+}
+
+// Item Korean names map
+const IKO={
+  a_plumb:'배관 공사',a_elec:'전기 공사 (LED 6개)',a_install:'장비 설치 + SS 벽 패널 + 트림',a_frp:'FRP 설치',
+  a_range:'레인지 36" 4버너',a_stockpot:'스톡팟 레인지 x2',a_potfill:'팟 필러',a_fridge:'냉장고 — True T-49-HC 2도어',
+  a_shelf1:'와이어 선반 — 48"W (x4) (주방 내부)',a_shelf2:'와이어 선반 — 36"W (x4) (주방 내부)',a_shelf3:'와이어 선반 — 54"W (x8) (입구 복도)',
+  a_ice:'제빙기',a_glass:'글라스 필러 스테이션',a_sink:'핸드워시 싱크',
+  a_mw_front:'프론트 카운터 캐비닛 (오픈 선반) + Corian',a_mw_front_wallcab:'프론트 카운터: 벽 캐비닛 업그레이드',
+  a_mw_front_quartz:'프론트 카운터: 석영 업그레이드',
+  a_coffee:'커피 테이블',
+  a_wso:'오픈 선반 (카운터 위 4×30"W + 싱크 위 2×72"W, 2×30"W)',a_wsc:'벽 캐비닛 (카운터 위 2×맞춤형 + 싱크 위 맞춤형 132")',
+  b_base:'Pernikoff 기본 입찰',b_ceil:'대안 #3: 천장 타일',b_frp:'대안 #5: FRP (타일 대신, 차감)',
+  b_pump:'대안 #6: 순환 펌프 + 밸브',b_coffee_gc:'대안 #7: 커피 머신 설치',b_floor1:'대안 #1: 주방 바닥 타일',b_floor2:'대안 #2: 엘리베이터 로비 타일',
+  b_ss:'SS 벽 패널 (Kitchen Mechanical)',b_range_c:'레인지 36" — Comstock',b_range_s:'레인지 36" — Southbend (업그레이드)',
+  b_stock_c:'스톡팟 x2 — Comstock',b_stock_s:'스톡팟 x2 — Southbend (업그레이드)',
+  b_gas:'가스 커넥터 키트 x3',b_pf:'팟 필러',
+  b_s1:'와이어 선반 (항목 1)',b_s8:'와이어 선반 — 건조 보관',b_s14:'와이어 선반 — 냉장고 옆',
+  b_fridge:'냉장고 — True T-23-HC',b_fridge2:'냉장고 — True T-49-HC 2도어 (업그레이드)',
+  b_pr:'프리린스 수전 (3칸 싱크)',b_wf:'벽면 수전 (3칸 싱크)',b_1c:'1칸 싱크 + 수전',
+  b_ice:'제빙기 + 필터',b_gf:'글라스 필러',b_ws:'벽면 선반',b_pr2:'팟 랙 (천장 설치)',b_di:'드롭인 싱크 + 수전',
+  b_cb2:'베이스 카운터 — 오픈 선반 (1도어, 5서랍)',b_cb1:'베이스 카운터 — 캐비닛 (6도어, 5서랍)',
+  b_q2:'석영 카운터탑',b_coffee:'커피 테이블',
+  b_wso:'오픈 선반 (카운터 위 4×30"W + 싱크 위 2×72"W, 2×30"W)',b_wsc:'벽 캐비닛 (카운터 위 2×맞춤형 + 싱크 위 맞춤형 132")',
+  c_rm:'주방 리모델링 (기본)',c_ti:'벽 타일 (백스플래시)',c_ce:'천장 타일 (PVC)',c_li:'조명 (매입 LED)',
+  c_ss_gc:'벽면 클래딩 (SS)',c_pl:'배관',c_fi:'소방 시스템 (TBD)',
+  cf_r:'레인지 36" (Southbend)',cf_sp:'스톡팟 x2 (Southbend)',cf_pf:'팟 필러 (Krowne)',cf_fr:'냉장고 (Turbo Air)',
+  cf_sh:'와이어 선반 (3세트)',cf_ic:'제빙기 (Scotsman)',cf_gl:'글라스 필러',cf_sk:'드롭인 싱크 + 수전',
+  cf_bo:'John Boos 세미커스텀 SS',cf_sv:'Servco 커스텀 SS — 대안',cf_mw:'밀워크 + 커피 — 대안',
+  cf_coffee:'커피 테이블',cf_wso:'오픈 선반',cf_wsc:'벽 캐비닛',
+  cs_r:'레인지 36" (Comstock)',cs_sp:'스톡팟 x2 (Comstock)',cs_gh:'가스 커넥터 x3',cs_pf:'팟 필러 (Krowne)',
+  cs_sh:'와이어 선반 (3세트)',cs_fr:'냉장고 (True T-23-HC)',cs_fc:'싱크 수전 (프리린스 + 벽면)',
+  cs_1c:'1칸 싱크 + 수전',cs_ic:'제빙기 (Scotsman)',cs_gl:'글라스 필러',cs_sr:'선반 + 팟 랙',cs_di:'드롭인 싱크 + 수전',
+  cs_cf:'커스텀 SS 캐비닛 (SS 상판 포함)',cs_cb:'캐비닛 베이스만 — 대안',cs_qz:'석영 카운터탑 — 옵션',
+  cs_coffee:'커피 테이블',cs_wso:'오픈 선반',cs_wsc:'벽 캐비닛',
+  d_ba:'Morganco 기본 제안서',d_pf:'팟 필러 (설비 + 배관)',d_sc:'SS 캐비닛으로 업그레이드',d_os:'오픈 선반 (절약)',
+  df_r:'레인지 36" (Southbend)',df_sp:'스톡팟 x2 (Southbend)',df_pf:'팟 필러 (Krowne)',df_fr:'냉장고 (Turbo Air)',
+  df_sh:'와이어 선반',df_ic:'제빙기 (Scotsman)',df_gl:'글라스 필러',df_sk:'드롭인 싱크 + 수전',
+  df_coffee:'커피 테이블',df_wso:'오픈 선반',df_wsc:'벽 캐비닛',
+  ds_r:'레인지 36" (Comstock)',ds_sp:'스톡팟 x2 (Comstock)',ds_gh:'가스 커넥터 x3',ds_pf:'팟 필러 (Krowne)',
+  ds_sh:'와이어 선반 (3세트)',ds_fr:'냉장고 (True T-23-HC)',ds_fc:'싱크 수전',
+  ds_1c:'1칸 싱크 + 수전',ds_ic:'제빙기 (Scotsman)',ds_gl:'글라스 필러',ds_sr:'선반 + 팟 랙',ds_di:'드롭인 싱크 + 수전',
+  ds_coffee:'커피 테이블',ds_wso:'오픈 선반',ds_wsc:'벽 캐비닛',
+};
+function itemName(it){return S.lang==='ko'&&IKO[it.id]?IKO[it.id]:it.name;}
+
+// Design section Korean translation map
+const DKO={
+  // Section labels
+  flooring_label:'바닥재',countertop_label:'카운터탑',material_label:'카운터 재질',sinkwall_label:'싱크 벽면',
+  stove_label:'가스레인지 구역',gymside_label:'체육관 측면',coffee_label:'커피 & 입구',views_label:'전체 뷰',
+  // Section descriptions
+  flooring_desc:'기존 8″×8″ 오렌지 쿼리 타일 vs. 제안 12″×12″ 그레이 미끄럼 방지 타일.',
+  countertop_desc:'체육관 방향 패스스루 카운터. 캐비닛과 선반 조합이 다른 3가지 옵션.',
+  material_desc:'패스스루 카운터 표면의 3가지 재질 옵션. 각각 글라스 필러 쪽에서 아이스 머신과 함께 표시.',
+  sinkwall_desc:'모든 싱크 벽면 옵션에는 3칸 싱크 + 1칸 싱크, 2도어 냉장고 포함.',
+  stove_desc:'모든 가스레인지(밥솥 제외)는 새 상업용 장비로 교체. 가스레인지 왼쪽에 와이어 선반 추가.',
+  gymside_desc:'체육관에서 패스스루 창을 통해 주방을 바라본 모습. 캐비닛 도어 유/무 2가지 옵션.',
+  coffee_desc:'복도에 새 커피 스테이션 설치 (급수관 + 전기 콘센트). 기존 냉온수기를 주방에서 이전. 입구 옆 9′×2′×7′ 와이어 선반.',
+  views_desc:'다양한 각도에서 전체 주방 레이아웃을 보여주는 광각 렌더링.',
+  // Image titles — flooring
+  flooring_t0:'기존 타일 (8″×8″)',flooring_t1:'새 타일 옵션 (12″×12″)',
+  // Image captions — flooring
+  flooring_c0:'현재 오렌지 쿼리 타일 바닥. 표준 8″×8″ 포맷.',
+  flooring_c1:'제안된 12″×12″ 미끄럼 방지 다크 그레이 타일. 더 큰 포맷, 모던한 상업용 느낌.',
+  // Image titles — countertop
+  countertop_t0:'옵션 A — 캐비닛 + 정수기 + 제빙기',
+  countertop_t1:'옵션 B — 캐비닛만 (정수기 없음)',
+  countertop_t2:'옵션 C — 오픈 선반 + 정수기 + 제빙기',
+  // Image captions — countertop
+  countertop_c0:'벽 캐비닛 포함 전체 캐비닛 라인. 왼쪽 정수기, 오른쪽 제빙기. 패스스루에 석영 카운터.',
+  countertop_c1:'벽 캐비닛 포함. 정수기/제빙기 없음. 연속된 카운터 공간 최대화.',
+  countertop_c2:'캐비닛 대신 상하 오픈 선반. 왼쪽 정수기, 오른쪽 제빙기. 더 나은 가시성과 접근성.',
+  // Image titles — material
+  material_t0:'석영 — 어두운 색상',material_t1:'석영 — 밝은 색상 (화이트 마블 룩)',material_t2:'스테인리스 스틸',
+  // Image captions — material
+  material_c0:'미세한 무늬의 다크 그레이 석영 카운터. 글라스 필러 수전 및 배수구. 얼룩에 강하고 내구성 높음.',
+  material_c1:'마블풍 무늬의 밝은 화이트/그레이 석영. 더 밝고 모던한 외관. 동일한 글라스 필러 구성.',
+  material_c2:'일체형 불노즈 엣지의 스테인리스 스틸 카운터. 원활한 상업용 주방 룩. 가장 내구성 있고 위생적.',
+  // Image titles — sinkwall
+  sinkwall_t0:'옵션 A — 벽 캐비닛 + 제빙기',
+  sinkwall_t1:'옵션 B — 벽 캐비닛 + 1칸 싱크 + 오픈 선반',
+  sinkwall_t2:'옵션 C — 오픈 SS 벽면 선반 + 제빙기',
+  // Image captions — sinkwall
+  sinkwall_c0:'싱크대 위 SS 벽 캐비닛. 맨 왼쪽 제빙기, 중앙 3칸 싱크, 오른쪽 2도어 냉장고. 맨 오른쪽 와이어 선반.',
+  sinkwall_c1:'상부 벽 캐비닛. 왼쪽에 독립형 1칸 싱크(제빙기 대체). 맨 오른쪽 오픈 선반.',
+  sinkwall_c2:'벽 캐비닛 대신 벽걸이 SS 오픈 선반. 왼쪽 제빙기. 더 개방적이고 산업적인 느낌.',
+  // Image titles — stove
+  stove_t0:'가스레인지 벽면 — SS 패널 + 후드 + 새 장비',
+  // Image captions — stove
+  stove_c0:'전체 SS 벽 패널 및 배기 후드 시스템. 좌→우: 새 와이어 선반, 밥솥/찜기(기존), 더블 스톡팟 버너, 4버너 레인지. 상부 팟 필러.',
+  // Image titles — gymside
+  gymside_t0:'체육관 측면 — 캐비닛 도어 있음',gymside_t1:'체육관 측면 — 캐비닛 도어 없음 (오픈 프론트)',
+  // Image captions — gymside
+  gymside_c0:'체육관에서 바라본 패스스루 뷰. 카운터 아래 캐비닛 도어. 개구부 너머 주방 장비, 벽 캐비닛, 후드 보임.',
+  gymside_c1:'동일한 패스스루 뷰, 도어 대신 오픈 프론트. 체육관 측에서 수납공간 직접 접근 가능.',
+  // Image titles — coffee
+  coffee_t0:'커피 스테이션 — 복도',coffee_t1:'입구 선반 — 9′×2′×7′ 와이어 랙',
+  // Image captions — coffee
+  coffee_c0:'새 복도 커피 카운터. 커피머신, 냉온수기(주방에서 이전), 서랍 베이스 캐비닛, 언더카운터 냉장고. 새 급수관 + 전기.',
+  coffee_c1:'입구 왼쪽 새 4단 모바일 와이어 선반 (9′W × 2′D × 7′H). 코너 너머 커피 스테이션 보임. 오른쪽 주방 출입구.',
+  // Image titles — views
+  views_t0:'뷰 1 — 가스레인지 코너에서',views_t1:'뷰 2 — 패스스루 벽면 따라',
+  views_t2:'뷰 3 — 싱크 벽면에서',views_t3:'뷰 4 — 패스스루 방향으로',views_t4:'뷰 5 — 카운터 디테일',
+  // Image captions — views
+  views_c0:'가스레인지 구역에서 광각. 중앙 SS 작업대. 왼쪽 패스스루 카운터와 체육관측 캐비닛. 오른쪽 싱크 벽면과 냉장고.',
+  views_c1:'패스스루 카운터 쪽을 따라 본 모습. 왼쪽 카운터와 캐비닛, 중앙 작업대, 끝에 싱크 벽면과 후드.',
+  views_c2:'싱크 벽면에서 가스레인지 구역을 바라본 모습. 왼쪽 냉장고, 위 캐비닛, 와이어 선반, 뒤쪽 스톡팟과 레인지.',
+  views_c3:'가스레인지 측에서 패스스루와 체육관 문 방향. 왼쪽 레인지와 스톡팟, 중앙 작업대, 오른쪽 석영 카운터.',
+  views_c4:'주방 내부에서 패스스루 카운터 클로즈업. 왼쪽 싱크와 수전, 석영 카운터의 전체 캐비닛 라인, 체육관으로의 유리 패스스루.',
+};
+
+function dsText(v){
+  if(v&&typeof v==='object'&&!Array.isArray(v))return v[S.lang]||v.ko||v.en||'';
+  return v||'';
+}
+function dsLabel(sec){return dsText(sec.label);}
+function dsDesc(sec){return dsText(sec.desc);}
+function dsTitle(sec,i){return dsText(sec.images[i].title);}
+function dsCap(sec,i){return dsText(sec.images[i].cap);}
+function selectableImageCount(sec){return sec.images.filter(im=>!im.refOnly).length;}
+function isSelectableImage(sec,idx){return !!(sec.images[idx]&&!sec.images[idx].refOnly);}
+function normalizePicks(){
+  Object.keys(S.picks).forEach(k=>{
+    const sec=DESIGN_SECTIONS.find(s=>s.key===k);
+    const idx=S.picks[k];
+    if(!sec||!sec.images[idx]||sec.images[idx].refOnly)delete S.picks[k];
+  });
+}
+
+// ===== CATEGORY DEFINITIONS =====
+const CATS = {
+  cooking: {icon:'\u{1F525}', name:'catCooking', ids_a:['a_range','a_stockpot','a_potfill'], ids_b:['b_range_c','b_range_s','b_stock_c','b_stock_s','b_gas','b_pf'], ids_cf:['cf_r','cf_sp','cf_pf'], ids_cs:['cs_r','cs_sp','cs_gh','cs_pf'], ids_df:['df_r','df_sp','df_pf'], ids_ds:['ds_r','ds_sp','ds_gh','ds_pf']},
+  fridge: {icon:'\u{2744}\u{FE0F}', name:'catFridge', ids_a:['a_fridge','a_ice'], ids_b:['b_fridge','b_fridge2','b_ice'], ids_cf:['cf_fr','cf_ic'], ids_cs:['cs_fr','cs_ic'], ids_df:['df_fr','df_ic'], ids_ds:['ds_fr','ds_ic']},
+  sinks: {icon:'\u{1F6B0}', name:'catSinks', ids_a:['a_sink','a_glass'], ids_b:['b_pr','b_wf','b_1c','b_di','b_gf'], ids_cf:['cf_gl','cf_sk'], ids_cs:['cs_fc','cs_1c','cs_gl','cs_di'], ids_df:['df_gl','df_sk'], ids_ds:['ds_fc','ds_1c','ds_gl','ds_di']},
+  shelving: {icon:'\u{1F4E6}', name:'catShelving', ids_a:['a_shelf1','a_shelf2','a_shelf3'], ids_b:['b_s1','b_s8','b_s14'], ids_cf:['cf_sh'], ids_cs:['cs_sh'], ids_df:['df_sh'], ids_ds:['ds_sh']},
+  wallstorage: {icon:'\u{1F5C4}\u{FE0F}', name:'catWallStorage', ids_a:['a_wso','a_wsc'], ids_b:['b_wso','b_wsc'], ids_cf:['cf_wso','cf_wsc'], ids_cs:['cs_wso','cs_wsc','cs_sr'], ids_df:['df_wso','df_wsc'], ids_ds:['ds_wso','ds_wsc','ds_sr']},
+  countertop: {icon:'\u{1F532}', name:'catCountertop', ids_a:['a_mw_front','a_mw_front_wallcab','a_mw_front_quartz','a_coffee'], ids_b:['b_cb2','b_cb1','b_q2','b_coffee'], ids_cf:['cf_bo','cf_sv','cf_mw','cf_coffee'], ids_cs:['cs_cf','cs_cb','cs_qz','cs_coffee'], ids_df:['df_coffee'], ids_ds:['ds_coffee']},
+  walls: {icon:'\u{1F9F1}', name:'catWalls', ids_a:[], ids_b:['b_ss'], ids_cf:[], ids_cs:[], ids_df:[], ids_ds:[]},
+};
+const POLYCAM_URL='https://poly.cam/capture/5D464C80-8013-46BE-8BD9-74DEEBA6EA82';
+const ENSCAPE_URL='https://cloud.chaos.com/collaboration/folder/QtewMDF6NdwauoAEXc9Ai6/present?n=Hmy9A8iFANzkVhrjD7aBjC';
+const FLOOR_PLAN_RENDER_SRC='presentation-r7/slide-07.jpg';
+const FLOOR_PLAN_VECTOR_SRC='Final Renderings/AXON/FLOOR PLAN.jpg';
+const EXISTING_SPACE_FILES=[
+  'IMG_0593.JPG',
+  'IMG_0597.JPG',
+  'IMG_0599.JPG',
+  'IMG_0602.JPG',
+  'IMG_0603.JPG',
+  'IMG_0605.JPG',
+  'IMG_0606.JPG',
+  'IMG_0607.JPG',
+  'IMG_0608.JPG',
+  'IMG_4100.JPG',
+  'IMG_4101.JPG',
+  'IMG_4102.JPG',
+  'IMG_4103.JPG',
+  'IMG_4104.JPG',
+  'IMG_4105.JPG',
+  'IMG_4106.JPG',
+  'IMG_4107.JPG',
+  'IMG_4108.JPG',
+  'IMG_4109.JPG',
+  'IMG_4110.JPG',
+  'IMG_4111.JPG',
+  'IMG_4112.JPG',
+  'IMG_4113.JPG',
+  'IMG_4114.JPG',
+  'IMG_4115.JPG'
+];
+const EXISTING_SPACE_SRCS=EXISTING_SPACE_FILES.map(name=>`Existing Space/${name}`);
+const EXISTING_SPACE_PREVIEWS=EXISTING_SPACE_FILES.map(name=>`Existing Space/previews/${name}`);
+const INTRO_CONTENT={
+  ko:{
+    heroTitle:'교회 주방 리노베이션 프로젝트\n임시집사회 보고',
+    heroMeta:'일시 / 2026년 3월 22일 19:00 (ZOOM)\n보고 / Task Force(TF) 팀 및 관리 3부 공동 준비',
+    introMessage:`한인장로교회의 주방은 오랜 세월 동안 교우들의 친교와 봉사의 중심 공간으로 사용되어 왔습니다. 그러나 시설의 노후화로 인해 위생, 안전, 그리고 효율성에 있어 개선이 시급한 상황입니다.
+
+관리 3부와 주방 리노베이션 TF팀은 지난 두달간 현장 조사, 3D 모델링, 전문 업체 견적 비교, 그리고 디자인 옵션 검토를 진행해 왔습니다.
+
+본 보고는 그간의 과정과 결과를 공유하고, 집사님들의 소중한 의견을 수렴하고자 마련되었습니다.`,
+    teamLeftTitle:'주방 리노베이션 태스크포스팀',
+    teamRightTitle:'관리 3부',
+    teamLeft:[
+      ['김태호 집사','리더'],
+      ['안성배 집사','맴버'],
+      ['조다슬 집사','맴버'],
+      ['심다솔 집사','맴버'],
+      ['김도영 집사','맴버'],
+    ],
+    teamRight:[
+      ['배성렬 장로','관리부 장로'],
+      ['김태호 집사','부장'],
+      ['김도영 집사','차장'],
+      ['기수경 집사','자문위원'],
+      ['문지숙 집사','자문위원'],
+      ['윤성아 집사','자문위원'],
+    ],
+    process:[
+      ['현장 조사 및 현황 파악','기존 주방의 문제점과 개선 필요 사항을 파악하기 위해 현장 실측 및 3D 스캔(Polycam)을 진행하였습니다.'],
+      ['3D 모델링 및 디자인 개발','실측 데이터를 기반으로 주방 전체를 3D로 모델링하고, 구역별 다양한 디자인 옵션을 개발하였습니다. Enscape 렌더링을 통해 실제와 유사한 시각 자료를 제작하였습니다.'],
+      ['견적 비교 및 검토','Ford, Pernikoff, Agape Construction, Morganco 등 전문 업체로부터 견적을 받아 비용을 비교 분석하였습니다.'],
+      ['내부 검토 및 최종안 확정','태스크포스팀과 관리3부가 실용성·비용·미관을 종합적으로 검토하여 최종 권장안을 확정하였습니다.'],
+      ['임시집사회 보고 및 의견 수렴','현재 단계: 프로젝트 내용을 소개하고, 집사님들의 피드백을 수렴합니다.'],
+      ['당회 보고 및 예산 승인','임시집사회의 피드백을 반영한 최종안을 당회에 보고하고, 프로젝트 예산 승인을 요청합니다.'],
+      ['시공 업체 계약 및 공사 착공','승인된 예산 범위 내에서 시공 업체와 계약을 체결하고, 주방 사용 제한 기간을 최소화하여 공사를 진행합니다.'],
+    ],
+    purpose:[
+      ['프로젝트 내용 소개','주방 리노베이션의 배경, 범위, 그리고 구역별 디자인 내용을 소개합니다.'],
+      ['디자인 옵션 공유 및 피드백 수렴','태스크포스팀이 검토한 디자인 옵션들을 공유하고, 집사님들의 의견과 피드백을 듣고자 합니다.'],
+      ['향후 일정 안내','당회 보고, 시공 일정 등 앞으로의 진행 계획을 공유합니다.'],
+    ],
+    scope:[
+      ['싱크대 재배치 및 급수 설비','누수 근본 해결 및 조리 동선 최적화','Final Renderings/sinkwall area/sink wall 1.jpg'],
+      ['카운터탑(상판) 교체','위생 및 내구성 강화를 위한 재시공','Final Renderings/Counter Top Material Option/93%.jpg'],
+      ['스토브 교체 + 벽면 패널(SS/FRP) 설치','고화력 버너 도입 및 청소 용이성 향상','Final Renderings/Stove area/stove area.jpg'],
+      ['수납 설비 확충','스테인리스 캐비닛 및 효율적 선반 배치','Final Renderings/counter top options/final.jpg'],
+      ['외부 커피 스테이션 구축','정수기 동선 분리 및 운영 효율화','Final Renderings/Entry way area/Coffee Table 1.jpg'],
+      ['바닥 타일 교체','전면적인 바닥 노후화 해결 및 환경 개선','Final Renderings/floor option/floor 1.jpg'],
+    ],
+  },
+  en:{
+    heroTitle:'Church Kitchen Renovation Project\nSession Briefing',
+    heroMeta:'Date / March 22, 2026 19:00 (ZOOM)\nPrepared by / Task Force (TF) Team + Management Dept. 3',
+    introMessage:`For many years, the Korean Presbyterian Church kitchen has been a central place for fellowship and service. Due to aging facilities, hygiene, safety, and operational efficiency now require urgent improvement.
+
+Over the past two months, Management Dept. 3 and the Kitchen Renovation TF have conducted site surveys, 3D modeling, professional estimate comparisons, and design option reviews.
+
+This briefing shares the process and findings and is prepared to gather valuable feedback from the deacon session.`,
+    teamLeftTitle:'Kitchen Renovation Task Force',
+    teamRightTitle:'Management Dept. 3',
+    teamLeft:[
+      ['Deacon Taeho Kim','Leader'],
+      ['Deacon Sungbae Ahn','Member'],
+      ['Deacon Dasul Jo','Member'],
+      ['Deacon Dasol Shim','Member'],
+      ['Deacon Doyoung Kim','Member'],
+    ],
+    teamRight:[
+      ['Elder Sungryul Bae','Dept. Elder'],
+      ['Deacon Taeho Kim','Director'],
+      ['Deacon Doyoung Kim','Deputy Director'],
+      ['Deacon Sugyeong Gi','Advisor'],
+      ['Deacon Jisook Moon','Advisor'],
+      ['Deacon Seongah Yoon','Advisor'],
+    ],
+    process:[
+      ['Site Survey & Current-State Review','On-site measurement and 3D Polycam scans were conducted to identify existing kitchen issues and required improvements.'],
+      ['3D Modeling & Design Development','Based on measured data, we built a full 3D model and developed area-based design options with Enscape visuals.'],
+      ['Estimate Comparison & Review','We compared proposals from Ford, Pernikoff, Agape Construction, and Morganco.'],
+      ['Internal Review & Final Recommendation','The TF and Management Dept. 3 reviewed practicality, cost, and aesthetics to establish a recommended direction.'],
+      ['Session Briefing & Feedback Collection','Current stage: introduce the project and collect feedback from the deacon session.'],
+      ['Elders Board Report & Budget Approval','Reflect session feedback, report to elders board, and request project budget approval.'],
+      ['Contract & Construction Kickoff','Within the approved budget, execute contractor agreement and minimize kitchen downtime during construction.'],
+    ],
+    purpose:[
+      ['Project Overview','Introduce renovation background, scope, and design content by area.'],
+      ['Share Design Options & Collect Feedback','Share TF-reviewed options and gather feedback from session members.'],
+      ['Next-Step Schedule','Share the upcoming plan, including elders report and construction timeline.'],
+    ],
+    scope:[
+      ['Sink Relocation & Water Supply','Resolve leakage root cause and optimize kitchen workflow','Final Renderings/sinkwall area/sink wall 1.jpg'],
+      ['Countertop Replacement','Rebuild with stronger hygiene and durability','Final Renderings/Counter Top Material Option/93%.jpg'],
+      ['Stove + SS/FRP Wall Panel Work','Upgrade heat output and improve cleanability','Final Renderings/Stove area/stove area.jpg'],
+      ['Storage Expansion','Stainless cabinetry and efficient shelving layout','Final Renderings/counter top options/final.jpg'],
+      ['External Coffee Station','Separate drinking traffic from cooking traffic','Final Renderings/Entry way area/Coffee Table 1.jpg'],
+      ['Floor Tile Upgrade','Address long-term floor aging and environment quality','Final Renderings/floor option/floor 1.jpg'],
+    ],
+  }
+};
+const R7_ESTIMATE_CARDS=[
+  {
+    key:'1',
+    range:'$80,000 - $88,000',
+    rangeEn:'LOW END - HIGH END',
+    title:{ko:'제1안 (전체 공사, 최선의 안)',en:'Option 1 (Full Scope, Best Outcome)'},
+    desc:{ko:'주방 전체 기능을 완벽히 정상화하며, 중복 공사 없이 한 번에 모든 문제를 해결할 수 있습니다.',en:'Restores full kitchen function and solves all key issues in one coordinated project.'},
+    items:{ko:'포함: 1·2·3·4·5·6 전체 항목',en:'Includes: all items 1·2·3·4·5·6'},
+    map:{ko:'옵션 B 기준: 1·2·3·4·5·6 전체 반영 (바닥 타일 포함)',en:'Option B mapping: include 1·2·3·4·5·6 (floor tile included).'},
+    scope:{'1':'in','2':'in','3':'in','4':'in','5':'in','6':'in'},
+  },
+  {
+    key:'2',
+    range:'$65,000 - $73,000',
+    rangeEn:'LOW END - HIGH END',
+    title:{ko:'제2안 (실용 공사, 장기적 경제 안)',en:'Option 2 (Practical Scope, Long-Term Value)'},
+    desc:{ko:'추후 공사가 어려운 기초 설비(바닥 타일 포함)를 완결하고, 선택 항목은 예산 확보 시 추가할 수 있습니다.',en:'Completes foundational infrastructure now (including flooring), while optional scope can be added later when budget allows.'},
+    items:{ko:'기준: 1·2·4·6 + 선택 조정(3·5)',en:'Base: 1·2·4·6 + adjustable items (3·5)'},
+    map:{ko:'옵션 B 기준: 1·2·4·6 반영, 3·5는 보류',en:'Option B mapping: include 1·2·4·6, keep 3·5 deferred.'},
+    scope:{'1':'in','2':'in','3':'adj','4':'in','5':'adj','6':'in'},
+  },
+  {
+    key:'3',
+    range:'$56,000 - $64,000',
+    rangeEn:'LOW END - HIGH END',
+    title:{ko:'제3안 (핵심 공사, 최소 예산 안)',en:'Option 3 (Core Scope, Minimum Budget)'},
+    desc:{ko:'기초 설비 중 시급한 항목에 집중하고, 타일은 정기 세척 유지 방식으로 공사비 부담을 최소화합니다.',en:'Focuses on urgent foundational work first and minimizes immediate budget burden with maintenance-based flooring strategy.'},
+    items:{ko:'기준: 1·2·4 중심 (3·5·6 단계적)',en:'Focus: 1·2·4 first (3·5·6 phased)'},
+    map:{ko:'옵션 B 기준: 1·2·4 반영, 3·5·6 단계적',en:'Option B mapping: include 1·2·4, phase 3·5·6 later.'},
+    scope:{'1':'in','2':'in','3':'phase','4':'in','5':'phase','6':'phase'},
+  },
+];
+const R7_SCOPE_CATS=[
+  {key:'1',label:{ko:'1. 싱크대 재배치 및 급수 설비',en:'1. Sink Relocation & Water Supply'},img:'Final Renderings/sinkwall area/Final A.jpg'},
+  {key:'2',label:{ko:'2. 수납 설비 확충 및 카운터탑교체',en:'2. Counter + Cabinet / Countertop'},img:'Final Renderings/counter top options/final.jpg'},
+  {key:'3',label:{ko:'3. 가스레인지/오븐 교체',en:'3. Stove/Oven Replacement'},img:'Final Renderings/Stove area/stove area.jpg'},
+  {key:'4',label:{ko:'4. 벽면 패널(SS/FRP) 설치',en:'4. SS/FRP Wall Panels'},img:'Final Renderings/Stove area/SS and FRP Panels.jpg'},
+  {key:'5',label:{ko:'5. 외부 커피 스테이션 구축',en:'5. External Coffee Station'},img:'Final Renderings/Entry way area/Coffee Table 1.jpg'},
+  {key:'6',label:{ko:'6. 바닥 타일 교체',en:'6. Floor Tile Replacement'},img:'Final Renderings/floor option/floor 1.jpg'},
+];
+const DESIGN_SECTIONS=[
+  {
+    key:'sink',
+    label:{ko:'1. 싱크대 재배치 및 급수 설비',en:'1. Sink Relocation & Water Supply'},
+    desc:{ko:'노후 누수 문제를 근본 해결하고, 냉장고·제빙기·글라스 필러를 효율적으로 재배치합니다.',en:'Resolves chronic leakage and reconfigures sink-wall equipment for better workflow.'},
+    images:[
+      {src:'Final Renderings/sinkwall area/Final A.jpg',title:{ko:'옵션 A / 캐비넷 도어',en:'Option A / Cabinet Doors'},cap:{ko:'커스텀 스텐 캐비넷(132” WIDE) - $5,000. 문이 있어 내부 물품이 보이지 않아 미관상 깔끔합니다.',en:'Custom stainless cabinet (132” wide) - $5,000. Enclosed doors hide items for a cleaner visual.'}},
+      {src:'Final Renderings/sinkwall area/Final B.jpg',title:{ko:'옵션 B / 캐비넷 도어 + 오픈 쉘빙',en:'Option B / Cabinet + Open Shelving'},cap:{ko:'커스텀 스텐 캐비넷(36”) + 오픈 쉘빙 - $2,300. 비용 효율적이며 수납 활용과 건조대 겸용이 가능합니다.',en:'Custom stainless cabinet (36”) + open shelving - $2,300. More economical and practical for quick access.'}},
+    ],
+  },
+  {
+    key:'counter',
+    label:{ko:'2. 주방 카운터 + 케비넷 교체',en:'2. Counter + Cabinet Replacement'},
+    desc:{ko:'카운터탑 상판 재질/톤을 비교할 수 있도록 1개 기준 렌더링 + 4개 색상 렌더링(100/93/86/79% Black)으로 구성했습니다.',en:'Organized as 1 reference rendering + 4 selectable color renderings (100/93/86/79% Black) for countertop comparison.'},
+    images:[
+      {src:'Final Renderings/counter top options/final.jpg',title:{ko:'기준 렌더링 (카운터 전체)',en:'Reference Rendering (Overall Counter)'},cap:{ko:'카운터 레이아웃과 상판 비교 기준을 보여주는 기준 렌더링입니다.',en:'Reference view used as the baseline for comparing countertop color options.'},refOnly:true},
+      {src:'Final Renderings/Counter Top Material Option/100.jpg',title:{ko:'100% Black',en:'100% Black'},cap:{ko:'Caesarstone 511 Smokestone 톤 기준의 가장 진한 상판 옵션입니다.',en:'Darkest countertop option in the Caesarstone 511 Smokestone tone range.'},swatch:'#151515',cropPos:'53% 58%'},
+      {src:'Final Renderings/Counter Top Material Option/93%.jpg',title:{ko:'93% Black',en:'93% Black'},cap:{ko:'100% 대비 약간 밝은 톤으로 깊이감을 유지하면서 채도를 완화한 옵션입니다.',en:'Slightly lighter than 100%, keeping depth while softening overall tone.'},swatch:'#2a2a2a',cropPos:'53% 58%'},
+      {src:'Final Renderings/Counter Top Material Option/86.jpg',title:{ko:'86% Black',en:'86% Black'},cap:{ko:'중간 톤의 블랙 옵션으로 주변 마감재와의 밸런스를 맞추기 용이합니다.',en:'Mid-dark black option that balances easily with adjacent finishes.'},swatch:'#404040',cropPos:'53% 58%'},
+      {src:'Final Renderings/Counter Top Material Option/79.jpg',title:{ko:'79% Black',en:'79% Black'},cap:{ko:'네 가지 중 가장 밝은 톤으로 공간을 보다 가볍게 보이게 하는 옵션입니다.',en:'Lightest of the four options, creating a brighter visual impression.'},swatch:'#6a6a6a',cropPos:'53% 58%'},
+    ],
+  },
+  {
+    key:'stove',
+    label:{ko:'3. 가스레인지/오븐 교체',en:'3. Stove/Oven Replacement'},
+    desc:{ko:'오븐 고장 문제를 해결하고, 고화력 스톡 버너 도입으로 대용량 조리 성능을 강화합니다.',en:'Restores oven capability and adds high-output stock burners for heavy-volume cooking.'},
+    images:[
+      {src:'Final Renderings/Stove area/stove area.jpg',title:{ko:'가스레인지/오븐 교체안',en:'Stove/Oven Upgrade'},cap:{ko:'스토브 교체로 조리 범위를 확장하고, 대형 조리 대응력을 높입니다.',en:'Upgraded cooking line expands menu range and improves throughput.'},refOnly:true},
+    ],
+  },
+  {
+    key:'walls',
+    label:{ko:'4. 벽면 패널(SS/FRP) 설치',en:'4. SS/FRP Wall Panels'},
+    desc:{ko:'조리 벽면은 SS, 그 외 흰색 벽면은 FRP 마감으로 계획하여 청소 용이성과 위생 수준을 높입니다.',en:'Applies SS behind cooking zones and FRP on white walls to improve hygiene and cleaning efficiency.'},
+    images:[
+      {src:'Final Renderings/Stove area/SS and FRP Panels.jpg',title:{ko:'SS + FRP 벽면 마감',en:'SS + FRP Wall Finish'},cap:{ko:'위 렌더링 범위 외 흰색 벽면도 FRP로 교체하여 전체 유지관리 품질을 통일합니다.',en:'Beyond the shown zone, white wall areas are replaced with FRP for consistent maintenance quality.'},refOnly:true},
+    ],
+  },
+  {
+    key:'coffee',
+    label:{ko:'5. 외부 커피 스테이션 구축',en:'5. External Coffee Station'},
+    desc:{ko:'정수기 동선을 주방 외부로 분리하여 조리 공간 간섭을 줄이고, 운영 효율과 안전성을 높입니다.',en:'Moves beverage traffic out of the kitchen to reduce workflow conflict and improve safety.'},
+    images:[
+      {src:'Final Renderings/Entry way area/Coffee Table 1.jpg',title:{ko:'커피 테이블 + 정수기',en:'Coffee Table + Water Dispenser'},cap:{ko:'복도 측 상시 이용 가능한 음용 스테이션으로 운영 부담을 줄입니다.',en:'Hallway beverage station supports self-service and reduces kitchen workload.'},refOnly:true},
+      {src:'Final Renderings/Entry way area/Entry Shelving.jpg',title:{ko:'오픈 쉘빙 (키친 입구 왼쪽 벽)',en:'Open Shelving by Entry'},cap:{ko:'입구측 보관 공간을 확장해 주방 내부 혼잡을 줄입니다.',en:'Adds entry-side storage capacity and helps reduce congestion in kitchen work zones.'},refOnly:true},
+    ],
+  },
+  {
+    key:'flooring',
+    label:{ko:'6. 바닥 타일 교체',en:'6. Floor Tile Replacement'},
+    desc:{ko:'전문가 의견상 현 타일 재사용 가능하나, 장기 유지보수와 시공 연계성을 고려한 교체안도 함께 검토합니다.',en:'Current tile may be reusable after cleaning, but replacement is reviewed for long-term maintenance and construction sequencing.'},
+    images:[
+      {src:'Final Renderings/floor option/floor 2.jpg',title:{ko:'기존 바닥 (Quarry tile, 8in x 8in)',en:'Existing Floor (8in x 8in)'},cap:{ko:'전문 업체의 정기 고압 세척 관리 전제로 유지하는 방안입니다.',en:'Maintenance-first strategy with periodic professional cleaning.'}},
+      {src:'Final Renderings/floor option/floor 1.jpg',title:{ko:'바닥 교체 (Quarry tile - Gray, 12in x 12in)',en:'Replacement Floor (12in x 12in)'},cap:{ko:'전체 공사 시점에 함께 교체하여 장기 재시공 비용 리스크를 줄이는 방안입니다.',en:'Replace during full renovation to avoid costly rework later.'}},
+    ],
+  },
+];
+
+// ===== DATA =====
+const D = {
+  a_gc:[
+    {id:'a_plumb',name:'Plumbing',det:'Pot filler waterline, dish wall, wall opening/patching',cost:9660,on:true},
+    {id:'a_elec',name:'Electrical (6 LED fixtures)',det:'New LED lay-in fixtures ($300/ea) + connections',cost:2900,on:true},
+    {id:'a_install',name:'Equip Install + SS Wall Panel + Trim',det:'20GA SS ~20 LF, hood trim, disconnect/reconnect equip',cost:10280,on:true},
+    {id:'a_frp',name:'FRP Furnish & Install',det:'Entire kitchen except SS panel areas',cost:3000,on:true},
+  ],
+  a_eq:[
+    {id:'a_range',name:'Range, 36" 4-Burner',det:'Southbend 4367D, 205K BTU, gas connector + casters',cost:5725,on:true,cust:true,cv:''},
+    {id:'a_stockpot',name:'Stock Pot Range x2',det:'Southbend SPR-1J, 120K BTU ea',cost:3250,on:true,cust:true,cv:''},
+    {id:'a_potfill',name:'Pot Filler',det:'Krowne 20-101L, wall mount, 72" SS hose',cost:305,on:true},
+    {id:'a_fridge',name:'Refrigerator \u2014 True T-49-HC 2-Door',det:'2-section, 49 cu ft, SS, Energy Star',cost:5500,on:true,cust:true,cv:''},
+    {id:'a_shelf1',name:'Wire Shelving \u2014 48"W (x4) (inside kitchen)',det:'Centaur C2448C, mobile',cost:292,on:true},
+    {id:'a_shelf2',name:'Wire Shelving \u2014 36"W (x4) (inside kitchen)',det:'Centaur C2436C, mobile',cost:260,on:true},
+    {id:'a_shelf3',name:'Wire Shelving \u2014 54"W (x8) (entry hallway)',det:'Centaur C2454C, stationary',cost:488,on:true},
+    {id:'a_ice',name:'Ice Maker with Bin',det:'Scotsman CU3030SAX-1, cube, 329 lb/24hr, w/filter',cost:4238,on:false},
+    {id:'a_glass',name:'Glass Filler Station',det:'T&S B-1230-12, w/filtration',cost:715,on:true},
+    {id:'a_sink',name:'Hand-Wash Sink',det:'John Boos PB-DISINK101410',cost:328,on:true},
+    {id:'a_wso',name:'Open Shelving \u2014 Above Counter 4\u00d730"W + Above Sink 2\u00d772"W, 2\u00d730"W',det:'Wall-mounted SS shelving, $125 ea (30"W), $252 ea (72"W)',cost:1254,on:true,bv:'low'},
+    {id:'a_wsc',name:'Wall Cabinets \u2014 Above Counter 2\u00d7Custom + Above Sink 132" Custom',det:'Custom-built enclosed wall cabinets, $1,200 ea (counter) + $5,200 (sink)',cost:7600,on:true,bv:'high'},
+    {id:'a_mw_front',name:'Fixture Millwork \u2014 Front Counter (open shelving) + Corian',det:'Plam base cabs w/drawers + open shelving, solid surface top, shop drawings + install',cost:18618,on:true},
+    {id:'a_mw_front_wallcab',name:'Fixture Millwork \u2014 Front Counter: Wall Cab Upgrade',det:'Add wall cabinets in lieu of shelves in kitchen',cost:1100,on:true,bv:'high'},
+    {id:'a_mw_front_quartz',name:'Fixture Millwork \u2014 Front Counter: Quartz Upgrade',det:'Quartz top in lieu of Corian solid surface at pass-thru',cost:4945,on:true},
+    {id:'a_coffee',name:'Coffee Table',det:'Custom coffee table for hallway station',cost:1500,on:true,cust:true,cv:''},
+  ],
+  b_gc:[
+    {id:'b_base',name:'Pernikoff Base Bid',det:'LED, 7 outlets, water heater, plumbing, demo, tile backsplash, SS panel install, infill door, paint ($1,500)',cost:27814,on:true},
+    {id:'b_ceil',name:'Alt #3: Ceiling Tiles',det:'Vinyl rock, 17x22',cost:3000,on:false},
+    {id:'b_frp',name:'Alt #5: FRP Instead of Tile (DEDUCT)',cost:-800,on:true},
+    {id:'b_pump',name:'Alt #6: Circulation Pump + Valves',det:'Hot water recirculation',cost:3837,on:false},
+    {id:'b_coffee_gc',name:'Alt #7: Coffee Machine Install',det:'Water, drain, electrical in hallway',cost:2800,on:false},
+    {id:'b_floor1',name:'Alt #1: Kitchen Quarry Tile Floor',det:'Remove existing tile floor/base, install new 8x8 slip-resistant quarry tile + base',cost:9100,on:false},
+    {id:'b_floor2',name:'Alt #2: Elevator Lobby Quarry Tile',det:'Remove existing tile floor/base, install new 8x8 slip-resistant quarry tile (approx. 9x8)',cost:3139,on:false},
+  ],
+  b_eq:[
+    {id:'b_ss',name:'SS Wall Panels (Kitchen Mechanical)',det:'Stainless cladding behind hoods/cooking',cost:4860,on:true},
+    {id:'b_range_c',name:'Range 36" \u2014 Comstock',det:'4 burners + std oven',cost:4415,on:true,alt:'b_range_s',cust:true,cv:''},
+    {id:'b_range_s',name:'Range 36" \u2014 Southbend 4367D (UPGRADE)',det:'205K BTU',cost:5806,on:false,alt:'b_range_c',cust:true,cv:''},
+    {id:'b_stock_c',name:'Stock Pot x2 \u2014 Comstock CCSP-1',cost:1643,on:true,alt:'b_stock_s',cust:true,cv:''},
+    {id:'b_stock_s',name:'Stock Pot x2 \u2014 Southbend SPR-1J (UPGRADE)',cost:3195,on:false,alt:'b_stock_c',cust:true,cv:''},
+    {id:'b_gas',name:'Gas Connector Kits x3',det:'T&S HG-4D-48K',cost:540,on:true},
+    {id:'b_pf',name:'Pot Filler',det:'Krowne 16-181L',cost:215,on:true},
+    {id:'b_s1',name:'Wire Shelving (Item 1)',det:'Metro, mobile',cost:782,on:true},
+    {id:'b_s8',name:'Wire Shelving \u2014 Dry Storage',cost:380,on:true},
+    {id:'b_s14',name:'Wire Shelving \u2014 Near Fridge',cost:308,on:true},
+    {id:'b_fridge',name:'Refrigerator \u2014 True T-23-HC',det:'1-door, 23 cu ft',cost:4017,on:false,alt:'b_fridge2',cust:true,cv:''},
+    {id:'b_fridge2',name:'Refrigerator \u2014 True T-49-HC 2-Door (UPGRADE)',det:'2-section, 49 cu ft',cost:5343,on:true,alt:'b_fridge',cust:true,cv:''},
+    {id:'b_pr',name:'Pre-Rinse Faucet (3-comp sink)',det:'T&S B-0133',cost:482,on:true},
+    {id:'b_wf',name:'Wall/Splash Faucet (3-comp sink)',det:'T&S B-0231',cost:163,on:true},
+    {id:'b_1c',name:'1-Compartment Sink + Faucet',det:'Advance Tabco',cost:877,on:false},
+    {id:'b_ice',name:'Ice Maker + Filter',det:'Scotsman UC2724',cost:3474,on:false},
+    {id:'b_gf',name:'Glass Filler',det:'T&S B-0712',cost:125,on:true},
+    {id:'b_di',name:'Drop-In Sink + Faucet',det:'Advance Tabco DI-1-10',cost:317,on:true},
+    {id:'b_wso',name:'Open Shelving \u2014 Above Counter 4\u00d730"W + Above Sink 2\u00d772"W, 2\u00d730"W',det:'Wall-mounted SS shelving, $125 ea (30"W), $252 ea (72"W)',cost:1254,on:true,bv:'low'},
+    {id:'b_wsc',name:'Wall Cabinets \u2014 Above Counter 2\u00d7Custom + Above Sink 132" Custom',det:'Custom-built enclosed wall cabinets, $1,200 ea (counter) + $5,200 (sink)',cost:7600,on:true,bv:'high'},
+    {id:'b_cb2',name:'Base Counter \u2014 Open Shelving (1 Door, 5 Drawers)',det:'Session fabrication, open shelving config',cost:11593,on:true,bv:'low'},
+    {id:'b_cb1',name:'Base Counter \u2014 Cabinets (6 Doors, 5 Drawers)',det:'Session fabrication, full cabinet config',cost:14212,on:true,bv:'high'},
+    {id:'b_q2',name:'Quartz Countertop',det:'For cabinet base (by others)',cost:4775,on:true},
+    {id:'b_coffee',name:'Coffee Table',det:'Custom coffee table for hallway station',cost:1500,on:true,cust:true,cv:''},
+  ],
+  c_gc:[
+    {id:'c_rm',name:'Kitchen Remodel (base)',det:'Demo, install, permits, paint, GC overhead',cost:40000,on:true,lo:35000,hi:45000},
+    {id:'c_ti',name:'Wall Tile (backsplash)',cost:3250,on:true,lo:2500,hi:4000},
+    {id:'c_ce',name:'Ceiling Tiles (PVC/wipeable)',cost:3500,on:true,lo:3000,hi:4000},
+    {id:'c_li',name:'Lighting (recessed LED)',cost:6500,on:true,lo:6000,hi:7000},
+    {id:'c_ss',name:'Wall Cladding (SS)',det:'Behind cooking area',cost:12000,on:true,lo:10000,hi:14000},
+    {id:'c_pl',name:'Plumbing',det:'Relocate sinks, pot filler, filtration',cost:21750,on:true,lo:19500,hi:24000},
+    {id:'c_fi',name:'Fire Suppression (TBD)',cost:0,on:false},
+  ],
+  c_ef:[
+    {id:'cf_r',name:'Range 36" (Southbend)',cost:5725,on:true,cust:true,cv:''},
+    {id:'cf_sp',name:'Stock Pot x2 (Southbend)',cost:3250,on:true,cust:true,cv:''},
+    {id:'cf_pf',name:'Pot Filler (Krowne)',cost:305,on:true},
+    {id:'cf_fr',name:'Refrigerator (Turbo Air)',cost:4124,on:true,cust:true,cv:''},
+    {id:'cf_sh',name:'Wire Shelving (3 sets)',cost:1040,on:true},
+    {id:'cf_ic',name:'Ice Maker (Scotsman)',cost:4238,on:false},
+    {id:'cf_gl',name:'Glass Filler Station',cost:715,on:true},
+    {id:'cf_sk',name:'Drop-In Sink + Faucet',cost:328,on:true},
+    {id:'cf_bo',name:'John Boos Semi-Custom SS',det:'Wall cabs + work table + dish cab',cost:15050,on:true},
+    {id:'cf_sv',name:'Servco Custom SS \u2014 ALT',cost:44594,on:false},
+    {id:'cf_mw',name:'Millwork + Coffee \u2014 ALT',cost:24656,on:false},
+    {id:'cf_wso',name:'Open Shelving \u2014 Wall Mounted',det:'4\u00d730"W above counter + 2\u00d772"W, 2\u00d730"W above sink',cost:1254,on:true,bv:'low'},
+    {id:'cf_wsc',name:'Wall Cabinets \u2014 Custom Built',det:'2\u00d7custom above counter + 132" custom above sink',cost:7600,on:true,bv:'high'},
+    {id:'cf_coffee',name:'Coffee Table',det:'Custom coffee table for hallway station',cost:1500,on:true,cust:true,cv:''},
+  ],
+  c_es:[
+    {id:'cs_r',name:'Range 36" (Comstock)',cost:4415,on:true,cust:true,cv:''},
+    {id:'cs_sp',name:'Stock Pot x2 (Comstock)',cost:1643,on:true,cust:true,cv:''},
+    {id:'cs_gh',name:'Gas Connector x3',cost:540,on:true},
+    {id:'cs_pf',name:'Pot Filler (Krowne)',cost:215,on:true},
+    {id:'cs_sh',name:'Wire Shelving (3 sets)',cost:1470,on:true},
+    {id:'cs_fr',name:'Refrigerator (True T-23-HC)',cost:4017,on:true,cust:true,cv:''},
+    {id:'cs_fc',name:'Sink Faucets (pre-rinse + wall)',cost:645,on:true},
+    {id:'cs_1c',name:'1-Comp Sink + Faucet',cost:877,on:false},
+    {id:'cs_ic',name:'Ice Maker (Scotsman)',cost:3474,on:false},
+    {id:'cs_gl',name:'Glass Filler',cost:125,on:true},
+    {id:'cs_sr',name:'Shelving + Pot Rack',cost:2179,on:true},
+    {id:'cs_di',name:'Drop-In Sink + Faucet',cost:317,on:true},
+    {id:'cs_cf',name:'Custom SS Cabinets (w/SS tops)',cost:30848,on:false,alt:'cs_cb'},
+    {id:'cs_cb',name:'Cabinet Bases Only \u2014 ALT',cost:25805,on:false,alt:'cs_cf'},
+    {id:'cs_qz',name:'Quartz Countertops \u2014 OPT',cost:11274,on:false},
+    {id:'cs_wso',name:'Open Shelving \u2014 Wall Mounted',det:'4\u00d730"W above counter + 2\u00d772"W, 2\u00d730"W above sink',cost:1254,on:true,bv:'low'},
+    {id:'cs_wsc',name:'Wall Cabinets \u2014 Custom Built',det:'2\u00d7custom above counter + 132" custom above sink',cost:7600,on:true,bv:'high'},
+    {id:'cs_coffee',name:'Coffee Table',det:'Custom coffee table for hallway station',cost:1500,on:true,cust:true,cv:''},
+  ],
+  d_gc:[
+    {id:'d_ba',name:'Morganco Base Proposal',det:'Design (4 mtg + 3D), demo, electrical, plumbing, FRP + SS, QualityBrand cabinetry, Hallmark quartz, backsplash, hardware',cost:68914,on:true},
+    {id:'d_pf',name:'Pot Filler (fixture + plumbing)',cost:1600,on:true},
+    {id:'d_sc',name:'Upgrade to SS Cabinetry',cost:3300,on:true,bv:'high'},
+    {id:'d_os',name:'Open Shelving (SAVINGS)',det:'Save ~$2K-$3K vs closed',cost:-2500,on:false,bv:'low'},
+  ],
+  d_ef:[
+    {id:'df_r',name:'Range 36" (Southbend)',cost:5725,on:true,cust:true,cv:''},
+    {id:'df_sp',name:'Stock Pot x2 (Southbend)',cost:3250,on:true,cust:true,cv:''},
+    {id:'df_pf',name:'Pot Filler (Krowne)',cost:305,on:true},
+    {id:'df_fr',name:'Refrigerator (Turbo Air)',cost:4124,on:true,cust:true,cv:''},
+    {id:'df_sh',name:'Wire Shelving',cost:1040,on:true},
+    {id:'df_ic',name:'Ice Maker (Scotsman)',cost:4238,on:false},
+    {id:'df_gl',name:'Glass Filler',cost:715,on:true},
+    {id:'df_sk',name:'Drop-In Sink + Faucet',cost:328,on:true},
+    {id:'df_wso',name:'Open Shelving \u2014 Wall Mounted',det:'4\u00d730"W above counter + 2\u00d772"W, 2\u00d730"W above sink',cost:1254,on:true,bv:'low'},
+    {id:'df_wsc',name:'Wall Cabinets \u2014 Custom Built',det:'2\u00d7custom above counter + 132" custom above sink',cost:7600,on:true,bv:'high'},
+    {id:'df_coffee',name:'Coffee Table',det:'Custom coffee table for hallway station',cost:1500,on:true,cust:true,cv:''},
+  ],
+  d_es:[
+    {id:'ds_r',name:'Range 36" (Comstock)',cost:4415,on:true,cust:true,cv:''},
+    {id:'ds_sp',name:'Stock Pot x2 (Comstock)',cost:1643,on:true,cust:true,cv:''},
+    {id:'ds_gh',name:'Gas Connector x3',cost:540,on:true},
+    {id:'ds_pf',name:'Pot Filler (Krowne)',cost:215,on:true},
+    {id:'ds_sh',name:'Wire Shelving (3 sets)',cost:1470,on:true},
+    {id:'ds_fr',name:'Refrigerator (True T-23-HC)',cost:4017,on:true,cust:true,cv:''},
+    {id:'ds_fc',name:'Sink Faucets',cost:645,on:true},
+    {id:'ds_1c',name:'1-Comp Sink + Faucet',cost:877,on:true},
+    {id:'ds_ic',name:'Ice Maker (Scotsman)',cost:3474,on:false},
+    {id:'ds_gl',name:'Glass Filler',cost:125,on:true},
+    {id:'ds_sr',name:'Shelving + Pot Rack',cost:2179,on:false},
+    {id:'ds_di',name:'Drop-In Sink + Faucet',cost:317,on:true},
+    {id:'ds_wso',name:'Open Shelving \u2014 Wall Mounted',det:'4\u00d730"W above counter + 2\u00d772"W, 2\u00d730"W above sink',cost:1254,on:true,bv:'low'},
+    {id:'ds_wsc',name:'Wall Cabinets \u2014 Custom Built',det:'2\u00d7custom above counter + 132" custom above sink',cost:7600,on:true,bv:'high'},
+    {id:'ds_coffee',name:'Coffee Table',det:'Custom coffee table for hallway station',cost:1500,on:true,cust:true,cv:''},
+  ],
+};
+const RAW_ON={};
+Object.keys(D).forEach(k=>{D[k].forEach(i=>{RAW_ON[i.id]=i.on;});});
+const B_SCOPE={
+  cook:['b_range_c','b_range_s','b_stock_c','b_stock_s','b_gas'],
+  coffee:['b_coffee_gc','b_coffee'],
+  floor:['b_floor1','b_floor2'],
+};
+const REQUIRED_SELECTION_KEYS=['sink','counter','flooring'];
+const VOTE_STORE_KEY='kpc_kitchen_vote_v1';
+let VOTE_DB={votes:{}};
+
+const S={tab:'introduction',slide:0,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},r7Preset:null,r7ScopeFocus:'2',voteCode:'',voteDraft:{},voteMsg:'',voteImport:''};
+function voteHash(v){
+  let h=2166136261;
+  const s=String(v||'').trim().toLowerCase();
+  for(let i=0;i<s.length;i++){
+    h^=s.charCodeAt(i);
+    h=Math.imul(h,16777619);
+  }
+  return (h>>>0).toString(16).padStart(8,'0');
+}
+function loadVoteDb(){
+  try{
+    const raw=localStorage.getItem(VOTE_STORE_KEY);
+    if(!raw)return;
+    const parsed=JSON.parse(raw);
+    if(parsed&&typeof parsed==='object'&&parsed.votes&&typeof parsed.votes==='object')VOTE_DB=parsed;
+  }catch(_){}
+}
+function saveVoteDb(){
+  try{localStorage.setItem(VOTE_STORE_KEY,JSON.stringify(VOTE_DB));}catch(_){}
+}
+function voteSections(){return DESIGN_SECTIONS.filter(sec=>REQUIRED_SELECTION_KEYS.includes(sec.key));}
+function voteOptionEntries(sec){
+  return sec.images.map((im,idx)=>({idx,im})).filter(o=>!o.im.refOnly);
+}
+function resolvedVoteChoice(sec){
+  const d=S.voteDraft[sec.key];
+  if(isSelectableImage(sec,d))return d;
+  const p=S.picks[sec.key];
+  if(isSelectableImage(sec,p))return p;
+  return undefined;
+}
+function setVoteCode(v){S.voteCode=v;}
+function setVoteDraftChoice(secKey,idx){
+  S.voteDraft[secKey]=idx;
+  S.voteMsg='';
+  render();
+}
+function submitVote(){
+  if(!String(S.voteCode||'').trim()){
+    S.voteMsg=t('voteNeedCode');
+    render();
+    return;
+  }
+  const choices={};
+  const sections=voteSections();
+  for(const sec of sections){
+    const choice=resolvedVoteChoice(sec);
+    if(choice===undefined||!isSelectableImage(sec,choice)){
+      S.voteMsg=t('voteNeedAll');
+      render();
+      return;
+    }
+    choices[sec.key]=choice;
+    S.voteDraft[sec.key]=choice;
+  }
+  const key=voteHash(S.voteCode);
+  if(!VOTE_DB.votes)VOTE_DB.votes={};
+  VOTE_DB.votes[key]={ts:Date.now(),choices};
+  saveVoteDb();
+  S.voteMsg=t('voteSaved');
+  render();
+}
+function voteSummaryData(){
+  const rows=Object.values(VOTE_DB.votes||{});
+  const total=rows.length;
+  const sections=voteSections().map(sec=>{
+    const opts=voteOptionEntries(sec).map(o=>{
+      const count=rows.filter(r=>r&&r.choices&&Number(r.choices[sec.key])===o.idx).length;
+      return{idx:o.idx,name:dsTitle(sec,o.idx),count};
+    });
+    return{key:sec.key,label:dsLabel(sec),opts};
+  });
+  const last=rows.reduce((m,r)=>Math.max(m,Number(r.ts)||0),0);
+  return{total,sections,last};
+}
+function exportVotesJson(){
+  const out=JSON.stringify(VOTE_DB,null,2);
+  S.voteImport=out;
+  S.voteMsg='';
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(out).catch(()=>{});
+  }
+  render();
+}
+function setVoteImport(v){S.voteImport=v;}
+function importVotesJson(){
+  try{
+    const parsed=JSON.parse(S.voteImport||'{}');
+    if(!parsed||typeof parsed!=='object'||!parsed.votes||typeof parsed.votes!=='object')throw new Error('bad');
+    if(!VOTE_DB.votes)VOTE_DB.votes={};
+    Object.keys(parsed.votes).forEach(k=>{
+      const nv=parsed.votes[k];
+      if(!nv||typeof nv!=='object'||!nv.choices)return;
+      const curr=VOTE_DB.votes[k];
+      if(!curr||(Number(nv.ts)||0)>Number(curr.ts||0))VOTE_DB.votes[k]=nv;
+    });
+    saveVoteDb();
+    S.voteMsg=t('voteMergeOk');
+  }catch(_){
+    S.voteMsg=t('voteMergeErr');
+  }
+  render();
+}
+function pickDesign(secKey,imgIdx){
+  if(S.picks[secKey]===imgIdx)delete S.picks[secKey]; else S.picks[secKey]=imgIdx;
+  render();
+}
+function setDesignPick(secKey,imgIdx){
+  S.picks[secKey]=imgIdx;
+  render();
+}
+const expanded={};
+function catKey(slide,sec,cat){return slide+'_'+sec+'_'+cat;}
+function isCatOpen(k){return expanded[k]!==false;}
+
+function find(id){for(const k in D){const f=D[k].find(i=>i.id===id);if(f)return f;}return null;}
+function toggle(id,e){if(e)e.stopPropagation();const it=find(id);if(!it)return;it.on=!it.on;if(it.on&&it.alt){it.alt.split(',').forEach(a=>{const x=find(a.trim());if(x)x.on=false;});}render();}
+function setC(id,v){
+  const it=find(id);if(!it)return;it.cv=v;
+  updateTotals();
+}
+function updateTotals(){
+  const T=getT();
+  const mn=Math.min(...T.map(x=>x.t));
+  const mx=Math.max(...T.map(x=>x.t));
+  document.querySelectorAll('.dc').forEach((el,i)=>{
+    const o=T[i];
+    const dps=el.querySelectorAll('.dp');
+    if(dps[0])dps[0].textContent=fmt(o.t);
+    if(dps[1])dps[1].textContent=fmt(o.tH);
+    const chips=el.querySelectorAll('.chip');
+    if(chips[0])chips[0].textContent=t('gc')+' '+fmt(o.gc);
+    if(chips[1])chips[1].textContent=t('equip')+' '+fmt(o.eq);
+    if(chips[2])chips[2].textContent=(S.contOn?S.contPct+'%':'')+' '+fmt(o.cont);
+    const lt=el.querySelector('.ltag');
+    if(o.t===mn&&o.t>0){if(!lt){const s=document.createElement('span');s.className='ltag';s.textContent=t('lowest');el.appendChild(s);}}
+    else{if(lt)lt.remove();}
+  });
+  document.querySelectorAll('.br').forEach((el,i)=>{
+    const t=T[i];
+    const gp=mx>0?(t.gc/mx)*100:0, ep=mx>0?(t.eq/mx)*100:0;
+    el.querySelector('.bg').style.width=gp+'%';
+    el.querySelector('.bg').textContent=fmt(t.gc);
+    el.querySelector('.be').style.width=ep+'%';
+    el.querySelector('.be').textContent=fmt(t.eq);
+    el.querySelector('.bv').textContent=fmt(t.t);
+  });
+  updateSlideNumbers();
+}
+function updateSlideNumbers(){
+  const T=getT();
+  document.querySelectorAll('.gt').forEach((el,i)=>{
+    const sp=el.querySelectorAll('span');
+    if(sp[1])sp[1].textContent=fmt(T[i].t);
+  });
+  document.querySelectorAll('.pbadge').forEach((el,i)=>{el.textContent=fmt(T[i].t);});
+  document.querySelectorAll('.cont-line').forEach((el,i)=>{
+    const sp=el.querySelectorAll('span');
+    if(sp[1]&&T[i])sp[1].textContent=fmt(T[i].cont);
+  });
+  const sections=[
+    {arr:D.a_gc,idx:0},{arr:D.a_eq,idx:1},
+    {arr:D.b_gc,idx:2},{arr:D.b_eq,idx:3},
+    {arr:D.c_gc,idx:4},{arr:S.agapeEq==='ford'?D.c_ef:D.c_es,idx:5},
+    {arr:D.d_gc,idx:6},{arr:S.morgEq==='ford'?D.d_ef:D.d_es,idx:7},
+  ];
+  const secs=document.querySelectorAll('.sec');
+  secs.forEach((secEl,si)=>{
+    if(!sections[si])return;
+    const arr=sections[si].arr;
+    const tot=sumA(arr), onN=arr.filter(x=>x.on).length;
+    const hdr=secEl.querySelector('.ss');
+    if(hdr)hdr.textContent=onN+'/'+arr.length+' = '+fmt(tot);
+    const sub=secEl.querySelector('.sub');
+    if(sub){const sp=sub.querySelectorAll('span');if(sp[1])sp[1].textContent=fmt(tot);}
+  });
+}
+function iCost(it){if(it.cv&&it.cv!==''&&!isNaN(parseFloat(it.cv)))return parseFloat(it.cv);if(it.lo!==undefined)return S.agapeHi?(it.hi||it.cost):(it.lo||it.cost);return it.cost;}
+function sumA(arr){return arr.reduce((s,i)=>s+(i.on?iCost(i):0),0);}
+function sumV(arr,v){return arr.reduce((s,i)=>{if(!i.on)return s;if(i.bv&&i.bv!==v)return s;return s+iCost(i);},0);}
+function fmt(n){return(n<0?'-$':'$')+Math.abs(Math.round(n)).toLocaleString('en-US');}
+function goTab(t){S.tab=t;render();}
+function goSlide(i){S.slide=i;render();}
+function toggleCat(k){expanded[k]=!isCatOpen(k);render();}
+function setOn(id,on){const it=find(id);if(it)it.on=on;}
+function setR7ScopeFocus(key,doRender=true){
+  const k=String(key||'');
+  if(!R7_ESTIMATE_CARDS.some(c=>c.key===k))return;
+  S.r7ScopeFocus=k;
+  if(doRender)render();
+}
+function resetOptionBToRaw(){
+  [...D.b_gc,...D.b_eq].forEach(it=>{
+    if(RAW_ON[it.id]!==undefined)it.on=RAW_ON[it.id];
+  });
+}
+function applyR7Preset(key,doRender=true){
+  resetOptionBToRaw();
+  // R7 package presets are mapped to Session scope toggles.
+  // Flooring is only toggled through Session Alt #1 ($9,100).
+  if(key==='1'){
+    setOn('b_range_c',true);setOn('b_range_s',false);
+    setOn('b_stock_c',true);setOn('b_stock_s',false);
+    setOn('b_gas',true);
+    setOn('b_coffee_gc',true);setOn('b_coffee',true);
+    setOn('b_floor1',true);setOn('b_floor2',false);
+  }else if(key==='2'){
+    B_SCOPE.cook.forEach(id=>setOn(id,false));
+    B_SCOPE.coffee.forEach(id=>setOn(id,false));
+    setOn('b_floor1',true);setOn('b_floor2',false);
+  }else if(key==='3'){
+    B_SCOPE.cook.forEach(id=>setOn(id,false));
+    B_SCOPE.coffee.forEach(id=>setOn(id,false));
+    B_SCOPE.floor.forEach(id=>setOn(id,false));
+  }
+  S.r7Preset=key;
+  S.r7ScopeFocus=key;
+  S.slide=1;
+  if(doRender)render();
+}
+function resetR7Preset(){
+  resetOptionBToRaw();
+  S.r7Preset=null;
+  S.slide=1;
+  render();
+}
+
+function contRate(){return S.contOn?S.contPct/100:0;}
+function setContPct(v){
+  const n=parseFloat(v);
+  if(!isNaN(n)&&n>=0&&n<=100)S.contPct=n;
+  updateTotals();
+}
+function toggleCont(){S.contOn=!S.contOn;render();}
+function getT(){
+  const agl=sumV(D.a_gc,'low'),ael=sumV(D.a_eq,'low');
+  const agh=sumV(D.a_gc,'high'),aeh=sumV(D.a_eq,'high');
+  const bgl=sumV(D.b_gc,'low'),bel=sumV(D.b_eq,'low');
+  const bgh=sumV(D.b_gc,'high'),beh=sumV(D.b_eq,'high');
+  const cEq=S.agapeEq==='ford'?D.c_ef:D.c_es;
+  const cgl=sumV(D.c_gc,'low'),cel=sumV(cEq,'low');
+  const cgh=sumV(D.c_gc,'high'),ceh=sumV(cEq,'high');
+  const dEq=S.morgEq==='ford'?D.d_ef:D.d_es;
+  const dgl=sumV(D.d_gc,'low'),del_=sumV(dEq,'low');
+  const dgh=sumV(D.d_gc,'high'),deh=sumV(dEq,'high');
+  const cr=contRate();
+  const acl=Math.round((agl+ael)*cr),ach=Math.round((agh+aeh)*cr);
+  const bcl=Math.round((bgl+bel)*cr),bch=Math.round((bgh+beh)*cr);
+  const ccl=Math.round((cgl+cel)*cr),cch=Math.round((cgh+ceh)*cr);
+  const dcl=Math.round((dgl+del_)*cr),dch=Math.round((dgh+deh)*cr);
+  return[
+    {k:'A',l:'KFS + Ford',gc:agl,eq:ael,cont:acl,t:agl+ael+acl,gcH:agh,eqH:aeh,contH:ach,tH:agh+aeh+ach,c:'blue'},
+    {k:'B',l:'Pernikoff + Session',gc:bgl,eq:bel,cont:bcl,t:bgl+bel+bcl,gcH:bgh,eqH:beh,contH:bch,tH:bgh+beh+bch,c:'green'},
+    {k:'C',l:'Agape + '+(S.agapeEq==='ford'?'Ford':'Session'),gc:cgl,eq:cel,cont:ccl,t:cgl+cel+ccl,gcH:cgh,eqH:ceh,contH:cch,tH:cgh+ceh+cch,c:'orange'},
+    {k:'D',l:'Morganco + '+(S.morgEq==='ford'?'Ford':'Session'),gc:dgl,eq:del_,cont:dcl,t:dgl+del_+dcl,gcH:dgh,eqH:deh,contH:dch,tH:dgh+deh+dch,c:'purple'},
+  ];
+}
+
+function rI(it){
+  const off=!it.on;
+  const v=iCost(it);
+  const isC=it.cv&&it.cv!==''&&!isNaN(parseFloat(it.cv));
+  let ch=it.cost<0?`<span class="neg">${fmt(v)}</span>`:fmt(v);
+  if(it.lo!==undefined)ch+=` <span style="font-size:9px;color:var(--g1)">(${fmt(it.lo)}\u2013${fmt(it.hi)})</span>`;
+  let ci='';
+  if(it.cust){ci=`<div class="cinp"><span>${t('customLabel')}</span><input type="text" inputmode="decimal" id="cinp_${it.id}" placeholder="${fmt(it.cost)}" value="${it.cv||''}" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()" oninput="setC('${it.id}',this.value)" onchange="render()" style="${isC?'border-color:var(--black);background:#f5f5f3':''}">${isC?'<span class="clab">'+t('customTag')+'</span><button onclick="event.stopPropagation();find(\''+it.id+'\').cv=\'\';render()" style="border:none;background:rgba(0,0,0,0.06);border-radius:4px;padding:2px 8px;font-size:9px;cursor:pointer;color:var(--g2);margin-left:2px;font-family:var(--font)">\u2715 '+t('clear')+'</button>':''}</div>`;}
+  return`<div class="item ${off?'off':''}"><label class="tog" onclick="event.stopPropagation()"><input type="checkbox" ${it.on?'checked':''} onchange="toggle('${it.id}',event)"><span class="tk"></span><span class="tm"></span></label><div class="iinfo"><div class="iname">${itemName(it)}</div>${it.det?'<div class="idet">'+it.det+'</div>':''}${ci}</div><div class="icost ${it.cost<0?'neg':''}">${ch}</div></div>`;
+}
+
+function rSecGC(title,arr){
+  const tot=sumA(arr), onN=arr.filter(i=>i.on).length;
+  let h=`<div class="sec"><div class="shdr"><h3>${title}</h3><span class="ss">${onN}/${arr.length} = ${fmt(tot)}</span></div>`;
+  arr.forEach(i=>h+=rI(i));
+  h+=`<div class="sub"><span>${t('subtotal')}</span><span>${fmt(tot)}</span></div></div>`;
+  return h;
+}
+
+function rSecEq(title,arr,slideIdx,secKey){
+  const tot=sumA(arr), onN=arr.filter(i=>i.on).length;
+  let h=`<div class="sec"><div class="shdr"><h3>${title}</h3><span class="ss">${onN}/${arr.length} = ${fmt(tot)}</span></div>`;
+  const catOrder=['cooking','fridge','sinks','shelving','wallstorage','countertop','walls'];
+  const assignedIds=new Set();
+  const catItems={};
+  catOrder.forEach(ck=>{
+    const cat=CATS[ck];
+    const idSet=cat['ids_'+secKey]||[];
+    catItems[ck]=arr.filter(i=>idSet.includes(i.id));
+    idSet.forEach(id=>assignedIds.add(id));
+  });
+  const other=arr.filter(i=>!assignedIds.has(i.id));
+  if(other.length) catItems['other']=other;
+  const allCats=[...catOrder];
+  if(other.length) allCats.push('other');
+  allCats.forEach(ck=>{
+    const items=catItems[ck];
+    if(!items||!items.length)return;
+    const cat=ck==='other'?{icon:'\u{1F4CB}',name:t('catOther')}:CATS[ck];
+    const ckey=catKey(slideIdx,secKey,ck);
+    const open=isCatOpen(ckey);
+    const catTot=sumA(items);
+    const catOn=items.filter(i=>i.on).length;
+    const isSplit=(ck==='wallstorage'||ck==='countertop')&&items.some(i=>i.bv==='low')&&items.some(i=>i.bv==='high');
+    h+=`<div class="cat">
+      <div class="cat-hdr" onclick="toggleCat('${ckey}')">
+        <div class="cat-left">
+          <span class="cat-icon">${cat.icon}</span>
+          <span class="cat-name">${t(cat.name)}</span>
+          <span class="cat-count">${catOn}/${items.length}</span>
+        </div>
+        <div class="cat-right">
+          <span class="cat-sum">${fmt(catTot)}</span>
+          <span class="chevron ${open?'open':''}">&#9656;</span>
+        </div>
+      </div>
+      <div class="cat-body ${open?'open':'closed'}" style="max-height:${open?items.length*160+'px':'0'}">`;
+    if(isSplit){
+      const lowItems=items.filter(i=>i.bv==='low');
+      const highItems=items.filter(i=>i.bv==='high');
+      const sharedItems=items.filter(i=>!i.bv);
+      h+=`<div class="cat-split">`;
+      h+=`<div class="cat-split-col"><div class="cat-split-label">${t('openShelving')}</div>`;
+      lowItems.forEach(i=>h+=rI(i));
+      h+=`</div>`;
+      h+=`<div class="cat-split-col"><div class="cat-split-label">${t('cabinets')}</div>`;
+      highItems.forEach(i=>h+=rI(i));
+      h+=`</div>`;
+      if(sharedItems.length){
+        sharedItems.forEach(i=>{h+=`<div class="cat-split-full">${rI(i)}</div>`;});
+      }
+      h+=`</div>`;
+    } else {
+      items.forEach(i=>h+=rI(i));
+    }
+    h+=`</div></div>`;
+  });
+  h+=`<div class="sub"><span>${t('eqSubtotal')}</span><span>${fmt(tot)}</span></div></div>`;
+  return h;
+}
+
+function rIntroPanel(){
+  const ic=INTRO_CONTENT[S.lang]||INTRO_CONTENT.ko;
+  const introBodyOneLine=(ic.introMessage||'').replace(/\s*\n+\s*/g,' ').replace(/\s{2,}/g,' ').trim();
+  const heroTitleHtml=(S.lang==='ko'
+    ?ic.heroTitle
+      .replace('교회 주방 리노베이션 프로젝트','<span class="intro-title-nowrap">교회 주방 리노베이션 프로젝트</span>')
+      .replace(/\n/g,'<br>')
+    :ic.heroTitle.replace(/\n/g,'<br>'));
+  let process='';
+  ic.process.forEach(p=>{
+    process+=`<li><span class="intro-process-title">${p[0]}</span><span class="intro-process-desc">${p[1]}</span></li>`;
+  });
+  let purpose='';
+  ic.purpose.forEach(p=>{
+    purpose+=`<article class="intro-purpose-item"><h4>${p[0]}</h4><p>${p[1]}</p></article>`;
+  });
+  let teamL='',teamR='';
+  ic.teamLeft.forEach(r=>{teamL+=`<div class="intro-team-row"><span>${r[0]}</span><span>${r[1]}</span></div>`;});
+  ic.teamRight.forEach(r=>{teamR+=`<div class="intro-team-row"><span>${r[0]}</span><span>${r[1]}</span></div>`;});
+  return`<div class="intro-wrap">
+    <section class="intro-hero">
+      <div class="intro-hero-body">
+        <div class="intro-kicker">${S.lang==='ko'?'세인트루이스 한인장로교회':'Korean Presbyterian Church · St. Louis'}</div>
+        <h2 class="intro-title">${heroTitleHtml}</h2>
+        <p class="intro-meta">${ic.heroMeta.replace(/\n/g,'<br>')}</p>
+      </div>
+    </section>
+    <section class="intro-card">
+      <h3>${S.lang==='ko'?'인트로':'Introduction'}</h3>
+      <p class="intro-body intro-body-intro">${introBodyOneLine}</p>
+    </section>
+    <section class="intro-card">
+      <h3>${S.lang==='ko'?'팀 소개':'Team Introduction'}</h3>
+      <div class="intro-team-grid">
+        <article class="intro-team-col"><h4>${ic.teamLeftTitle}</h4>${teamL}</article>
+        <article class="intro-team-col"><h4>${ic.teamRightTitle}</h4>${teamR}</article>
+      </div>
+    </section>
+    <section class="intro-card">
+      <h3>${S.lang==='ko'?'프로세스 소개':'Process Overview'}</h3>
+      <ul class="intro-process">${process}</ul>
+    </section>
+    <section class="intro-card">
+      <h3>${S.lang==='ko'?'임시집사회 보고 목적':'Session Briefing Purpose'}</h3>
+      <div class="intro-purpose-list">${purpose}</div>
+    </section>
+  </div>`;
+}
+
+function rPolycamPanel(){
+  const photos=getExistingSpacePhotos();
+  const gallery=photos.map((im,i)=>{
+    return`<button class="ex-photo ex-reveal" onclick="openExistingPhoto(${i})" aria-label="${im.title}">
+    <img src="${encodeURI(im.preview)}?v=1" alt="${im.title}" loading="lazy" decoding="async" fetchpriority="low" onerror="this.onerror=null;this.src='${encodeURI(im.src)}'">
+  </button>`;
+  }).join('');
+  return`<div class="scan-wrap">
+    <div class="scan-head"><h3>${t('lidarTitle')}</h3><span class="scan-tag">Polycam</span></div>
+    <div class="scan-sub">${t('lidarSub')}</div>
+    <div class="scan-shell"><iframe src="${POLYCAM_URL}" title="${t('lidarTitle')}" loading="lazy" allowfullscreen allow="xr-spatial-tracking; fullscreen"></iframe></div>
+    <div class="scan-actions">
+      <span class="scan-help">${t('lidarHelp')}</span>
+      <a class="scan-btn" href="${POLYCAM_URL}" target="_blank" rel="noopener noreferrer">${t('openPolycam')}</a>
+    </div>
+    <section class="ex-gallery">
+      <div class="ex-title">${t('existingPhotosTitle')}</div>
+      <div class="ex-grid">${gallery}</div>
+    </section>
+  </div>`;
+}
+
+function getExistingSpacePhotos(){
+  return EXISTING_SPACE_SRCS.map((src,i)=>({
+    src,
+    preview:EXISTING_SPACE_PREVIEWS[i]||src,
+    title:`${t('existingPhotoLabel')} ${i+1}`,
+    cap:t('existingPhotoCap')
+  }));
+}
+
+function openExistingPhoto(idx){
+  const i=Math.max(0,Math.min(EXISTING_SPACE_SRCS.length-1,Number(idx)||0));
+  lbOpen(getExistingSpacePhotos(),i);
+}
+
+let exRevealObserver=null;
+function initExGalleryReveal(){
+  if(exRevealObserver){exRevealObserver.disconnect();exRevealObserver=null;}
+  const items=Array.from(document.querySelectorAll('.ex-photo.ex-reveal'));
+  if(!items.length)return;
+  if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    items.forEach(el=>el.classList.add('in'));
+    return;
+  }
+  exRevealObserver=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        if(exRevealObserver)exRevealObserver.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+  items.forEach((el,i)=>{
+    el.style.setProperty('--d',`${Math.min(i*34,260)}ms`);
+    exRevealObserver.observe(el);
+  });
+}
+
+
+function rEnscapePanel(){
+  return`<div class="scan-wrap">
+    <div class="scan-head"><h3>${t('enscapeTitle')}</h3><span class="scan-tag">Enscape</span></div>
+    <div class="scan-sub">${t('enscapeSub')}</div>
+    <div class="scan-shell" style="padding-top:56.25%"><iframe src="${ENSCAPE_URL}" title="${t('enscapeTitle')}" loading="lazy" allowfullscreen allow="fullscreen"></iframe></div>
+    <div class="scan-actions">
+      <span class="scan-help">${t('enscapeHelp')}</span>
+      <a class="scan-btn" href="${ENSCAPE_URL}" target="_blank" rel="noopener noreferrer">${t('openChaos')}</a>
+    </div>
+  </div>`;
+}
+
+function goDesignSec(i,fromIntro){
+  const idx=Math.max(0,Math.min(DESIGN_SECTIONS.length-1,Number(i)||0));
+  S.designSec=idx;
+  S.designFocus=!!fromIntro;
+  render();
+  if(fromIntro){
+    requestAnimationFrame(()=>{
+      const el=document.getElementById('design-active-section');
+      if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+      setTimeout(()=>{if(el)el.classList.remove('ds-focus');S.designFocus=false;},750);
+    });
+  }
+}
+function selectableSections(){return DESIGN_SECTIONS.filter(sec=>selectableImageCount(sec)>0);}
+function rDesignPanel(){
+  const sec=DESIGN_SECTIONS[S.designSec];
+  const selectable=selectableSections();
+  const jumpCards=DESIGN_SECTIONS.map((s,i)=>{
+    const img=s.key==='counter'?'Final Renderings/Counter Top Material Option/93%.jpg':s.images[0].src;
+    const isOn=i===S.designSec;
+    const required=REQUIRED_SELECTION_KEYS.includes(s.key);
+    return`<button class="ds-jump-card${isOn?' on':''}" onclick="goDesignSec(${i},true)" aria-pressed="${isOn?'true':'false'}">
+      <img src="${encodeURI(img)}" alt="${dsLabel(s)}" loading="lazy">
+      ${required?`<span class="ds-req">${t('selectionReq')}</span>`:''}
+      <div class="ds-jump-text"><h5>${dsLabel(s)}</h5><span>${dsDesc(s)}</span></div>
+    </button>`;
+  }).join('');
+  // Section content — select buttons only for selectable sections
+  const secIdx=S.designSec;
+  const canSelect=true;
+  let sectionBody='';
+  if(sec.key==='counter'){
+    const colorIdxs=sec.images.map((im,i)=>!im.refOnly?i:null).filter(i=>i!==null);
+    const defaultIdx=colorIdxs.includes(2)?2:(colorIdxs[0]||0);
+    const activeIdx=isSelectableImage(sec,S.picks[sec.key])?S.picks[sec.key]:defaultIdx;
+    const activeIm=sec.images[activeIdx];
+    const colorCards=colorIdxs.map(i=>{
+      const im=sec.images[i];
+      const isOn=activeIdx===i;
+      const btn=`<button class="ds-select-btn" onclick="setDesignPick('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isOn?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isOn?t('selectedLabel'):t('selectThis')}</button>`;
+      return`<article class="counter-color-card ${isOn?'on':''}">
+        <div class="counter-color-img" onclick="setDesignPick('${sec.key}',${i})"><img src="${encodeURI(im.src)}" alt="${dsTitle(sec,i)}" loading="lazy" style="--crop:${im.cropPos||'53% 58%'}"><span class="counter-color-name">${dsTitle(sec,i)}</span></div>
+        <div class="counter-color-actions">${btn}</div>
+      </article>`;
+    }).join('');
+    sectionBody=`<div class="counter-layout">
+      <div class="counter-top-grid">
+        <article class="counter-top-card">
+          <div class="counter-top-img" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,0)"><img src="${encodeURI(sec.images[0].src)}" alt="${dsTitle(sec,0)}" loading="lazy"></div>
+          <div class="counter-top-body"><h4 class="counter-top-title">${dsTitle(sec,0)}</h4><p class="counter-top-desc">${dsCap(sec,0)}</p><span class="ds-ref-tag">${t('refOnly')}</span></div>
+        </article>
+        <article class="counter-top-card">
+          <div class="counter-top-img" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,${activeIdx})"><img src="${encodeURI(activeIm.src)}" alt="${dsTitle(sec,activeIdx)}" loading="lazy"></div>
+          <div class="counter-top-body"><h4 class="counter-top-title">${dsTitle(sec,activeIdx)}</h4><p class="counter-top-desc">${dsCap(sec,activeIdx)}</p></div>
+        </article>
+      </div>
+      <section class="counter-color-wrap">
+        <div class="counter-color-head"><h4>${t('counterColorPick')}</h4><p>${t('counterOptCount')}</p></div>
+        <div class="counter-color-grid">${colorCards}</div>
+      </section>
+    </div>`;
+  }else{
+    const imgs=sec.images.map((im,i)=>{
+      const selectableImg=isSelectableImage(sec,i);
+      const isSel=selectableImg&&S.picks[sec.key]===i;
+      let selBtn='';
+      if(!selectableImg){
+        selBtn=`<span class="ds-ref-tag">${t('refOnly')}</span>`;
+      }else if(canSelect){
+        selBtn=`<button class="ds-select-btn" onclick="pickDesign('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isSel?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isSel?t('selectedLabel'):t('selectThis')}</button>`;
+      }
+      return`<div class="ds-card${isSel?' selected':''}">
+      <div class="ds-img-wrap" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,${i})" style="cursor:pointer"><img src="${encodeURI(im.src)}" alt="${dsTitle(sec,i)}" loading="lazy"><div class="ds-img-hint">${t('clickEnlarge')}</div></div>
+      <div class="ds-caption">
+        <h4 class="ds-img-title">${dsTitle(sec,i)}</h4>
+        <p class="ds-img-desc">${dsCap(sec,i)}</p>
+        ${selBtn}
+      </div>
+    </div>`;
+    }).join('');
+    sectionBody=`<div class="ds-gallery" data-count="${sec.images.length}">${imgs}</div>`;
+  }
+  const pickCount=Object.keys(S.picks).length;
+  const selectableCount=selectable.length;
+  return`<div class="design-wrap">
+    <div class="design-head"><div><h3>${t('designTitle')}</h3><p class="design-sub">${t('designSub')}${pickCount>0?' <strong>'+pickCount+' '+t('of')+' '+selectableCount+' '+t('selected')+'</strong> — '+t('visitDesign')+' <a href="#" onclick="goTab(\'selections\');return false" style="color:var(--black);text-decoration:underline">'+t('viewSelections')+'</a> '+t('tabToStart'):''}</p></div><span class="r3-pill">${sec.images.length} ${t(sec.images.length>1?'renderingsPlural':'renderings')}</span></div>
+    <section class="ds-intro">
+      <h4>${t('designIntroTitle')}</h4>
+      <p>${t('designIntroSub')}</p>
+      <div class="ds-jump-grid">${jumpCards}</div>
+    </section>
+    <div class="ds-sec-head${S.designFocus?' ds-focus':''}" id="design-active-section">
+      <h3 class="ds-sec-title">${dsLabel(sec)}</h3>
+      <p class="ds-sec-desc">${dsDesc(sec)}</p>
+    </div>
+    ${sectionBody}
+  </div>`;
+}
+
+function rSelectionsPanel(){
+  const picks=S.picks;
+  const selectable=selectableSections();
+  const total=selectable.length;
+  const chosen=selectable.filter(s=>picks[s.key]!==undefined).length;
+  let rows='';
+  selectable.forEach(sec=>{
+    const si=DESIGN_SECTIONS.indexOf(sec);
+    if(picks[sec.key]!==undefined&&isSelectableImage(sec,picks[sec.key])){
+      const pickIdx=picks[sec.key];
+      rows+=`<div class="sel-row">
+        <img src="${encodeURI(sec.images[pickIdx].src)}" alt="${dsTitle(sec,pickIdx)}" onclick="lbOpen(DESIGN_SECTIONS[${si}].images,${pickIdx})" title="${t('clickEnlarge')}">
+        <div class="sel-row-info">
+          <div class="sel-row-cat">${dsLabel(sec)}</div>
+          <div class="sel-row-title">${dsTitle(sec,pickIdx)}</div>
+          <div class="sel-row-desc">${dsCap(sec,pickIdx)}</div>
+        </div>
+        <button class="sel-row-clear" onclick="pickDesign('${sec.key}',${pickIdx})">${t('remove')}</button>
+      </div>`;
+    }
+  });
+  // Show unselected categories
+  let missing='';
+  selectable.forEach(sec=>{
+    const si=DESIGN_SECTIONS.indexOf(sec);
+    if(picks[sec.key]===undefined){
+      missing+=`<div class="sel-row" style="opacity:0.45;border-style:dashed">
+        <div style="width:180px;height:120px;background:var(--g6);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:20px;opacity:0.3">?</span></div>
+        <div class="sel-row-info">
+          <div class="sel-row-cat">${dsLabel(sec)}</div>
+          <div class="sel-row-title" style="color:var(--g2)">${t('noSelYet')}</div>
+          <div class="sel-row-desc">${selectableImageCount(sec)} ${t(selectableImageCount(sec)>1?'optAvailable':'optAvailableSingle')}</div>
+        </div>
+        <button class="sel-row-clear" onclick="S.designSec=${si};goTab('design')" style="border-color:var(--black);color:var(--black)">${t('choose')}</button>
+      </div>`;
+    }
+  });
+  return`<div class="sel-wrap">
+    <div class="sel-head"><h3>${t('yourSelections')}</h3><p>${t('selSub')} ${t('selGoTo')} <a href="#" onclick="goTab('design');return false" style="color:var(--black);text-decoration:underline">${t('goToDesign')}</a> ${t('selToMake')}</p></div>
+    <div class="sel-count">${chosen} ${t('of')} ${total} ${t('categoriesSelected')}</div>
+    <div class="sel-grid">${chosen>0?rows:''}${missing}</div>
+    ${chosen===0?'<div class="sel-empty"><div class="sel-empty-icon">\u2610</div>'+t('noSelMade')+'<br>'+t('visitDesign')+' <a href="#" onclick="goTab(\'design\');return false" style="color:var(--black)">'+t('goToDesign')+'</a> '+t('tabToStart')+'</div>':''}
+  </div>`;
+}
+
+function rVotingPanel(){
+  const sections=voteSections();
+  const summary=voteSummaryData();
+  const lastText=summary.last?new Date(summary.last).toLocaleString(): '-';
+  let secHtml='';
+  sections.forEach(sec=>{
+    const choice=resolvedVoteChoice(sec);
+    let opts='';
+    voteOptionEntries(sec).forEach(o=>{
+      const on=choice===o.idx;
+      opts+=`<article class="vote-opt ${on?'on':''}">
+        <div class="vote-opt-img" onclick="setVoteDraftChoice('${sec.key}',${o.idx})"><img src="${encodeURI(o.im.src)}" alt="${dsTitle(sec,o.idx)}" loading="lazy" style="${sec.key==='counter'?'object-position:'+(o.im.cropPos||'53% 58%')+';':''}"></div>
+        <div class="vote-opt-btm">
+          <div class="vote-opt-name">${dsTitle(sec,o.idx)}</div>
+          <button class="vote-opt-btn" onclick="setVoteDraftChoice('${sec.key}',${o.idx})">${on?t('voteSelected'):t('voteSelect')}</button>
+        </div>
+      </article>`;
+    });
+    secHtml+=`<section class="vote-sec"><h4>${dsLabel(sec)}</h4><div class="vote-opt-grid">${opts}</div></section>`;
+  });
+
+  let breakHtml='';
+  summary.sections.forEach(sec=>{
+    let lines='';
+    sec.opts.forEach(o=>{
+      const pct=summary.total?Math.round((o.count/summary.total)*100):0;
+      lines+=`<div><div class="vote-line"><span>${o.name}</span><strong>${o.count} (${pct}%)</strong></div><div class="vote-bar"><span style="width:${pct}%"></span></div></div>`;
+    });
+    breakHtml+=`<div class="vote-break"><h4>${sec.label}</h4>${lines}</div>`;
+  });
+
+  return`<div class="vote-wrap">
+    <section class="vote-card">
+      <h3>${t('voteTitle')}</h3>
+      <p class="vote-sub">${t('voteSub')}</p>
+      <div class="vote-code">
+        <label>${t('voteCode')}</label>
+        <input type="text" value="${S.voteCode||''}" oninput="setVoteCode(this.value)" placeholder="${t('voteCodePlaceholder')}">
+        <small>${t('voteCodeHint')}</small>
+      </div>
+      <div class="vote-sections">${secHtml}</div>
+      <div class="vote-actions">
+        <button class="vote-submit" onclick="submitVote()">${t('voteSubmit')}</button>
+        <span class="vote-msg">${S.voteMsg||''}</span>
+      </div>
+    </section>
+    <aside class="vote-summary-box">
+      <h3>${t('voteSummary')}</h3>
+      <div class="vote-stat"><span>${t('voteTotal')}</span><strong>${summary.total}</strong></div>
+      <div class="vote-stat"><span>${t('voteLast')}</span><strong>${lastText}</strong></div>
+      ${breakHtml}
+      <div class="vote-io">
+        <div class="vote-io-actions">
+          <button class="primary" onclick="exportVotesJson()">${t('voteExport')}</button>
+          <button onclick="importVotesJson()">${t('voteImport')}</button>
+        </div>
+        <small style="font-size:11px;color:var(--g1)">${t('voteImportHint')}</small>
+        <textarea oninput="setVoteImport(this.value)" placeholder="{\"votes\":{...}}">${S.voteImport||''}</textarea>
+      </div>
+    </aside>
+  </div>`;
+}
+
+function rFloorPlanPanel(){
+  const floorSrc=FLOOR_PLAN_RENDER_SRC;
+  const floorSub=t('floorSub');
+  const floorTip=t('floorTip');
+  return`<div class="floor-wrap">
+    <div class="floor-head"><div><h3>${t('floorTitle')}</h3>${floorSub?`<p class="floor-sub">${floorSub}</p>`:''}</div><span class="scan-tag">${t('rendered')} (R7)</span></div>
+    <div class="floor-static"><img src="${encodeURI(floorSrc)}" alt="${t('floorTitle')}" loading="lazy"></div>
+    ${floorTip?`<div class="floor-help">${floorTip}</div>`:''}
+  </div>`;
+}
+
+// ===== PRESENTATION VIEWER =====
+const PRES_TOTAL=24;
+const PRES_BASE='presentation-r7/slide-';
+const PRES_SECTIONS=[
+  {label:'표지',labelEn:'Cover',page:0},
+  {label:'인트로',labelEn:'Intro',page:1},
+  {label:'팀 소개',labelEn:'Team',page:2},
+  {label:'프로세스',labelEn:'Process',page:3},
+  {label:'보고 목적',labelEn:'Purpose',page:4},
+  {label:'프로젝트 범위',labelEn:'Scope',page:5},
+  {label:'싱크대',labelEn:'Sink',page:7},
+  {label:'카운터/캐비넷',labelEn:'Counter/Cabinet',page:10},
+  {label:'가스레인지/오븐',labelEn:'Stove/Oven',page:13},
+  {label:'벽면 패널',labelEn:'Wall Panels',page:15},
+  {label:'커피 스테이션',labelEn:'Coffee Station',page:16},
+  {label:'바닥재',labelEn:'Flooring',page:19},
+  {label:'종합 제안',labelEn:'Integrated Proposal',page:22},
+  {label:'예산별 시공안',labelEn:'Budget Options',page:23},
+];
+
+// Preload next/prev images
+function presPreload(pg){
+  [pg-1,pg+1,pg+2].forEach(i=>{
+    if(i>=0&&i<PRES_TOTAL){const img=new Image();img.src=presSlideUrl(i);}
+  });
+}
+
+function presSlideUrl(i){
+  const n=String(i+1).padStart(2,'0');
+  return PRES_BASE+n+'.jpg';
+}
+
+// Find which section a page belongs to
+function presSectionForPage(pg){
+  let found=PRES_SECTIONS[0];
+  for(const s of PRES_SECTIONS){if(s.page<=pg)found=s;else break;}
+  return found;
+}
+
+const PRES_NOTES_KEY='kpc_r7_pres_notes_v1';
+function presLoadNotes(){
+  try{
+    const raw=localStorage.getItem(PRES_NOTES_KEY);
+    if(!raw)return {};
+    const parsed=JSON.parse(raw);
+    return parsed&&typeof parsed==='object'?parsed:{};
+  }catch(_){return {};}
+}
+function presSaveNotes(){
+  try{localStorage.setItem(PRES_NOTES_KEY,JSON.stringify(S.presNotes||{}));}catch(_){}
+}
+S.presNotes=presLoadNotes();
+function presNotesFor(pg){
+  return (S.presNotes&&Array.isArray(S.presNotes[pg]))?S.presNotes[pg]:[];
+}
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+function rPresNotesItems(pg){
+  const notes=presNotesFor(pg);
+  if(!notes.length)return `<div class="pres-note-empty">${t('presNotesEmpty')}</div>`;
+  return notes.map((n,i)=>`<article class="pres-note-item">
+    <p>${escapeHtml(n.text)}</p>
+    <div class="pres-note-meta"><span>${escapeHtml(n.ts||'')}</span><button class="pres-note-del" onclick="deletePresNote(${pg},${i})">${t('presDelete')}</button></div>
+  </article>`).join('');
+}
+function refreshPresNotesPanel(){
+  const body=document.getElementById('pres-notes-body');
+  if(body)body.innerHTML=rPresNotesItems(S.presPage);
+  const count=document.getElementById('pres-note-count');
+  if(count)count.textContent=String(presNotesFor(S.presPage).length);
+  const sub=document.getElementById('pres-notes-sub');
+  if(sub)sub.textContent=(S.lang==='ko'?'슬라이드 ':'Slide ')+(S.presPage+1)+' · '+t('presSaved')+' '+presNotesFor(S.presPage).length;
+}
+function togglePresNotes(){
+  S.presNotesOpen=!S.presNotesOpen;
+  const panel=document.getElementById('pres-notes');
+  const backdrop=document.getElementById('pres-notes-backdrop');
+  const btn=document.getElementById('pres-notes-toggle');
+  if(panel)panel.classList.toggle('open',S.presNotesOpen);
+  if(backdrop)backdrop.classList.toggle('open',S.presNotesOpen);
+  if(btn)btn.classList.toggle('active',S.presNotesOpen);
+}
+function focusPresNoteInput(){
+  const input=document.getElementById('pres-note-input');
+  if(input){input.focus();input.select();}
+}
+function addPresNote(){
+  const input=document.getElementById('pres-note-input');
+  if(!input)return;
+  const txt=(input.value||'').trim();
+  if(!txt)return;
+  if(!S.presNotes[S.presPage])S.presNotes[S.presPage]=[];
+  S.presNotes[S.presPage].push({text:txt,ts:new Date().toLocaleString()});
+  input.value='';
+  presSaveNotes();
+  refreshPresNotesPanel();
+}
+function deletePresNote(pg,idx){
+  if(!S.presNotes[pg])return;
+  S.presNotes[pg].splice(idx,1);
+  if(!S.presNotes[pg].length)delete S.presNotes[pg];
+  presSaveNotes();
+  refreshPresNotesPanel();
+}
+function exportPresNotes(){
+  const pages=Object.keys(S.presNotes||{}).map(n=>parseInt(n,10)).sort((a,b)=>a-b);
+  if(!pages.length)return;
+  let out=(S.lang==='ko'?'R7 발표 메모':'R7 Presentation Notes')+'\n\n';
+  pages.forEach(p=>{
+    out+=`${S.lang==='ko'?'슬라이드':'Slide'} ${p+1}\n`;
+    (S.presNotes[p]||[]).forEach((n,i)=>{out+=`${i+1}. ${n.text} (${n.ts||''})\n`;});
+    out+='\n';
+  });
+  const blob=new Blob([out],{type:'text/plain;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='r7-presentation-notes.txt';
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
+
+function rPresentationPanel(){
+  const pg=S.presPage;
+  const sideOpen=S.presSidebarOpen;
+  const lang=S.lang;
+  const curSec=presSectionForPage(pg);
+
+  // Build TOC
+  let toc='<div class="pres-sidebar-header"><p class="pres-sidebar-title">'+(lang==='ko'?'목차':'TABLE OF CONTENTS')+'</p></div>';
+  toc+='<ul class="pres-toc">';
+  for(let i=0;i<PRES_TOTAL;i++){
+    const sec=PRES_SECTIONS.find(s=>s.page===i);
+    if(sec) toc+=`<li class="pres-toc-section">${lang==='ko'?sec.label:sec.labelEn}</li>`;
+    const secLabel=sec?(lang==='ko'?sec.label:sec.labelEn):'';
+    toc+=`<li><button class="${i===pg?'on':''}" onclick="goPresPage(${i})" data-pg="${i}"><span class="pg-num">${i+1}</span><img class="pres-thumb" src="${presSlideUrl(i)}" loading="lazy" alt=""><span class="pres-toc-label">${secLabel}</span></button></li>`;
+  }
+  toc+='</ul>';
+
+  const prevDis=pg<=0?' disabled':'';
+  const nextDis=pg>=PRES_TOTAL-1?' disabled':'';
+  const sectionLabel=lang==='ko'?curSec.label:curSec.labelEn;
+
+  return`<div class="pres-wrap controls-visible" id="pres-wrap">
+    <div class="pres-sidebar${sideOpen?'':' hidden'}" id="pres-sidebar">${toc}</div>
+    <div class="pres-overlay${sideOpen?' show':''}" id="pres-overlay" onclick="togglePresSidebar()"></div>
+    <div class="pres-main${sideOpen?'':' expanded'}" id="pres-main">
+      <div class="pres-header">
+        <div class="pres-hdr-left">
+          <button class="pres-icon-btn${sideOpen?' active':''}" onclick="togglePresSidebar()" title="Toggle sidebar">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="14" y2="12"/></svg>
+          </button>
+          <span class="pres-title">${sectionLabel} &mdash; ${pg+1}/${PRES_TOTAL}</span>
+        </div>
+        <div class="pres-hdr-right">
+          <button class="pres-icon-btn${S.presNotesOpen?' active':''}" id="pres-notes-toggle" onclick="togglePresNotes()" title="${t('presNotes')}">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            <span class="pres-note-count" id="pres-note-count">${presNotesFor(pg).length}</span>
+          </button>
+          <button class="pres-icon-btn" onclick="togglePresFullscreen()" title="Fullscreen (F)">
+            <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="5 1 1 1 1 5"/><polyline points="11 1 15 1 15 5"/><polyline points="5 15 1 15 1 11"/><polyline points="11 15 15 15 15 11"/></svg>
+          </button>
+          <button class="pres-icon-btn danger" onclick="goTab('introduction')" title="${t('closePresentation')}">✕</button>
+        </div>
+      </div>
+      <button class="pres-nav-arrow pres-nav-prev${prevDis}" onclick="presPrev()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="pres-nav-arrow pres-nav-next${nextDis}" onclick="presNext()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
+      <div class="pres-stage" id="pres-stage">
+        <div class="pres-stage-inner" id="pres-inner">
+          <img id="pres-img" class="pres-transitioning" src="${presSlideUrl(pg)}" alt="Slide ${pg+1}" draggable="false">
+        </div>
+      </div>
+      <div class="pres-controls">
+        <button class="pres-btn${prevDis}" onclick="presFirst()" title="First page">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="19 20 9 12 19 4"/><line x1="5" y1="4" x2="5" y2="20"/></svg>
+        </button>
+        <button class="pres-btn${prevDis}" onclick="presPrev()" title="Previous (←)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span class="pres-page-info">${pg+1} / ${PRES_TOTAL}</span>
+        <button class="pres-btn${nextDis}" onclick="presNext()" title="Next (→)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
+        </button>
+        <button class="pres-btn${nextDis}" onclick="presLast()" title="Last page">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 4 15 12 5 20"/><line x1="19" y1="4" x2="19" y2="20"/></svg>
+        </button>
+        <div class="pres-divider"></div>
+        <button class="pres-btn" onclick="presZoom(0.8)" title="Zoom out (−)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </button>
+        <span class="pres-zoom-info" id="pres-zoom-label">${Math.round(S.presZoom*100)}%</span>
+        <button class="pres-btn" onclick="presZoom(1.25)" title="Zoom in (+)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+        </button>
+        <button class="pres-btn" onclick="presResetZoom()" title="Reset zoom (0)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+        </button>
+      </div>
+      <div class="pres-notes-backdrop${S.presNotesOpen?' open':''}" id="pres-notes-backdrop" onclick="togglePresNotes()"></div>
+      <aside class="pres-notes${S.presNotesOpen?' open':''}" id="pres-notes">
+        <div class="pres-notes-head">
+          <div>
+            <h4>${t('presNotes')}</h4>
+            <div class="pres-notes-sub" id="pres-notes-sub">${S.lang==='ko'?'슬라이드 ':'Slide '}${pg+1} · ${t('presSaved')} ${presNotesFor(pg).length}</div>
+          </div>
+          <div class="pres-notes-actions">
+            <button class="pres-notes-btn" onclick="exportPresNotes()">${t('presNotesExport')}</button>
+            <button class="pres-notes-btn" onclick="togglePresNotes()">✕</button>
+          </div>
+        </div>
+        <div class="pres-notes-body" id="pres-notes-body">${rPresNotesItems(pg)}</div>
+        <div class="pres-notes-form">
+          <textarea id="pres-note-input" placeholder="${t('presNotesHint')}"></textarea>
+          <div class="pres-notes-form-row">
+            <span class="pres-notes-hint">${t('presNotesHotkey')}</span>
+            <button class="pres-notes-add" onclick="addPresNote()">${t('presNotesAdd')}</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>`;
+}
+
+function presNext(){goPresPage(S.presPage+1);}
+function presPrev(){goPresPage(S.presPage-1);}
+function presFirst(){goPresPage(0);}
+function presLast(){goPresPage(PRES_TOTAL-1);}
+
+function goPresPage(i){
+  const newPg=Math.max(0,Math.min(PRES_TOTAL-1,i));
+  if(newPg===S.presPage&&document.getElementById('pres-img'))return;
+  S.presPage=newPg;
+  S.presZoom=1;S.presPanX=0;S.presPanY=0;
+  // Fast DOM update — no full re-render
+  const img=document.getElementById('pres-img');
+  if(img){
+    img.src=presSlideUrl(newPg);
+  }else{
+    // No img yet — need full render
+    render();return;
+  }
+  // Update page info
+  const info=document.querySelector('.pres-page-info');
+  if(info)info.textContent=(newPg+1)+' / '+PRES_TOTAL;
+  // Update section label
+  const sec=presSectionForPage(newPg);
+  const titleEl=document.querySelector('.pres-title');
+  if(titleEl)titleEl.textContent=(S.lang==='ko'?sec.label:sec.labelEn)+' \u2014 '+(newPg+1)+'/'+PRES_TOTAL;
+  // Update TOC
+  document.querySelectorAll('.pres-toc li button').forEach(btn=>{
+    btn.classList.toggle('on',parseInt(btn.dataset.pg)===newPg);
+  });
+  const sidebar=document.getElementById('pres-sidebar');
+  const activeBtn=sidebar?.querySelector('.pres-toc li button.on');
+  if(activeBtn&&sidebar)activeBtn.scrollIntoView({block:'nearest',behavior:'smooth'});
+  // Arrows
+  document.querySelectorAll('.pres-nav-prev').forEach(el=>el.classList.toggle('disabled',newPg<=0));
+  document.querySelectorAll('.pres-nav-next').forEach(el=>el.classList.toggle('disabled',newPg>=PRES_TOTAL-1));
+  applyPresZoom();
+  refreshPresNotesPanel();
+  presPreload(newPg);
+  // Show controls briefly on page change
+  const wrap=document.getElementById('pres-wrap');
+  if(wrap){wrap.classList.add('controls-visible');clearTimeout(window._presCtrlTimer);window._presCtrlTimer=setTimeout(()=>wrap.classList.remove('controls-visible'),2000);}
+}
+
+function presZoom(factor){
+  S.presZoom=Math.max(0.25,Math.min(5,S.presZoom*factor));
+  applyPresZoom();
+}
+function presResetZoom(){
+  S.presZoom=1;S.presPanX=0;S.presPanY=0;
+  applyPresZoom();
+}
+function applyPresZoom(){
+  const inner=document.getElementById('pres-inner');
+  const label=document.getElementById('pres-zoom-label');
+  if(inner){
+    inner.style.transform=S.presZoom===1&&S.presPanX===0&&S.presPanY===0?'none':`translate(${S.presPanX}px,${S.presPanY}px) scale(${S.presZoom})`;
+    const stage=document.getElementById('pres-stage');
+    if(stage)stage.style.cursor=S.presZoom>1.05?'grab':'default';
+  }
+  if(label)label.textContent=Math.round(S.presZoom*100)+'%';
+}
+
+function togglePresSidebar(){
+  S.presSidebarOpen=!S.presSidebarOpen;
+  const sb=document.getElementById('pres-sidebar');
+  const main=document.getElementById('pres-main');
+  const overlay=document.getElementById('pres-overlay');
+  if(sb){
+    sb.classList.toggle('hidden',!S.presSidebarOpen);
+    sb.classList.toggle('show-mobile',S.presSidebarOpen);
+  }
+  if(main)main.classList.toggle('expanded',!S.presSidebarOpen);
+  if(overlay)overlay.classList.toggle('show',S.presSidebarOpen);
+  // Update sidebar toggle button active state
+  const toggleBtn=document.querySelector('.pres-hdr-left .pres-icon-btn');
+  if(toggleBtn)toggleBtn.classList.toggle('active',S.presSidebarOpen);
+}
+
+function togglePresFullscreen(){
+  const wrap=document.getElementById('pres-wrap');
+  if(!wrap)return;
+  if(document.fullscreenElement){
+    document.exitFullscreen().catch(()=>{});
+  }else{
+    (wrap.requestFullscreen||wrap.webkitRequestFullscreen||wrap.msRequestFullscreen).call(wrap).catch(()=>{});
+  }
+}
+
+const _presPan={active:false,sx:0,sy:0,ox:0,oy:0};
+function initPresViewer(){
+  const stage=document.getElementById('pres-stage');
+  if(!stage)return;
+  // Wheel handler
+  stage.addEventListener('wheel',(e)=>{
+    e.preventDefault();
+    if(e.shiftKey&&S.presZoom>1.05){
+      S.presPanX-=(e.deltaX||0);
+      S.presPanY-=(e.deltaY||0);
+      applyPresZoom();
+      return;
+    }
+    const factor=e.deltaY<0?1.1:0.9;
+    S.presZoom=Math.max(0.25,Math.min(5,S.presZoom*factor));
+    applyPresZoom();
+  },{passive:false});
+  // Pan with pointer drag
+  stage.addEventListener('pointerdown',(e)=>{
+    if(S.presZoom<=1.05)return;
+    _presPan.active=true;_presPan.sx=e.clientX;_presPan.sy=e.clientY;
+    _presPan.ox=S.presPanX;_presPan.oy=S.presPanY;
+    stage.classList.add('dragging');
+    stage.setPointerCapture(e.pointerId);
+  });
+  stage.addEventListener('pointermove',(e)=>{
+    if(!_presPan.active)return;
+    S.presPanX=_presPan.ox+(e.clientX-_presPan.sx);
+    S.presPanY=_presPan.oy+(e.clientY-_presPan.sy);
+    applyPresZoom();
+  });
+  const endPan=(e)=>{
+    if(!_presPan.active)return;
+    _presPan.active=false;
+    stage.classList.remove('dragging');
+  };
+  stage.addEventListener('pointerup',endPan);
+  stage.addEventListener('pointercancel',endPan);
+  applyPresZoom();
+  presPreload(S.presPage);
+  // Auto-hide controls after 3s of no mouse movement
+  let hideTimer;
+  const wrap=document.getElementById('pres-wrap');
+  if(wrap){
+    wrap.addEventListener('mousemove',()=>{
+      wrap.classList.add('controls-visible');
+      clearTimeout(hideTimer);
+      hideTimer=setTimeout(()=>wrap.classList.remove('controls-visible'),3000);
+    });
+  }
+}
+
+// Keyboard navigation — single global handler
+document.addEventListener('keydown',(e)=>{
+  if(S.tab!=='presentation')return;
+  if(e.target.tagName==='INPUT'||e.target.tagName==='TEXTAREA')return;
+  switch(e.key){
+    case 'ArrowRight':case 'ArrowDown':case ' ':case 'PageDown':
+      e.preventDefault();goPresPage(S.presPage+1);break;
+    case 'ArrowLeft':case 'ArrowUp':case 'PageUp':
+      e.preventDefault();goPresPage(S.presPage-1);break;
+    case 'Home':e.preventDefault();goPresPage(0);break;
+    case 'End':e.preventDefault();goPresPage(PRES_TOTAL-1);break;
+    case '+':case '=':e.preventDefault();presZoom(1.25);break;
+    case '-':e.preventDefault();presZoom(0.8);break;
+    case '0':e.preventDefault();presResetZoom();break;
+    case 'f':case 'F':e.preventDefault();togglePresFullscreen();break;
+    case 'Escape':
+      if(document.fullscreenElement)document.exitFullscreen();
+      else goTab('introduction');
+      e.preventDefault();break;
+    case 's':case 'S':e.preventDefault();togglePresSidebar();break;
+    case 'n':case 'N':
+      if(e.shiftKey){
+        e.preventDefault();
+        if(!S.presNotesOpen)togglePresNotes();
+        setTimeout(focusPresNoteInput,40);
+      }
+      break;
+    case 'c':case 'C':
+      e.preventDefault();togglePresNotes();break;
+  }
+});
+
+function trObj(v){
+  if(v&&typeof v==='object')return v[S.lang]||v.ko||v.en||'';
+  return v||'';
+}
+function scopeStateClass(st){return st==='in'||st==='adj'||st==='phase'?st:'out';}
+function scopeStateLabel(st){
+  if(st==='in')return t('r7ScopeLegendIn');
+  if(st==='adj')return t('r7ScopeLegendAdj');
+  if(st==='phase')return t('r7ScopeLegendPhase');
+  return t('r7ScopeLegendOut');
+}
+function rR7ScopeBadges(card){
+  return R7_SCOPE_CATS.map(cat=>{
+    const st=(card.scope&&card.scope[cat.key])||'out';
+    return `<span class="est-scope-dot ${scopeStateClass(st)}">${cat.key} · ${scopeStateLabel(st)}</span>`;
+  }).join('');
+}
+function rR7ScopeOverview(){
+  const focusKey=S.r7ScopeFocus||'2';
+  const focusCard=R7_ESTIMATE_CARDS.find(c=>c.key===focusKey)||R7_ESTIMATE_CARDS[1];
+  const catCards=R7_SCOPE_CATS.map(cat=>{
+    const lbl=trObj(cat.label);
+    const st=(focusCard.scope&&focusCard.scope[cat.key])||'out';
+    return `<article class="est-scope-cat ${scopeStateClass(st)}">
+      <span class="est-scope-state est-scope-dot ${scopeStateClass(st)}">${scopeStateLabel(st)}</span>
+      <img src="${encodeURI(cat.img)}" alt="${lbl}" loading="lazy">
+      <div class="est-scope-cap"><strong>${cat.key}</strong>${lbl.replace(/^\d+\.\s*/,'')}</div>
+    </article>`;
+  }).join('');
+  const matrixRows=R7_SCOPE_CATS.map(cat=>{
+    const c1=R7_ESTIMATE_CARDS[0],c2=R7_ESTIMATE_CARDS[1],c3=R7_ESTIMATE_CARDS[2];
+    const s1=(c1.scope&&c1.scope[cat.key])||'out';
+    const s2=(c2.scope&&c2.scope[cat.key])||'out';
+    const s3=(c3.scope&&c3.scope[cat.key])||'out';
+    return `<tr>
+      <td>${trObj(cat.label)}</td>
+      <td class="${focusKey==='1'?'focus-col':''}"><span class="est-scope-dot ${scopeStateClass(s1)}">${scopeStateLabel(s1)}</span></td>
+      <td class="${focusKey==='2'?'focus-col':''}"><span class="est-scope-dot ${scopeStateClass(s2)}">${scopeStateLabel(s2)}</span></td>
+      <td class="${focusKey==='3'?'focus-col':''}"><span class="est-scope-dot ${scopeStateClass(s3)}">${scopeStateLabel(s3)}</span></td>
+    </tr>`;
+  }).join('');
+  return `<section class="est-scope">
+    <div class="est-scope-head">
+      <div><h3>${t('r7ScopeTitle')}</h3><p class="est-scope-sub">${t('r7ScopeSub')}<br>${t('r7ScopeHint')} <strong>${t('r7ScopeActive')}: ${trObj(focusCard.title)}</strong></p></div>
+    </div>
+    <div class="est-scope-cats">${catCards}</div>
+    <div class="est-scope-matrix">
+      <table>
+        <thead><tr><th>${S.lang==='ko'?'카테고리':'Category'}</th><th class="${focusKey==='1'?'focus-col':''}">${S.lang==='ko'?'제1안':'Option 1'}</th><th class="${focusKey==='2'?'focus-col':''}">${S.lang==='ko'?'제2안':'Option 2'}</th><th class="${focusKey==='3'?'focus-col':''}">${S.lang==='ko'?'제3안':'Option 3'}</th></tr></thead>
+        <tbody>${matrixRows}</tbody>
+      </table>
+    </div>
+  </section>`;
+}
+function scrollEstimateDetails(){
+  const el=document.getElementById('detailed-estimates');
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+function rR7EstimateSummary(){
+  let cards='';
+  R7_ESTIMATE_CARDS.forEach(c=>{
+    const on=S.r7Preset===c.key;
+    const focus=S.r7ScopeFocus===c.key;
+    cards+=`<article class="est-r7-card ${on?'on':''} ${focus?'focus':''}" onclick="applyR7Preset('${c.key}')">
+      <h4>${trObj(c.title)}</h4>
+      <p>${trObj(c.desc)}</p>
+      <p class="est-r7-list">${trObj(c.items)}</p>
+      <div class="est-r7-scope-badges">${rR7ScopeBadges(c)}</div>
+      <div class="est-r7-range">${c.range}<small>${c.rangeEn}</small></div>
+      <div class="est-r7-card-actions">
+        <button class="est-r7-preset-btn ${on?'on':''}" onclick="event.stopPropagation();applyR7Preset('${c.key}')">${on?t('r7Applied'):t('r7ApplyPreset')}</button>
+      </div>
+    </article>`;
+  });
+  return`${rR7ScopeOverview()}<section class="est-r7">
+    <h3>${t('r7EstTitle')}</h3>
+    <p class="est-r7-sub">${t('r7EstSub')}</p>
+    <p class="est-r7-hint">${t('r7PresetHint')}</p>
+    <div class="est-r7-grid">${cards}</div>
+    <div class="est-r7-actions">
+      <button class="est-r7-btn ghost" onclick="resetR7Preset()">${t('r7ResetRaw')}</button>
+      <button class="est-r7-btn" onclick="scrollEstimateDetails()">${t('r7OpenDetail')}</button>
+    </div>
+  </section>`;
+}
+
+// ===== MAIN RENDER =====
+function render(){
+  normalizePicks();
+  const T=getT();
+  const mn=Math.min(...T.map(x=>x.t));
+  const mx=Math.max(...T.map(x=>x.t));
+  let h='';
+
+  // Update header tabs
+  const tabsEl=document.getElementById('header-tabs');
+  if(tabsEl){
+    const tabs=[
+      {k:'introduction',l:t('introduction')},
+      {k:'design',l:t('design')},
+      {k:'floorplan',l:t('floorplan')},
+      {k:'polycam',l:t('polycam')},
+      {k:'enscape',l:t('enscape')},
+      {k:'selections',l:t('selections')+(Object.keys(S.picks).length>0?' ('+Object.keys(S.picks).length+'/'+selectableSections().length+')':'')},
+      {k:'voting',l:t('voting')},
+      {k:'presentation',l:t('presentation')},
+      {k:'estimates',l:t('estimates')},
+    ];
+    tabsEl.innerHTML=tabs.map(tb=>`<button class="gtab ${S.tab===tb.k?'on':''}" onclick="goTab('${tb.k}')">${tb.l}</button>`).join('');
+  }
+
+  if(S.tab==='introduction'){
+    h+=rIntroPanel();
+  }else if(S.tab==='estimates'){
+    h+=rR7EstimateSummary();
+    h+=`<section id="detailed-estimates" class="est-source"><div class="est-source-head"><h3>${t('r7SourceTitle')}</h3><p>${t('r7SourceSub')}</p></div>`;
+    h+=`<div class="dash">`;
+    T.forEach((o,i)=>{
+      const low=o.t===mn&&o.t>0;
+      h+=`<div class="dc ${o.c} ${S.slide===i?'on':''}" onclick="goSlide(${i})">
+        ${low?'<span class="ltag">'+t('lowest')+'</span>':''}
+        <div class="dk"><span class="dot ${o.c}"></span>${t('opt'+o.k)}</div>
+        <div class="dn">${o.l}</div>
+        <div class="dp-wrap-low"><div class="dp-label">${t('openShelving')}</div><div class="dp">${fmt(o.t)}</div></div>
+        <div class="dp-wrap-high"><div class="dp-label">${t('cabinets')}</div><div class="dp">${fmt(o.tH)}</div></div>
+        <div class="dd"><span class="chip">${t('gc')} ${fmt(o.gc)}</span><span class="chip">${t('equip')} ${fmt(o.eq)}</span><span class="chip">${S.contOn?S.contPct+'%':''} ${fmt(o.cont)}</span></div>
+      </div>`;
+    });
+    h+=`</div>`;
+
+    h+=`<div class="bars"><h3>${t('visualComp')}</h3>`;
+    T.forEach(o=>{
+      const gp=mx>0?(o.gc/mx)*100:0, ep=mx>0?(o.eq/mx)*100:0;
+      h+=`<div class="br"><div class="bl">${o.k}: ${o.l.split('+')[0].trim()}</div><div class="bt"><div class="bg bb" style="width:${gp}%">${fmt(o.gc)}</div><div class="be bb" style="width:${ep}%">${fmt(o.eq)}</div></div><div class="bv">${fmt(o.t)}</div></div>`;
+    });
+    h+=`</div>`;
+
+    // Contingency control
+    h+=`<div class="cont-ctrl">
+      <label class="tog" onclick="event.stopPropagation()"><input type="checkbox" ${S.contOn?'checked':''} onchange="toggleCont()"><span class="tk"></span><span class="tm"></span></label>
+      <span class="cont-label">${t('contingency')}</span>
+      <div class="cont-input-wrap">
+        <input type="text" inputmode="decimal" class="cont-inp" value="${S.contPct}" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()" oninput="setContPct(this.value)" ${S.contOn?'':'disabled'} style="${S.contOn?'':'opacity:0.35'}">
+        <span class="cont-pct">%</span>
+      </div>
+      <span class="cont-amt" style="${S.contOn?'':'opacity:0.35'}">${S.contOn?t('adds')+' '+fmt(T[S.slide].cont)+' '+t('toOption')+' '+T[S.slide].k:t('off')}</span>
+    </div>`;
+
+    h+=`<div class="cvp"><div class="ctr" style="transform:translateX(-${S.slide*100}%)">`;
+
+    // SLIDE A
+    h+=`<div class="csl"><div class="ocard"><div class="ohdr blue"><div class="tr"><h2>${t('slideA')}</h2><span class="pbadge blue">${fmt(T[0].t)}</span></div></div><div class="obody">`;
+    h+=rSecGC(t('gcKFS'),D.a_gc);
+    h+=`<div class="note">${t('noteA')}</div>`;
+    h+=rSecEq(t('eqFord'),D.a_eq,0,'a');
+    h+=`<div class="note">${t('noteAeq')}</div>`;
+    h+=`<div class="sub cont-line" style="${S.contOn?'':'opacity:0.35'}"><span>${t('contingency')} (${S.contOn?S.contPct+'%':t('off')})</span><span>${fmt(T[0].cont)}</span></div>`;
+    h+=`<div class="gt blue"><span>${t('optionTotal')} A ${t('total')}${S.contOn?' (w/ '+S.contPct+'%)':''}</span><span>${fmt(T[0].t)}</span></div>`;
+    h+=`</div></div></div>`;
+
+    // SLIDE B
+    h+=`<div class="csl"><div class="ocard"><div class="ohdr green"><div class="tr"><h2>${t('slideB')}</h2><span class="pbadge green">${fmt(T[1].t)}</span></div></div><div class="obody">`;
+    h+=rSecGC(t('gcPern'),D.b_gc);
+    h+=`<div class="note">${t('noteB')}</div>`;
+    h+=rSecEq(t('eqSession'),D.b_eq,1,'b');
+    h+=`<div class="note">${t('noteBeq')}</div>`;
+    h+=`<div class="sub cont-line" style="${S.contOn?'':'opacity:0.35'}"><span>${t('contingency')} (${S.contOn?S.contPct+'%':t('off')})</span><span>${fmt(T[1].cont)}</span></div>`;
+    h+=`<div class="gt green"><span>${t('optionTotal')} B ${t('total')}${S.contOn?' (w/ '+S.contPct+'%)':''}</span><span>${fmt(T[1].t)}</span></div>`;
+    h+=`</div></div></div>`;
+
+    // SLIDE C
+    h+=`<div class="csl"><div class="ocard"><div class="ohdr orange"><div class="tr"><h2>${S.agapeEq==='ford'?t('slideCf'):t('slideCs')}</h2><span class="pbadge orange">${fmt(T[2].t)}</span></div></div><div class="obody">`;
+    h+=`<div class="psel"><button class="po ${!S.agapeHi?'on':''}" onclick="S.agapeHi=false;render()">${t('low')}</button><button class="po ${S.agapeHi?'on':''}" onclick="S.agapeHi=true;render()">${t('high')}</button></div>`;
+    h+=rSecGC(t('gcAgape'),D.c_gc);
+    h+=`<div class="note">${t('noteC')}</div>`;
+    h+=`<div style="margin:10px 0"><div style="font-size:10px;font-weight:600;color:var(--g1);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">${t('eqSupplier')}</div><div class="psel"><button class="po ${S.agapeEq==='ford'?'on':''}" onclick="S.agapeEq='ford';render()">${t('ford')}</button><button class="po ${S.agapeEq==='session'?'on':''}" onclick="S.agapeEq='session';render()">${t('session')}</button></div></div>`;
+    if(S.agapeEq==='ford'){h+=rSecEq(t('eqFordShort'),D.c_ef,2,'cf');}
+    else{h+=rSecEq(t('eqSessionShort'),D.c_es,2,'cs');}
+    h+=`<div class="sub cont-line" style="${S.contOn?'':'opacity:0.35'}"><span>${t('contingency')} (${S.contOn?S.contPct+'%':t('off')})</span><span>${fmt(T[2].cont)}</span></div>`;
+    h+=`<div class="gt orange"><span>${t('optionTotal')} C ${t('total')}${S.contOn?' (w/ '+S.contPct+'%)':''}</span><span>${fmt(T[2].t)}</span></div>`;
+    h+=`</div></div></div>`;
+
+    // SLIDE D
+    h+=`<div class="csl"><div class="ocard"><div class="ohdr purple"><div class="tr"><h2>${S.morgEq==='ford'?t('slideDf'):t('slideDs')}</h2><span class="pbadge purple">${fmt(T[3].t)}</span></div></div><div class="obody">`;
+    h+=rSecGC(t('gcMorg'),D.d_gc);
+    h+=`<div class="note">${t('noteD')}</div>`;
+    h+=`<div style="margin:10px 0"><div style="font-size:10px;font-weight:600;color:var(--g1);margin-bottom:4px;letter-spacing:1px;text-transform:uppercase">${t('eqSupplier')} (${t('eqOnly')})</div><div class="psel"><button class="po ${S.morgEq==='ford'?'on':''}" onclick="S.morgEq='ford';render()">${t('ford')}</button><button class="po ${S.morgEq==='session'?'on':''}" onclick="S.morgEq='session';render()">${t('session')}</button></div></div>`;
+    if(S.morgEq==='ford'){h+=rSecEq(t('eqFordShort'),D.d_ef,3,'df');}
+    else{h+=rSecEq(t('eqSessionShort'),D.d_es,3,'ds');}
+    h+=`<div class="note">${t('noteDeq')}</div>`;
+    h+=`<div class="sub cont-line" style="${S.contOn?'':'opacity:0.35'}"><span>${t('contingency')} (${S.contOn?S.contPct+'%':t('off')})</span><span>${fmt(T[3].cont)}</span></div>`;
+    h+=`<div class="gt purple"><span>${t('optionTotal')} D ${t('total')}${S.contOn?' (w/ '+S.contPct+'%)':''}</span><span>${fmt(T[3].t)}</span></div>`;
+    h+=`</div></div></div>`;
+
+    h+=`</div></div>`;
+    h+=`<button class="print-btn" onclick="printReport()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>${t('printBtn')}</button>`;
+    h+=`<div class="disc">${t('disc')}<br>${t('discDate')}</div>`;
+    h+=`</section>`;
+  }else if(S.tab==='polycam'){
+    h+=rPolycamPanel();
+  }else if(S.tab==='design'){
+    h+=rDesignPanel();
+  }else if(S.tab==='floorplan'){
+    h+=rFloorPlanPanel();
+  }else if(S.tab==='enscape'){
+    h+=rEnscapePanel();
+  }else if(S.tab==='selections'){
+    h+=rSelectionsPanel();
+  }else if(S.tab==='voting'){
+    h+=rVotingPanel();
+  }
+
+  const appEl=document.getElementById('app');
+  const presRoot=document.getElementById('pres-root');
+
+  const headerEl=document.querySelector('.header');
+  if(S.tab==='presentation'){
+    // Hide header + main app, show presentation in separate root
+    if(headerEl)headerEl.style.display='none';
+    appEl.style.display='none';
+    presRoot.innerHTML=rPresentationPanel();
+    presRoot.style.display='block';
+    requestAnimationFrame(()=>{initPresViewer();});
+  }else{
+    // Normal tabs — restore header + app
+    if(headerEl)headerEl.style.display='';
+    appEl.style.display='';
+    presRoot.innerHTML='';
+    presRoot.style.display='none';
+    appEl.innerHTML=h;
+    requestAnimationFrame(initExGalleryReveal);
+    if(S.tab==='estimates'){
+      setupSwipe();
+      requestAnimationFrame(syncCarouselHeight);
+    }
+  }
+}
+
+function syncCarouselHeight(){
+  const vp=document.querySelector('.cvp');
+  const slides=document.querySelectorAll('.csl');
+  if(!vp||!slides.length)return;
+  const active=slides[S.slide]||slides[0];
+  const h=active.offsetHeight;
+  if(h>0)vp.style.height=h+'px';
+}
+
+let tx=0;
+function setupSwipe(){
+  const vp=document.querySelector('.cvp');if(!vp)return;
+  vp.ontouchstart=e=>{tx=e.changedTouches[0].screenX;};
+  vp.ontouchend=e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){if(d>0&&S.slide<3)goSlide(S.slide+1);else if(d<0&&S.slide>0)goSlide(S.slide-1);}};
+}
+document.addEventListener('keydown',e=>{
+  if(LB.open)return;
+  if(S.tab!=='estimates')return;
+  if(document.activeElement&&(document.activeElement.tagName==='INPUT'||document.activeElement.tagName==='TEXTAREA'))return;
+  if(e.key==='ArrowRight'&&S.slide<3)goSlide(S.slide+1);
+  if(e.key==='ArrowLeft'&&S.slide>0)goSlide(S.slide-1);
+});
+window.addEventListener('resize',()=>{
+  requestAnimationFrame(syncCarouselHeight);
+});
+
+// ===== PRINT REPORT =====
+function printReport(){
+  const T=getT();
+  const mn=Math.min(...T.map(x=>x.t));
+  const now=new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
+  let p='';
+
+  function pItems(arr,secKey){
+    let h='';
+    const catOrder=['cooking','fridge','sinks','shelving','wallstorage','countertop','walls'];
+    const assigned=new Set();
+    catOrder.forEach(ck=>{
+      const cat=CATS[ck];
+      const idSet=cat['ids_'+secKey]||[];
+      const items=arr.filter(i=>idSet.includes(i.id)&&i.on);
+      idSet.forEach(id=>assigned.add(id));
+      if(!items.length)return;
+      const catTot=items.reduce((s,i)=>s+iCost(i),0);
+      h+=`<div class="p-cat-hdr"><span>${cat.icon} ${cat.name}</span><span>${fmt(catTot)}</span></div>`;
+      items.forEach(i=>{
+        const v=iCost(i);
+        const isC=i.cv&&i.cv!==''&&!isNaN(parseFloat(i.cv));
+        h+=`<div class="p-item ${isC?'custom':''}"><div class="p-iname">${i.name}${i.det?' <span class="p-idet">\u2014 '+i.det+'</span>':''}</div><div class="p-icost">${fmt(v)}${isC?' *':''}</div></div>`;
+      });
+    });
+    const other=arr.filter(i=>!assigned.has(i.id)&&i.on);
+    if(other.length){
+      const oTot=other.reduce((s,i)=>s+iCost(i),0);
+      h+=`<div class="p-cat-hdr"><span>Other Items</span><span>${fmt(oTot)}</span></div>`;
+      other.forEach(i=>{
+        const v=iCost(i);
+        const isC=i.cv&&i.cv!==''&&!isNaN(parseFloat(i.cv));
+        h+=`<div class="p-item ${isC?'custom':''}"><div class="p-iname">${i.name}${i.det?' <span class="p-idet">\u2014 '+i.det+'</span>':''}</div><div class="p-icost">${fmt(v)}${isC?' *':''}</div></div>`;
+      });
+    }
+    return h;
+  }
+
+  function pGCItems(arr){
+    let h='';
+    arr.filter(i=>i.on).forEach(i=>{
+      const v=iCost(i);
+      h+=`<div class="p-item"><div class="p-iname">${i.name}${i.det?' <span class="p-idet">\u2014 '+i.det+'</span>':''}</div><div class="p-icost">${fmt(v)}</div></div>`;
+    });
+    return h;
+  }
+
+  p+=`<div class="p-page">
+    <div class="p-header">
+      <h1>Korean Presbyterian Church \u2014 Kitchen Renovation</h1>
+      <p>Cost Comparison Summary</p>
+      <div class="p-date">Generated ${now} \u00b7 Pre-tax estimates \u00b7 Flooring excluded from all options</div>
+    </div>
+    <div class="p-summary">
+      <h2>Total Cost Comparison</h2>
+      <div class="p-sum-grid">`;
+  T.forEach(t=>{
+    const low=t.t===mn&&t.t>0;
+    p+=`<div class="p-sum-card ${low?'lowest':''}">
+      <div class="p-opt">Option ${t.k}</div>
+      <div class="p-name">${t.l}</div>
+      <div class="p-price ${low?'low':''}">${fmt(t.t)}</div>
+      <div class="p-bk">GC: ${fmt(t.gc)} | Equip: ${fmt(t.eq)}${S.contOn?' | '+S.contPct+'%: '+fmt(t.cont):''}</div>
+      ${low?'<div style="font-size:9px;color:#111;font-weight:700;margin-top:2px">\u25B6 LOWEST</div>':''}
+    </div>`;
+  });
+  p+=`</div></div>`;
+  p+=`<div class="p-footer">This report reflects the selections made in the interactive cost simulator. All figures are pre-tax estimates. Not a binding contract. Agape = ballpark only. * = custom price entered by user.</div>`;
+  p+=`</div>`;
+
+  const optData=[
+    {t:T[0],c:'blue',gcLabel:'GC: KFS \u2014 Layout 1',gcArr:D.a_gc,eqLabel:'Equipment: Ford Hotel Supply',eqArr:D.a_eq,eqKey:'a',notes:'KFS (est. 1924): MEP specialist. Includes demo, FRP, SS panels, hood trim, pot filler waterline, 6 LED, equipment set/connect. Excludes flooring, ceiling, permits, plans.'},
+    {t:T[1],c:'green',gcLabel:'GC: Pernikoff (Revised 3/9)',gcArr:D.b_gc,eqLabel:'Equipment: Session + Kitchen Mechanical',eqArr:D.b_eq,eqKey:'b',notes:'Pernikoff (est. 1914). Base: LED, 7 outlets, water heater, plumbing, demo, tile, SS panel install, infill door, paint ($1,500). Excludes appliances, faucets, SS panels, plans, permits.'},
+    {t:T[2],c:'orange',gcLabel:'GC: Agape Architecture (Ballpark'+(S.agapeHi?' \u2014 High':' \u2014 Low')+')',gcArr:D.c_gc,eqLabel:'Equipment: '+(S.agapeEq==='ford'?'Ford':'Session'),eqArr:S.agapeEq==='ford'?D.c_ef:D.c_es,eqKey:S.agapeEq==='ford'?'cf':'cs',notes:'Agape = Design-Build. BALLPARK ranges \u2014 final TBD. Flooring excluded. Fire suppression TBD.'},
+    {t:T[3],c:'purple',gcLabel:'GC: Morganco Design Build',gcArr:D.d_gc,eqLabel:'Equipment: '+(S.morgEq==='ford'?'Ford (Appliances)':'Session (Appliances)'),eqArr:S.morgEq==='ford'?D.d_ef:D.d_es,eqKey:S.morgEq==='ford'?'df':'ds',notes:'Morganco = Design-Build. Includes design (4 meetings + 3D), QualityBrand cabinetry, Hallmark quartz, FRP + SS, electrical, plumbing. Expires 3/27/2026.'},
+  ];
+
+  optData.forEach(o=>{
+    const gcTot=sumA(o.gcArr);
+    const eqTot=sumA(o.eqArr);
+    const gcOn=o.gcArr.filter(i=>i.on).length;
+    const eqOn=o.eqArr.filter(i=>i.on).length;
+    p+=`<div class="p-page">
+      <div class="p-header">
+        <h1>Option ${o.t.k}: ${o.t.l}</h1>
+        <p>Detailed Line Items \u2014 Selected Items Only</p>
+        <div class="p-date">${now}</div>
+      </div>
+      <div class="p-opt-total">Total: ${fmt(o.t.t)} (GC: ${fmt(o.t.gc)} + Equipment: ${fmt(o.t.eq)}${S.contOn?' + '+S.contPct+'% Contingency: '+fmt(o.t.cont):''})</div>`;
+    p+=`<div class="p-sec"><h3>${o.gcLabel} \u2014 ${gcOn} items = ${fmt(gcTot)}</h3>`;
+    p+=pGCItems(o.gcArr);
+    p+=`<div class="p-subtotal"><span>GC Subtotal</span><span>${fmt(gcTot)}</span></div></div>`;
+    p+=`<div class="p-sec"><h3>${o.eqLabel} \u2014 ${eqOn} items = ${fmt(eqTot)}</h3>`;
+    p+=pItems(o.eqArr,o.eqKey);
+    p+=`<div class="p-subtotal"><span>Equipment Subtotal</span><span>${fmt(eqTot)}</span></div></div>`;
+    if(S.contOn)p+=`<div class="p-subtotal" style="border-top:1px dashed #999;margin-top:8px;padding-top:6px"><span>Contingency (${S.contPct}%)</span><span>${fmt(o.t.cont)}</span></div>`;
+    p+=`<div class="p-grand ${o.c}"><span>OPTION ${o.t.k} TOTAL${S.contOn?' (w/ '+S.contPct+'%)':''}</span><span>${fmt(o.t.t)}</span></div>`;
+    p+=`<div class="p-note">${o.notes}</div>`;
+    p+=`<div class="p-footer">Korean Presbyterian Church Kitchen Renovation \u2014 ${now} \u2014 Pre-tax estimates \u2014 For planning only. * = custom user-entered price.</div>`;
+    p+=`</div>`;
+  });
+
+  document.getElementById('print-overlay').innerHTML=p;
+  setTimeout(()=>window.print(),200);
+}
+applyR7Preset('2',false);
+loadVoteDb();
+render();
+</script>
+</body>
+</html>
