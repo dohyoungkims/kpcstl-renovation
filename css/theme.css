@@ -1,0 +1,198 @@
+/* ===== THEME: Soft Futuristic Dashboard ===== */
+
+:root {
+  --font:'Space Grotesk','Noto Sans KR',system-ui,-apple-system,sans-serif;
+
+  /* === NEW SEMANTIC TOKENS (design brief) === */
+  --bg: #d9d9de;
+  --surface-black: #000000;
+  --surface-white: #ffffff;
+  --surface-soft: #ececef;
+
+  --text-primary: #0a0a0a;
+  --text-secondary: rgba(0,0,0,0.58);
+  --text-on-dark: rgba(255,255,255,0.94);
+  --text-on-dark-muted: rgba(255,255,255,0.68);
+
+  --accent-blue: #4aa3ff;
+  --accent-red: #ff4d4f;
+  --accent-orange: #ffb000;
+  --accent-green: #3deb72;
+  --accent-pink: #f25bdb;
+
+  --radius-sm: 18px;
+  --radius-md: 24px;
+  --radius-lg: 32px;
+  --radius-xl: 40px;
+  --radius-pill: 999px;
+
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 20px;
+  --space-5: 28px;
+  --space-6: 40px;
+  --space-7: 64px;
+
+  --shadow-soft: 0 8px 24px rgba(0,0,0,0.08);
+  --transition-smooth: 220ms cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* === LEGACY ALIASES (keeping old names so JS/CSS refs don't break) === */
+  /* In the old dark theme, --black was white text and --white was dark bg.
+     NOW we use proper light theme values: */
+  --black: #0a0a0a;        /* primary text — dark on light background */
+  --white: #ffffff;         /* card backgrounds — white */
+
+  /* Grays — adjusted for light theme readability */
+  --g1: #666666;           /* muted labels */
+  --g2: #444444;           /* secondary text */
+  --g3: #0a0a0a;           /* headings */
+  --g4: rgba(0,0,0,0.08);  /* borders */
+  --g5: rgba(0,0,0,0.14);  /* hover borders */
+  --g6: rgba(0,0,0,0.04);  /* subtle backgrounds */
+  --sep: rgba(0,0,0,0.06); /* separators */
+
+  /* Radii */
+  --r: 24px;
+  --rs: 18px;
+
+  /* Easing */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --spring: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  /* Toggle colors */
+  --son: #3deb72;
+  --soff: rgba(0,0,0,0.12);
+
+  /* 4 Estimate option accent colors */
+  --green: #3deb72;
+  --blue: #4aa3ff;
+  --orange: #ffb000;
+  --red: #ff4d4f;
+
+  /* 3 Cost proposal colors */
+  --wallet-blue: #4aa3ff;
+  --wallet-orange: #ffb000;
+  --wallet-red: #ff4d4f;
+
+  /* Legacy aliases for estimate cards */
+  --a: #3deb72;
+  --b: #4aa3ff;
+  --c: #ffb000;
+  --d: #ff4d4f;
+
+  /* Shadows — subtle, soft */
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow2: 0 8px 24px rgba(0,0,0,0.08);
+
+  /* Pink accent */
+  --pink: #f25bdb;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: clamp(16px, 1.3vw, 21px);
+}
+
+body {
+  font-family: var(--font);
+  color: var(--text-primary);
+  background: var(--bg);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ===== SPLASH ===== */
+#splash {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: linear-gradient(125deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.72) 38%, rgba(0,0,0,0.55) 100%), url("Final Renderings/rendering views/view 2.jpg") center/cover no-repeat #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+
+#splash.out {
+  opacity: 0;
+  transform: scale(1.02);
+  pointer-events: none;
+}
+
+.sp-line { overflow: hidden; }
+
+.sp-line span {
+  display: block;
+  transform: translateY(110%);
+  animation: spUp 0.9s var(--ease) forwards;
+}
+
+.sp-t1 span {
+  font-size: clamp(11px, 1.2vw, 13px);
+  font-weight: 400;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  animation-delay: 0.3s;
+}
+
+.sp-t2 span {
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 700;
+  letter-spacing: -1.5px;
+  color: #ffffff;
+  animation-delay: 0.6s;
+}
+
+.sp-t3 span {
+  font-size: clamp(14px, 1.8vw, 18px);
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  color: rgba(255,255,255,0.55);
+  animation-delay: 0.9s;
+  margin-top: 8px;
+}
+
+.sp-enter {
+  margin-top: 48px;
+  overflow: hidden;
+}
+
+.sp-enter span {
+  display: block;
+  transform: translateY(110%);
+  animation: spUp 0.7s var(--ease) 1.4s forwards;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  transition: color 0.3s;
+}
+
+#splash:hover .sp-enter span {
+  color: rgba(255,255,255,0.7);
+}
+
+@keyframes spUp { to { transform: translateY(0); } }
+
+.sp-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #ffffff;
+  animation: spBar 2.4s var(--ease) 0.5s forwards;
+  width: 0;
+}
+
+@keyframes spBar { to { width: 100%; } }
