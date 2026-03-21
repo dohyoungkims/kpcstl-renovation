@@ -1,11 +1,18 @@
 // === state.js — State management, utilities, utilities ===
-const S={tab:'introduction',slide:0,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},preset:null,scopeFocus:'2'};
+const S={tab:'introduction',slide:0,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},preset:null,scopeFocus:'2',introProcIdx:4};
 function pickDesign(secKey,imgIdx){
   if(S.picks[secKey]===imgIdx)delete S.picks[secKey]; else S.picks[secKey]=imgIdx;
   render();
 }
 function setDesignPick(secKey,imgIdx){
   S.picks[secKey]=imgIdx;
+  render();
+}
+function setIntroProcessStep(i){
+  const ic=INTRO_CONTENT[S.lang]||INTRO_CONTENT.ko;
+  const max=(ic.process&&ic.process.length?ic.process.length:1)-1;
+  const n=Math.max(0,Math.min(max,Number(i)||0));
+  S.introProcIdx=n;
   render();
 }
 const expanded={};

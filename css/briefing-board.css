@@ -333,6 +333,7 @@ body.theme-flat2d .intro-team-col h4 {
 body.theme-flat2d .intro-team-row {
   font-size: clamp(18px, 1.12vw, 24px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: background var(--board-ease), color var(--board-ease);
 }
 
 body.theme-flat2d .intro-process {
@@ -374,12 +375,190 @@ body.theme-flat2d .intro-purpose-item:hover {
   background: linear-gradient(180deg, #ffffff 0%, #f4fff7 100%);
 }
 
+body.theme-flat2d .intro-card:hover h3,
+body.theme-flat2d .intro-team-col:hover h4 {
+  color: #06240f;
+}
+
+body.theme-flat2d .intro-team-row:hover {
+  background: rgba(57, 255, 120, 0.08);
+}
+
 body.theme-flat2d .intro-purpose-item h4 {
   font-size: clamp(20px, 1.2vw, 28px);
 }
 
 body.theme-flat2d .intro-purpose-item p {
   font-size: clamp(14px, 0.88vw, 18px);
+  color: var(--board-muted);
+}
+
+/* Intro timeline (replaces process card grid) */
+body.theme-flat2d .intro-timeline {
+  display: grid;
+  gap: 16px;
+}
+
+body.theme-flat2d .intro-tl-scroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+body.theme-flat2d .intro-tl-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+body.theme-flat2d .intro-tl-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 999px;
+}
+
+body.theme-flat2d .intro-tl-steps {
+  position: relative;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(220px, 1fr);
+  gap: 12px;
+  min-width: max-content;
+  padding: 10px 6px 12px;
+}
+
+body.theme-flat2d .intro-tl-steps::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 50%;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(57, 255, 120, 0.6) 0%, rgba(57, 255, 120, 0.2) 36%, rgba(0, 0, 0, 0.12) 100%);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+body.theme-flat2d .intro-tl-step {
+  position: relative;
+  z-index: 1;
+  border: none;
+  border-radius: 18px;
+  background: var(--board-white);
+  color: var(--board-text);
+  text-align: left;
+  box-shadow: var(--board-shadow);
+  padding: 14px 14px 12px;
+  min-height: 106px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform var(--board-ease), box-shadow var(--board-ease), background var(--board-ease), color var(--board-ease);
+}
+
+body.theme-flat2d .intro-tl-step:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
+}
+
+body.theme-flat2d .intro-tl-step .intro-tl-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+body.theme-flat2d .intro-tl-index {
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.65);
+  padding: 4px 8px;
+  min-width: 28px;
+  text-align: center;
+}
+
+body.theme-flat2d .intro-tl-now {
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 4px 10px;
+  background: rgba(57, 255, 120, 0.2);
+  color: #08361a;
+}
+
+body.theme-flat2d .intro-tl-title {
+  font-size: clamp(15px, 0.9vw, 18px);
+  line-height: 1.33;
+  font-weight: 700;
+}
+
+body.theme-flat2d .intro-tl-step.done {
+  background: #f5f6f7;
+}
+
+body.theme-flat2d .intro-tl-step.done .intro-tl-index {
+  background: rgba(74, 163, 255, 0.2);
+  color: #154f82;
+}
+
+body.theme-flat2d .intro-tl-step.current {
+  background: #000;
+  color: var(--board-neon-green);
+  box-shadow: inset 0 0 0 2px var(--board-neon-green), 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+body.theme-flat2d .intro-tl-step.current .intro-tl-index {
+  background: rgba(57, 255, 120, 0.2);
+  color: var(--board-neon-green);
+}
+
+body.theme-flat2d .intro-tl-step.current .intro-tl-now {
+  background: var(--board-neon-green);
+  color: #06230f;
+}
+
+body.theme-flat2d .intro-tl-step.active {
+  box-shadow: inset 0 0 0 3px var(--board-neon-green), 0 0 0 7px rgba(57, 255, 120, 0.2), 0 14px 30px rgba(0, 0, 0, 0.16);
+  animation: neonPulseSoft 650ms var(--board-ease) 1;
+}
+
+body.theme-flat2d .intro-tl-step.active.current {
+  animation: neonPulse 700ms var(--board-ease) 1;
+}
+
+body.theme-flat2d .intro-tl-detail {
+  border-radius: 20px;
+  background: linear-gradient(180deg, #ffffff 0%, #f5fff8 100%);
+  box-shadow: var(--board-shadow);
+  padding: 18px 20px;
+  border: none;
+}
+
+body.theme-flat2d .intro-tl-detail-head {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+}
+
+body.theme-flat2d .intro-tl-detail-chip {
+  border-radius: 999px;
+  background: rgba(57, 255, 120, 0.2);
+  color: #0a391b;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 6px 10px;
+}
+
+body.theme-flat2d .intro-tl-detail h4 {
+  font-size: clamp(20px, 1.25vw, 28px);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+body.theme-flat2d .intro-tl-detail p {
+  font-size: clamp(14px, 0.9vw, 18px);
+  line-height: 1.65;
   color: var(--board-muted);
 }
 
@@ -490,6 +669,10 @@ body.theme-flat2d .ds-jump-card.on::before {
   opacity: 1;
 }
 
+body.theme-flat2d .ds-jump-card:hover::before {
+  opacity: 0.8;
+}
+
 body.theme-flat2d .ds-jump-card img {
   filter: grayscale(1) contrast(1.02) brightness(0.88);
 }
@@ -497,6 +680,10 @@ body.theme-flat2d .ds-jump-card img {
 body.theme-flat2d .ds-jump-card:hover img,
 body.theme-flat2d .ds-jump-card.on img {
   filter: none;
+}
+
+body.theme-flat2d .ds-jump-card:hover .ds-jump-text h5 {
+  color: var(--board-neon-green);
 }
 
 body.theme-flat2d .ds-jump-text h5 {
@@ -1433,6 +1620,10 @@ body.theme-flat2d .pres-nav-arrow:focus-visible {
     grid-template-columns: 1fr 1fr;
   }
 
+  body.theme-flat2d .intro-tl-steps {
+    grid-auto-columns: minmax(200px, 1fr);
+  }
+
   body.theme-flat2d .dash {
     grid-template-columns: repeat(2, minmax(220px, 1fr));
   }
@@ -1477,6 +1668,27 @@ body.theme-flat2d .pres-nav-arrow:focus-visible {
 
   body.theme-flat2d .intro-meta {
     font-size: clamp(17px, 4.1vw, 24px);
+  }
+
+  body.theme-flat2d .intro-tl-step {
+    min-height: 98px;
+    padding: 12px 12px 11px;
+  }
+
+  body.theme-flat2d .intro-tl-title {
+    font-size: 14px;
+  }
+
+  body.theme-flat2d .intro-tl-detail {
+    padding: 14px;
+  }
+
+  body.theme-flat2d .intro-tl-detail h4 {
+    font-size: 18px;
+  }
+
+  body.theme-flat2d .intro-tl-detail p {
+    font-size: 14px;
   }
 
   body.theme-flat2d .design-head,

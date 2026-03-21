@@ -88,10 +88,26 @@ function rIntroPanel(){
       .replace('교회 주방 리노베이션 프로젝트','<span class="intro-title-nowrap">교회 주방 리노베이션 프로젝트</span>')
       .replace(/\n/g,'<br>')
     :ic.heroTitle.replace(/\n/g,'<br>'));
+  const curIdxRaw=ic.process.findIndex(p=>/임시집사회|Session Briefing/i.test((p[0]||'')+' '+(p[1]||'')));
+  const curIdx=curIdxRaw>=0?curIdxRaw:Math.min(4,ic.process.length-1);
+  if(typeof S.introProcIdx!=='number'||S.introProcIdx<0||S.introProcIdx>=ic.process.length)S.introProcIdx=curIdx;
+  const activeIdx=S.introProcIdx;
+  const active=ic.process[activeIdx]||ic.process[curIdx];
   let process='';
-  ic.process.forEach(p=>{
-    process+=`<li class="TimelineWidget"><span class="intro-process-title">${p[0]}</span><span class="intro-process-desc">${p[1]}</span></li>`;
+  ic.process.forEach((p,i)=>{
+    const st=i<curIdx?'done':(i===curIdx?'current':'upcoming');
+    const isOn=i===activeIdx;
+    process+=`<button class="intro-tl-step ${st}${isOn?' active':''}" onclick="setIntroProcessStep(${i})" aria-pressed="${isOn?'true':'false'}">
+      <div class="intro-tl-top">
+        <span class="intro-tl-index">${i+1}</span>
+        ${i===curIdx?`<span class="intro-tl-now">${S.lang==='ko'?'현재 단계':'Current Stage'}</span>`:''}
+      </div>
+      <span class="intro-tl-title">${p[0]}</span>
+    </button>`;
   });
+  const activeState=activeIdx<curIdx?(S.lang==='ko'?'완료 단계':'Completed')
+    :(activeIdx===curIdx?(S.lang==='ko'?'현재 진행 단계':'Current Phase')
+    :(S.lang==='ko'?'예정 단계':'Upcoming'));
   let purpose='';
   ic.purpose.forEach(p=>{
     purpose+=`<article class="intro-purpose-item MetricWidget"><h4>${p[0]}</h4><p>${p[1]}</p></article>`;
@@ -120,7 +136,14 @@ function rIntroPanel(){
     </section>
     <section class="intro-card SectionBoard SurfaceCard BilingualTextBlock">
       <h3>${S.lang==='ko'?'프로세스 소개':'Process Overview'}</h3>
-      <ul class="intro-process">${process}</ul>
+      <div class="intro-timeline">
+        <div class="intro-tl-scroll"><div class="intro-tl-steps">${process}</div></div>
+        <article class="intro-tl-detail TimelineWidget">
+          <div class="intro-tl-detail-head"><span class="intro-tl-detail-chip">${activeState}</span></div>
+          <h4>${active[0]}</h4>
+          <p>${active[1]}</p>
+        </article>
+      </div>
     </section>
     <section class="intro-card SectionBoard SurfaceCard BilingualTextBlock">
       <h3>${S.lang==='ko'?'임시집사회 보고 목적':'Session Briefing Purpose'}</h3>
