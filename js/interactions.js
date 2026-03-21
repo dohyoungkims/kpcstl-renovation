@@ -153,9 +153,6 @@ S.presNotes=presLoadNotes();
 function presNotesFor(pg){
   return (S.presNotes&&Array.isArray(S.presNotes[pg]))?S.presNotes[pg]:[];
 }
-function escapeHtml(s){
-  return String(s).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
-}
 function rPresNotesItems(pg){
   const notes=presNotesFor(pg);
   if(!notes.length)return `<div class="pres-note-empty">${t('presNotesEmpty')}</div>`;

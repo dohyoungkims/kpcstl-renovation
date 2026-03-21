@@ -3,9 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#d9d9de">
-<meta name="description" content="Korean Presbyterian Church Kitchen Renovation Cost Simulator & Presentation">
-<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90">🍳</text></svg>'>
 <title>KPC Kitchen Renovation — 임시집사회 보고</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +11,7 @@
 <link rel="stylesheet" href="css/theme.css">
 <link rel="stylesheet" href="css/layout.css">
 <link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/flat-overrides.css">
 <link rel="stylesheet" href="css/briefing-board.css">
 </head>
 <body class="theme-flat2d">
@@ -30,14 +28,10 @@
 <div class="header PresentationShell"><div class="header-in">
 <div class="header-left"><h1 id="hdr-title">한인장로교회</h1>
 <p id="hdr-sub">주방 리노베이션 · 비용 시뮬레이터</p></div>
-<div class="header-tabs" id="header-tabs" role="tablist" aria-label="Main Navigation"></div>
+<div class="header-tabs" id="header-tabs"></div>
 <button class="lang-btn LanguageToggle" id="lang-btn" onclick="toggleLang()">English</button>
 </div></div>
-<main class="container PresentationShell" id="app" role="main">
-  <div id="app-dynamic"></div>
-  <div id="app-polycam" style="display:none;"></div>
-  <div id="app-enscape" style="display:none;"></div>
-</main>
+<div class="container PresentationShell" id="app"></div>
 <div id="pres-root"></div>
 <div id="print-overlay"></div>
 <div class="lb-overlay" id="lb">

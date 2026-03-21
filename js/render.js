@@ -20,7 +20,7 @@ function render(){
       {k:'presentation',l:t('presentation')},
       {k:'estimates',l:t('estimates')},
     ];
-    tabsEl.innerHTML=tabs.map(tb=>`<button class="gtab PillButton ${S.tab===tb.k?'on':''}" onclick="goTab('${tb.k}')">${tb.l}</button>`).join('');
+    tabsEl.innerHTML=tabs.map(tb=>`<button role="tab" aria-selected="${S.tab===tb.k?'true':'false'}" class="gtab PillButton ${S.tab===tb.k?'on':''}" onclick="goTab('${tb.k}')">${tb.l}</button>`).join('');
   }
 
   if(S.tab==='introduction'){
@@ -110,18 +110,17 @@ function render(){
     h+=`<button class="print-btn PillButton" onclick="printReport()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>${t('printBtn')}</button>`;
     h+=`<div class="disc">${t('disc')}<br>${t('discDate')}</div>`;
     h+=`</section>`;
-  }else if(S.tab==='polycam'){
-    h+=rPolycamPanel();
   }else if(S.tab==='design'){
     h+=rDesignPanel();
   }else if(S.tab==='floorplan'){
     h+=rFloorPlanPanel();
-  }else if(S.tab==='enscape'){
-    h+=rEnscapePanel();
   }else if(S.tab==='selections'){
     h+=rSelectionsPanel();
   }
 
+  const appDyn=document.getElementById('app-dynamic');
+  const appPoly=document.getElementById('app-polycam');
+  const appEns=document.getElementById('app-enscape');
   const appEl=document.getElementById('app');
   const presRoot=document.getElementById('pres-root');
 
@@ -140,7 +139,15 @@ function render(){
     appEl.style.display='';
     presRoot.innerHTML='';
     presRoot.style.display='none';
-    appEl.innerHTML=h;
+    
+    appDyn.style.display = (S.tab==='polycam'||S.tab==='enscape') ? 'none' : 'block';
+    appPoly.style.display = S.tab==='polycam' ? 'block' : 'none';
+    appEns.style.display = S.tab==='enscape' ? 'block' : 'none';
+    
+    if(S.tab==='polycam' && !appPoly.innerHTML) appPoly.innerHTML = rPolycamPanel();
+    if(S.tab==='enscape' && !appEns.innerHTML) appEns.innerHTML = rEnscapePanel();
+    if(S.tab!=='polycam' && S.tab!=='enscape') appDyn.innerHTML = h;
+
     if(S.tab==='estimates'){
       const active=['a','b','c','d'][Math.max(0,Math.min(3,S.slide||0))];
       appEl.dataset.activeOption=active;
@@ -162,6 +169,14 @@ function syncCarouselHeight(){
   const active=slides[S.slide]||slides[0];
   const h=active.offsetHeight;
   if(h>0)vp.style.height=h+'px';
+  active.querySelectorAll('img').forEach(img => {
+    if(!img.complete) {
+      img.addEventListener('load', () => {
+        const newH=active.offsetHeight;
+        if(newH>0)vp.style.height=newH+'px';
+      }, {once:true});
+    }
+  });
 }
 
 let tx=0;

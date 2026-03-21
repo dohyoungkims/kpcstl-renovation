@@ -20,7 +20,24 @@ function catKey(slide,sec,cat){return slide+'_'+sec+'_'+cat;}
 function isCatOpen(k){return expanded[k]!==false;}
 
 function find(id){for(const k in D){const f=D[k].find(i=>i.id===id);if(f)return f;}return null;}
-function toggle(id,e){if(e)e.stopPropagation();const it=find(id);if(!it)return;it.on=!it.on;if(it.on&&it.alt){it.alt.split(',').forEach(a=>{const x=find(a.trim());if(x)x.on=false;});}render();}
+function toggle(id,e){
+  if(e)e.stopPropagation();
+  const it=find(id);if(!it)return;
+  it.on=!it.on;
+  if(it.on&&it.alt){it.alt.split(',').forEach(a=>{const x=find(a.trim());if(x)x.on=false;});}
+  const sy = window.scrollY;
+  const activeId = document.activeElement ? document.activeElement.id : null;
+  render();
+  window.scrollTo(0, sy);
+  if(activeId) {
+    const el = document.getElementById(activeId);
+    if(el) {
+      const len = el.value ? el.value.length : 0;
+      el.focus();
+      if(el.setSelectionRange) el.setSelectionRange(len, len);
+    }
+  }
+}
 function setC(id,v){
   const it=find(id);if(!it)return;it.cv=v;
   updateTotals();
@@ -85,6 +102,7 @@ function iCost(it){if(it.cv&&it.cv!==''&&!isNaN(parseFloat(it.cv)))return parseF
 function sumA(arr){return arr.reduce((s,i)=>s+(i.on?iCost(i):0),0);}
 function sumV(arr,v){return arr.reduce((s,i)=>{if(!i.on)return s;if(i.bv&&i.bv!==v)return s;return s+iCost(i);},0);}
 function fmt(n){return(n<0?'-$':'$')+Math.abs(Math.round(n)).toLocaleString('en-US');}
+function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]||ch));}
 function goTab(t){S.tab=t;render();}
 function goSlide(i){S.slide=i;render();}
 function toggleCat(k){expanded[k]=!isCatOpen(k);render();}
