@@ -164,11 +164,15 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll {
 }
 
 @media (max-width: 768px) {
-  .cine-card { padding: 32px 20px; }
+  .cine-card { padding: 40px 32px !important; }
   .intro-title { font-size: 32px; }
   .cine-card h3 { font-size: 24px; }
   .intro-body { font-size: 16px; }
   .intro-team-row { font-size: 15px; }
+}
+
+@media (max-width: 480px) {
+  .cine-card { padding: 32px 24px !important; }
 }
 
 /* === CINEMATIC OVERRIDES: neutralize briefing-board.css dark-text rules === */
