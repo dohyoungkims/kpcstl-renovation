@@ -270,8 +270,9 @@ function rDesignPanel(){
   if(sec.key==='counter'){
     const colorIdxs=sec.images.map((im,i)=>!im.refOnly?i:null).filter(i=>i!==null);
     const defaultIdx=colorIdxs.includes(2)?2:(colorIdxs[0]||0);
-    const activeIdx=isSelectableImage(sec,S.picks[sec.key])?S.picks[sec.key]:defaultIdx;
-    const activeIm=sec.images[activeIdx];
+    const activeIdx=isSelectableImage(sec,S.picks[sec.key])?S.picks[sec.key]:null;
+    const displayIdx = activeIdx !== null ? activeIdx : defaultIdx;
+    const activeIm=sec.images[displayIdx];
     const colorCards=colorIdxs.map(i=>{
       const im=sec.images[i];
       const isOn=activeIdx===i;
@@ -288,8 +289,8 @@ function rDesignPanel(){
           <div class="counter-top-body"><h4 class="counter-top-title">${dsTitle(sec,0)}</h4><p class="counter-top-desc">${dsCap(sec,0)}</p><span class="ds-ref-tag">${t('refOnly')}</span></div>
         </article>
         <article class="counter-top-card ImageCaptionCard">
-          <div class="counter-top-img" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,${activeIdx})"><img src="${encodeURI(activeIm.src)}" alt="${dsTitle(sec,activeIdx)}" loading="lazy"></div>
-          <div class="counter-top-body"><h4 class="counter-top-title">${dsTitle(sec,activeIdx)}</h4><p class="counter-top-desc">${dsCap(sec,activeIdx)}</p></div>
+          <div class="counter-top-img" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,${displayIdx})"><img src="${encodeURI(activeIm.src)}" alt="${dsTitle(sec,displayIdx)}" loading="lazy"></div>
+          <div class="counter-top-body"><h4 class="counter-top-title">${dsTitle(sec,displayIdx)}</h4><p class="counter-top-desc">${dsCap(sec,displayIdx)}</p></div>
         </article>
       </div>
       <section class="counter-color-wrap">

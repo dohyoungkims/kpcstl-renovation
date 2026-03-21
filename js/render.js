@@ -61,10 +61,10 @@ function render(){
         <input type="text" inputmode="decimal" class="cont-inp" value="${S.contPct}" onclick="event.stopPropagation()" onkeydown="event.stopPropagation()" oninput="setContPct(this.value)" ${S.contOn?'':'disabled'} style="${S.contOn?'':'opacity:0.35'}">
         <span class="cont-pct">%</span>
       </div>
-      <span class="cont-amt" style="${S.contOn?'':'opacity:0.35'}">${S.contOn?t('adds')+' '+fmt(T[S.slide].cont)+' '+t('toOption')+' '+T[S.slide].k:t('off')}</span>
+      <span class="cont-amt" style="${S.contOn?'':'opacity:0.35'}">${S.contOn?t('adds')+' '+fmt(T[S.slide!==null?S.slide:0].cont)+' '+t('toOption')+' '+T[S.slide!==null?S.slide:0].k:t('off')}</span>
     </div>`;
 
-    h+=`<div class="cvp"><div class="ctr" style="transform:translateX(-${S.slide*100}%)">`;
+    h+=`<div class="cvp"><div class="ctr" style="transform:translateX(-${(S.slide||0)*100}%)">`;
 
     // SLIDE A
     h+=`<div class="csl"><div class="ocard"><div class="ohdr green"><div class="tr"><h2>${t('slideA')}</h2><span class="pbadge green">${fmt(T[0].t)}</span></div></div><div class="obody">`;
@@ -173,7 +173,7 @@ function syncCarouselHeight(){
   const vp=document.querySelector('.cvp');
   const slides=document.querySelectorAll('.csl');
   if(!vp||!slides.length)return;
-  const active=slides[S.slide]||slides[0];
+  const active=slides[S.slide!==null?S.slide:0]||slides[0];
   const h=active.offsetHeight;
   if(h>0)vp.style.height=h+'px';
   active.querySelectorAll('img').forEach(img => {
@@ -190,14 +190,15 @@ let tx=0;
 function setupSwipe(){
   const vp=document.querySelector('.cvp');if(!vp)return;
   vp.ontouchstart=e=>{tx=e.changedTouches[0].screenX;};
-  vp.ontouchend=e=>{const d=tx-e.changedTouches[0].screenX;if(Math.abs(d)>50){if(d>0&&S.slide<3)goSlide(S.slide+1);else if(d<0&&S.slide>0)goSlide(S.slide-1);}};
+  vp.ontouchend=e=>{const d=tx-e.changedTouches[0].screenX;const s=S.slide!==null?S.slide:0;if(Math.abs(d)>50){if(d>0&&s<3)goSlide(s+1);else if(d<0&&s>0)goSlide(s-1);}};
 }
 document.addEventListener('keydown',e=>{
   if(LB.open)return;
   if(S.tab!=='estimates')return;
   if(document.activeElement&&(document.activeElement.tagName==='INPUT'||document.activeElement.tagName==='TEXTAREA'))return;
-  if(e.key==='ArrowRight'&&S.slide<3)goSlide(S.slide+1);
-  if(e.key==='ArrowLeft'&&S.slide>0)goSlide(S.slide-1);
+  const s=S.slide!==null?S.slide:0;
+  if(e.key==='ArrowRight'&&s<3)goSlide(s+1);
+  if(e.key==='ArrowLeft'&&s>0)goSlide(s-1);
 });
 window.addEventListener('resize',()=>{
   requestAnimationFrame(syncCarouselHeight);
@@ -308,5 +309,5 @@ function printReport(){
   document.getElementById('print-overlay').innerHTML=p;
   setTimeout(()=>window.print(),200);
 }
-applyPreset('2',false);
+
 render();

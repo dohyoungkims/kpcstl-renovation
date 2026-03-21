@@ -17,6 +17,10 @@
   box-shadow: 0 12px 32px rgba(0,0,0,0.3);
 }
 
+* {
+  scroll-margin-top: 140px;
+}
+
 .header.scrolled {
   top: 16px;
   background: rgba(15, 15, 15, 0.9);
@@ -182,6 +186,9 @@
   padding: 24px clamp(12px, 2vw, 30px) 32px;
   position: relative;
   z-index: 1;
+}
+body.is-intro .container {
+  padding-top: 24px;
 }
 
 .dash {
@@ -486,6 +493,9 @@
   }
   .container {
     padding: 12px 10px 20px;
+  }
+  body.is-intro .container {
+    padding-top: 12px;
   }
   .bars {
     padding: 14px 12px;

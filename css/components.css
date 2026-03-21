@@ -2656,6 +2656,8 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll::-webkit-scrollbar-thumb {
   border-radius: var(--rs);
   overflow: hidden;
   background: #111;
+  width: 88%;
+  margin: 0 auto;
 }
 
 .floor-static img {

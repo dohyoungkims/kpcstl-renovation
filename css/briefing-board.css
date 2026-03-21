@@ -152,6 +152,9 @@ body.theme-flat2d .container {
   --active-option-ink: #03220f;
   --selected-accent: var(--board-neon-green);
 }
+body.theme-flat2d.is-intro .container {
+  padding-top: 30px;
+}
 
 body.theme-flat2d .container[data-active-option="a"] {
   --active-option-accent: var(--board-neon-green);
