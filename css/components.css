@@ -1,87 +1,119 @@
-/* ===== INTRODUCTION ===== */
-.intro-wrap {
+/* ===== INTRODUCTION (CINEMATIC) ===== */
+body.is-intro .container,
+body.theme-flat2d.is-intro .container,
+body.is-floorplan .container,
+body.theme-flat2d.is-floorplan .container {
+  padding: 0 !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+/* Timeline: show all steps in one row without scroll */
+body.theme-flat2d .immersive-intro .intro-tl-steps {
+  min-width: 0 !important;
+  grid-auto-columns: 1fr !important;
+}
+body.theme-flat2d .immersive-intro .intro-tl-scroll {
+  overflow-x: visible !important;
+}
+
+.immersive-intro {
+  width: 100%;
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 18px;
 }
 
-.intro-hero {
+.cinematic-panel {
   position: relative;
-  min-height: 62vh;
-  border: 1px solid var(--g4);
-  border-radius: var(--r);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 24px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
   overflow: hidden;
-  background: linear-gradient(120deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.62) 48%, rgba(0,0,0,0.42) 100%), url("Final Renderings/rendering views/view 2.jpg") center/cover no-repeat;
 }
 
-.intro-hero-body {
+.cine-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  z-index: 1;
+}
+
+.cine-content {
   position: relative;
   z-index: 2;
-  max-width: 900px;
-  min-height: 62vh;
-  display: flex;
-  flex-direction: column;
-  padding: clamp(26px, 4vw, 58px);
-  color: var(--white);
+  width: 100%;
+  max-width: 1400px;
+  color: #fff;
+}
+
+.cine-hero {
+  text-align: center;
 }
 
 .intro-kicker {
-  font-size: 17px;
-  letter-spacing: 0.9px;
+  font-size: 14px;
+  letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.78);
+  color: rgba(255,255,255,0.7);
   font-weight: 700;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
 }
-/* This element is on dark photo overlay, keep white text */
 
 .intro-title {
-  font-size: clamp(30px, 4.2vw, 58px);
-  line-height: 1.06;
-  letter-spacing: -0.8px;
-  margin-top: 12px;
-  font-weight: 700;
-}
-
-.intro-title-nowrap {
-  white-space: nowrap;
-  display: inline-block;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.35;
+  letter-spacing: -1px;
+  margin-bottom: 24px;
+  font-weight: 800;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.8);
+  word-break: keep-all;
 }
 
 .intro-meta {
-  margin-top: auto;
-  color: rgba(255,255,255,0.9);
-  font-size: 21px;
-  line-height: 1.5;
-  padding-top: 18px;
-}
-/* This element is on dark photo overlay, keep white text */
-
-.intro-card {
-  background: var(--white);
-  border: 1px solid var(--g4);
-  border-radius: var(--r);
-  padding: 42px;
+  font-size: 18px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.6;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
 }
 
-.intro-card h3 {
-  font-size: 58px;
-  letter-spacing: -0.8px;
-  margin-bottom: 20px;
-  line-height: 1.05;
+.cine-card {
+  background: rgba(15, 15, 15, 0.65);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 48px;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.5);
+}
+
+.cine-card h3 {
+  font-size: 32px;
+  letter-spacing: -0.5px;
+  margin-bottom: 24px;
+  font-weight: 700;
+  color: #fff;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 16px;
 }
 
 .intro-body {
-  font-size: 34px;
-  color: var(--g2);
-  line-height: 1.6;
-  white-space: pre-line;
+  font-size: clamp(22px, 1.6vw, 28px);
+  color: rgba(255,255,255,0.9);
+  line-height: 1.8;
 }
 
 .intro-body-intro {
-  font-size: clamp(34px, 2.7vw, 54px);
-  line-height: 1.45;
-  white-space: normal;
-  color: var(--black);
+  font-size: clamp(24px, 1.8vw, 32px);
+  line-height: 1.8;
 }
 
 .intro-team-grid {
@@ -91,35 +123,164 @@
 }
 
 .intro-team-col {
-  border: 1px solid var(--g4);
-  border-radius: 14px;
-  padding: 24px;
-  background: var(--surface-soft);
+  padding: 0;
 }
 
 .intro-team-col h4 {
-  font-size: 34px;
+  font-size: 22px;
   font-weight: 700;
-  margin-bottom: 12px;
-  line-height: 1.2;
+  margin-bottom: 16px;
+  color: #fff;
 }
 
 .intro-team-row {
   display: flex;
   justify-content: space-between;
-  gap: 18px;
   padding: 12px 0;
-  border-bottom: 1px dashed var(--g4);
-  font-size: 30px;
-  line-height: 1.3;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  font-size: 18px;
+  color: rgba(255,255,255,0.85);
 }
-
 .intro-team-row:last-child {
   border-bottom: none;
 }
 
-.intro-team-row span:last-child {
-  color: var(--g2);
+.intro-timeline, .intro-purpose-list {
+  color: rgba(255,255,255,0.9);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.22, 1, 0.36, 1), transform 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.scroll-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .cine-card { padding: 32px 20px; }
+  .intro-title { font-size: 32px; }
+  .cine-card h3 { font-size: 24px; }
+  .intro-body { font-size: 16px; }
+  .intro-team-row { font-size: 15px; }
+}
+
+/* === CINEMATIC OVERRIDES: neutralize briefing-board.css dark-text rules === */
+.immersive-intro .intro-team-row span:last-child,
+.immersive-intro .intro-team-row span {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-col {
+  background: transparent !important;
+  padding: 0 !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-col h4 {
+  color: #fff !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-row {
+  color: rgba(255,255,255,0.85) !important;
+  border-bottom-color: rgba(255,255,255,0.1) !important;
+  background: transparent !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-row:hover {
+  background: rgba(255,255,255,0.05) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-col:hover,
+body.theme-flat2d .immersive-intro .intro-purpose-item:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-col:hover h4 {
+  color: #fff !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-purpose-list {
+  grid-template-columns: 1fr !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-purpose-item {
+  background: transparent !important;
+  padding: 0 !important;
+  color: rgba(255,255,255,0.9) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-purpose-item h4 {
+  color: #fff !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-purpose-item p {
+  color: rgba(255,255,255,0.8) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step,
+body.theme-flat2d .immersive-intro .intro-tl-step.done,
+body.theme-flat2d .immersive-intro .intro-tl-step.current {
+  background: rgba(255,255,255,0.1) !important;
+  color: rgba(255,255,255,0.9) !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.2) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step:hover {
+  background: rgba(255,255,255,0.18) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step.current {
+  background: rgba(255,255,255,0.2) !important;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.4) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-index {
+  background: rgba(255,255,255,0.15) !important;
+  color: rgba(255,255,255,0.8) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-now {
+  background: rgba(255,255,255,0.2) !important;
+  color: #fff !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-title {
+  color: #fff !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-steps::before {
+  background: linear-gradient(90deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 100%) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-detail {
+  background: rgba(15,15,15,0.6) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  box-shadow: none !important;
+  color: rgba(255,255,255,0.9) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-detail h4,
+body.theme-flat2d .immersive-intro .intro-tl-detail p {
+  color: rgba(255,255,255,0.9) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-detail-chip {
+  color: #fff !important;
+  background: rgba(255,255,255,0.15) !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2) !important;
 }
 
 .intro-process {
@@ -130,10 +291,10 @@
 
 .intro-process li {
   list-style: none;
-  background: var(--bg);
-  border: 1px solid var(--g4);
-  border-radius: 12px;
-  padding: 20px 22px;
+  background: var(--surface-soft);
+  border: none;
+  border-radius: 8px;
+  padding: 32px;
 }
 
 .intro-process-title {
@@ -1057,10 +1218,11 @@
   margin-top: auto;
   padding-top: 8px;
   border-top: 1px dashed var(--g4);
-  font-size: 30px;
+  font-family: var(--font);
+  font-size: 26px;
   line-height: 1;
   font-weight: 700;
-  letter-spacing: -0.8px;
+  letter-spacing: -0.5px;
 }
 
 .est-range small {

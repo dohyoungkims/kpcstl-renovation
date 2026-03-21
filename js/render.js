@@ -7,12 +7,15 @@ function render(){
   const mx=Math.max(...T.map(x=>x.t));
   let h='';
 
+  document.body.classList.toggle('is-intro', S.tab === 'introduction');
+  document.body.classList.toggle('is-floorplan', S.tab === 'floorplan');
+
   // Update header tabs
   const tabsEl=document.getElementById('header-tabs');
   if(tabsEl){
     const tabs=[
       {k:'introduction',l:t('introduction')},
-      {k:'design',l:t('design')},
+      {k:'design',l:S.lang==='ko'?'디자인':'Design'},
       {k:'floorplan',l:t('floorplan')},
       {k:'polycam',l:t('polycam')},
       {k:'enscape',l:t('enscape')},
@@ -20,7 +23,8 @@ function render(){
       {k:'presentation',l:t('presentation')},
       {k:'estimates',l:t('estimates')},
     ];
-    tabsEl.innerHTML=tabs.map(tb=>`<button role="tab" aria-selected="${S.tab===tb.k?'true':'false'}" class="gtab PillButton ${S.tab===tb.k?'on':''}" onclick="goTab('${tb.k}')">${tb.l}</button>`).join('');
+    tabsEl.innerHTML=tabs.map(tb=>`<button role="tab" aria-selected="${S.tab===tb.k?'true':'false'}" class="gtab PillButton ${S.tab===tb.k?'on':''}" onclick="goTab('${tb.k}')"><span>${tb.l}</span></button>`).join('') + `<div class="gtab-slider" id="gtab-slider"></div>`;
+    requestAnimationFrame(updateTabSlider);
   }
 
   if(S.tab==='introduction'){
@@ -45,7 +49,7 @@ function render(){
     h+=`<div class="bars ProgressRail SectionBoard SurfaceCard"><h3>${t('visualComp')}</h3>`;
     T.forEach(o=>{
       const gp=mx>0?(o.gc/mx)*100:0, ep=mx>0?(o.eq/mx)*100:0;
-      h+=`<div class="br"><div class="bl">${o.k}: ${o.l.split('+')[0].trim()}</div><div class="bt"><div class="bg bb" style="width:${gp}%">${fmt(o.gc)}</div><div class="be bb" style="width:${ep}%">${fmt(o.eq)}</div></div><div class="bv">${fmt(o.t)}</div></div>`;
+      h+=`<div class="br"><div class="bl">${o.k}: ${o.l.split('+')[0].trim()}</div><div class="bt"><div class="bg" style="width:${gp}%;background:var(--${o.c})">${fmt(o.gc)}</div><div class="be" style="width:${ep}%;background:var(--${o.c})">${fmt(o.eq)}</div></div><div class="bv">${fmt(o.t)}</div></div>`;
     });
     h+=`</div>`;
 
@@ -155,6 +159,9 @@ function render(){
       delete appEl.dataset.activeOption;
     }
     requestAnimationFrame(initExGalleryReveal);
+    if(S.tab==='introduction') {
+      requestAnimationFrame(initScrollReveal);
+    }
     if(S.tab==='estimates'){
       setupSwipe();
       requestAnimationFrame(syncCarouselHeight);

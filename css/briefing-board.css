@@ -305,15 +305,6 @@ body.theme-flat2d .intro-card h3 {
   margin-bottom: 18px;
 }
 
-body.theme-flat2d .intro-body {
-  font-size: clamp(18px, 1.35vw, 26px);
-  color: var(--board-muted);
-}
-
-body.theme-flat2d .intro-body-intro {
-  color: var(--board-text);
-  font-size: clamp(24px, 1.95vw, 36px);
-}
 
 body.theme-flat2d .intro-team-grid {
   grid-template-columns: 1fr 1fr;
@@ -1005,9 +996,10 @@ body.theme-flat2d .est-card .est-scope-badges .est-scope-dot {
 
 body.theme-flat2d .est-range {
   border-top: 1px solid rgba(0, 0, 0, 0.14);
-  font-size: clamp(32px, 2.1vw, 46px);
+  font-family: var(--font);
+  font-size: 26px;
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.5px;
 }
 
 body.theme-flat2d .est-range small {
@@ -2124,5 +2116,267 @@ body.theme-flat2d .gt.purple {
   body.theme-flat2d .dc .dp {
     font-size: 24px;
   }
+}
+
+/* ===== CINEMATIC INTRO OVERRIDES (must be at end to beat earlier rules) ===== */
+
+@keyframes neonPulseGlow {
+  0%   { box-shadow: inset 0 0 0 2px rgba(57,255,120,0.6), 0 0 0 0 rgba(57,255,120,0.3); }
+  50%  { box-shadow: inset 0 0 0 2px rgba(57,255,120,0.8), 0 0 20px 4px rgba(57,255,120,0.15); }
+  100% { box-shadow: inset 0 0 0 2px rgba(57,255,120,0.6), 0 0 0 0 rgba(57,255,120,0.3); }
+}
+
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Timeline Steps: wider, neon green accents --- */
+body.theme-flat2d .immersive-intro .intro-tl-steps {
+  display: flex !important;
+  align-items: stretch !important;
+  grid-auto-flow: unset !important;
+  gap: 8px !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-steps::before {
+  display: none !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-scroll {
+  overflow: visible !important;
+  padding: 0 !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step,
+body.theme-flat2d .immersive-intro .intro-tl-step.done,
+body.theme-flat2d .immersive-intro .intro-tl-step.current,
+body.theme-flat2d .immersive-intro .intro-tl-step.upcoming {
+  flex: 1 !important;
+  background: rgba(255,255,255,0.06) !important;
+  color: rgba(255,255,255,0.8) !important;
+  border: 1px solid rgba(255,255,255,0.1) !important;
+  border-radius: 14px !important;
+  padding: 18px 14px 16px !important;
+  min-height: 110px !important;
+  box-shadow: none !important;
+  transition: all 0.35s cubic-bezier(0.22,1,0.36,1) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step:hover {
+  background: rgba(255,255,255,0.12) !important;
+  border-color: rgba(255,255,255,0.2) !important;
+  transform: translateY(-3px) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step.active {
+  background: rgba(57,255,120,0.08) !important;
+  border-color: rgba(57,255,120,0.4) !important;
+  box-shadow: 0 0 0 3px rgba(57,255,120,0.1) !important;
+  transform: translateY(-2px) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step.current {
+  background: rgba(57,255,120,0.1) !important;
+  border-color: rgba(57,255,120,0.5) !important;
+  animation: neonPulseGlow 2.5s ease-in-out infinite !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step.current.active {
+  background: rgba(57,255,120,0.15) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-index {
+  background: rgba(255,255,255,0.1) !important;
+  color: rgba(255,255,255,0.6) !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  padding: 4px 9px !important;
+  border-radius: 8px !important;
+  transition: all 0.3s ease !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step.done .intro-tl-index {
+  background: rgba(74,163,255,0.15) !important;
+  color: rgba(74,163,255,0.9) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step.current .intro-tl-index {
+  background: rgba(57,255,120,0.2) !important;
+  color: #39ff78 !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-now,
+body.theme-flat2d .immersive-intro .intro-tl-step.current .intro-tl-now {
+  background: rgba(57,255,120,0.2) !important;
+  color: #39ff78 !important;
+  font-size: 10px !important;
+  font-weight: 700 !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  letter-spacing: 0.3px !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-title {
+  color: #fff !important;
+  font-size: clamp(13px, 0.9vw, 16px) !important;
+  line-height: 1.4 !important;
+  font-weight: 600 !important;
+}
+
+/* --- Detail Panel --- */
+body.theme-flat2d .immersive-intro .intro-tl-detail {
+  background: rgba(255,255,255,0.04) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 20px !important;
+  padding: 32px 36px !important;
+  box-shadow: none !important;
+  color: rgba(255,255,255,0.9) !important;
+  margin-top: 16px !important;
+  animation: fadeSlideUp 0.4s ease-out !important;
+}
+
+/* Process section enlarged 139% via native sizing */
+body.theme-flat2d .immersive-intro .intro-timeline {
+  width: 100% !important;
+  max-width: 1400px !important;
+  margin: 0 auto !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-step {
+  padding: 24px 20px 22px !important;
+  min-height: 140px !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-title {
+  font-size: clamp(16px, 1.2vw, 22px) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-detail {
+  padding: 40px 48px !important;
+  min-height: 180px !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-detail h4 {
+  font-size: clamp(28px, 2vw, 40px) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-detail p {
+  font-size: clamp(18px, 1.3vw, 24px) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-detail h4 {
+  color: #fff !important;
+  font-size: clamp(22px, 1.6vw, 30px) !important;
+  font-weight: 700 !important;
+  margin: 12px 0 8px !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-detail p {
+  color: rgba(255,255,255,0.75) !important;
+  font-size: clamp(16px, 1.1vw, 20px) !important;
+  line-height: 1.7 !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-detail-head {
+  color: rgba(255,255,255,0.9) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-tl-detail-chip {
+  color: #39ff78 !important;
+  background: rgba(57,255,120,0.1) !important;
+  border: 1px solid rgba(57,255,120,0.25) !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  padding: 6px 14px !important;
+}
+
+/* --- Team / Purpose / Cards --- */
+body.theme-flat2d .immersive-intro .intro-team-col,
+body.theme-flat2d .immersive-intro .intro-team-col:hover {
+  background: transparent !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-col h4,
+body.theme-flat2d .immersive-intro .intro-team-col:hover h4 {
+  color: #fff !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-row {
+  color: rgba(255,255,255,0.85) !important;
+  border-bottom-color: rgba(255,255,255,0.1) !important;
+  transition: all 0.3s cubic-bezier(0.22,1,0.36,1) !important;
+  border-radius: 8px !important;
+  padding: 12px 8px !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-row span {
+  color: rgba(255,255,255,0.85) !important;
+  transition: color 0.3s ease !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-row:hover {
+  background: rgba(57,255,120,0.06) !important;
+  border-bottom-color: rgba(57,255,120,0.15) !important;
+  transform: translateX(4px) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-team-row:hover span:first-child {
+  color: #39ff78 !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-purpose-item {
+  background: rgba(255,255,255,0.04) !important;
+  border: 1px solid rgba(255,255,255,0.08) !important;
+  border-radius: 16px !important;
+  padding: 24px !important;
+  transition: all 0.35s cubic-bezier(0.22,1,0.36,1) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-purpose-item:hover {
+  background: rgba(57,255,120,0.06) !important;
+  border-color: rgba(57,255,120,0.2) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-purpose-item h4 {
+  color: #fff !important;
+  transition: color 0.3s ease !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-purpose-item:hover h4 {
+  color: #39ff78 !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-purpose-item p {
+  color: rgba(255,255,255,0.75) !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-card,
+body.theme-flat2d .immersive-intro .intro-card:hover {
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-card h3,
+body.theme-flat2d .immersive-intro .intro-card:hover h3 {
+  color: #fff !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-process li {
+  background: transparent !important;
+}
+
+body.theme-flat2d .immersive-intro .intro-process-desc {
+  color: rgba(255,255,255,0.8) !important;
 }
 

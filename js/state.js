@@ -13,7 +13,24 @@ function setIntroProcessStep(i){
   const max=(ic.process&&ic.process.length?ic.process.length:1)-1;
   const n=Math.max(0,Math.min(max,Number(i)||0));
   S.introProcIdx=n;
-  render();
+  const curIdxRaw=ic.process.findIndex(p=>/임시집사회|Session Briefing/i.test((p[0]||'')+' '+(p[1]||'')));
+  const curIdx=curIdxRaw>=0?curIdxRaw:Math.min(4,ic.process.length-1);
+  const active=ic.process[n]||ic.process[curIdx];
+  const activeState=n<curIdx?(S.lang==='ko'?'완료 단계':'Completed')
+    :(n===curIdx?(S.lang==='ko'?'현재 진행 단계':'Current Phase')
+    :(S.lang==='ko'?'예정 단계':'Upcoming'));
+  // Update detail panel
+  const detail=document.querySelector('.intro-tl-detail');
+  if(detail){
+    detail.querySelector('.intro-tl-detail-chip').textContent=activeState;
+    detail.querySelector('h4').textContent=active[0];
+    detail.querySelector('p').textContent=active[1];
+  }
+  // Update active step buttons
+  document.querySelectorAll('.intro-tl-step').forEach((btn,idx)=>{
+    btn.classList.toggle('active',idx===n);
+    btn.setAttribute('aria-pressed',idx===n?'true':'false');
+  });
 }
 const expanded={};
 function catKey(slide,sec,cat){return slide+'_'+sec+'_'+cat;}

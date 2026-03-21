@@ -1,14 +1,43 @@
-// === interactions.js — Event handlers, lightbox, presentation viewer ===
-// ===== SPLASH =====
-function enterApp(){
-  const sp=document.getElementById('splash');
-  if(!sp||sp.classList.contains('out'))return;
+// ===== INIT & SCROLL REVEAL =====
+function enterApp() {
+  const sp = document.getElementById('splash');
+  if(!sp || sp.classList.contains('out')) return;
   sp.classList.add('out');
-  setTimeout(()=>{sp.style.display='none';},900);
+  setTimeout(() => { sp.style.display = 'none'; }, 2000);
   document.querySelector('.container').classList.add('show');
 }
-// Auto-enter after bar animation completes
-setTimeout(()=>{if(!document.getElementById('splash').classList.contains('out'))enterApp();},4000);
+document.addEventListener('DOMContentLoaded', () => {
+  // Container shown on user click (enterApp)
+});
+
+function updateTabSlider() {
+  const tabsEl = document.getElementById('header-tabs');
+  const slider = document.getElementById('gtab-slider');
+  const activeTab = tabsEl?.querySelector('.gtab.on');
+  if (tabsEl && slider && activeTab) {
+    slider.style.width = activeTab.offsetWidth + 'px';
+    slider.style.transform = `translateX(${activeTab.offsetLeft}px)`;
+  }
+}
+window.addEventListener('resize', () => { requestAnimationFrame(updateTabSlider); });
+
+function initScrollReveal() {
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.scroll-reveal').forEach(el => el.classList.add('visible'));
+    return;
+  }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2, rootMargin: "0px 0px -50px 0px" });
+  
+  document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+}
+
 // Header scroll shadow
 window.addEventListener('scroll',()=>{
   document.querySelector('.header').classList.toggle('scrolled',window.scrollY>8);

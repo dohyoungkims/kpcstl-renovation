@@ -1,27 +1,34 @@
 /* ===== HEADER ===== */
 .header {
-  position: sticky;
-  top: 0;
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 48px);
+  max-width: 1400px;
   z-index: 100;
-  background: rgba(255,255,255,0.92);
+  background: rgba(15, 15, 15, 0.75);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid rgba(0,0,0,0.06);
-  padding: 8px 24px;
-  transition: box-shadow 0.3s;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 12px 24px;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
 }
 
 .header.scrolled {
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  top: 16px;
+  background: rgba(15, 15, 15, 0.9);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
 }
 
 .header-in {
-  max-width: none;
   width: 100%;
   margin: 0;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 .header-left {
@@ -30,57 +37,71 @@
 
 .header h1 {
   font-family: var(--font);
-  font-size: 18px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
   letter-spacing: -0.2px;
-  color: var(--black);
+  color: #fff;
 }
 
 .header p {
-  font-size: 11px;
-  color: var(--g1);
-  margin-top: 1px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  margin-top: 2px;
   letter-spacing: 0.4px;
   font-weight: 400;
 }
 
 .header-tabs {
+  position: relative;
   flex: 1;
   display: flex;
-  gap: 2px;
-  background: rgba(0,0,0,0.04);
-  border-radius: 12px;
-  padding: 3px;
+  gap: 4px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 16px;
+  padding: 6px;
   min-width: 0;
 }
 
 .header-tabs .gtab {
+  position: relative;
+  z-index: 2;
   flex: 1;
   border: 0;
-  background: transparent;
-  border-radius: 10px;
-  padding: 11px 8px;
+  background: transparent !important;
+  border-radius: 12px;
+  padding: 10px 8px;
   cursor: pointer;
   font-family: var(--font);
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.2px;
   text-transform: uppercase;
-  color: var(--g1);
+  color: rgba(255,255,255,0.6);
   transition: all 0.25s var(--ease);
-  white-space: nowrap;
-  text-align: center;
 }
 
 .header-tabs .gtab:hover {
-  color: rgba(0,0,0,0.7);
-  background: rgba(0,0,0,0.05);
+  color: #fff;
 }
 
 .header-tabs .gtab.on {
   color: #fff;
-  background: #000;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+.gtab-slider {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  height: calc(100% - 12px);
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
 }
 
 .lang-btn {
@@ -159,17 +180,10 @@
   width: 100%;
   margin: 0;
   padding: 24px clamp(12px, 2vw, 30px) 32px;
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 0.6s var(--ease) 0.1s, transform 0.6s var(--ease) 0.1s;
+  position: relative;
+  z-index: 1;
 }
 
-.container.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===== DASHBOARD ===== */
 .dash {
   display: grid;
   grid-template-columns: repeat(4, 1fr);

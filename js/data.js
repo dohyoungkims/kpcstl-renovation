@@ -402,14 +402,14 @@ const EXISTING_SPACE_SRCS=EXISTING_SPACE_FILES.map(name=>`Existing Space/${name}
 const EXISTING_SPACE_PREVIEWS=EXISTING_SPACE_FILES.map(name=>`Existing Space/previews/${name}`);
 const INTRO_CONTENT={
   ko:{
-    heroTitle:'교회 주방 리노베이션 프로젝트\n임시집사회 보고',
+    heroTitle:'주방 레노베이션\n임시집사회 보고',
     heroMeta:'일시 / 2026년 3월 22일 19:00 (ZOOM)\n보고 / Task Force(TF) 팀 및 관리 3부 공동 준비',
     introMessage:`한인장로교회의 주방은 오랜 세월 동안 교우들의 친교와 봉사의 중심 공간으로 사용되어 왔습니다. 그러나 시설의 노후화로 인해 위생, 안전, 그리고 효율성에 있어 개선이 시급한 상황입니다.
 
 관리 3부와 주방 리노베이션 TF팀은 지난 두달간 현장 조사, 3D 모델링, 전문 업체 견적 비교, 그리고 디자인 옵션 검토를 진행해 왔습니다.
 
 본 보고는 그간의 과정과 결과를 공유하고, 집사님들의 소중한 의견을 수렴하고자 마련되었습니다.`,
-    teamLeftTitle:'주방 리노베이션 태스크포스팀',
+    teamLeftTitle:'TF팀',
     teamRightTitle:'관리 3부',
     teamLeft:[
       ['김태호 집사','리더'],
@@ -450,14 +450,14 @@ const INTRO_CONTENT={
     ],
   },
   en:{
-    heroTitle:'Church Kitchen Renovation Project\nSession Briefing',
+    heroTitle:'Kitchen Renovation\nSession Briefing',
     heroMeta:'Date / March 22, 2026 19:00 (ZOOM)\nPrepared by / Task Force (TF) Team + Management Dept. 3',
     introMessage:`For many years, the Korean Presbyterian Church kitchen has been a central place for fellowship and service. Due to aging facilities, hygiene, safety, and operational efficiency now require urgent improvement.
 
 Over the past two months, Management Dept. 3 and the Kitchen Renovation TF have conducted site surveys, 3D modeling, professional estimate comparisons, and design option reviews.
 
 This briefing shares the process and findings and is prepared to gather valuable feedback from the deacon session.`,
-    teamLeftTitle:'Kitchen Renovation Task Force',
+    teamLeftTitle:'TF Team',
     teamRightTitle:'Management Dept. 3',
     teamLeft:[
       ['Deacon Taeho Kim','Leader'],

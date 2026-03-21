@@ -83,11 +83,7 @@ function rSecEq(title,arr,slideIdx,secKey){
 function rIntroPanel(){
   const ic=INTRO_CONTENT[S.lang]||INTRO_CONTENT.ko;
   const introBodyOneLine=(ic.introMessage||'').replace(/\s*\n+\s*/g,' ').replace(/\s{2,}/g,' ').trim();
-  const heroTitleHtml=(S.lang==='ko'
-    ?ic.heroTitle
-      .replace('교회 주방 리노베이션 프로젝트','<span class="intro-title-nowrap">교회 주방 리노베이션 프로젝트</span>')
-      .replace(/\n/g,'<br>')
-    :ic.heroTitle.replace(/\n/g,'<br>'));
+  const heroTitleHtml=ic.heroTitle.replace(/\n/g,'<br>');
   const curIdxRaw=ic.process.findIndex(p=>/임시집사회|Session Briefing/i.test((p[0]||'')+' '+(p[1]||'')));
   const curIdx=curIdxRaw>=0?curIdxRaw:Math.min(4,ic.process.length-1);
   if(typeof S.introProcIdx!=='number'||S.introProcIdx<0||S.introProcIdx>=ic.process.length)S.introProcIdx=curIdx;
@@ -97,7 +93,7 @@ function rIntroPanel(){
   ic.process.forEach((p,i)=>{
     const st=i<curIdx?'done':(i===curIdx?'current':'upcoming');
     const isOn=i===activeIdx;
-    process+=`<button class="intro-tl-step ${st}${isOn?' active':''}" onclick="setIntroProcessStep(${i})" aria-pressed="${isOn?'true':'false'}">
+    process+=`<button class="intro-tl-step ${st}${isOn?' active':''}" onclick="setIntroProcessStep(${i})" onmouseenter="setIntroProcessStep(${i})" aria-pressed="${isOn?'true':'false'}">
       <div class="intro-tl-top">
         <span class="intro-tl-index">${i+1}</span>
         ${i===curIdx?`<span class="intro-tl-now">${S.lang==='ko'?'현재 단계':'Current Stage'}</span>`:''}
@@ -115,39 +111,55 @@ function rIntroPanel(){
   let teamL='',teamR='';
   ic.teamLeft.forEach(r=>{teamL+=`<div class="intro-team-row"><span>${r[0]}</span><span>${r[1]}</span></div>`;});
   ic.teamRight.forEach(r=>{teamR+=`<div class="intro-team-row"><span>${r[0]}</span><span>${r[1]}</span></div>`;});
-  return`<div class="intro-wrap PresentationShell">
-    <section class="intro-hero CoverPanel SectionBoard">
-      <div class="intro-hero-body BilingualTextBlock">
+  return`<div class="intro-wrap PresentationShell immersive-intro">
+    <section class="cinematic-panel" style="background-image: url('Final%20Renderings/rendering%20views/view%202.jpg')">
+      <div class="cine-overlay"></div>
+      <div class="cine-content cine-hero">
         <div class="intro-kicker">${S.lang==='ko'?'세인트루이스 한인장로교회':'Korean Presbyterian Church · St. Louis'}</div>
         <h2 class="intro-title">${heroTitleHtml}</h2>
         <p class="intro-meta">${ic.heroMeta.replace(/\n/g,'<br>')}</p>
       </div>
     </section>
-    <section class="intro-card SectionBoard SurfaceCard BilingualTextBlock">
-      <h3>${S.lang==='ko'?'인트로':'Introduction'}</h3>
-      <p class="intro-body intro-body-intro">${introBodyOneLine}</p>
-    </section>
-    <section class="intro-card SectionBoard SurfaceCard BilingualTextBlock">
-      <h3>${S.lang==='ko'?'팀 소개':'Team Introduction'}</h3>
-      <div class="intro-team-grid">
-        <article class="intro-team-col SurfaceCard"><h4>${ic.teamLeftTitle}</h4>${teamL}</article>
-        <article class="intro-team-col SurfaceCard"><h4>${ic.teamRightTitle}</h4>${teamR}</article>
+
+    <section class="cinematic-panel" style="background-image: url('Final%20Renderings/rendering%20views/view%201.jpg')">
+      <div class="cine-overlay"></div>
+      <div class="cine-content cine-card scroll-reveal">
+        <p class="intro-body intro-body-intro">${introBodyOneLine}</p>
       </div>
     </section>
-    <section class="intro-card SectionBoard SurfaceCard BilingualTextBlock">
-      <h3>${S.lang==='ko'?'프로세스 소개':'Process Overview'}</h3>
-      <div class="intro-timeline">
-        <div class="intro-tl-scroll"><div class="intro-tl-steps">${process}</div></div>
-        <article class="intro-tl-detail TimelineWidget">
-          <div class="intro-tl-detail-head"><span class="intro-tl-detail-chip">${activeState}</span></div>
-          <h4>${active[0]}</h4>
-          <p>${active[1]}</p>
-        </article>
+
+    <section class="cinematic-panel" style="background-image: url('Final%20Renderings/rendering%20views/view%203.jpg')">
+      <div class="cine-overlay"></div>
+      <div class="cine-content cine-card scroll-reveal">
+        <h3>${S.lang==='ko'?'팀 소개':'Team Introduction'}</h3>
+        <div class="intro-team-grid">
+          <article class="intro-team-col"><h4>${ic.teamLeftTitle}</h4>${teamL}</article>
+          <article class="intro-team-col"><h4>${ic.teamRightTitle}</h4>${teamR}</article>
+        </div>
       </div>
     </section>
-    <section class="intro-card SectionBoard SurfaceCard BilingualTextBlock">
-      <h3>${S.lang==='ko'?'임시집사회 보고 목적':'Session Briefing Purpose'}</h3>
-      <div class="intro-purpose-list">${purpose}</div>
+
+    <section class="cinematic-panel" style="background-image: url('Final%20Renderings/rendering%20views/view%204.jpg')">
+      <div class="cine-overlay"></div>
+      <div class="cine-content cine-card scroll-reveal">
+        <h3>${S.lang==='ko'?'프로세스 소개':'Process Overview'}</h3>
+        <div class="intro-timeline">
+          <div class="intro-tl-scroll"><div class="intro-tl-steps">${process}</div></div>
+          <article class="intro-tl-detail TimelineWidget">
+            <div class="intro-tl-detail-head"><span class="intro-tl-detail-chip">${activeState}</span></div>
+            <h4>${active[0]}</h4>
+            <p>${active[1]}</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cinematic-panel" style="background-image: url('Final%20Renderings/rendering%20views/view%205.jpg')">
+      <div class="cine-overlay"></div>
+      <div class="cine-content cine-card scroll-reveal">
+        <h3>${S.lang==='ko'?'임시집사회 보고 목적':'Session Briefing Purpose'}</h3>
+        <div class="intro-purpose-list">${purpose}</div>
+      </div>
     </section>
   </div>`;
 }
