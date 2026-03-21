@@ -123,7 +123,7 @@ ko:{
   splTitle:'주방 리노베이션',
   splSub:'주방 리노베이션 · 비용 시뮬레이터',
   splEnter:'화면을 클릭하세요',
-  introduction:'소개',design:'디자인 고려사항',floorplan:'평면도',polycam:'현재 공간',enscape:'엔스케이프',selections:'선택',presentation:'프레젠테이션',estimates:'견적',
+  introduction:'소개',design:'디자인 고려사항',floorplan:'평면도',polycam:'현재 공간',enscape:'3D 투어',selections:'선택',presentation:'프레젠테이션',estimates:'견적',
   optA:'옵션 A',optB:'옵션 B',optC:'옵션 C',optD:'옵션 D',
   lowest:'최저가',openShelving:'오픈 선반',cabinets:'캐비닛',
   gc:'시공비',equip:'장비비',
@@ -173,7 +173,7 @@ ko:{
   existingShowMore:'사진 더 보기',
   existingPhotoLabel:'기존 공간 사진',
   existingPhotoCap:'리노베이션 전 현재 주방 상태',
-  enscapeTitle:'엔스케이프',enscapeSub:'제안된 주방 디자인의 Enscape 3D 투어입니다. 동선, 마감재, 장비 배치를 확인하세요.',
+  enscapeTitle:'3D 투어',enscapeSub:'제안된 주방 디자인의 Enscape 3D 투어입니다. 동선, 마감재, 장비 배치를 확인하세요.',
   enscapeHelp:'마우스로 주변을 둘러보세요. 클릭 & 드래그로 이동. 스크롤로 확대/축소.',
   openChaos:'Chaos Cloud에서 열기',
   estTitle:'예산별 시공 제안 (제1안~제3안)',
@@ -746,4 +746,3 @@ const B_SCOPE={
   coffee:['b_coffee_gc','b_coffee'],
   floor:['b_floor1','b_floor2'],
 };
-

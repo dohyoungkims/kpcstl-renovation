@@ -90,39 +90,39 @@ function rIntroPanel(){
     :ic.heroTitle.replace(/\n/g,'<br>'));
   let process='';
   ic.process.forEach(p=>{
-    process+=`<li><span class="intro-process-title">${p[0]}</span><span class="intro-process-desc">${p[1]}</span></li>`;
+    process+=`<li class="TimelineWidget"><span class="intro-process-title">${p[0]}</span><span class="intro-process-desc">${p[1]}</span></li>`;
   });
   let purpose='';
   ic.purpose.forEach(p=>{
-    purpose+=`<article class="intro-purpose-item"><h4>${p[0]}</h4><p>${p[1]}</p></article>`;
+    purpose+=`<article class="intro-purpose-item MetricWidget"><h4>${p[0]}</h4><p>${p[1]}</p></article>`;
   });
   let teamL='',teamR='';
   ic.teamLeft.forEach(r=>{teamL+=`<div class="intro-team-row"><span>${r[0]}</span><span>${r[1]}</span></div>`;});
   ic.teamRight.forEach(r=>{teamR+=`<div class="intro-team-row"><span>${r[0]}</span><span>${r[1]}</span></div>`;});
-  return`<div class="intro-wrap">
-    <section class="intro-hero">
-      <div class="intro-hero-body">
+  return`<div class="intro-wrap PresentationShell">
+    <section class="intro-hero CoverPanel SectionBoard">
+      <div class="intro-hero-body BilingualTextBlock">
         <div class="intro-kicker">${S.lang==='ko'?'세인트루이스 한인장로교회':'Korean Presbyterian Church · St. Louis'}</div>
         <h2 class="intro-title">${heroTitleHtml}</h2>
         <p class="intro-meta">${ic.heroMeta.replace(/\n/g,'<br>')}</p>
       </div>
     </section>
-    <section class="intro-card">
+    <section class="intro-card SectionBoard SurfaceCard BilingualTextBlock">
       <h3>${S.lang==='ko'?'인트로':'Introduction'}</h3>
       <p class="intro-body intro-body-intro">${introBodyOneLine}</p>
     </section>
-    <section class="intro-card">
+    <section class="intro-card SectionBoard SurfaceCard BilingualTextBlock">
       <h3>${S.lang==='ko'?'팀 소개':'Team Introduction'}</h3>
       <div class="intro-team-grid">
-        <article class="intro-team-col"><h4>${ic.teamLeftTitle}</h4>${teamL}</article>
-        <article class="intro-team-col"><h4>${ic.teamRightTitle}</h4>${teamR}</article>
+        <article class="intro-team-col SurfaceCard"><h4>${ic.teamLeftTitle}</h4>${teamL}</article>
+        <article class="intro-team-col SurfaceCard"><h4>${ic.teamRightTitle}</h4>${teamR}</article>
       </div>
     </section>
-    <section class="intro-card">
+    <section class="intro-card SectionBoard SurfaceCard BilingualTextBlock">
       <h3>${S.lang==='ko'?'프로세스 소개':'Process Overview'}</h3>
       <ul class="intro-process">${process}</ul>
     </section>
-    <section class="intro-card">
+    <section class="intro-card SectionBoard SurfaceCard BilingualTextBlock">
       <h3>${S.lang==='ko'?'임시집사회 보고 목적':'Session Briefing Purpose'}</h3>
       <div class="intro-purpose-list">${purpose}</div>
     </section>
@@ -132,17 +132,17 @@ function rIntroPanel(){
 function rPolycamPanel(){
   const photos=getExistingSpacePhotos();
   const gallery=photos.map((im,i)=>{
-    return`<button class="ex-photo ex-reveal" onclick="openExistingPhoto(${i})" aria-label="${im.title}">
+    return`<button class="ex-photo ex-reveal ImageCaptionCard" onclick="openExistingPhoto(${i})" aria-label="${im.title}">
     <img src="${encodeURI(im.preview)}?v=1" alt="${im.title}" loading="lazy" decoding="async" fetchpriority="low" onerror="this.onerror=null;this.src='${encodeURI(im.src)}'">
   </button>`;
   }).join('');
-  return`<div class="scan-wrap">
+  return`<div class="scan-wrap SectionBoard SurfaceCard">
     <div class="scan-head"><h3>${t('lidarTitle')}</h3><span class="scan-tag">Polycam</span></div>
     <div class="scan-sub">${t('lidarSub')}</div>
     <div class="scan-shell"><iframe src="${POLYCAM_URL}" title="${t('lidarTitle')}" loading="lazy" allowfullscreen allow="xr-spatial-tracking; fullscreen"></iframe></div>
     <div class="scan-actions">
       <span class="scan-help">${t('lidarHelp')}</span>
-      <a class="scan-btn" href="${POLYCAM_URL}" target="_blank" rel="noopener noreferrer">${t('openPolycam')}</a>
+      <a class="scan-btn PillButton" href="${POLYCAM_URL}" target="_blank" rel="noopener noreferrer">${t('openPolycam')}</a>
     </div>
     <section class="ex-gallery">
       <div class="ex-title">${t('existingPhotosTitle')}</div>
@@ -190,13 +190,13 @@ function initExGalleryReveal(){
 
 
 function rEnscapePanel(){
-  return`<div class="scan-wrap">
+  return`<div class="scan-wrap SectionBoard SurfaceCard">
     <div class="scan-head"><h3>${t('enscapeTitle')}</h3><span class="scan-tag">Enscape</span></div>
     <div class="scan-sub">${t('enscapeSub')}</div>
     <div class="scan-shell" style="padding-top:56.25%"><iframe src="${ENSCAPE_URL}" title="${t('enscapeTitle')}" loading="lazy" allowfullscreen allow="fullscreen"></iframe></div>
     <div class="scan-actions">
       <span class="scan-help">${t('enscapeHelp')}</span>
-      <a class="scan-btn" href="${ENSCAPE_URL}" target="_blank" rel="noopener noreferrer">${t('openChaos')}</a>
+      <a class="scan-btn PillButton" href="${ENSCAPE_URL}" target="_blank" rel="noopener noreferrer">${t('openChaos')}</a>
     </div>
   </div>`;
 }
@@ -222,7 +222,7 @@ function rDesignPanel(){
     const img=s.key==='counter'?'Final Renderings/Counter Top Material Option/93%.jpg':s.images[0].src;
     const isOn=i===S.designSec;
     const required=REQUIRED_SELECTION_KEYS.includes(s.key);
-    return`<button class="ds-jump-card${isOn?' on':''}" onclick="goDesignSec(${i},true)" aria-pressed="${isOn?'true':'false'}">
+    return`<button class="ds-jump-card DecisionCard ImageCaptionCard${isOn?' on':''}" onclick="goDesignSec(${i},true)" aria-pressed="${isOn?'true':'false'}">
       <img src="${encodeURI(img)}" alt="${dsLabel(s)}" loading="lazy">
       ${required?`<span class="ds-req">${t('selectionReq')}</span>`:''}
       <div class="ds-jump-text"><h5>${dsLabel(s)}</h5><span>${dsDesc(s)}</span></div>
@@ -240,19 +240,19 @@ function rDesignPanel(){
     const colorCards=colorIdxs.map(i=>{
       const im=sec.images[i];
       const isOn=activeIdx===i;
-      const btn=`<button class="ds-select-btn" onclick="setDesignPick('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isOn?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isOn?t('selectedLabel'):t('selectThis')}</button>`;
-      return`<article class="counter-color-card ${isOn?'on':''}">
+      const btn=`<button class="ds-select-btn PillButton" onclick="setDesignPick('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isOn?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isOn?t('selectedLabel'):t('selectThis')}</button>`;
+      return`<article class="counter-color-card DecisionCard ${isOn?'on':''}">
         <div class="counter-color-img" onclick="setDesignPick('${sec.key}',${i})"><img src="${encodeURI(im.src)}" alt="${dsTitle(sec,i)}" loading="lazy" style="--crop:${im.cropPos||'53% 58%'}"><span class="counter-color-name">${dsTitle(sec,i)}</span></div>
         <div class="counter-color-actions">${btn}</div>
       </article>`;
     }).join('');
     sectionBody=`<div class="counter-layout">
       <div class="counter-top-grid">
-        <article class="counter-top-card">
+        <article class="counter-top-card ImageCaptionCard">
           <div class="counter-top-img" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,0)"><img src="${encodeURI(sec.images[0].src)}" alt="${dsTitle(sec,0)}" loading="lazy"></div>
           <div class="counter-top-body"><h4 class="counter-top-title">${dsTitle(sec,0)}</h4><p class="counter-top-desc">${dsCap(sec,0)}</p><span class="ds-ref-tag">${t('refOnly')}</span></div>
         </article>
-        <article class="counter-top-card">
+        <article class="counter-top-card ImageCaptionCard">
           <div class="counter-top-img" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,${activeIdx})"><img src="${encodeURI(activeIm.src)}" alt="${dsTitle(sec,activeIdx)}" loading="lazy"></div>
           <div class="counter-top-body"><h4 class="counter-top-title">${dsTitle(sec,activeIdx)}</h4><p class="counter-top-desc">${dsCap(sec,activeIdx)}</p></div>
         </article>
@@ -270,9 +270,9 @@ function rDesignPanel(){
       if(!selectableImg){
         selBtn=`<span class="ds-ref-tag">${t('refOnly')}</span>`;
       }else if(canSelect){
-        selBtn=`<button class="ds-select-btn" onclick="pickDesign('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isSel?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isSel?t('selectedLabel'):t('selectThis')}</button>`;
+        selBtn=`<button class="ds-select-btn PillButton" onclick="pickDesign('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isSel?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isSel?t('selectedLabel'):t('selectThis')}</button>`;
       }
-      return`<div class="ds-card${isSel?' selected':''}">
+      return`<div class="ds-card ImageCaptionCard DecisionCard${isSel?' selected':''}">
       <div class="ds-img-wrap" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,${i})" style="cursor:pointer"><img src="${encodeURI(im.src)}" alt="${dsTitle(sec,i)}" loading="lazy"><div class="ds-img-hint">${t('clickEnlarge')}</div></div>
       <div class="ds-caption">
         <h4 class="ds-img-title">${dsTitle(sec,i)}</h4>
@@ -285,7 +285,7 @@ function rDesignPanel(){
   }
   const pickCount=Object.keys(S.picks).length;
   const selectableCount=selectable.length;
-  return`<div class="design-wrap">
+  return`<div class="design-wrap SectionBoard SurfaceCard">
     <div class="design-head"><div><h3>${t('designTitle')}</h3><p class="design-sub">${t('designSub')}${pickCount>0?' <strong>'+pickCount+' '+t('of')+' '+selectableCount+' '+t('selected')+'</strong> — '+t('visitDesign')+' <a href="#" onclick="goTab(\'selections\');return false" style="color:var(--black);text-decoration:underline">'+t('viewSelections')+'</a> '+t('tabToStart'):''}</p></div><span class="r3-pill">${sec.images.length} ${t(sec.images.length>1?'renderingsPlural':'renderings')}</span></div>
     <section class="ds-intro">
       <h4>${t('designIntroTitle')}</h4>
@@ -310,14 +310,14 @@ function rSelectionsPanel(){
     const si=DESIGN_SECTIONS.indexOf(sec);
     if(picks[sec.key]!==undefined&&isSelectableImage(sec,picks[sec.key])){
       const pickIdx=picks[sec.key];
-      rows+=`<div class="sel-row">
+      rows+=`<div class="sel-row DecisionCard">
         <img src="${encodeURI(sec.images[pickIdx].src)}" alt="${dsTitle(sec,pickIdx)}" onclick="lbOpen(DESIGN_SECTIONS[${si}].images,${pickIdx})" title="${t('clickEnlarge')}">
         <div class="sel-row-info">
           <div class="sel-row-cat">${dsLabel(sec)}</div>
           <div class="sel-row-title">${dsTitle(sec,pickIdx)}</div>
           <div class="sel-row-desc">${dsCap(sec,pickIdx)}</div>
         </div>
-        <button class="sel-row-clear" onclick="pickDesign('${sec.key}',${pickIdx})">${t('remove')}</button>
+        <button class="sel-row-clear PillButton" onclick="pickDesign('${sec.key}',${pickIdx})">${t('remove')}</button>
       </div>`;
     }
   });
@@ -326,18 +326,18 @@ function rSelectionsPanel(){
   selectable.forEach(sec=>{
     const si=DESIGN_SECTIONS.indexOf(sec);
     if(picks[sec.key]===undefined){
-      missing+=`<div class="sel-row" style="opacity:0.45;border-style:dashed">
+      missing+=`<div class="sel-row DecisionCard" style="opacity:0.45;border-style:dashed">
         <div style="width:180px;height:120px;background:var(--g6);display:flex;align-items:center;justify-content:center;flex-shrink:0"><span style="font-size:20px;opacity:0.3">?</span></div>
         <div class="sel-row-info">
           <div class="sel-row-cat">${dsLabel(sec)}</div>
           <div class="sel-row-title" style="color:var(--g2)">${t('noSelYet')}</div>
           <div class="sel-row-desc">${selectableImageCount(sec)} ${t(selectableImageCount(sec)>1?'optAvailable':'optAvailableSingle')}</div>
         </div>
-        <button class="sel-row-clear" onclick="S.designSec=${si};goTab('design')" style="border-color:var(--black);color:var(--black)">${t('choose')}</button>
+        <button class="sel-row-clear PillButton" onclick="S.designSec=${si};goTab('design')" style="border-color:var(--black);color:var(--black)">${t('choose')}</button>
       </div>`;
     }
   });
-  return`<div class="sel-wrap">
+  return`<div class="sel-wrap SectionBoard SurfaceCard">
     <div class="sel-head"><h3>${t('yourSelections')}</h3><p>${t('selSub')} ${t('selGoTo')} <a href="#" onclick="goTab('design');return false" style="color:var(--black);text-decoration:underline">${t('goToDesign')}</a> ${t('selToMake')}</p></div>
     <div class="sel-count">${chosen} ${t('of')} ${total} ${t('categoriesSelected')}</div>
     <div class="sel-grid">${chosen>0?rows:''}${missing}</div>
@@ -349,7 +349,7 @@ function rFloorPlanPanel(){
   const floorSrc=FLOOR_PLAN_RENDER_SRC;
   const floorSub=t('floorSub');
   const floorTip=t('floorTip');
-  return`<div class="floor-wrap">
+  return`<div class="floor-wrap SectionBoard SurfaceCard">
     <div class="floor-head"><div><h3>${t('floorTitle')}</h3>${floorSub?`<p class="floor-sub">${floorSub}</p>`:''}</div><span class="scan-tag">${t('rendered')}</span></div>
     <div class="floor-static"><img src="${encodeURI(floorSrc)}" alt="${t('floorTitle')}" loading="lazy"></div>
     ${floorTip?`<div class="floor-help">${floorTip}</div>`:''}
@@ -381,7 +381,7 @@ function rScopeOverview(){
   const catCards=SCOPE_CATS.map(cat=>{
     const lbl=trObj(cat.label);
     const st=(focusCard.scope&&focusCard.scope[cat.key])||'out';
-    return `<article class="est-scope-cat ${scopeStateClass(st)}">
+    return `<article class="est-scope-cat ImageCaptionCard ${scopeStateClass(st)}">
       <span class="est-scope-state est-scope-dot ${scopeStateClass(st)}">${scopeStateLabel(st)}</span>
       <img src="${encodeURI(cat.img)}" alt="${lbl}" loading="lazy">
       <div class="est-scope-cap"><strong>${cat.key}</strong>${lbl.replace(/^\d+\.\s*/,'')}</div>
@@ -399,7 +399,7 @@ function rScopeOverview(){
       <td class="${focusKey==='3'?'focus-col':''}"><span class="est-scope-dot ${scopeStateClass(s3)}">${scopeStateLabel(s3)}</span></td>
     </tr>`;
   }).join('');
-  return `<section class="est-scope">
+  return `<section class="est-scope SectionBoard SurfaceCard">
     <div class="est-scope-head">
       <div><h3>${t('scopeTitle')}</h3><p class="est-scope-sub">${t('scopeSub')}<br>${t('scopeHint')} <strong>${t('scopeActive')}: ${trObj(focusCard.title)}</strong></p></div>
     </div>
@@ -421,26 +421,25 @@ function rEstimateSummary(){
   ESTIMATE_CARDS.forEach(c=>{
     const on=S.preset===c.key;
     const focus=S.scopeFocus===c.key;
-    cards+=`<article class="est-card ${on?'on':''} ${focus?'focus':''}" onclick="applyPreset('${c.key}')">
+    cards+=`<article class="est-card DecisionCard BudgetWidget ${on?'on':''} ${focus?'focus':''}" onclick="applyPreset('${c.key}')">
       <h4>${trObj(c.title)}</h4>
       <p>${trObj(c.desc)}</p>
       <p class="est-list">${trObj(c.items)}</p>
       <div class="est-scope-badges">${rScopeBadges(c)}</div>
       <div class="est-range">${c.range}<small>${c.rangeEn}</small></div>
       <div class="est-card-actions">
-        <button class="est-preset-btn ${on?'on':''}" onclick="event.stopPropagation();applyPreset('${c.key}')">${on?t('applied'):t('applyPreset')}</button>
+        <button class="est-preset-btn PillButton ${on?'on':''}" onclick="event.stopPropagation();applyPreset('${c.key}')">${on?t('applied'):t('applyPreset')}</button>
       </div>
     </article>`;
   });
-  return`${rScopeOverview()}<section class="est">
+  return`${rScopeOverview()}<section class="est SectionBoard SurfaceCard">
     <h3>${t('estTitle')}</h3>
     <p class="est-sub">${t('estSub')}</p>
     <p class="est-hint">${t('presetHint')}</p>
     <div class="est-grid">${cards}</div>
     <div class="est-actions">
-      <button class="est-btn ghost" onclick="resetPreset()">${t('resetRaw')}</button>
-      <button class="est-btn" onclick="scrollEstimateDetails()">${t('openDetail')}</button>
+      <button class="est-btn ghost PillButton" onclick="resetPreset()">${t('resetRaw')}</button>
+      <button class="est-btn PillButton" onclick="scrollEstimateDetails()">${t('openDetail')}</button>
     </div>
   </section>`;
 }
-

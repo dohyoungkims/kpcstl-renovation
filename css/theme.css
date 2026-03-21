@@ -1,7 +1,7 @@
 /* ===== THEME: Soft Futuristic Dashboard ===== */
 
 :root {
-  --font:'Space Grotesk','Noto Sans KR',system-ui,-apple-system,sans-serif;
+  --font:'Inter','Noto Sans KR',system-ui,-apple-system,sans-serif;
 
   /* === NEW SEMANTIC TOKENS (design brief) === */
   --bg: #d9d9de;

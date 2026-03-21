@@ -241,32 +241,32 @@ function rPresentationPanel(){
   const nextDis=pg>=PRES_TOTAL-1?' disabled':'';
   const sectionLabel=lang==='ko'?curSec.label:curSec.labelEn;
 
-  return`<div class="pres-wrap controls-visible" id="pres-wrap">
+  return`<div class="pres-wrap controls-visible PresentationShell" id="pres-wrap">
     <div class="pres-sidebar${sideOpen?'':' hidden'}" id="pres-sidebar">${toc}</div>
     <div class="pres-overlay${sideOpen?' show':''}" id="pres-overlay" onclick="togglePresSidebar()"></div>
-    <div class="pres-main${sideOpen?'':' expanded'}" id="pres-main">
+    <div class="pres-main SectionBoard SurfaceCard${sideOpen?'':' expanded'}" id="pres-main">
       <div class="pres-header">
         <div class="pres-hdr-left">
-          <button class="pres-icon-btn${sideOpen?' active':''}" onclick="togglePresSidebar()" title="Toggle sidebar">
+          <button class="pres-icon-btn CircularNavButton${sideOpen?' active':''}" onclick="togglePresSidebar()" title="Toggle sidebar">
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="2" y1="4" x2="14" y2="4"/><line x1="2" y1="8" x2="14" y2="8"/><line x1="2" y1="12" x2="14" y2="12"/></svg>
           </button>
           <span class="pres-title">${sectionLabel} &mdash; ${pg+1}/${PRES_TOTAL}</span>
         </div>
         <div class="pres-hdr-right">
-          <button class="pres-icon-btn${S.presNotesOpen?' active':''}" id="pres-notes-toggle" onclick="togglePresNotes()" title="${t('presNotes')}">
+          <button class="pres-icon-btn CircularNavButton${S.presNotesOpen?' active':''}" id="pres-notes-toggle" onclick="togglePresNotes()" title="${t('presNotes')}">
             <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             <span class="pres-note-count" id="pres-note-count">${presNotesFor(pg).length}</span>
           </button>
-          <button class="pres-icon-btn" onclick="togglePresFullscreen()" title="Fullscreen (F)">
+          <button class="pres-icon-btn CircularNavButton" onclick="togglePresFullscreen()" title="Fullscreen (F)">
             <svg width="15" height="15" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="5 1 1 1 1 5"/><polyline points="11 1 15 1 15 5"/><polyline points="5 15 1 15 1 11"/><polyline points="11 15 15 15 15 11"/></svg>
           </button>
-          <button class="pres-icon-btn danger" onclick="goTab('introduction')" title="${t('closePresentation')}">✕</button>
+          <button class="pres-icon-btn CircularNavButton danger" onclick="goTab('introduction')" title="${t('closePresentation')}">✕</button>
         </div>
       </div>
-      <button class="pres-nav-arrow pres-nav-prev${prevDis}" onclick="presPrev()">
+      <button class="pres-nav-arrow CircularNavButton pres-nav-prev${prevDis}" onclick="presPrev()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
       </button>
-      <button class="pres-nav-arrow pres-nav-next${nextDis}" onclick="presNext()">
+      <button class="pres-nav-arrow CircularNavButton pres-nav-next${nextDis}" onclick="presNext()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
       </button>
       <div class="pres-stage" id="pres-stage">
@@ -275,28 +275,28 @@ function rPresentationPanel(){
         </div>
       </div>
       <div class="pres-controls">
-        <button class="pres-btn${prevDis}" onclick="presFirst()" title="First page">
+        <button class="pres-btn PillButton${prevDis}" onclick="presFirst()" title="First page">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="19 20 9 12 19 4"/><line x1="5" y1="4" x2="5" y2="20"/></svg>
         </button>
-        <button class="pres-btn${prevDis}" onclick="presPrev()" title="Previous (←)">
+        <button class="pres-btn PillButton${prevDis}" onclick="presPrev()" title="Previous (←)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
         </button>
         <span class="pres-page-info">${pg+1} / ${PRES_TOTAL}</span>
-        <button class="pres-btn${nextDis}" onclick="presNext()" title="Next (→)">
+        <button class="pres-btn PillButton${nextDis}" onclick="presNext()" title="Next (→)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 6 15 12 9 18"/></svg>
         </button>
-        <button class="pres-btn${nextDis}" onclick="presLast()" title="Last page">
+        <button class="pres-btn PillButton${nextDis}" onclick="presLast()" title="Last page">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="5 4 15 12 5 20"/><line x1="19" y1="4" x2="19" y2="20"/></svg>
         </button>
         <div class="pres-divider"></div>
-        <button class="pres-btn" onclick="presZoom(0.8)" title="Zoom out (−)">
+        <button class="pres-btn PillButton" onclick="presZoom(0.8)" title="Zoom out (−)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
         </button>
         <span class="pres-zoom-info" id="pres-zoom-label">${Math.round(S.presZoom*100)}%</span>
-        <button class="pres-btn" onclick="presZoom(1.25)" title="Zoom in (+)">
+        <button class="pres-btn PillButton" onclick="presZoom(1.25)" title="Zoom in (+)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
         </button>
-        <button class="pres-btn" onclick="presResetZoom()" title="Reset zoom (0)">
+        <button class="pres-btn PillButton" onclick="presResetZoom()" title="Reset zoom (0)">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 4v6h6"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
         </button>
       </div>
@@ -308,8 +308,8 @@ function rPresentationPanel(){
             <div class="pres-notes-sub" id="pres-notes-sub">${S.lang==='ko'?'슬라이드 ':'Slide '}${pg+1} · ${t('presSaved')} ${presNotesFor(pg).length}</div>
           </div>
           <div class="pres-notes-actions">
-            <button class="pres-notes-btn" onclick="exportPresNotes()">${t('presNotesExport')}</button>
-            <button class="pres-notes-btn" onclick="togglePresNotes()">✕</button>
+            <button class="pres-notes-btn PillButton" onclick="exportPresNotes()">${t('presNotesExport')}</button>
+            <button class="pres-notes-btn PillButton" onclick="togglePresNotes()">✕</button>
           </div>
         </div>
         <div class="pres-notes-body" id="pres-notes-body">${rPresNotesItems(pg)}</div>
@@ -317,7 +317,7 @@ function rPresentationPanel(){
           <textarea id="pres-note-input" placeholder="${t('presNotesHint')}"></textarea>
           <div class="pres-notes-form-row">
             <span class="pres-notes-hint">${t('presNotesHotkey')}</span>
-            <button class="pres-notes-add" onclick="addPresNote()">${t('presNotesAdd')}</button>
+            <button class="pres-notes-add PillButton" onclick="addPresNote()">${t('presNotesAdd')}</button>
           </div>
         </div>
       </aside>

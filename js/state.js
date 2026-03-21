@@ -148,10 +148,9 @@ function getT(){
   const ccl=Math.round((cgl+cel)*cr),cch=Math.round((cgh+ceh)*cr);
   const dcl=Math.round((dgl+del_)*cr),dch=Math.round((dgh+deh)*cr);
   return[
-    {k:'A',l:'KFS + Ford',gc:agl,eq:ael,cont:acl,t:agl+ael+acl,gcH:agh,eqH:aeh,contH:ach,tH:agh+aeh+ach,c:'blue'},
-    {k:'B',l:'Pernikoff + Session',gc:bgl,eq:bel,cont:bcl,t:bgl+bel+bcl,gcH:bgh,eqH:beh,contH:bch,tH:bgh+beh+bch,c:'green'},
+    {k:'A',l:'KFS + Ford',gc:agl,eq:ael,cont:acl,t:agl+ael+acl,gcH:agh,eqH:aeh,contH:ach,tH:agh+aeh+ach,c:'green'},
+    {k:'B',l:'Pernikoff + Session',gc:bgl,eq:bel,cont:bcl,t:bgl+bel+bcl,gcH:bgh,eqH:beh,contH:bch,tH:bgh+beh+bch,c:'blue'},
     {k:'C',l:'Agape + '+(S.agapeEq==='ford'?'Ford':'Session'),gc:cgl,eq:cel,cont:ccl,t:cgl+cel+ccl,gcH:cgh,eqH:ceh,contH:cch,tH:cgh+ceh+cch,c:'orange'},
-    {k:'D',l:'Morganco + '+(S.morgEq==='ford'?'Ford':'Session'),gc:dgl,eq:del_,cont:dcl,t:dgl+del_+dcl,gcH:dgh,eqH:deh,contH:dch,tH:dgh+deh+dch,c:'purple'},
+    {k:'D',l:'Morganco + '+(S.morgEq==='ford'?'Ford':'Session'),gc:dgl,eq:del_,cont:dcl,t:dgl+del_+dcl,gcH:dgh,eqH:deh,contH:dch,tH:dgh+deh+dch,c:'red'},
   ];
 }
-
