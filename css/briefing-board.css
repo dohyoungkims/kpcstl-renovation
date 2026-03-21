@@ -2385,7 +2385,7 @@ body.theme-flat2d .immersive-intro .intro-process-desc {
   /* Hero section */
   .cine-content {
     max-width: 100% !important;
-    padding: 0 16px !important;
+    padding: 0 24px !important;
   }
 
   .intro-title {
@@ -2462,6 +2462,7 @@ body.theme-flat2d .immersive-intro .intro-process-desc {
   /* Timeline container */
   body.theme-flat2d .immersive-intro .intro-timeline {
     max-width: 100% !important;
+    padding: 0 8px !important;
   }
 
   /* Section headings */
@@ -2494,7 +2495,7 @@ body.theme-flat2d .immersive-intro .intro-process-desc {
 
   /* Section card panels */
   .cinematic-panel {
-    padding: 60px 12px !important;
+    padding: 60px 24px !important;
   }
 }
 
@@ -2508,6 +2509,6 @@ body.theme-flat2d .immersive-intro .intro-process-desc {
   }
 
   .cinematic-panel {
-    padding: 48px 8px !important;
+    padding: 48px 20px !important;
   }
 }

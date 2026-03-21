@@ -22,7 +22,7 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll {
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: 1px;
   background: #000;
 }
 
