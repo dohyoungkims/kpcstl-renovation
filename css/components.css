@@ -1850,8 +1850,8 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll::-webkit-scrollbar-thumb {
   top: 10px;
   right: 10px;
   z-index: 3;
-  background: #ffd87a;
-  color: #111;
+  background: var(--board-neon-green, #39ff78);
+  color: #06230f;
   border: 1px solid rgba(0,0,0,0.12);
   border-radius: 999px;
   padding: 6px 11px;

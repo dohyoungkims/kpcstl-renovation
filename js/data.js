@@ -442,9 +442,9 @@ const INTRO_CONTENT={
     ],
     scope:[
       ['싱크대 재배치 및 급수 설비','누수 근본 해결 및 조리 동선 최적화','Final Renderings/sinkwall area/sink wall 1.jpg'],
-      ['카운터탑(상판) 교체','위생 및 내구성 강화를 위한 재시공','Final Renderings/Counter Top Material Option/93%.jpg'],
-      ['스토브 교체 + 벽면 패널(SS/FRP) 설치','고화력 버너 도입 및 청소 용이성 향상','Final Renderings/Stove area/stove area.jpg'],
-      ['수납 설비 확충','스테인리스 캐비닛 및 효율적 선반 배치','Final Renderings/counter top options/final.jpg'],
+      ['수납 설비 확충 및 카운터탑(상판) 교체','위생 및 내구성 강화를 위한 재시공 및 효율적 선반 배치','Final Renderings/counter top options/final.jpg'],
+      ['스토브 교체 및 벽면 패널(SS/FRP) 설치','고화력 버너 도입 및 청소 용이성 향상','Final Renderings/Stove area/stove area.jpg'],
+      ['천장 업그레이드','새로운 조명 및 천장 타일로 밝고 위생적인 환경 조성','Final Renderings/ceiling/1.jpg'],
       ['외부 커피 스테이션 구축','정수기 동선 분리 및 운영 효율화','Final Renderings/Entry way area/Coffee Table 1.jpg'],
       ['바닥 타일 교체','전면적인 바닥 노후화 해결 및 환경 개선','Final Renderings/floor option/floor 1.jpg'],
     ],
@@ -490,9 +490,9 @@ This briefing shares the process and findings and is prepared to gather valuable
     ],
     scope:[
       ['Sink Relocation & Water Supply','Resolve leakage root cause and optimize kitchen workflow','Final Renderings/sinkwall area/sink wall 1.jpg'],
-      ['Countertop Replacement','Rebuild with stronger hygiene and durability','Final Renderings/Counter Top Material Option/93%.jpg'],
+      ['Storage Expansion & Countertop Replacement','Rebuild with stronger hygiene and efficient shelving layout','Final Renderings/counter top options/final.jpg'],
       ['Stove + SS/FRP Wall Panel Work','Upgrade heat output and improve cleanability','Final Renderings/Stove area/stove area.jpg'],
-      ['Storage Expansion','Stainless cabinetry and efficient shelving layout','Final Renderings/counter top options/final.jpg'],
+      ['Ceiling Upgrade','Create a bright and hygienic environment with new lighting and ceiling tiles','Final Renderings/ceiling/1.jpg'],
       ['External Coffee Station','Separate drinking traffic from cooking traffic','Final Renderings/Entry way area/Coffee Table 1.jpg'],
       ['Floor Tile Upgrade','Address long-term floor aging and environment quality','Final Renderings/floor option/floor 1.jpg'],
     ],
@@ -533,8 +533,8 @@ const ESTIMATE_CARDS=[
 const SCOPE_CATS=[
   {key:'1',label:{ko:'1. 싱크대 재배치 및 급수 설비',en:'1. Sink Relocation & Water Supply'},img:'Final Renderings/sinkwall area/Final A.jpg'},
   {key:'2',label:{ko:'2. 수납 설비 확충 및 카운터탑교체',en:'2. Counter + Cabinet / Countertop'},img:'Final Renderings/counter top options/final.jpg'},
-  {key:'3',label:{ko:'3. 가스레인지/오븐 교체',en:'3. Stove/Oven Replacement'},img:'Final Renderings/Stove area/stove area.jpg'},
-  {key:'4',label:{ko:'4. 벽면 패널(SS/FRP) 설치',en:'4. SS/FRP Wall Panels'},img:'Final Renderings/Stove area/SS and FRP Panels.jpg'},
+  {key:'3',label:{ko:'3. 가스레인지 교체 및 벽면 패널 설치',en:'3. Stove Replacement & Wall Panels'},img:'Final Renderings/Stove area/stove area.jpg'},
+  {key:'4',label:{ko:'4. 천장 업그레이드',en:'4. Ceiling Upgrade'},img:'Final Renderings/ceiling/1.jpg'},
   {key:'5',label:{ko:'5. 외부 커피 스테이션 구축',en:'5. External Coffee Station'},img:'Final Renderings/Entry way area/Coffee Table 1.jpg'},
   {key:'6',label:{ko:'6. 바닥 타일 교체',en:'6. Floor Tile Replacement'},img:'Final Renderings/floor option/floor 1.jpg'},
 ];
@@ -562,19 +562,30 @@ const DESIGN_SECTIONS=[
   },
   {
     key:'stove',
-    label:{ko:'3. 가스레인지/오븐 교체',en:'3. Stove/Oven Replacement'},
-    desc:{ko:'오븐 고장 문제를 해결하고, 고화력 스톡 버너 도입으로 대용량 조리 성능을 강화합니다.',en:'Restores oven capability and adds high-output stock burners for heavy-volume cooking.'},
+    label:{ko:'3. 가스레인지 교체 및 벽면 패널 설치',en:'3. Stove Replacement & Wall Panels'},
+    desc:{ko:'가스레인지/오븐을 교체하고 조리 벽면을 SS, 나머지 벽면을 FRP 마감으로 개선합니다.',en:'Upgrades the stove/oven and applies SS behind cooking zones with FRP on white walls.'},
     images:[
       {src:'Final Renderings/Stove area/stove area.jpg',title:{ko:'가스레인지/오븐 교체안',en:'Stove/Oven Upgrade'},cap:{ko:'스토브 교체로 조리 범위를 확장하고, 대형 조리 대응력을 높입니다.',en:'Upgraded cooking line expands menu range and improves throughput.'},refOnly:true},
       {src:'Final Renderings/Stove area/pot filler.jpg',title:{ko:'팟 필러',en:'Pot Filler'},cap:{ko:'스토브 상단 팟 필러(Pot Filler) 구역 렌더링입니다.',en:'Detailed rendering of the pot filler installation over the stove.'},refOnly:true},
+      {src:'Final Renderings/Stove area/SS and FRP Panels.jpg',title:{ko:'SS + FRP 벽면 마감',en:'SS + FRP Wall Finish'},cap:{ko:'위 렌더링 범위 외 흰색 벽면도 FRP로 교체하여 전체 유지관리 품질을 통일합니다.',en:'Beyond the shown zone, white wall areas are replaced with FRP for consistent maintenance quality.'},refOnly:true},
     ],
   },
   {
-    key:'walls',
-    label:{ko:'4. 벽면 패널(SS/FRP) 설치',en:'4. SS/FRP Wall Panels'},
-    desc:{ko:'조리 벽면은 SS, 그 외 흰색 벽면은 FRP 마감으로 계획하여 청소 용이성과 위생 수준을 높입니다.',en:'Applies SS behind cooking zones and FRP on white walls to improve hygiene and cleaning efficiency.'},
+    key:'ceiling_light',
+    label:{ko:'4. 천장 조명 업그레이드',en:'4. Ceiling Light Upgrade'},
+    desc:{ko:'주방 조도를 높이기 위해 조명 형태(1A 또는 1B)를 선택해 업그레이드합니다.',en:'Upgrades lighting fixtures to brighten the kitchen.'},
     images:[
-      {src:'Final Renderings/Stove area/SS and FRP Panels.jpg',title:{ko:'SS + FRP 벽면 마감',en:'SS + FRP Wall Finish'},cap:{ko:'위 렌더링 범위 외 흰색 벽면도 FRP로 교체하여 전체 유지관리 품질을 통일합니다.',en:'Beyond the shown zone, white wall areas are replaced with FRP for consistent maintenance quality.'},refOnly:true},
+      {src:'Final Renderings/ceiling/1.jpg',title:{ko:'옵션 1A) 조명 패널 및 반투명 판 교체',en:'Option 1A) Light Panel & Translucent Board'},cap:{ko:'기존 틀에 반투명 판넬을 교체하여 조도를 높이는 안입니다.<br><br><strong>1A : $1200 Add ($300 each panel) (KFS)</strong>',en:'Replaces the existing panels with translucent boards to improve lighting levels.<br><br><strong>1A : $1200 Add ($300 each panel) (KFS)</strong>'}},
+      {src:'Final Renderings/ceiling/2.jpg',title:{ko:'옵션 1B) 캔 조명으로 업그레이드',en:'Option 1B) Can Light Upgrade'},cap:{ko:'깔끔한 캔 조명(다이렉트 조명)으로 변경하여 현대적인 느낌을 줍니다.<br><br><strong>1B : Cost is baked into Pernikoff GC Costs</strong>',en:'Changes to modern can lights for a cleaner, direct lighting aesthetic.<br><br><strong>1B : Cost is baked into Pernikoff GC Costs</strong>'}},
+    ],
+  },
+  {
+    key:'ceiling_tile',
+    hideJump: true,
+    label:{ko:'천장 타일 교체 (추가 선택)',en:'Ceiling Tile Replacement (Optional Add-on)'},
+    desc:{ko:'빛바랜 기존 주변 천장 타일도 함께 깔끔하게 교체하는 방안입니다. 단독으로 켰다 끌 수 있습니다.',en:'Replaces the surrounding aged ceiling tiles as an additional upgrade. Can be toggled independently.'},
+    images:[
+      {src:'Final Renderings/ceiling/1.jpg',title:{ko:'옵션 2) 천장 타일 교체',en:'Option 2) Ceiling Tile Replacement'},cap:{ko:'노후된 주변 천장 타일 전체를 새것으로 교체하는 옵션입니다.<br><br><strong>2 : $3000 Add (Pernikoff)</strong>',en:'Replaces the surrounding aged ceiling tiles as an additional upgrade.<br><br><strong>2 : $3000 Add (Pernikoff)</strong>'},color:'red'},
     ],
   },
   {

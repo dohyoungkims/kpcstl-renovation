@@ -253,14 +253,16 @@ function selectableSections(){return DESIGN_SECTIONS.filter(sec=>selectableImage
 function rDesignPanel(){
   const sec=DESIGN_SECTIONS[S.designSec];
   const selectable=selectableSections();
-  const jumpCards=DESIGN_SECTIONS.map((s,i)=>{
+  const jumpCards = DESIGN_SECTIONS.map((s, i) => {
+    if(s.hideJump)return'';
     const img=s.key==='counter'?'Final Renderings/Counter Top Material Option/93%.jpg':s.images[0].src;
-    const isOn=i===S.designSec;
-    const required=REQUIRED_SELECTION_KEYS.includes(s.key);
+    const pickIdx=S.picks[s.key];
+    const isOn=pickIdx!==undefined&&!s.images[pickIdx].refOnly;
+    const required=s.images.some(im=>!im.refOnly)&&!isOn;
     return`<button class="ds-jump-card DecisionCard ImageCaptionCard${isOn?' on':''}" onclick="goDesignSec(${i},true)" aria-pressed="${isOn?'true':'false'}">
       <img src="${encodeURI(img)}" alt="${dsLabel(s)}" loading="lazy">
       ${required?`<span class="ds-req">${t('selectionReq')}</span>`:''}
-      <div class="ds-jump-text"><h5>${dsLabel(s)}</h5><span>${dsDesc(s)}</span></div>
+      <div class="ds-jump-text"><h5>${dsLabel(s)}</h5></div>
     </button>`;
   }).join('');
   // Section content — select buttons only for selectable sections
@@ -306,10 +308,11 @@ function rDesignPanel(){
       if(!selectableImg){
         selBtn=`<span class="ds-ref-tag">${t('refOnly')}</span>`;
       }else if(canSelect){
-        selBtn=`<button class="ds-select-btn PillButton" onclick="pickDesign('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isSel?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isSel?t('selectedLabel'):t('selectThis')}</button>`;
+        const btn=im.refOnly?'':`<button class="ds-select-btn PillButton" onclick="setDesignPick('${sec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isSel?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isSel?t('selectedLabel'):t('selectThis')}</button>`;
+        selBtn = btn; // Assign the generated button to selBtn
       }
-      return`<div class="ds-card ImageCaptionCard DecisionCard${isSel?' selected':''}">
-      <div class="ds-img-wrap" onclick="lbOpen(DESIGN_SECTIONS[${secIdx}].images,${i})" style="cursor:pointer"><img src="${encodeURI(im.src)}" alt="${dsTitle(sec,i)}" loading="lazy"><div class="ds-img-hint">${t('clickEnlarge')}</div></div>
+      return`<div class="ds-card ImageCaptionCard DecisionCard${isSel?' selected':''} ${im.color?im.color:''}">
+      <div class="ds-img-wrap" onclick="${im.refOnly?`lbOpen(DESIGN_SECTIONS[${secIdx}].images,${i})`:`setDesignPick('${sec.key}',${i})`}" style="cursor:pointer"><img src="${encodeURI(im.src)}" alt="${dsTitle(sec,i)}" loading="lazy"><div class="ds-img-hint">${t('clickEnlarge')}</div></div>
       <div class="ds-caption">
         <h4 class="ds-img-title">${dsTitle(sec,i)}</h4>
         <p class="ds-img-desc">${dsCap(sec,i)}</p>
@@ -317,7 +320,24 @@ function rDesignPanel(){
       </div>
     </div>`;
     }).join('');
-    sectionBody=`<div class="ds-gallery" data-count="${sec.images.length}">${imgs}</div>`;
+    let extraImgs = '';
+    if (sec.key === 'ceiling_light') {
+      const tileSecIdx = DESIGN_SECTIONS.findIndex(s=>s.key==='ceiling_tile');
+      const tileSec = DESIGN_SECTIONS[tileSecIdx];
+      extraImgs = tileSec.images.map((im,i)=>{
+        const isSel = S.picks[tileSec.key] === i;
+        const btn = `<button class="ds-select-btn PillButton" onclick="setDesignPick('${tileSec.key}',${i})"><span class="ds-check"><svg viewBox="0 0 10 10" fill="none" stroke="${isSel?'var(--black)':'currentColor'}" stroke-width="1.5"><path d="M2 5.5l2 2 4-4"/></svg></span>${isSel?t('selectedLabel'):t('selectThis')}</button>`;
+        return `<div class="ds-card ImageCaptionCard DecisionCard${isSel?' selected':''} ${im.color?im.color:''}">
+          <div class="ds-img-wrap" onclick="setDesignPick('${tileSec.key}',${i})" style="cursor:pointer"><img src="${encodeURI(im.src)}" alt="${dsTitle(tileSec,i)}" loading="lazy"><div class="ds-img-hint">${t('clickEnlarge')}</div></div>
+          <div class="ds-caption">
+            <h4 class="ds-img-title">${dsTitle(tileSec,i)}</h4>
+            <p class="ds-img-desc">${dsCap(tileSec,i)}</p>
+            ${btn}
+          </div>
+        </div>`;
+      }).join('');
+    }
+    sectionBody=`<div class="ds-gallery">${imgs}${extraImgs}</div>`;
   }
   const pickCount=Object.keys(S.picks).length;
   const selectableCount=selectable.length;
@@ -437,7 +457,7 @@ function rScopeOverview(){
   }).join('');
   return `<section class="est-scope SectionBoard SurfaceCard">
     <div class="est-scope-head">
-      <div><h3>${t('scopeTitle')}</h3><p class="est-scope-sub">${t('scopeSub')}<br>${t('scopeHint')} <strong>${t('scopeActive')}: ${trObj(focusCard.title)}</strong></p></div>
+      <div><h3>${t('scopeTitle')}</h3><p class="est-scope-sub">${t('scopeSub')}<br>${t('scopeHint')}</p></div>
     </div>
     <div class="est-scope-cats">${catCards}</div>
     <div class="est-scope-matrix">
