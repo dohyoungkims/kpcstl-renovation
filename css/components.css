@@ -3864,9 +3864,10 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll::-webkit-scrollbar-thumb {
   right: 14px;
   bottom: 16px;
   width: min(380px, calc(100% - 28px));
-  background: rgba(17, 17, 17, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 14px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   transform: translateX(18px) scale(0.98);
@@ -3890,18 +3891,18 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll::-webkit-scrollbar-thumb {
   align-items: center;
   justify-content: space-between;
   padding: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
 }
 
 .pres-notes-head h4 {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.88);
-  font-weight: 600;
+  font-size: 13px;
+  color: #111;
+  font-weight: 700;
 }
 
 .pres-notes-sub {
-  font-size: 10px;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  color: #666;
 }
 
 .pres-notes-actions {
@@ -3910,19 +3911,20 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll::-webkit-scrollbar-thumb {
 }
 
 .pres-notes-btn {
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  background: rgba(255, 255, 255, 0.06);
-  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #f0f0f0;
+  color: #333;
   font-family: var(--font);
   font-size: 10px;
+  font-weight: 600;
   padding: 5px 10px;
   border-radius: 6px;
   cursor: pointer;
 }
 
 .pres-notes-btn:hover {
-  background: rgba(255, 255, 255, 0.14);
-  color: #fff;
+  background: #e5e5e5;
+  color: #000;
 }
 
 .pres-notes-body {
@@ -3936,24 +3938,25 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll::-webkit-scrollbar-thumb {
 
 .pres-note-empty {
   font-size: 12px;
-  color: rgba(255, 255, 255, 0.45);
+  color: #999;
   line-height: 1.6;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #f9f9f9;
+  border: 1px solid #eee;
   border-radius: 8px;
   padding: 12px;
 }
 
 .pres-note-item {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #f6f6f6;
+  border: 1px solid #e8e8e8;
   border-radius: 10px;
   padding: 9px 10px;
 }
 
 .pres-note-item p {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  color: #111;
+  font-weight: 500;
   line-height: 1.55;
   white-space: pre-wrap;
 }
@@ -3964,16 +3967,22 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll::-webkit-scrollbar-thumb {
   justify-content: space-between;
   align-items: center;
   font-size: 9px;
-  color: rgba(255, 255, 255, 0.45);
+  color: #888;
 }
 
 .pres-note-del {
   border: 0;
   background: none;
-  color: rgba(255, 255, 255, 0.5);
+  color: #d33;
   cursor: pointer;
   font-size: 9px;
+  font-weight: 600;
   padding: 0;
+}
+
+.pres-note-del:hover {
+  text-decoration: underline;
+  color: #a00;
 }
 
 .pres-note-del:hover {
@@ -3982,7 +3991,8 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll::-webkit-scrollbar-thumb {
 
 .pres-notes-form {
   padding: 10px 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  background: #fff;
 }
 
 .pres-notes-form textarea {
@@ -4017,19 +4027,19 @@ body.theme-flat2d .immersive-intro .intro-tl-scroll::-webkit-scrollbar-thumb {
 }
 
 .pres-notes-add {
-  border: 1px solid #fff;
-  background: #fff;
-  color: #111;
+  border: 1px solid #111;
+  background: #111;
+  color: #fff;
   font-family: var(--font);
   font-size: 11px;
-  font-weight: 600;
-  padding: 6px 12px;
+  font-weight: 700;
+  padding: 6px 14px;
   border-radius: 6px;
   cursor: pointer;
 }
 
 .pres-notes-add:hover {
-  opacity: 0.85;
+  background: #333;
 }
 
 @media(max-width:768px) {
