@@ -9,6 +9,7 @@ function render(){
 
   document.body.classList.toggle('is-intro', S.tab === 'introduction');
   document.body.classList.toggle('is-floorplan', S.tab === 'floorplan');
+  document.body.classList.toggle('is-presentation', S.tab === 'presentation');
 
   // Update header tabs
   const tabsEl=document.getElementById('header-tabs');

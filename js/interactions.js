@@ -128,8 +128,8 @@ document.addEventListener('keydown',e=>{
 
 
 // ===== PRESENTATION VIEWER =====
-const PRES_TOTAL=24;
-const PRES_BASE='presentation-r7/slide-';
+const PRES_TOTAL=28;
+const PRES_BASE='presentation-r8/slide-';
 const PRES_SECTIONS=[
   {label:'표지',labelEn:'Cover',page:0},
   {label:'인트로',labelEn:'Intro',page:1},
@@ -140,23 +140,33 @@ const PRES_SECTIONS=[
   {label:'싱크대',labelEn:'Sink',page:7},
   {label:'카운터/캐비넷',labelEn:'Counter/Cabinet',page:10},
   {label:'가스레인지/오븐',labelEn:'Stove/Oven',page:13},
-  {label:'벽면 패널',labelEn:'Wall Panels',page:15},
-  {label:'커피 스테이션',labelEn:'Coffee Station',page:16},
-  {label:'바닥재',labelEn:'Flooring',page:19},
-  {label:'종합 제안',labelEn:'Integrated Proposal',page:22},
-  {label:'예산별 시공안',labelEn:'Budget Options',page:23},
+  {label:'벽면 패널',labelEn:'Wall Panels',page:16},
+  {label:'천장 조명 업그레이드',labelEn:'Ceiling Upgrade',page:17},
+  {label:'커피 스테이션',labelEn:'Coffee Station',page:20},
+  {label:'바닥재',labelEn:'Flooring',page:23},
+  {label:'종합 제안',labelEn:'Integrated Proposal',page:26},
+  {label:'예산별 시공안',labelEn:'Budget Options',page:27},
 ];
 
-// Preload next/prev images
+// Preload next/prev images and decode them off-thread
 function presPreload(pg){
   [pg-1,pg+1,pg+2].forEach(i=>{
-    if(i>=0&&i<PRES_TOTAL){const img=new Image();img.src=presSlideUrl(i);}
+    if(i>=0&&i<PRES_TOTAL){
+      const img=new Image();
+      img.src=presSlideUrl(i);
+      if(img.decode) img.decode().catch(()=>{});
+    }
   });
 }
 
 function presSlideUrl(i){
   const n=String(i+1).padStart(2,'0');
   return PRES_BASE+n+'.jpg';
+}
+
+function presThumbUrl(i){
+  const n=String(i+1).padStart(2,'0');
+  return PRES_BASE.replace('slide-','') + 'thumbs/slide-' + n + '.jpg';
 }
 
 // Find which section a page belongs to
@@ -259,7 +269,7 @@ function rPresentationPanel(){
     const sec=PRES_SECTIONS.find(s=>s.page===i);
     if(sec) toc+=`<li class="pres-toc-section">${lang==='ko'?sec.label:sec.labelEn}</li>`;
     const secLabel=sec?(lang==='ko'?sec.label:sec.labelEn):'';
-    toc+=`<li><button class="${i===pg?'on':''}" onclick="goPresPage(${i})" data-pg="${i}"><span class="pg-num">${i+1}</span><img class="pres-thumb" src="${presSlideUrl(i)}" loading="lazy" alt=""><span class="pres-toc-label">${secLabel}</span></button></li>`;
+    toc+=`<li><button class="${i===pg?'on':''}" onclick="goPresPage(${i})" data-pg="${i}"><span class="pg-num">${i+1}</span><img class="pres-thumb" src="${presThumbUrl(i)}" loading="lazy" decoding="async" alt=""><span class="pres-toc-label">${secLabel}</span></button></li>`;
   }
   toc+='</ul>';
 
@@ -297,7 +307,7 @@ function rPresentationPanel(){
       </button>
       <div class="pres-stage" id="pres-stage">
         <div class="pres-stage-inner" id="pres-inner">
-          <img id="pres-img" class="pres-transitioning" src="${presSlideUrl(pg)}" alt="Slide ${pg+1}" draggable="false">
+          <img id="pres-img" class="pres-transitioning" src="${presSlideUrl(pg)}" decoding="async" alt="Slide ${pg+1}" draggable="false">
         </div>
       </div>
       <div class="pres-controls">
@@ -521,4 +531,116 @@ document.addEventListener('keydown',(e)=>{
     case 'c':case 'C':
       e.preventDefault();togglePresNotes();break;
   }
+});
+
+// ===== LASER CURSOR LOGIC =====
+document.addEventListener('DOMContentLoaded', () => {
+  const laserCursor = document.getElementById('laser-cursor');
+  const canvas = document.getElementById('laser-canvas');
+  if (!laserCursor || !canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  
+  // Resize canvas tracking window changes
+  function resizeCanvas() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  window.addEventListener('resize', resizeCanvas);
+  resizeCanvas();
+
+  // Trail state
+  let trail = [];
+  const trailDuration = 1000; // 1 second in ms
+  
+  // Track mouse movement
+  document.addEventListener('mousemove', (e) => {
+    laserCursor.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0) translate(-50%, -50%)`;
+    
+    // Add point to trail sequence
+    if (S.tab !== 'presentation') {
+      trail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+    } else {
+      trail = [];
+    }
+
+    // Ensure array doesn't grow wildly
+    if (trail.length > 200) trail.shift();
+  });
+
+  const clickableSelector = 'a, button, input, textarea, select, [onclick], .gtab, .lb-nav, .pres-nav-arrow, .pres-icon-btn, .pres-btn, .pres-toc li button, .pres-note-del, .est-r7-card, .design-jump-card, .design-img-wrap';
+
+  document.addEventListener('mouseover', (e) => {
+    if (e.target && e.target.closest) {
+      if (e.target.closest(clickableSelector)) {
+        laserCursor.classList.add('active');
+      } else {
+        laserCursor.classList.remove('active');
+      }
+    }
+  });
+
+  document.addEventListener('mouseout', (e) => {
+    if (e.relatedTarget === null) {
+      laserCursor.style.display = 'none';
+      trail = []; 
+    }
+  });
+  
+  document.addEventListener('mouseenter', () => {
+    laserCursor.style.display = 'block';
+  });
+
+  // Animation loop for trail interpolation
+  let isCanvasClear = true;
+  function drawTrail() {
+    if (S.tab === 'presentation') {
+      if (!isCanvasClear) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        isCanvasClear = true;
+      }
+      requestAnimationFrame(drawTrail);
+      return;
+    }
+    const now = Date.now();
+    
+    // Remove old points beyond duration threshold
+    trail = trail.filter(p => now - p.time <= trailDuration);
+    
+    if (trail.length === 0) {
+      if (!isCanvasClear) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        isCanvasClear = true;
+      }
+    } else {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      isCanvasClear = false;
+      
+      // Connect points with decaying lines based on age
+      for (let i = 0; i < trail.length - 1; i++) {
+        const p1 = trail[i];
+        const p2 = trail[i + 1];
+        
+        // Age ratio from 0.0 (fresh) to 1.0 (dead)
+        const age = (now - p1.time) / trailDuration;
+        const opacity = Math.max(0, 1 - age);
+        const lineWidth = 4 * (1 - age) + 1; // Dynamic thickness
+        
+        ctx.beginPath();
+        ctx.moveTo(p1.x, p1.y);
+        ctx.lineTo(p2.x, p2.y);
+        // Apply glow effect using stroke styling
+        ctx.strokeStyle = `rgba(255, 42, 42, ${opacity * 0.7})`; 
+        ctx.lineWidth = lineWidth;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+      }
+    }
+    
+    requestAnimationFrame(drawTrail);
+  }
+  
+  // Start animation loop
+  requestAnimationFrame(drawTrail);
 });

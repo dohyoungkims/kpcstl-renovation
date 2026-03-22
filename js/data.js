@@ -369,7 +369,7 @@ const CATS = {
 };
 const POLYCAM_URL='https://poly.cam/capture/5D464C80-8013-46BE-8BD9-74DEEBA6EA82';
 const ENSCAPE_URL='https://cloud.chaos.com/collaboration/folder/QtewMDF6NdwauoAEXc9Ai6/present?n=Hmy9A8iFANzkVhrjD7aBjC';
-const FLOOR_PLAN_RENDER_SRC='presentation-r7/slide-07.jpg';
+const FLOOR_PLAN_RENDER_SRC='presentation-r8/slide-07.jpg';
 const FLOOR_PLAN_VECTOR_SRC='Final Renderings/AXON/FLOOR PLAN.jpg';
 const EXISTING_SPACE_FILES=[
   'IMG_0593.JPG',
