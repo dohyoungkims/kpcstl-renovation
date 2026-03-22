@@ -566,6 +566,7 @@ const DESIGN_SECTIONS=[
     desc:{ko:'오븐 고장 문제를 해결하고, 고화력 스톡 버너 도입으로 대용량 조리 성능을 강화합니다.',en:'Restores oven capability and adds high-output stock burners for heavy-volume cooking.'},
     images:[
       {src:'Final Renderings/Stove area/stove area.jpg',title:{ko:'가스레인지/오븐 교체안',en:'Stove/Oven Upgrade'},cap:{ko:'스토브 교체로 조리 범위를 확장하고, 대형 조리 대응력을 높입니다.',en:'Upgraded cooking line expands menu range and improves throughput.'},refOnly:true},
+      {src:'Final Renderings/Stove area/pot filler.jpg',title:{ko:'팟 필러',en:'Pot Filler'},cap:{ko:'스토브 상단 팟 필러(Pot Filler) 구역 렌더링입니다.',en:'Detailed rendering of the pot filler installation over the stove.'},refOnly:true},
     ],
   },
   {
