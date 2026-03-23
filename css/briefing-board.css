@@ -1300,6 +1300,12 @@ body.theme-flat2d .cont-inp:focus {
   box-shadow: inset 0 0 0 2px var(--board-blue);
 }
 
+body.theme-flat2d .cont-inp.is-invalid {
+  background: #fde7e3 !important;
+  box-shadow: inset 0 0 0 2px #c23728 !important;
+  color: #7b1f17;
+}
+
 body.theme-flat2d .ocard {
   overflow: hidden;
 }

@@ -1,5 +1,5 @@
 // === state.js — State management, utilities, utilities ===
-const S={tab:'introduction',slide:null,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},preset:null,scopeFocus:'2',introProcIdx:4};
+const S={tab:'introduction',slide:null,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},preset:null,scopeFocus:'2',introProcIdx:4,contPctInvalid:false};
 function pickDesign(secKey,imgIdx){
   if(S.picks[secKey]===imgIdx)delete S.picks[secKey]; else S.picks[secKey]=imgIdx;
   render();
@@ -168,8 +168,36 @@ function resetPreset(){
 
 function contRate(){return S.contOn?S.contPct/100:0;}
 function setContPct(v){
-  const n=parseFloat(v);
-  if(!isNaN(n)&&n>=0&&n<=100)S.contPct=n;
+  const input=document.querySelector('.cont-inp');
+  const raw=String(v||'').trim();
+  if(raw===''){
+    S.contPctInvalid=false;
+    if(input){
+      input.classList.remove('is-invalid');
+      input.removeAttribute('aria-invalid');
+      input.removeAttribute('title');
+    }
+    return;
+  }
+  const n=Number(raw);
+  if(Number.isFinite(n)&&n>=0&&n<=100){
+    S.contPct=n;
+    S.contPctInvalid=false;
+    if(input){
+      input.classList.remove('is-invalid');
+      input.removeAttribute('aria-invalid');
+      input.removeAttribute('title');
+    }
+    updateTotals();
+    return;
+  }
+  S.contPctInvalid=true;
+  if(input){
+    input.classList.add('is-invalid');
+    input.setAttribute('aria-invalid','true');
+    input.setAttribute('title','Enter a number between 0 and 100');
+    input.value=String(S.contPct);
+  }
   updateTotals();
 }
 function toggleCont(){S.contOn=!S.contOn;render();}
