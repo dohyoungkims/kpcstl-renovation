@@ -131,6 +131,7 @@ function render(){
 
   const headerEl=document.querySelector('.header');
   if(S.tab==='presentation'){
+    if(typeof teardownPresViewer==='function')teardownPresViewer();
     delete appEl.dataset.activeOption;
     // Hide header + main app, show presentation in separate root
     if(headerEl)headerEl.style.display='none';
@@ -139,6 +140,7 @@ function render(){
     presRoot.style.display='block';
     requestAnimationFrame(()=>{initPresViewer();});
   }else{
+    if(typeof teardownPresViewer==='function')teardownPresViewer();
     // Normal tabs — restore header + app
     if(headerEl)headerEl.style.display='';
     appEl.style.display='';

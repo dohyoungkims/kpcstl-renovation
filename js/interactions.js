@@ -449,12 +449,23 @@ function togglePresFullscreen(){
   }
 }
 
-const _presPan={active:false,sx:0,sy:0,ox:0,oy:0};
+const _presPan={active:false,sx:0,sy:0,ox:0,oy:0,pid:null};
+function teardownPresViewer(){
+  const stage=document.getElementById('pres-stage');
+  if(stage&&typeof stage.__presCleanup==='function')stage.__presCleanup();
+}
 function initPresViewer(){
   const stage=document.getElementById('pres-stage');
   if(!stage)return;
+  if(stage.dataset.presInit==='1')return;
+  stage.dataset.presInit='1';
+
+  const ctrl=new AbortController();
+  const sig=ctrl.signal;
+  const on=(el,evt,fn,opts={})=>el.addEventListener(evt,fn,Object.assign({},opts,{signal:sig}));
+
   // Wheel handler
-  stage.addEventListener('wheel',(e)=>{
+  on(stage,'wheel',(e)=>{
     e.preventDefault();
     if(e.shiftKey&&S.presZoom>1.05){
       S.presPanX-=(e.deltaX||0);
@@ -466,39 +477,57 @@ function initPresViewer(){
     S.presZoom=Math.max(0.25,Math.min(5,S.presZoom*factor));
     applyPresZoom();
   },{passive:false});
+
   // Pan with pointer drag
-  stage.addEventListener('pointerdown',(e)=>{
+  on(stage,'pointerdown',(e)=>{
     if(S.presZoom<=1.05)return;
     _presPan.active=true;_presPan.sx=e.clientX;_presPan.sy=e.clientY;
-    _presPan.ox=S.presPanX;_presPan.oy=S.presPanY;
+    _presPan.ox=S.presPanX;_presPan.oy=S.presPanY;_presPan.pid=e.pointerId;
     stage.classList.add('dragging');
-    stage.setPointerCapture(e.pointerId);
+    if(stage.setPointerCapture)stage.setPointerCapture(e.pointerId);
   });
-  stage.addEventListener('pointermove',(e)=>{
+  on(stage,'pointermove',(e)=>{
     if(!_presPan.active)return;
     S.presPanX=_presPan.ox+(e.clientX-_presPan.sx);
     S.presPanY=_presPan.oy+(e.clientY-_presPan.sy);
     applyPresZoom();
   });
-  const endPan=(e)=>{
+  const endPan=()=>{
     if(!_presPan.active)return;
     _presPan.active=false;
     stage.classList.remove('dragging');
+    if(_presPan.pid!==null&&stage.releasePointerCapture){
+      try{stage.releasePointerCapture(_presPan.pid);}catch(_){}
+    }
+    _presPan.pid=null;
   };
-  stage.addEventListener('pointerup',endPan);
-  stage.addEventListener('pointercancel',endPan);
+  on(stage,'pointerup',endPan);
+  on(stage,'pointercancel',endPan);
+
   applyPresZoom();
   presPreload(S.presPage);
+
   // Auto-hide controls after 3s of no mouse movement
-  let hideTimer;
+  let hideTimer=null;
   const wrap=document.getElementById('pres-wrap');
   if(wrap){
-    wrap.addEventListener('mousemove',()=>{
+    on(wrap,'mousemove',()=>{
       wrap.classList.add('controls-visible');
       clearTimeout(hideTimer);
       hideTimer=setTimeout(()=>wrap.classList.remove('controls-visible'),3000);
     });
   }
+
+  stage.__presCleanup=()=>{
+    if(stage.dataset.presInit!=='1')return;
+    stage.dataset.presInit='0';
+    ctrl.abort();
+    _presPan.active=false;
+    _presPan.pid=null;
+    stage.classList.remove('dragging');
+    if(hideTimer){clearTimeout(hideTimer);hideTimer=null;}
+    delete stage.__presCleanup;
+  };
 }
 
 // Keyboard navigation — single global handler
