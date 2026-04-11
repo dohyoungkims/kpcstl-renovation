@@ -256,6 +256,213 @@ function exportPresNotes(){
   URL.revokeObjectURL(a.href);
 }
 
+// ===== MEETING NOTES (shared server + local fallback) =====
+const MEETING_NOTES_KEY='kpc_meeting_notes_v1';
+const MEETING_NOTES_ENDPOINT=window.KPC_MEETING_NOTES_ENDPOINT||'./api/meeting-notes';
+let meetingReadyPromise=null;
+
+function meetingItemId(prefix){
+  return `${prefix}_${Date.now()}_${Math.random().toString(36).slice(2,8)}`;
+}
+function meetingFormatTime(ts){
+  if(!ts)return '';
+  const d=new Date(ts);
+  if(Number.isNaN(d.getTime()))return String(ts);
+  return d.toLocaleString();
+}
+function meetingDefaultState(){
+  const mk=(team)=>({
+    agenda:(MEETING_DEFAULTS[team].agenda||[]).map((text,idx)=>({
+      id:`${team}_ag_${idx+1}`,
+      text,
+      done:false,
+    })),
+    suggested:[...(MEETING_DEFAULTS[team].suggested||[])],
+    notes:[],
+  });
+  return {
+    supplier:mk('supplier'),
+    construction:mk('construction'),
+    updatedAt:'',
+  };
+}
+function meetingNormalize(raw){
+  const base=meetingDefaultState();
+  const src=(raw&&typeof raw==='object')?raw:{};
+  MEETING_COMPANIES.forEach(team=>{
+    const incoming=src[team]&&typeof src[team]==='object'?src[team]:{};
+    if(Array.isArray(incoming.agenda)&&incoming.agenda.length){
+      base[team].agenda=incoming.agenda
+        .map((it,idx)=>{
+          if(typeof it==='string')return {id:`${team}_ag_custom_${idx+1}`,text:it,done:false};
+          if(!it||typeof it!=='object')return null;
+          return {
+            id:it.id||`${team}_ag_custom_${idx+1}`,
+            text:String(it.text||'').trim(),
+            done:!!it.done,
+          };
+        })
+        .filter(it=>it&&it.text);
+    }
+    if(Array.isArray(incoming.suggested)&&incoming.suggested.length){
+      base[team].suggested=incoming.suggested.map(x=>String(x||'').trim()).filter(Boolean);
+    }
+    if(Array.isArray(incoming.notes)&&incoming.notes.length){
+      base[team].notes=incoming.notes
+        .map((it,idx)=>{
+          if(typeof it==='string')return {id:`${team}_note_${idx+1}`,text:it,ts:''};
+          if(!it||typeof it!=='object')return null;
+          return {
+            id:it.id||`${team}_note_${idx+1}`,
+            text:String(it.text||'').trim(),
+            ts:String(it.ts||''),
+          };
+        })
+        .filter(it=>it&&it.text);
+    }
+  });
+  base.updatedAt=typeof src.updatedAt==='string'?src.updatedAt:'';
+  return base;
+}
+function meetingEnsureState(){
+  S.meetingNotes=meetingNormalize(S.meetingNotes);
+  if(!S.meetingSync)S.meetingSync='loading';
+  return S.meetingNotes;
+}
+function meetingLoadLocal(){
+  try{
+    const raw=localStorage.getItem(MEETING_NOTES_KEY);
+    if(!raw)return null;
+    return JSON.parse(raw);
+  }catch(_){return null;}
+}
+function meetingSaveLocal(){
+  try{localStorage.setItem(MEETING_NOTES_KEY,JSON.stringify(S.meetingNotes||meetingDefaultState()));}catch(_){}
+}
+function meetingResolveSection(team){
+  meetingEnsureState();
+  const key=MEETING_COMPANIES.includes(team)?team:'supplier';
+  if(!S.meetingNotes[key])S.meetingNotes[key]={agenda:[],suggested:[],notes:[]};
+  return S.meetingNotes[key];
+}
+function meetingFindIndexById(arr,id){
+  let idx=arr.findIndex(it=>String(it.id)===String(id));
+  if(idx>=0)return idx;
+  if(/^idx_\d+$/.test(String(id)))idx=parseInt(String(id).split('_')[1],10);
+  return Number.isInteger(idx)&&idx>=0&&idx<arr.length?idx:-1;
+}
+async function meetingTryLoadServer(){
+  try{
+    const res=await fetch(MEETING_NOTES_ENDPOINT,{cache:'no-store',headers:{'Accept':'application/json'}});
+    if(!res.ok)return false;
+    const payload=await res.json();
+    const data=payload&&payload.data?payload.data:payload;
+    S.meetingNotes=meetingNormalize(data);
+    S.meetingSync='server';
+    S.meetingLastSaved=meetingFormatTime(S.meetingNotes.updatedAt||new Date().toISOString());
+    meetingSaveLocal();
+    return true;
+  }catch(_){return false;}
+}
+async function meetingPersist(preferServer=true){
+  meetingEnsureState();
+  S.meetingNotes.updatedAt=new Date().toISOString();
+  S.meetingLastSaved=meetingFormatTime(S.meetingNotes.updatedAt);
+  meetingSaveLocal();
+  if(preferServer){
+    try{
+      const res=await fetch(MEETING_NOTES_ENDPOINT,{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Accept':'application/json'},
+        body:JSON.stringify(S.meetingNotes),
+      });
+      if(!res.ok)throw new Error(String(res.status));
+      const payload=await res.json().catch(()=>null);
+      const data=payload&&payload.data?payload.data:payload;
+      if(data&&typeof data==='object')S.meetingNotes=meetingNormalize(data);
+      S.meetingSync='server';
+      meetingSaveLocal();
+      if(!S.meetingLastSaved)S.meetingLastSaved=meetingFormatTime(S.meetingNotes.updatedAt||new Date().toISOString());
+    }catch(_){
+      S.meetingSync='local';
+    }
+  }else{
+    S.meetingSync='local';
+  }
+  if(typeof render==='function')render();
+}
+function meetingSyncText(){
+  if(S.meetingSync==='server')return t('meetingSyncServer');
+  if(S.meetingSync==='local')return t('meetingSyncLocal');
+  return t('meetingSyncLoading');
+}
+function meetingKickoffLabel(){
+  return new Date().toLocaleDateString(S.lang==='ko'?'ko-KR':'en-US',{year:'numeric',month:'long',day:'numeric'});
+}
+function meetingLastSavedLabel(){
+  if(!S.meetingLastSaved)return '';
+  return (S.lang==='ko'?'최근 저장: ':'Last saved: ')+S.meetingLastSaved;
+}
+function ensureMeetingNotesReady(){
+  if(meetingReadyPromise)return meetingReadyPromise;
+  const local=meetingLoadLocal();
+  S.meetingNotes=meetingNormalize(local||S.meetingNotes||meetingDefaultState());
+  S.meetingSync=local?'local':'loading';
+  if(local&&S.meetingNotes.updatedAt)S.meetingLastSaved=meetingFormatTime(S.meetingNotes.updatedAt);
+  if(typeof render==='function')render();
+  meetingReadyPromise=(async()=>{
+    const ok=await meetingTryLoadServer();
+    if(!ok&&S.meetingSync!=='local')S.meetingSync='local';
+    if(typeof render==='function')render();
+  })();
+  return meetingReadyPromise;
+}
+async function saveMeetingNotesNow(){
+  await meetingPersist(true);
+}
+async function addMeetingAgendaItem(team){
+  const input=document.getElementById(`meeting-agenda-input-${team}`);
+  if(!input)return;
+  const text=(input.value||'').trim();
+  if(!text)return;
+  const sec=meetingResolveSection(team);
+  sec.agenda.push({id:meetingItemId(`${team}_ag`),text,done:false});
+  input.value='';
+  await meetingPersist(true);
+}
+async function toggleMeetingAgendaDone(team,id){
+  const sec=meetingResolveSection(team);
+  const idx=meetingFindIndexById(sec.agenda,id);
+  if(idx<0)return;
+  sec.agenda[idx].done=!sec.agenda[idx].done;
+  await meetingPersist(true);
+}
+async function deleteMeetingAgendaItem(team,id){
+  const sec=meetingResolveSection(team);
+  const idx=meetingFindIndexById(sec.agenda,id);
+  if(idx<0)return;
+  sec.agenda.splice(idx,1);
+  await meetingPersist(true);
+}
+async function addMeetingNoteItem(team){
+  const input=document.getElementById(`meeting-note-input-${team}`);
+  if(!input)return;
+  const text=(input.value||'').trim();
+  if(!text)return;
+  const sec=meetingResolveSection(team);
+  sec.notes.unshift({id:meetingItemId(`${team}_note`),text,ts:new Date().toLocaleString()});
+  input.value='';
+  await meetingPersist(true);
+}
+async function deleteMeetingNoteItem(team,id){
+  const sec=meetingResolveSection(team);
+  const idx=meetingFindIndexById(sec.notes,id);
+  if(idx<0)return;
+  sec.notes.splice(idx,1);
+  await meetingPersist(true);
+}
+window.addEventListener('load',()=>{ensureMeetingNotesReady();});
+
 function rPresentationPanel(){
   const pg=S.presPage;
   const sideOpen=S.presSidebarOpen;

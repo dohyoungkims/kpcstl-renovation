@@ -1,5 +1,5 @@
 // === state.js — State management, utilities, utilities ===
-const S={tab:'introduction',slide:null,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},preset:null,scopeFocus:'2',introProcIdx:4,contPctInvalid:false};
+const S={tab:'introduction',slide:null,agapeHi:false,agapeEq:'session',morgEq:'session',designSec:0,designFocus:false,contOn:true,contPct:10,picks:{},lang:'ko',presPage:0,presZoom:1,presPanX:0,presPanY:0,presSidebarOpen:true,presNotesOpen:false,presNotes:{},preset:null,scopeFocus:'2',introProcIdx:4,contPctInvalid:false,meetingNotes:{supplier:{agenda:[],suggested:[],notes:[]},construction:{agenda:[],suggested:[],notes:[]}},meetingSync:'loading',meetingLastSaved:''};
 function pickDesign(secKey,imgIdx){
   if(S.picks[secKey]===imgIdx)delete S.picks[secKey]; else S.picks[secKey]=imgIdx;
   render();
@@ -89,6 +89,35 @@ function updateTotals(){
 }
 function updateSlideNumbers(){
   const T=getT();
+  const detail=document.getElementById('detailed-estimates');
+  if(detail&&detail.dataset.mode==='option-b'){
+    const b=T[1];
+    if(!b)return;
+    detail.querySelectorAll('.gt').forEach(el=>{
+      const sp=el.querySelectorAll('span');
+      if(sp[1])sp[1].textContent=fmt(b.t);
+    });
+    detail.querySelectorAll('.pbadge').forEach(el=>{el.textContent=fmt(b.t);});
+    detail.querySelectorAll('.cont-line').forEach(el=>{
+      const sp=el.querySelectorAll('span');
+      if(sp[1])sp[1].textContent=fmt(b.cont);
+    });
+    const sections=[D.b_gc,D.b_eq];
+    const secs=detail.querySelectorAll('.sec');
+    secs.forEach((secEl,si)=>{
+      const arr=sections[si];
+      if(!arr)return;
+      const tot=sumA(arr), onN=arr.filter(x=>x.on).length;
+      const hdr=secEl.querySelector('.ss');
+      if(hdr)hdr.textContent=onN+'/'+arr.length+' = '+fmt(tot);
+      const sub=secEl.querySelector('.sub');
+      if(sub){
+        const sp=sub.querySelectorAll('span');
+        if(sp[1])sp[1].textContent=fmt(tot);
+      }
+    });
+    return;
+  }
   document.querySelectorAll('.gt').forEach((el,i)=>{
     const sp=el.querySelectorAll('span');
     if(sp[1])sp[1].textContent=fmt(T[i].t);
@@ -120,7 +149,11 @@ function sumA(arr){return arr.reduce((s,i)=>s+(i.on?iCost(i):0),0);}
 function sumV(arr,v){return arr.reduce((s,i)=>{if(!i.on)return s;if(i.bv&&i.bv!==v)return s;return s+iCost(i);},0);}
 function fmt(n){return(n<0?'-$':'$')+Math.abs(Math.round(n)).toLocaleString('en-US');}
 function escapeHtml(s){return String(s||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]||ch));}
-function goTab(t){S.tab=t;render();}
+function goTab(t){
+  S.tab=t;
+  if(t==='meetings'&&typeof ensureMeetingNotesReady==='function')ensureMeetingNotesReady();
+  render();
+}
 function goSlide(i){S.slide=i;render();}
 function toggleCat(k){expanded[k]=!isCatOpen(k);render();}
 function setOn(id,on){const it=find(id);if(it)it.on=on;}

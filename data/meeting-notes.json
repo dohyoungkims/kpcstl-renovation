@@ -1,0 +1,95 @@
+{
+  "supplier": {
+    "agenda": [
+      {
+        "id": "supplier_ag_1",
+        "text": "Kickoff schedule and recurring meeting cadence",
+        "done": false
+      },
+      {
+        "id": "supplier_ag_2",
+        "text": "Full scope confirmation: required vs optional supplier scope",
+        "done": false
+      },
+      {
+        "id": "supplier_ag_3",
+        "text": "Milestone timeline: submittals, approvals, fabrication, delivery",
+        "done": false
+      },
+      {
+        "id": "supplier_ag_4",
+        "text": "Highest lead-time items: custom cabinets, quartz/countertop, specialty stainless",
+        "done": false
+      },
+      {
+        "id": "supplier_ag_5",
+        "text": "Equipment spec lock and alternates (value engineering options)",
+        "done": false
+      },
+      {
+        "id": "supplier_ag_6",
+        "text": "Delivery windows, site access rules, and staging requirements",
+        "done": false
+      },
+      {
+        "id": "supplier_ag_7",
+        "text": "Warranty, startup support, and post-install service contacts",
+        "done": false
+      }
+    ],
+    "suggested": [
+      "Shop drawing turnaround SLAs and decision owner",
+      "Long-lead purchase release trigger and deposit timing",
+      "Damage/replacement protocol for delivered items",
+      "Final punch-list response timeline"
+    ],
+    "notes": []
+  },
+  "construction": {
+    "agenda": [
+      {
+        "id": "construction_ag_1",
+        "text": "Kickoff schedule with phase gates and target completion date",
+        "done": false
+      },
+      {
+        "id": "construction_ag_2",
+        "text": "Full scope walk-through and written exclusions",
+        "done": false
+      },
+      {
+        "id": "construction_ag_3",
+        "text": "Milestone timeline: demo, rough-in, inspections, finishes, handoff",
+        "done": false
+      },
+      {
+        "id": "construction_ag_4",
+        "text": "Highest lead-time dependencies affecting construction sequence",
+        "done": false
+      },
+      {
+        "id": "construction_ag_5",
+        "text": "Permit and inspection path (including required submissions)",
+        "done": false
+      },
+      {
+        "id": "construction_ag_6",
+        "text": "Kitchen downtime plan and temporary operation strategy",
+        "done": false
+      },
+      {
+        "id": "construction_ag_7",
+        "text": "Change-order process, approval authority, and communication cadence",
+        "done": false
+      }
+    ],
+    "suggested": [
+      "Utility shutoff windows and congregation impact notices",
+      "Daily/weekly reporting format with owner and due date",
+      "Site safety, dust/noise containment, and cleanup standards",
+      "Contingency draw rules and budget variance threshold"
+    ],
+    "notes": []
+  },
+  "updatedAt": ""
+}

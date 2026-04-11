@@ -999,6 +999,10 @@ body.theme-flat2d .est-grid {
   grid-template-columns: repeat(3, minmax(280px, 1fr));
 }
 
+body.theme-flat2d .est-grid.est-grid-single {
+  grid-template-columns: minmax(280px, 1fr);
+}
+
 body.theme-flat2d .est-card {
   padding: 20px;
   background: var(--board-white);

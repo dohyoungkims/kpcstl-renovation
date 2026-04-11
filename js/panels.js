@@ -473,29 +473,131 @@ function scrollEstimateDetails(){
   if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
 }
 function rEstimateSummary(){
-  let cards='';
-  ESTIMATE_CARDS.forEach(c=>{
-    const on=S.preset===c.key;
-    const focus=S.scopeFocus===c.key;
-    cards+=`<article class="est-card DecisionCard BudgetWidget ${on?'on':''} ${focus?'focus':''}" onclick="applyPreset('${c.key}')">
-      <h4>${trObj(c.title)}</h4>
-      <p>${trObj(c.desc)}</p>
-      <p class="est-list">${trObj(c.items)}</p>
-      <div class="est-scope-badges">${rScopeBadges(c)}</div>
-      <div class="est-range">${c.range}<small>${c.rangeEn}</small></div>
-      <div class="est-card-actions">
-        <button class="est-preset-btn PillButton ${on?'on':''}" onclick="event.stopPropagation();applyPreset('${c.key}')">${on?t('applied'):t('applyPreset')}</button>
-      </div>
-    </article>`;
-  });
-  return`${rScopeOverview()}<section class="est SectionBoard SurfaceCard">
+  const T=getT();
+  const b=T[1]||{l:'Pernikoff + Session',gc:0,eq:0,t:0};
+  const decisionLine=S.lang==='ko'
+    ?'최종 확정안은 Option B(시공: Pernikoff, 장비/공급: Session)입니다.'
+    :'Final approved path is Option B (construction: Pernikoff, supplier: Session).';
+  const totalHint=S.contOn
+    ?(S.lang==='ko'?`예비비 ${S.contPct}% 포함`:`Includes ${S.contPct}% contingency`)
+    :(S.lang==='ko'?'예비비 미적용':'Contingency off');
+  return`<section class="est SectionBoard SurfaceCard">
     <h3>${t('estTitle')}</h3>
     <p class="est-sub">${t('estSub')}</p>
-    <p class="est-hint">${t('presetHint')}</p>
-    <div class="est-grid">${cards}</div>
+    <div class="est-grid est-grid-single">
+      <article class="est-card DecisionCard BudgetWidget on selected-estimate-card">
+        <h4>${t('optB')} · ${b.l}</h4>
+        <p>${decisionLine}</p>
+        <div class="est-scope-badges">
+          <span class="est-scope-dot in">${t('gcPern')}</span>
+          <span class="est-scope-dot in">${t('eqSession')}</span>
+        </div>
+        <p class="est-list">${S.lang==='ko'?'시공 ':'Construction '}${fmt(b.gc)} · ${S.lang==='ko'?'장비 ':'Supplier '}${fmt(b.eq)}</p>
+        <div class="est-range">${fmt(b.t)}<small>${totalHint}</small></div>
+      </article>
+    </div>
     <div class="est-actions">
       <button class="est-btn ghost PillButton" onclick="resetPreset()">${t('resetRaw')}</button>
       <button class="est-btn PillButton" onclick="scrollEstimateDetails()">${t('openDetail')}</button>
+    </div>
+  </section>`;
+}
+
+function rMeetingAgendaRows(team,items){
+  if(!items||!items.length)return '';
+  return items.map((it,idx)=>{
+    const item=(typeof it==='string')?{id:`idx_${idx}`,text:it,done:false}:it;
+    const id=item.id||`idx_${idx}`;
+    return `<article class="meeting-agenda-item ${item.done?'done':''}">
+      <label>
+        <input type="checkbox" ${item.done?'checked':''} onchange="toggleMeetingAgendaDone('${team}','${id}')">
+        <span>${escapeHtml(item.text||'')}</span>
+      </label>
+      <button class="meeting-mini-btn PillButton" onclick="deleteMeetingAgendaItem('${team}','${id}')">${t('presDelete')}</button>
+    </article>`;
+  }).join('');
+}
+
+function rMeetingNotesRows(team,items){
+  if(!items||!items.length)return `<div class="meeting-empty">${t('meetingNotesEmpty')}</div>`;
+  return items.map((n,idx)=>{
+    const id=n&&n.id?n.id:`idx_${idx}`;
+    return `<article class="meeting-note-item">
+      <p>${escapeHtml(n&&n.text?n.text:'')}</p>
+      <div class="meeting-note-meta">
+        <span>${escapeHtml(n&&n.ts?n.ts:'')}</span>
+        <button class="meeting-mini-btn PillButton" onclick="deleteMeetingNoteItem('${team}','${id}')">${t('presDelete')}</button>
+      </div>
+    </article>`;
+  }).join('');
+}
+
+function rMeetingCompanyCard(team,title,data){
+  const block=data||{agenda:[],suggested:[],notes:[]};
+  const chip=team==='supplier'
+    ?(S.lang==='ko'?'공급':'Supplier')
+    :(S.lang==='ko'?'시공':'Construction');
+  const agendaRows=rMeetingAgendaRows(team,block.agenda||[]);
+  const notesRows=rMeetingNotesRows(team,block.notes||[]);
+  const suggested=(block.suggested||[]).map(s=>`<li>${escapeHtml(s)}</li>`).join('');
+  return `<article class="meeting-card SurfaceCard">
+    <div class="meeting-card-head">
+      <h3>${title}</h3>
+      <span class="meeting-chip">${chip}</span>
+    </div>
+
+    <section class="meeting-block">
+      <div class="meeting-block-head">
+        <h4>${t('meetingAgendaTitle')}</h4>
+        <p>${t('meetingAgendaHint')}</p>
+      </div>
+      <div class="meeting-agenda-list">${agendaRows}</div>
+      <div class="meeting-inline-form">
+        <input id="meeting-agenda-input-${team}" type="text" placeholder="${t('meetingAgendaAddPlaceholder')}" onkeydown="if(event.key==='Enter'){event.preventDefault();addMeetingAgendaItem('${team}');}">
+        <button class="PillButton" onclick="addMeetingAgendaItem('${team}')">${t('meetingAgendaAddBtn')}</button>
+      </div>
+    </section>
+
+    <section class="meeting-block">
+      <div class="meeting-block-head">
+        <h4>${t('meetingNotesTitle')}</h4>
+        <p>${t('meetingNotesHint')}</p>
+      </div>
+      <div class="meeting-notes-list">${notesRows}</div>
+      <div class="meeting-inline-form">
+        <textarea id="meeting-note-input-${team}" placeholder="${t('meetingNoteAddPlaceholder')}"></textarea>
+        <button class="PillButton" onclick="addMeetingNoteItem('${team}')">${t('meetingNoteAddBtn')}</button>
+      </div>
+    </section>
+
+    <section class="meeting-block suggested">
+      <h4>${t('meetingSuggestedTitle')}</h4>
+      <ul class="meeting-suggested-list">${suggested}</ul>
+    </section>
+  </article>`;
+}
+
+function rMeetingNotesPanel(){
+  const m=S.meetingNotes||{supplier:{agenda:[],suggested:[],notes:[]},construction:{agenda:[],suggested:[],notes:[]}};
+  const syncText=(typeof meetingSyncText==='function')?meetingSyncText():(S.meetingSync==='server'?t('meetingSyncServer'):S.meetingSync==='local'?t('meetingSyncLocal'):t('meetingSyncLoading'));
+  const kickoff=(typeof meetingKickoffLabel==='function')?meetingKickoffLabel():t('meetingKickoffTag');
+  const savedAt=(typeof meetingLastSavedLabel==='function')?meetingLastSavedLabel():'';
+  return `<section class="meeting-wrap SectionBoard SurfaceCard">
+    <div class="meeting-head">
+      <div>
+        <h3>${t('meetingTitle')}</h3>
+        <p class="meeting-sub">${t('meetingSub')}</p>
+        <div class="meeting-kickoff">${t('meetingKickoffTag')} · ${escapeHtml(kickoff)}</div>
+      </div>
+      <div class="meeting-head-actions">
+        <span class="meeting-sync ${S.meetingSync||'loading'}">${syncText}</span>
+        <button class="PillButton meeting-save-btn" onclick="saveMeetingNotesNow()">${t('meetingSaveNow')}</button>
+      </div>
+    </div>
+    ${savedAt?`<div class="meeting-saved-at">${escapeHtml(savedAt)}</div>`:''}
+    <div class="meeting-grid">
+      ${rMeetingCompanyCard('supplier',t('meetingSupplierTitle'),m.supplier)}
+      ${rMeetingCompanyCard('construction',t('meetingConstructionTitle'),m.construction)}
     </div>
   </section>`;
 }
